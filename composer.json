@@ -4,7 +4,7 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/annotations": "^1.0",
@@ -81,6 +81,9 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "start":["Composer\\Config::disableProcessTimeout",
+            "symfony serve"
         ]
     },
     "conflict": {
@@ -93,6 +96,9 @@
         }
     },
     "require-dev": {
+        "codeception/codeception": "^5.0",
+        "codeception/module-asserts": "^3.0",
+        "codeception/module-symfony": "^3.1",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "5.4.*",
         "symfony/css-selector": "5.4.*",
