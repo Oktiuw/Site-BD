@@ -139,6 +139,19 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/dependency-injection" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/mime" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ralouphie/getallheaders" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/http-factory" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/http-message" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/psr7" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/module-symfony" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/lib-asserts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/lib-web" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/stub" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/module-asserts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/lib-innerbrowser" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/codeception" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/behat/gherkin" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psy/psysh" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
