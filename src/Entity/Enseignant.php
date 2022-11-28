@@ -44,9 +44,13 @@ class Enseignant
     #[ORM\OneToMany(mappedBy: 'Enseignant', targetEntity: Evenement::class, orphanRemoval: true)]
     private Collection $evenements;
 
+    #[ORM\OneToMany(mappedBy: 'Enseignant', targetEntity: SujetTER::class, orphanRemoval: true)]
+    private Collection $sujetTERs;
+
     public function __construct()
     {
         $this->evenements = new ArrayCollection();
+        $this->sujetTERs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -174,6 +178,36 @@ class Enseignant
             // set the owning side to null (unless already changed)
             if ($evenement->getEnseignant() === $this) {
                 $evenement->setEnseignant(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SujetTER>
+     */
+    public function getSujetTERs(): Collection
+    {
+        return $this->sujetTERs;
+    }
+
+    public function addSujetTER(SujetTER $sujetTER): self
+    {
+        if (!$this->sujetTERs->contains($sujetTER)) {
+            $this->sujetTERs->add($sujetTER);
+            $sujetTER->setEnseignant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSujetTER(SujetTER $sujetTER): self
+    {
+        if ($this->sujetTERs->removeElement($sujetTER)) {
+            // set the owning side to null (unless already changed)
+            if ($sujetTER->getEnseignant() === $this) {
+                $sujetTER->setEnseignant(null);
             }
         }
 
