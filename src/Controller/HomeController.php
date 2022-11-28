@@ -14,9 +14,9 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig');
     }
 
-    #[Route('/home', name: 'app_home')]
-    public function connexion(): Response
+    #[Route('/home/{connexion}', name: 'app_home2')]
+    public function connexion(string $connexion): Response
     {
-        return $this->render('home/connexion.html.twig');
+        return $this->render('home/connexion.html.twig' , ['connexion' => $connexion]);
     }
 }
