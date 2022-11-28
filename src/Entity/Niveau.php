@@ -21,9 +21,13 @@ class Niveau
     #[ORM\OneToMany(mappedBy: 'niveau', targetEntity: Stage::class, orphanRemoval: true)]
     private Collection $stages;
 
+    #[ORM\OneToMany(mappedBy: 'niveau', targetEntity: GroupeEtudiants::class, orphanRemoval: true)]
+    private Collection $groupeEtudiants;
+
     public function __construct()
     {
         $this->stages = new ArrayCollection();
+        $this->groupeEtudiants = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,6 +71,36 @@ class Niveau
             // set the owning side to null (unless already changed)
             if ($stage->getNiveau() === $this) {
                 $stage->setNiveau(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, GroupeEtudiants>
+     */
+    public function getGroupeEtudiants(): Collection
+    {
+        return $this->groupeEtudiants;
+    }
+
+    public function addGroupeEtudiant(GroupeEtudiants $groupeEtudiant): self
+    {
+        if (!$this->groupeEtudiants->contains($groupeEtudiant)) {
+            $this->groupeEtudiants->add($groupeEtudiant);
+            $groupeEtudiant->setNiveau($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGroupeEtudiant(GroupeEtudiants $groupeEtudiant): self
+    {
+        if ($this->groupeEtudiants->removeElement($groupeEtudiant)) {
+            // set the owning side to null (unless already changed)
+            if ($groupeEtudiant->getNiveau() === $this) {
+                $groupeEtudiant->setNiveau(null);
             }
         }
 
