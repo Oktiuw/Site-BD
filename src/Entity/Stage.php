@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\StageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StageRepository::class)]
@@ -35,6 +37,14 @@ class Stage
     #[ORM\ManyToOne(inversedBy: 'stages')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Niveau $niveau = null;
+
+    #[ORM\OneToMany(mappedBy: 'Stage', targetEntity: Candidater::class, orphanRemoval: true)]
+    private Collection $candidaters;
+
+    public function __construct()
+    {
+        $this->candidaters = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -121,6 +131,36 @@ class Stage
     public function setNiveau(?Niveau $niveau): self
     {
         $this->niveau = $niveau;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Candidater>
+     */
+    public function getCandidaters(): Collection
+    {
+        return $this->candidaters;
+    }
+
+    public function addCandidater(Candidater $candidater): self
+    {
+        if (!$this->candidaters->contains($candidater)) {
+            $this->candidaters->add($candidater);
+            $candidater->setStage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidater(Candidater $candidater): self
+    {
+        if ($this->candidaters->removeElement($candidater)) {
+            // set the owning side to null (unless already changed)
+            if ($candidater->getStage() === $this) {
+                $candidater->setStage(null);
+            }
+        }
 
         return $this;
     }
