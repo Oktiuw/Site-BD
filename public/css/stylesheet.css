@@ -1,0 +1,226 @@
+html,body{
+    width: 100%;
+    height: 100%;
+
+}
+
+body{
+
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0.25em;
+    box-sizing: border-box;
+    background-image:url(aa.jpg);
+    background-size: cover;
+    flex-grow: 1;
+    font-family: sans-serif;
+
+}
+.menu, .acceuil{
+    display: flex;
+    border-radius: 0.125em;
+
+
+}
+
+.button {
+    border: 2px solid #999;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 1.5em;
+    align-content : flex-end;
+    background-color: rebeccapurple;
+}
+
+
+
+.acceuil{
+    flex-direction: column;
+    flex: 1;
+
+
+}
+
+.menu__item ,.acceuil_content {
+    border:2px solid rgb(0, 0, 0) ;
+    border-radius: 0.125em;
+    margin: 0.25em;
+    padding: 0.25em;
+    background-color: lavender;
+
+
+
+}
+
+.menu__item{
+    flex: 1;
+    background-color:  #293245;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+    box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
+    border-color: black;
+    text-align: center;
+    list-style: none;
+    float: left;
+    width: 200px;
+
+
+}
+.menu__item:link , .menu__item:visited {
+    display: block;
+    color: #ffffff;
+    background: #293245;
+    padding: 6px 10px;
+    border-right: 1px solid #ffffff;
+    text-align: center;
+
+}
+.menu__item:hover {background-color : #199BD2 ;}
+.menu__item:active {background-color : #808080 ;}
+
+.menu .sousMenu {
+    list-style-type: none;
+    display: none;
+    padding: 0;
+    margin : 0;
+    position: absolute;
+}
+.menu .sousMenu li {
+    float: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid transparent;
+    border-right: 1px solid transparent;
+
+}
+
+.menu .sousMenu li a:link , .menu .sousMenu li a:visited{
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    background-color:  #293245;
+}
+.menu .sousMenu li a:hover {
+    background-color: plum;
+}
+
+.menu__item:hover .sousMenu {
+    display: block;
+}
+
+
+.acceuil_content {
+
+    width: 80%;
+    height: 550px;
+    align-self: center;
+    font-family: sans-serif;
+    font-weight: bold;
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
+
+
+
+}
+
+
+.acceuil__complement , .acceuil__sub-content , .acceuil__sub-complement , .acceuil__sub-complement2 , .acceuil__sub-complement3 {
+    border:2px solid ;
+    background-color: plum;
+    margin: 5px 5px 5px 5px;
+    flex-grow: 2;
+    width: 80%;
+    align-self: center;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-decoration: underline;
+    text-align: center;
+
+
+
+
+
+
+}
+footer{
+    width: 80%;
+    align-self: center;
+    border:2px solid ;
+    background-color: plum;
+    margin: 5px 5px 5px 5px;
+    flex-grow: 1;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-decoration: underline;
+    text-align: center;
+
+}
+
+.slide#text{
+    width: 100%;
+    height: 0px;
+    display: none;
+
+}
+
+.slide#text1{
+    width: 100%;
+    height: 0px;
+    display: none;
+
+}
+
+.slide#text2{
+    width: 100%;
+    height: 0px;
+    display: none;
+
+}
+
+.slide#text3{
+    width: 100%;
+    height: 0px;
+    display: none;
+
+}
+
+.slide#text4{
+    width: 100%;
+    height: 0px;
+    display: none;
+
+}
+
+.slide#text5{
+    width: 100%;
+    height: 0px;
+    display: none;
+
+}
+h1{
+    text-align: center;
+    margin-bottom: 40px;
+    text-decoration: underline;
+    color: plum;
+}
+h2 {
+    color: darkturquoise;
+}
+
+
+
+
+
+
+
+
+
+
+
+
