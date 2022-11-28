@@ -47,9 +47,18 @@ class Etudiant
     #[ORM\OneToMany(mappedBy: 'Etudiant', targetEntity: SujetTER::class)]
     private Collection $sujetTERs;
 
+    #[ORM\ManyToMany(targetEntity: GroupeEtudiants::class, inversedBy: 'etudiants')]
+    private Collection $groupeEtudiants;
+
+    #[ORM\OneToMany(mappedBy: 'etudiant', targetEntity: Canditatures::class, orphanRemoval: true)]
+    private Collection $canditatures;
+
+
     public function __construct()
     {
         $this->sujetTERs = new ArrayCollection();
+        $this->groupeEtudiants = new ArrayCollection();
+        $this->canditatures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -194,4 +203,59 @@ class Etudiant
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, GroupeEtudiants>
+     */
+    public function getGroupeEtudiants(): Collection
+    {
+        return $this->groupeEtudiants;
+    }
+
+    public function addGroupeEtudiant(GroupeEtudiants $groupeEtudiant): self
+    {
+        if (!$this->groupeEtudiants->contains($groupeEtudiant)) {
+            $this->groupeEtudiants->add($groupeEtudiant);
+        }
+
+        return $this;
+    }
+
+    public function removeGroupeEtudiant(GroupeEtudiants $groupeEtudiant): self
+    {
+        $this->groupeEtudiants->removeElement($groupeEtudiant);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Canditatures>
+     */
+    public function getCanditatures(): Collection
+    {
+        return $this->canditatures;
+    }
+
+    public function addCanditature(Canditatures $canditature): self
+    {
+        if (!$this->canditatures->contains($canditature)) {
+            $this->canditatures->add($canditature);
+            $canditature->setEtudiant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCanditature(Canditatures $canditature): self
+    {
+        if ($this->canditatures->removeElement($canditature)) {
+            // set the owning side to null (unless already changed)
+            if ($canditature->getEtudiant() === $this) {
+                $canditature->setEtudiant(null);
+            }
+        }
+
+        return $this;
+    }
+    
 }

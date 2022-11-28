@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EvenementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -30,6 +32,15 @@ class Evenement
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateEvmt = null;
+
+    #[ORM\ManyToMany(targetEntity: GroupeEtudiants::class, inversedBy: 'evenements')]
+    private Collection $groupeEtudiants;
+
+    public function __construct()
+    {
+        $this->groupeEtudiants = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -92,6 +103,30 @@ class Evenement
     public function setDateEvmt(\DateTimeInterface $dateEvmt): self
     {
         $this->dateEvmt = $dateEvmt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, GroupeEtudiants>
+     */
+    public function getGroupeEtudiants(): Collection
+    {
+        return $this->groupeEtudiants;
+    }
+
+    public function addGroupeEtudiant(GroupeEtudiants $groupeEtudiant): self
+    {
+        if (!$this->groupeEtudiants->contains($groupeEtudiant)) {
+            $this->groupeEtudiants->add($groupeEtudiant);
+        }
+
+        return $this;
+    }
+
+    public function removeGroupeEtudiant(GroupeEtudiants $groupeEtudiant): self
+    {
+        $this->groupeEtudiants->removeElement($groupeEtudiant);
 
         return $this;
     }
