@@ -12,3 +12,10 @@ composer install
 
 ## Base de données 
 
+
+## Installation des requirements pour créer les forges de données :
+composer require orm-fixtures --dev
+composer require zenstruck/foundry:* --dev
+
+
+
