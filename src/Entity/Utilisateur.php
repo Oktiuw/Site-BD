@@ -28,6 +28,9 @@ class Utilisateur
     #[ORM\OneToOne(mappedBy: 'cdUtil', cascade: ['persist', 'remove'])]
     private ?Enseignant $enseignant = null;
 
+    #[ORM\OneToOne(mappedBy: 'cdUtil', cascade: ['persist', 'remove'])]
+    private ?Entreprise $entreprise = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -99,6 +102,23 @@ class Utilisateur
         }
 
         $this->enseignant = $enseignant;
+
+        return $this;
+    }
+
+    public function getEntreprise(): ?Entreprise
+    {
+        return $this->entreprise;
+    }
+
+    public function setEntreprise(Entreprise $entreprise): self
+    {
+        // set the owning side of the relation if necessary
+        if ($entreprise->getCdUtil() !== $this) {
+            $entreprise->setCdUtil($this);
+        }
+
+        $this->entreprise = $entreprise;
 
         return $this;
     }
