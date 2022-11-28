@@ -38,11 +38,15 @@ final class UtilisateurFactory extends ModelFactory
 
     protected function getDefaults(): array
     {
+        $mdp = self::faker()->mdp();
+        $email = self::faker()->unique()->numerify('user-###@example.com');
+        $login = self::faker()->login();
+
+
         return [
-            // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'mdp' => self::faker()->text(),
-            'email' => self::faker()->text(),
-            'login' => self::faker()->text(),
+            'mdp' => 'test',
+            'email' => $email,
+            'login' => $login,
         ];
     }
 
