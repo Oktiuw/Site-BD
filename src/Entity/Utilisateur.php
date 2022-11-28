@@ -22,6 +22,9 @@ class Utilisateur
     #[ORM\Column(length: 50)]
     private ?string $login = null;
 
+    #[ORM\OneToOne(mappedBy: 'cdUtil', cascade: ['persist', 'remove'])]
+    private ?Etudiant $etudiant = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,23 @@ class Utilisateur
     public function setLogin(string $login): self
     {
         $this->login = $login;
+
+        return $this;
+    }
+
+    public function getEtudiant(): ?Etudiant
+    {
+        return $this->etudiant;
+    }
+
+    public function setEtudiant(Etudiant $etudiant): self
+    {
+        // set the owning side of the relation if necessary
+        if ($etudiant->getCdUtil() !== $this) {
+            $etudiant->setCdUtil($this);
+        }
+
+        $this->etudiant = $etudiant;
 
         return $this;
     }
