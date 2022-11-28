@@ -38,6 +38,14 @@ class Stage
     #[ORM\JoinColumn(nullable: false)]
     private ?Niveau $niveau = null;
 
+    #[ORM\OneToMany(mappedBy: 'stage', targetEntity: Canditatures::class, orphanRemoval: true)]
+    private Collection $canditatures;
+
+    public function __construct()
+    {
+        $this->canditatures = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -123,6 +131,36 @@ class Stage
     public function setNiveau(?Niveau $niveau): self
     {
         $this->niveau = $niveau;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Canditatures>
+     */
+    public function getCanditatures(): Collection
+    {
+        return $this->canditatures;
+    }
+
+    public function addCanditature(Canditatures $canditature): self
+    {
+        if (!$this->canditatures->contains($canditature)) {
+            $this->canditatures->add($canditature);
+            $canditature->setStage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCanditature(Canditatures $canditature): self
+    {
+        if ($this->canditatures->removeElement($canditature)) {
+            // set the owning side to null (unless already changed)
+            if ($canditature->getStage() === $this) {
+                $canditature->setStage(null);
+            }
+        }
 
         return $this;
     }
