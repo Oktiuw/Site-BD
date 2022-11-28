@@ -40,8 +40,8 @@ final class EntrepriseFactory extends ModelFactory
     {
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'nomEnt' => self::faker()->text(),
-            'nomRef' => self::faker()->text(),
+            'nomEnt' => self::faker()->company(),
+            'nomRef' => self::faker()->lastName().' '.self::faker()->firstName(),
         ];
     }
 
