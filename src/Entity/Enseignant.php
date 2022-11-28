@@ -35,6 +35,10 @@ class Enseignant
     #[ORM\Column(length: 150)]
     private ?string $villeEn = null;
 
+    #[ORM\OneToOne(inversedBy: 'enseignant', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Utilisateur $cdUtil = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +124,18 @@ class Enseignant
     public function setVilleEn(string $villeEn): self
     {
         $this->villeEn = $villeEn;
+
+        return $this;
+    }
+
+    public function getCdUtil(): ?Utilisateur
+    {
+        return $this->cdUtil;
+    }
+
+    public function setCdUtil(Utilisateur $cdUtil): self
+    {
+        $this->cdUtil = $cdUtil;
 
         return $this;
     }

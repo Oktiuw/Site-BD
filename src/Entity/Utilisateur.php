@@ -25,6 +25,9 @@ class Utilisateur
     #[ORM\OneToOne(mappedBy: 'cdUtil', cascade: ['persist', 'remove'])]
     private ?Etudiant $etudiant = null;
 
+    #[ORM\OneToOne(mappedBy: 'cdUtil', cascade: ['persist', 'remove'])]
+    private ?Enseignant $enseignant = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -79,6 +82,23 @@ class Utilisateur
         }
 
         $this->etudiant = $etudiant;
+
+        return $this;
+    }
+
+    public function getEnseignant(): ?Enseignant
+    {
+        return $this->enseignant;
+    }
+
+    public function setEnseignant(Enseignant $enseignant): self
+    {
+        // set the owning side of the relation if necessary
+        if ($enseignant->getCdUtil() !== $this) {
+            $enseignant->setCdUtil($this);
+        }
+
+        $this->enseignant = $enseignant;
 
         return $this;
     }
