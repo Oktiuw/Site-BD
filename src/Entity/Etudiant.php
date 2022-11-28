@@ -47,9 +47,13 @@ class Etudiant
     #[ORM\OneToMany(mappedBy: 'Etudiant', targetEntity: SujetTER::class)]
     private Collection $sujetTERs;
 
+    #[ORM\ManyToMany(targetEntity: GroupeEtudiants::class, inversedBy: 'etudiants')]
+    private Collection $groupeEtudiants;
+
     public function __construct()
     {
         $this->sujetTERs = new ArrayCollection();
+        $this->groupeEtudiants = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -191,6 +195,30 @@ class Etudiant
                 $sujetTER->setEtudiant(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, GroupeEtudiants>
+     */
+    public function getGroupeEtudiants(): Collection
+    {
+        return $this->groupeEtudiants;
+    }
+
+    public function addGroupeEtudiant(GroupeEtudiants $groupeEtudiant): self
+    {
+        if (!$this->groupeEtudiants->contains($groupeEtudiant)) {
+            $this->groupeEtudiants->add($groupeEtudiant);
+        }
+
+        return $this;
+    }
+
+    public function removeGroupeEtudiant(GroupeEtudiants $groupeEtudiant): self
+    {
+        $this->groupeEtudiants->removeElement($groupeEtudiant);
 
         return $this;
     }
