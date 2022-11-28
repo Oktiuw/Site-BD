@@ -2,11 +2,14 @@
 
 {% block head %}
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}">
-
-{% block title %}Master Informatique{% endblock %}
+    {% block title %}Master Informatique{% endblock %}
 
 {% endblock %}
+
+{% block stylesheets%}
+<link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}">
+{% endblock %}
+
 {% block body %}
     <nav class="menu">
         <article class="menu__item">Université
