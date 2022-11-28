@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EtudiantRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -41,6 +43,14 @@ class Etudiant
     #[ORM\OneToOne(inversedBy: 'etudiant', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateur $cdUtil = null;
+
+    #[ORM\OneToMany(mappedBy: 'Etudiant', targetEntity: SujetTER::class)]
+    private Collection $sujetTERs;
+
+    public function __construct()
+    {
+        $this->sujetTERs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -151,6 +161,36 @@ class Etudiant
     public function setCdUtil(Utilisateur $cdUtil): self
     {
         $this->cdUtil = $cdUtil;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SujetTER>
+     */
+    public function getSujetTERs(): Collection
+    {
+        return $this->sujetTERs;
+    }
+
+    public function addSujetTER(SujetTER $sujetTER): self
+    {
+        if (!$this->sujetTERs->contains($sujetTER)) {
+            $this->sujetTERs->add($sujetTER);
+            $sujetTER->setEtudiant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSujetTER(SujetTER $sujetTER): self
+    {
+        if ($this->sujetTERs->removeElement($sujetTER)) {
+            // set the owning side to null (unless already changed)
+            if ($sujetTER->getEtudiant() === $this) {
+                $sujetTER->setEtudiant(null);
+            }
+        }
 
         return $this;
     }
