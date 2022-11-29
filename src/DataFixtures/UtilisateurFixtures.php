@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Factory\UtilisateurFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -9,9 +10,8 @@ class UtilisateurFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
-
-        $manager->flush();
+        UtilisateurFactory::createMany(50, []);
+        UtilisateurFactory::createMany(50, []);
+        UtilisateurFactory::createMany(50, []);
     }
 }

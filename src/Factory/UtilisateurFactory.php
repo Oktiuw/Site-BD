@@ -38,15 +38,12 @@ final class UtilisateurFactory extends ModelFactory
 
     protected function getDefaults(): array
     {
-        $mdp = self::faker()->mdp();
         $email = self::faker()->unique()->numerify('user-###@example.com');
-        $login = self::faker()->login();
-
 
         return [
             'mdp' => 'test',
             'email' => $email,
-            'login' => $login,
+            'login' => 'user',
         ];
     }
 
