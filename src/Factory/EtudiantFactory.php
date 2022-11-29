@@ -39,14 +39,12 @@ final class EtudiantFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'numEtud' => self::faker()->text(),
-            'nomEtud' => self::faker()->text(),
-            'pnomEtud' => self::faker()->text(),
-            'dtnsEtud' => self::faker()->dateTime(),
-            'adEtud' => self::faker()->text(),
-            'cpEtud' => self::faker()->text(),
-            'villeEtud' => self::faker()->text(),
+            'numEtud' => self::faker()->unique()->randomNumber(6),
+            'pnomEtud' => self::faker()->firstName(),
+            'dtnsEtud' => self::faker()->dateTimeInInterval('-30 years','+15 years'),
+            'adEtud' => self::faker()->streetAddress(),
+            'cpEtud' => self::faker()->postcode(),
+            'villeEtud' => self::faker()->city()
         ];
     }
 
