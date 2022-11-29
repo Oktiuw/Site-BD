@@ -9,6 +9,7 @@ composer install
 "start": "Lance le seveur web",
 "test:cs": "Effectue une vérification du code",
 "fix:cs": "Corrige le code"
+"db": "Crée la base, ne pas oublier de créer le .env.local !"
 
 ## Base de données 
 

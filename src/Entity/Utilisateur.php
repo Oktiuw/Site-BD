@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
@@ -30,6 +31,9 @@ class Utilisateur
 
     #[ORM\OneToOne(mappedBy: 'cdUtil', cascade: ['persist', 'remove'])]
     private ?Entreprise $entreprise = null;
+
+    #[ORM\Column(type: Types::BLOB, nullable: true)]
+    private $avatar = null;
 
     public function getId(): ?int
     {
@@ -119,6 +123,18 @@ class Utilisateur
         }
 
         $this->entreprise = $entreprise;
+
+        return $this;
+    }
+
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar($avatar): self
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }
