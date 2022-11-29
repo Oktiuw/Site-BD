@@ -40,7 +40,7 @@ class TypeEvenementRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return TypeEvenement[] Returns an array of TypeEvenement objects
+//     * @return TypeEvenementFixtures[] Returns an array of TypeEvenementFixtures objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class TypeEvenementRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?TypeEvenement
+//    public function findOneBySomeField($value): ?TypeEvenementFixtures
 //    {
 //        return $this->createQueryBuilder('t')
 //            ->andWhere('t.exampleField = :val')

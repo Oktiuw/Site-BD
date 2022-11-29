@@ -18,7 +18,7 @@ class TypeEvenement
     #[ORM\Column(length: 255)]
     private ?string $intTpEvmt = null;
 
-    #[ORM\OneToMany(mappedBy: 'TypeEvenement', targetEntity: Evenement::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'TypeEvenementFixtures', targetEntity: Evenement::class, orphanRemoval: true)]
     private Collection $evenements;
 
     public function __construct()
