@@ -5,63 +5,38 @@ namespace App\Entity;
 use App\Repository\UtilisateurRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
-class Utilisateur
+class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $mdp = null;
-
-    #[ORM\Column(length: 100)]
-    private ?string $email = null;
-
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 180, unique: true)]
     private ?string $login = null;
 
-    #[ORM\OneToOne(mappedBy: 'cdUtil', cascade: ['persist', 'remove'])]
-    private ?Etudiant $etudiant = null;
+    #[ORM\Column]
+    private array $roles = [];
 
-    #[ORM\OneToOne(mappedBy: 'cdUtil', cascade: ['persist', 'remove'])]
-    private ?Enseignant $enseignant = null;
-
-    #[ORM\OneToOne(mappedBy: 'cdUtil', cascade: ['persist', 'remove'])]
-    private ?Entreprise $entreprise = null;
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
+    private ?string $password = null;
 
     #[ORM\Column(type: Types::BLOB, nullable: true)]
     private $avatar = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getMdp(): ?string
-    {
-        return $this->mdp;
-    }
-
-    public function setMdp(string $mdp): self
-    {
-        $this->mdp = $mdp;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
     }
 
     public function getLogin(): ?string
@@ -76,55 +51,76 @@ class Utilisateur
         return $this;
     }
 
-    public function getEtudiant(): ?Etudiant
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
-        return $this->etudiant;
+        return (string) $this->login;
     }
 
-    public function setEtudiant(Etudiant $etudiant): self
+    /**
+     * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     */
+    public function getUsername(): string
     {
-        // set the owning side of the relation if necessary
-        if ($etudiant->getCdUtil() !== $this) {
-            $etudiant->setCdUtil($this);
-        }
+        return (string) $this->login;
+    }
 
-        $this->etudiant = $etudiant;
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getEnseignant(): ?Enseignant
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->enseignant;
+        return $this->password;
     }
 
-    public function setEnseignant(Enseignant $enseignant): self
+    public function setPassword(string $password): self
     {
-        // set the owning side of the relation if necessary
-        if ($enseignant->getCdUtil() !== $this) {
-            $enseignant->setCdUtil($this);
-        }
-
-        $this->enseignant = $enseignant;
+        $this->password = $password;
 
         return $this;
     }
 
-    public function getEntreprise(): ?Entreprise
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
     {
-        return $this->entreprise;
+        return null;
     }
 
-    public function setEntreprise(Entreprise $entreprise): self
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
     {
-        // set the owning side of the relation if necessary
-        if ($entreprise->getCdUtil() !== $this) {
-            $entreprise->setCdUtil($this);
-        }
-
-        $this->entreprise = $entreprise;
-
-        return $this;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
     public function getAvatar()
@@ -135,6 +131,18 @@ class Utilisateur
     public function setAvatar($avatar): self
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }
