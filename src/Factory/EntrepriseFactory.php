@@ -42,6 +42,7 @@ final class EntrepriseFactory extends ModelFactory
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
             'nomEnt' => self::faker()->company(),
             'nomRef' => self::faker()->lastName().' '.self::faker()->firstName(),
+            'cdUtil' => UtilisateurFactory::new(),  # à revoir comment récupérer correctement id utilisateur car clé étrangère
         ];
     }
 
