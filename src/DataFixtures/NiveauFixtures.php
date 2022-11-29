@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Factory\NiveauFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -9,9 +10,7 @@ class NiveauFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
-
-        $manager->flush();
+        NiveauFactory::createOne(["libNiv"=>"M1"]);
+        NiveauFactory::createOne(["libNiv"=>"M2"]);
     }
 }

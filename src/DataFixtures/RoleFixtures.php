@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Factory\RolesFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -9,9 +10,8 @@ class RoleFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
-
-        $manager->flush();
+        RolesFactory::createOne(["libRole"=>"ROLE_ETUDIANT"]);
+        RolesFactory::createOne(["libRole"=>"ROLE_ENSEIGNANT"]);
+        RolesFactory::createOne(["libRole"=>"ROLE_ENTREPRISE"]);
     }
 }
