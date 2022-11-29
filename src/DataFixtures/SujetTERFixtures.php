@@ -13,6 +13,8 @@ class SujetTERFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        $manager->flush();
+        exit;
         SujetTERFactory::createMany(15, function () {
             $niveau_id = NiveauFactory::random();
             $enseignant_id = EnseignantFactory::random();
