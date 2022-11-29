@@ -47,7 +47,7 @@ h1{
 #hide1 {
     display: none;
 }
-.login-btn{
+.login-btn {
     margin: 40px auto 20px;
     width: 80%;
     display: block;
@@ -59,6 +59,7 @@ h1{
     color: #fff;
     font-size: 16px;
     font-weight: bold;
+}
 
 @media (max-width: 1250px) {
     body{
