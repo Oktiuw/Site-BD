@@ -59,7 +59,7 @@ h1{
     color: #fff;
     font-size: 16px;
     font-weight: bold;
-}
+
 @media (max-width: 1250px) {
     body{
         background-image: url(aa.jpg);

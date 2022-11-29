@@ -118,12 +118,20 @@ body{
 .menu__item:hover .sousMenu {
     display: block;
 }
+<<<<<<< HEAD
 */
+=======
+
+>>>>>>> origin/acceuil
 
 .acceuil_content {
 
     width: 80%;
+<<<<<<< HEAD
     height: 200px;
+=======
+    height: 550px;
+>>>>>>> origin/acceuil
     align-self: center;
     font-family: sans-serif;
     font-weight: bold;
@@ -133,7 +141,10 @@ body{
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/acceuil
 }
 
 
@@ -146,6 +157,10 @@ body{
     align-self: center;
     font-family: sans-serif;
     font-weight: bold;
+<<<<<<< HEAD
+=======
+    text-decoration: underline;
+>>>>>>> origin/acceuil
     text-align: center;
 
 
@@ -153,8 +168,11 @@ body{
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/acceuil
 }
 footer{
     width: 80%;
@@ -165,6 +183,10 @@ footer{
     flex-grow: 1;
     font-family: sans-serif;
     font-weight: bold;
+<<<<<<< HEAD
+=======
+    text-decoration: underline;
+>>>>>>> origin/acceuil
     text-align: center;
 
 }
@@ -221,6 +243,7 @@ h2 {
 }
 
 
+<<<<<<< HEAD
 @media (max-width: 1250px) {
     body{
         display: flex;
@@ -303,6 +326,8 @@ h2 {
 
 }
 
+=======
+>>>>>>> origin/acceuil
 
 
 
