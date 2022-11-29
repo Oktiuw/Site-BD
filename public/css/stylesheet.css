@@ -88,13 +88,13 @@ body{
 .menu__item:hover {background-color : #199BD2 ;}
 .menu__item:active {background-color : #808080 ;}
 
-.menu .sousMenu {
+/*.menu .sousMenu {
     list-style-type: none;
     display: none;
     padding: 0;
     margin : 0;
     position: absolute;
-}
+}*/
 /*
 .menu .sousMenu li {
     float: none;
@@ -147,7 +147,7 @@ body{
     font-family: sans-serif;
     font-weight: bold;
     text-align: center;
-    font-size: large;
+
 
 
 
