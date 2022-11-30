@@ -11,8 +11,12 @@ class RedirecteurController extends AbstractController
     #[Route('/redirecteur', name: 'app_redirecteur')]
     public function index(): Response
     {
-        return $this->render('redirecteur/index.html.twig', [
-            'controller_name' => 'RedirecteurController',
-        ]);
+        if ($this->getUser()->getRoles()[0]=="ROLE_ETUDIANT") {
+            return $this->redirectToRoute('app_etudiant');
+        }
+        if ($this->getUser()->getRoles()[0]=="ROLE_ENTREPRISE") {
+            return $this->redirectToRoute('app_entreprise');
+        }
+        return $this->redirectToRoute('app_enseignant');
     }
 }
