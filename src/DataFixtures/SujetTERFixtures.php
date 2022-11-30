@@ -6,6 +6,7 @@ use App\Entity\Enseignant;
 use App\Factory\EnseignantFactory;
 use App\Factory\NiveauFactory;
 use App\Factory\SujetTERFactory;
+use App\Factory\UtilisateurFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -29,8 +30,9 @@ class SujetTERFixtures extends Fixture
     public function getDependencies()
     {
         return [
-            NiveauFactory::class,
-            EnseignantFactory::class,
+            UtilisateurFixtures::class,
+            NiveauFixtures::class,
+            EnseignantFixtures::class,
         ];
     }
 }
