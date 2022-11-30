@@ -39,11 +39,10 @@ final class EnseignantFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
             'numEn' => self::faker()->buildingNumber() ,
-            'nomEn' => self::faker()->lastName() ,
+            'nomEn' => "ENS".self::faker()->unique()->randomNumber(6),
             'pnomEn' => self::faker()->firstName() ,
-            'dtnsEn' => self::faker()->dateTime(),
+            'dtnsEn' => self::faker()->dateTimeInInterval('-70 years','+30 years'),
             'adEn' => self::faker()->streetAddress(),
             'cpEn' => self::faker()->postcode(),
             'villeEn' => self::faker()->city() ,
