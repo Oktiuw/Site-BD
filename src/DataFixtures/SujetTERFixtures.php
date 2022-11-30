@@ -15,8 +15,6 @@ class SujetTERFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        #$manager->flush();
-        #return ;
         SujetTERFactory::createMany(10, function () {
             $niveau_id = NiveauFactory::random();
             $enseignant_id = EnseignantFactory::random();
@@ -41,6 +39,7 @@ class SujetTERFixtures extends Fixture
         return [
             NiveauFixtures::class,
             EnseignantFixtures::class,
+            EtudiantFixtures::class
         ];
     }
 }
