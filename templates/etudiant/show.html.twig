@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ etudiant.lastname }},
+    {{ etudiant.firstname}}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ etudiant.lastname }},
+        {{ etudiant.firstname}}</h1>
+    <dl>
+        <dt>{{ etudiant.nometud }}</dt>
+        <dt>{{ etudiant.pnometud }}</dt>
+        <dt>{{ etudiant.email }}</dt>
+    </dl>
+
+
+
+
+
+{% endblock %}
+
