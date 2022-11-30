@@ -39,8 +39,8 @@ final class EnseignantFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'numEn' => self::faker()->buildingNumber() ,
-            'nomEn' => "ENS".self::faker()->unique()->randomNumber(6),
+            'numEn' => "ENS".self::faker()->unique()->randomNumber(6) ,
+            'nomEn' => self::faker()->lastName(),
             'pnomEn' => self::faker()->firstName() ,
             'dtnsEn' => self::faker()->dateTimeInInterval('-70 years','+30 years'),
             'adEn' => self::faker()->streetAddress(),
