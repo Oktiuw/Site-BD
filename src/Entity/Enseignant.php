@@ -87,7 +87,7 @@ class Enseignant
         return $this->pnomEn;
     }
 
-    public function setPnomEns(string $pnomEn): self
+    public function setPnomEn(string $pnomEn): self
     {
         $this->pnomEn = $pnomEn;
 
