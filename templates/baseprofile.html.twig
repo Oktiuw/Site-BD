@@ -39,6 +39,8 @@
     <div class="info_profile">
         {% if avatar!=null %}
             <img src="data:image/png;base64,{{ avatar.avatar }}" alt="Avatar de l'utilisateur" class="avatar">
+            {% else %}
+            <img  src="{{ asset('img/avatar_defaut.png') }}" alt="Avatar par defaut de l'utilsateur" class="avatar">
         {% endif %}
 {% block body %}{% endblock %}
     </div>
