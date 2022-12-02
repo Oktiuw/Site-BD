@@ -14,8 +14,12 @@ class EntrepriseController extends AbstractController
     {
         $user=$this->getUser();
         $profile=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getUserIdentifier()]);
+        if ($user->getAvatar() !== null)
+        {
+            $avatar=$user->setAvatar(base64_encode(stream_get_contents($user->getAvatar())));
+        }
         return $this->render('entreprise/index.html.twig', [
-            'user' =>$user,'profile'=>$profile
+            'user' =>$user,'profile'=>$profile,'avatar'=>$avatar
         ]);
     }
 }
