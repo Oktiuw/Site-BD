@@ -1,0 +1,26 @@
+div.sansnavbar{
+    background-image: url("/img/bg.jpg");
+    min-height: 1000px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 100px;
+}
+.logo-urca{
+    width:300px;
+}
+nav{
+    border-bottom: #cacad1 solid 1px;
+    box-shadow: 0 3px 3px 1px rgba(0,0,0,0.3);
+}
+
+div.info_profile{
+    background: white;
+    border-radius: 10px
+    min-height:100px;
+    display: flex;
+    justify-content: center;
+}
+img.avatar{
+    width: 100px;
+    border-radius: 75%;
+}
