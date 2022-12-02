@@ -37,7 +37,9 @@
 <br>
 <div class="sansnavbar">
     <div class="info_profile">
-        {
+        {% if avatar!=null %}
+            <img src="data:image/png;base64,{{ avatar.avatar }}" alt="Avatar de l'utilisateur" class="avatar">
+        {% endif %}
 {% block body %}{% endblock %}
     </div>
 </div>

@@ -17,4 +17,10 @@ div.info_profile{
     background: white;
     border-radius: 10px;
     min-height:100px;
+    display: flex;
+    justify-content: center;
+}
+img.avatar{
+    width: 100px;
+    border-radius: 75%;
 }
