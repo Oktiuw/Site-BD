@@ -14,7 +14,7 @@ class EntrepriseController extends AbstractController
     public function index(EntrepriseRepository $entrepriseRepository): Response
     {
         $user=$this->getUser();
-        $profile=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getUserIdentifier()]);
+        $profile=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
         $avatar=null;
         if ($user->getAvatar() !== null)
         {
