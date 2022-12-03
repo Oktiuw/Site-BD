@@ -1,7 +1,10 @@
 {% extends 'baseprofile.html.twig' %}
 
 {% block title %}Bienvenue {{ profile.nomEnt }}{% endblock %}
-
 {% block body %}
+    <script>
+        const a=document.querySelector('ul');
+        a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Mes Stages</a></li>';
+    </script>
     <h1>{{ profile.nomEnt }}</h1>
 {% endblock %}
