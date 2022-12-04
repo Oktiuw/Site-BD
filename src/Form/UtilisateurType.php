@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class UtilisateurType extends AbstractType
 {
@@ -16,7 +17,14 @@ class UtilisateurType extends AbstractType
     {
         $builder
             ->add('login')
-            ->add('email',EmailType::class)
+            ->add('email', EmailType::class)
+            ->add('avatar', FileType::class, options:['required'=>false,'constraints' => [
+                new File([
+                    'mimeTypes' => [
+                        'application/png',
+                    ],
+                    'mimeTypesMessage' => 'Choissisez un fichier PNG !',
+                ])]]);
         ;
     }
 
