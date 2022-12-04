@@ -24,4 +24,9 @@ class EntrepriseController extends AbstractController
             'user' =>$user,'profile'=>$profile,'avatar'=>$avatar
         ]);
     }
+    #[Route('/entreprise/{id}/update')]
+    public function update():Response
+    {
+    return $this->render('entreprise/update.html.twig');
+    }
 }
