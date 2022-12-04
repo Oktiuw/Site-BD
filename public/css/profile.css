@@ -37,11 +37,18 @@ p{
 button.btn-primary{
     width: 110px;
 }
+div.bot{
+    display: flex;
+}
+div.stages{display: flex;}
 @media (min-width:800px){
     button.btn-primary{
         width: 200px;
     }
     img.logo-urca{
         width: 300px;
+    }
+    div.sansnavbar{
+        min-height: 800px;
     }
 }
