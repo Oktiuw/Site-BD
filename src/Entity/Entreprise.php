@@ -21,7 +21,7 @@ class Entreprise
     #[ORM\Column(length: 255)]
     private ?string $nomRef = null;
 
-    #[ORM\OneToOne(inversedBy: 'entreprise', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(targetEntity: 'Utilisateur', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateur $cdUtil = null;
 

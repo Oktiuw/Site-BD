@@ -40,7 +40,7 @@ class Etudiant
     #[ORM\Column(length: 150)]
     private ?string $villeEtud = null;
 
-    #[ORM\OneToOne(inversedBy: 'etudiant', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(targetEntity: 'Utilisateur', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateur $cdUtil = null;
 

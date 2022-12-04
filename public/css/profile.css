@@ -4,6 +4,7 @@ div.sansnavbar{
     background-repeat: no-repeat;
     background-size: cover;
     padding: 100px;
+    display: flex;
 }
 .logo-urca{
     width:300px;
@@ -15,12 +16,15 @@ nav{
 
 div.info_profile{
     background: white;
-    border-radius: 10px
-    min-height:100px;
+    border-radius: 10px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    align-content: center;
 }
 img.avatar{
     width: 100px;
     border-radius: 75%;
+    margin: 10px 10px 10px 12%;
 }
