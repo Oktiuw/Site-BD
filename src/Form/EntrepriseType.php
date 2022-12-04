@@ -13,8 +13,7 @@ class EntrepriseType extends AbstractType
     {
         $builder
             ->add('nomEnt')
-            ->add('nomRef')
-        ;
+            ->add('nomRef');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
