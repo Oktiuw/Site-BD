@@ -18,13 +18,6 @@ class UtilisateurType extends AbstractType
         $builder
             ->add('login')
             ->add('email', EmailType::class)
-            ->add('avatar', FileType::class, options:['required'=>false,'constraints' => [
-                new File([
-                    'mimeTypes' => [
-                        'application/png',
-                    ],
-                    'mimeTypesMessage' => 'Choissisez un fichier PNG !',
-                ])]]);
         ;
     }
 
