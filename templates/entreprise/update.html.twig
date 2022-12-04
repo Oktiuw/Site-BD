@@ -1,4 +1,8 @@
 {% block title %}{% endblock %}
 {% block body %}
-    {{ form(form) }}
+    {{ form_start(form, {'attr': {'class': 'flex-column'}}) }}
+    Nom de l'entreprise {{ form_widget(form.nomEnt)}}<br>
+    Nom et prénom du réferent  {{ form_widget(form.nomRef) }}<br>
+    {{ form_widget(form.submit) }}
+    {{ form_end(form) }}<br>
 {% endblock %}
