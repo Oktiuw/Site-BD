@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 #[IsGranted('ROLE_ENTREPRISE')]
 class EntrepriseController extends AbstractController
 {
@@ -20,8 +21,7 @@ class EntrepriseController extends AbstractController
         $user=$this->getUser();
         $profile=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
         $avatar=null;
-        if ($user->getAvatar() !== null)
-        {
+        if ($user->getAvatar() !== null) {
             $avatar=$user->setAvatar(base64_encode(stream_get_contents($user->getAvatar())));
         }
         return $this->render('entreprise/index.html.twig', [
@@ -29,13 +29,16 @@ class EntrepriseController extends AbstractController
         ]);
     }
     #[Route('/entreprise/update')]
-    public function update(EntrepriseRepository $entrepriseRepository,ManagerRegistry $doctrine,Request $request):Response
+    public function update(EntrepriseRepository $entrepriseRepository, ManagerRegistry $doctrine, Request $request): Response
     {
         $entrepriseType=new EntrepriseType();
         $user=$this->getUser();
         $entreprise=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
-        $form=$this->createForm(EntrepriseType::class, $entreprise)->add('submit',
-            SubmitType::class, ['label' => 'Modifier']);
+        $form=$this->createForm(EntrepriseType::class, $entreprise)->add(
+            'submit',
+            SubmitType::class,
+            ['label' => 'Modifier']
+        );
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entrepriseType=$form->getData();
@@ -45,6 +48,6 @@ class EntrepriseController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('app_entreprise');
         }
-        return $this->renderForm('entreprise/update.html.twig',['form'=>$form]);
+        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form]);
     }
 }
