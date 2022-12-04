@@ -7,14 +7,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EntrepriseTpyeType extends AbstractType
+class EntrepriseType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('nomEnt')
             ->add('nomRef')
-            ->add('cdUtil')
         ;
     }
 
