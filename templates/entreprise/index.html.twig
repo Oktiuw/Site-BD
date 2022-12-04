@@ -7,7 +7,9 @@
         a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Mes Stages</a></li>';
     </script>
     <h1>{{ profile.nomEnt }}</h1>
-   <h2>Réferent {{ profile.nomRef }}</h2>
+   <h2>Réferent : <strong>{{ profile.nomRef }}</strong></h2>
+    </div>
+    <hr>
     <div class="stages">
     </div>
     <p><a href={{ path('app_entreprise_update')}}>Modifier mes informations personnelles</a></p>

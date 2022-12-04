@@ -35,6 +35,10 @@ class EntrepriseController extends AbstractController
         $userType=new UtilisateurType();
         $entrepriseType=new EntrepriseType();
         $user=$this->getUser();
+        $avatar=null;
+        if ($user->getAvatar() !== null) {
+            $avatar=$user->setAvatar(base64_encode(stream_get_contents($user->getAvatar())));
+        }
         $formUser=$this->createForm(UtilisateurType::class, $user)->add(
             'submit',
             SubmitType::class,
@@ -55,6 +59,6 @@ class EntrepriseController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('app_entreprise');
         }
-        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'profile'=>$entreprise,'formUser'=>$formUser]);
+        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'profile'=>$entreprise,'formUser'=>$formUser,'avatar'=>$avatar]);
     }
 }

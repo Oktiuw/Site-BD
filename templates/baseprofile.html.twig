@@ -47,7 +47,11 @@
             <img  src="{{ asset('img/avatar_defaut.png') }}" alt="Avatar par defaut de l'utilsateur" class="avatar">
         {% endif %}
 {% block body %}{% endblock %}
+            <div class="bot">
+            <button type="button" class="btn btn-primary"><a href="{{ path('app_logout') }}"></a>Se déconnecter</button>
+            </div>
     </div>
+
 </div>
 </body>
 </html>

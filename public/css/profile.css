@@ -1,13 +1,13 @@
 div.sansnavbar{
     background-image: url("/img/bg.jpg");
-    min-height: 1000px;
+    min-height: 700px;
     background-repeat: no-repeat;
     background-size: cover;
     padding: 100px;
     display: flex;
 }
 .logo-urca{
-    width:300px;
+    width:200px;
 }
 nav{
     border-bottom: #cacad1 solid 1px;
@@ -20,11 +20,35 @@ div.info_profile{
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    flex-wrap: wrap;
-    align-content: center;
 }
 img.avatar{
     width: 100px;
     border-radius: 75%;
-    margin: 10px 10px 10px 12%;
+    margin: 10px 10px 10px 10px;
+}
+div.top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+p{
+    margin-left: 5px;
+}
+button.btn-primary{
+    width: 110px;
+}
+div.bot{
+    display: flex;
+}
+div.stages{display: flex;}
+@media (min-width:800px){
+    button.btn-primary{
+        width: 200px;
+    }
+    img.logo-urca{
+        width: 300px;
+    }
+    div.sansnavbar{
+        min-height: 800px;
+    }
 }
