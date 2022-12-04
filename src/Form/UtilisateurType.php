@@ -16,8 +16,6 @@ class UtilisateurType extends AbstractType
     {
         $builder
             ->add('login')
-            ->add('password',PasswordType::class)
-            ->add('avatar',FileType::class)
             ->add('email',EmailType::class)
         ;
     }

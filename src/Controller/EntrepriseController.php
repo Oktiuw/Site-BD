@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\EntrepriseType;
+use App\Form\UtilisateurType;
 use App\Repository\EntrepriseRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -31,23 +32,29 @@ class EntrepriseController extends AbstractController
     #[Route('/entreprise/update')]
     public function update(EntrepriseRepository $entrepriseRepository, ManagerRegistry $doctrine, Request $request): Response
     {
+        $userType=new UtilisateurType();
         $entrepriseType=new EntrepriseType();
         $user=$this->getUser();
-        $entreprise=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
-        $form=$this->createForm(EntrepriseType::class, $entreprise)->add(
+        $formUser=$this->createForm(UtilisateurType::class, $user)->add(
             'submit',
             SubmitType::class,
             ['label' => 'Modifier']
         );
+        $entreprise=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
+        $form=$this->createForm(EntrepriseType::class, $entreprise);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        $formUser->handleRequest($request);
+        if ($formUser->isSubmitted() && $formUser->isValid()) {
             $entrepriseType=$form->getData();
+            $userType=$formUser->getData();
             $entityManager=$doctrine->getManager();
             $entreprise->setNomEnt($entrepriseType->getNomEnt());
             $entreprise->setNomRef($entrepriseType->getNomRef());
+            $user->setLogin($userType->getLogin());
+            $user->setEmail($userType->getEmail());
             $entityManager->flush();
             return $this->redirectToRoute('app_entreprise');
         }
-        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'profile'=>$entreprise]);
+        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'profile'=>$entreprise,'formUser'=>$formUser]);
     }
 }
