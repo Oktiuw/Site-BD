@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
-
+#[IsGranted('IS_AUTHENTICATED_FULLY')]
 class UtilisateurController extends AbstractController
 {
     #[Route('/updateAvatar', name: 'app_utilisateur')]
