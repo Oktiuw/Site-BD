@@ -37,7 +37,7 @@ class Enseignant
     #[ORM\Column(length: 150)]
     private ?string $villeEn = null;
 
-    #[ORM\OneToOne(inversedBy: 'enseignant', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(targetEntity: 'Utilisateur', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateur $cdUtil = null;
 
@@ -87,7 +87,7 @@ class Enseignant
         return $this->pnomEn;
     }
 
-    public function setPnomEns(string $pnomEn): self
+    public function setPnomEn(string $pnomEn): self
     {
         $this->pnomEn = $pnomEn;
 

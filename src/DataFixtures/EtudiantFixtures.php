@@ -2,16 +2,27 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Utilisateur;
+use App\Factory\EtudiantFactory;
+use App\Factory\UtilisateurFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class EtudiantFixtures extends Fixture
+class EtudiantFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
+        EtudiantFactory::createMany(50,function ()
+        {
+            $lastname=EtudiantFactory::faker()->unique()->lastName();
+            return ['nomEtud'=>"$lastname",'cdUtil'=>UtilisateurFactory::createOne(["roles"=>["ROLE_ETUDIANT"],"login"=>strtolower(str_replace(" ","","$lastname".rand(1,300)))])];
+        });
+        EtudiantFactory::createOne(['cdUtil'=>UtilisateurFactory::createOne(["login"=>"Etudiant","roles"=>["ROLE_ETUDIANT"]])]);
+    }
 
-        $manager->flush();
+    public function getDependencies()
+    {
+        return[UtilisateurFixtures::class];
     }
 }

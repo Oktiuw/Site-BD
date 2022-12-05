@@ -1,20 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseprofile.html.twig' %}
 
-{% block title %}Hello EntrepriseController!{% endblock %}
-
+{% block title %}Bienvenue {{ profile.nomEnt }}{% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/working/sezg0002/sae3-01/src/Controller/EntrepriseController.php'|file_link(0) }}">src/Controller/EntrepriseController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/working/sezg0002/sae3-01/templates/entreprise/index.html.twig'|file_link(0) }}">templates/entreprise/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <script>
+        const a=document.querySelector('ul');
+        a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Mes Stages</a></li>';
+    </script>
+    <h1>{{ profile.nomEnt }}</h1>
+   <h2>Réferent : <strong>{{ profile.nomRef }}</strong></h2>
+    </div>
+    <hr>
+    <div class="stages">
+    </div>
+    <p><a href={{ path('app_entreprise_update')}}>Modifier mes informations personnelles</a></p>
 {% endblock %}
