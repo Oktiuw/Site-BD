@@ -1,12 +1,20 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseprofile.html.twig' %}
 
+{% block title %}Bienvenue{{ profile.nomEtud}}{% endblock %}
 {% block body %}
-{% for etudiant in etudiants %}
-    <li><a href="{{ path('app_etudiant_show',{id:etudiant.id})}}">
-            <span class="lastname"> {{ etudiant.lastname }}</span>
-            <span class="firstname"> {{ etudiant.firstname}}</span>
-        </a>
-    </li>
-{% endfor %}
-{% endblock %}
+    <script>
+        const a=document.querySelector('ul');
+        a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Mes Stages</a></li>';
+    </script>
+    <h1>{{ profile.nomEtud }} {{ profile.pnomEtud }} </h1>
+    <h6> {{ profile.adEtud }}</h6> <h7>{{ profile.cpEtud }}</h7>
+    <h8>{{ profile.villeEtud }}</h8>
 
+
+
+
+
+    <hr>
+
+
+{% endblock %}
