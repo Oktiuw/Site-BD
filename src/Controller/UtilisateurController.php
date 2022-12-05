@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Form\UtilisateurType;
 use Doctrine\Persistence\ManagerRegistry;
-use GuzzleHttp\Psr7\Request;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
 use Psy\Readline\Hoa\FileException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,7 +19,10 @@ class UtilisateurController extends AbstractController
     public function index(Request $request, SluggerInterface $slugger,ManagerRegistry $doctrine): Response
     {
         $user=$this->getUser();
-        $form=$this->createForm(UtilisateurType::class, $user);
+        $form=$this->createForm(UtilisateurType::class, $user)->add('submit',
+            SubmitType::class,
+            ['label' => 'Modifier']
+        );
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $avatar=$form->get('photo')->getData();
