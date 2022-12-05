@@ -39,26 +39,21 @@ class EntrepriseController extends AbstractController
         if ($user->getAvatar() !== null) {
             $avatar=$user->setAvatar(base64_encode(stream_get_contents($user->getAvatar())));
         }
-        $formUser=$this->createForm(UtilisateurType::class, $user)->add(
+        $entreprise=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
+        $form=$this->createForm(EntrepriseType::class, $entreprise)->add(
             'submit',
             SubmitType::class,
             ['label' => 'Modifier']
-        );
-        $entreprise=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
-        $form=$this->createForm(EntrepriseType::class, $entreprise);
+        );;
         $form->handleRequest($request);
-        $formUser->handleRequest($request);
-        if ($formUser->isSubmitted() && $formUser->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $entrepriseType=$form->getData();
-            $userType=$formUser->getData();
             $entityManager=$doctrine->getManager();
             $entreprise->setNomEnt($entrepriseType->getNomEnt());
             $entreprise->setNomRef($entrepriseType->getNomRef());
-            $user->setLogin($userType->getLogin());
-            $user->setEmail($userType->getEmail());
             $entityManager->flush();
             return $this->redirectToRoute('app_entreprise');
         }
-        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'profile'=>$entreprise,'formUser'=>$formUser,'avatar'=>$avatar]);
+        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'profile'=>$entreprise,'form'=>$form,'avatar'=>$avatar]);
     }
 }
