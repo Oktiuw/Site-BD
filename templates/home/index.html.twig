@@ -1,7 +1,308 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Master IA{% endblock %}
+{% block head %}
+    <meta charset="UTF-8">
+    {% block title %}Master Informatique{% endblock %}
+
+{% endblock %}
+
+{% block stylesheets%}
+<link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}">
+{% endblock %}
 
 {% block body %}
-<h1>Accueil</h1>
+    <nav class="menu">
+        <!--<article class="menu__item">Université
+            <ul class="sousMenu">
+                <li> <a href="#">Présentation</a> </li>
+                <li> <a href="#">Actions</a> </li>
+                <li> <a href="#">Projet stratégique/poles</a> </li>
+                <li> <a href="#">Organisation</a> </li>
+                <li> <a href="#">Receuil des actes administratifs</a> </li>
+                <li> <a href="#">Travailler à l'URCA</a> </li>
+                <li> <a href="#">Revue de presse</a> </li>
+                <li> <a href="#">Communiqué de presse</a> </li>
+                <li> <a href="#">Etablisements associés</a> </li>
+
+            </ul>
+
+        </article>
+
+        <article class="menu__item">Formation
+            <ul class="sousMenu">
+                <li> <a href="#">Catalogue de formation</a> </li>
+                <li> <a href="#">Candidature - Inscription</a> </li>
+                <li> <a href="#">Scolarité</a> </li>
+                <li> <a href="#">Formation continue</a> </li>
+                <li> <a href="#">Formations à distance</a> </li>
+                <li> <a href="#">Nos certifications</a> </li>
+                <li> <a href="#">UFR , Instituts et Ecoles</a> </li>
+                <li> <a href="#">Poles scientifiques d'applications</a> </li>
+                <li> <a href="#">Alternance</a> </li>
+
+            </ul>
+        </article>
+        <article class="menu__item">Recherche innovation et valorisation
+            <ul class="sousMenu">
+                <li> <a href="#">Unités de recherche</a> </li>
+                <li> <a href="#">Plateformes technologiques</a> </li>
+                <li> <a href="#">Structures scientifiques d'applications</a> </li>
+                <li> <a href="#">Ecoles doctorales</a> </li>
+                <li> <a href="#">Direction de la recherche et de la valorisation</a> </li>
+                <li> <a href="#">Projets de recherche COVID-19</a> </li>
+                <li> <a href="#">SATT Nord</a> </li>
+                <li> <a href="#">Distributions de logiciels</a> </li>
+                <li> <a href="#">HAL</a> </li>
+
+            </ul>
+        </article>
+        <article class="menu__item">orientation
+            <ul class="sousMenu">
+                <li> <a href="#">Orientation</a> </li>
+                <li> <a href="#">Transition Professionelle</a> </li>
+                <li> <a href="#">Insertion Professionelle</a> </li>
+                <li> <a href="#">Entreprises</a> </li>
+                <li> <a href="#">Devenir des diplomés</a> </li>
+                <li> <a href="#">Service de l'Entrepreneuriat</a> </li>
+                <li> <a href="#">Parrainage</a> </li>
+                <li> <a href="#">Dario - Action contre le décrochage</a> </li>
+
+
+            </ul>
+        </article>
+        --> <!-- barre de menu désactivé -->
+        <a href="{{ path('app_home2'  , {connexion : "connexion"}) }}" class="menu__item" >Connexion </a>
+    </nav>
+    <main class="acceuil">
+        <section class="acceuil_content" id="titre">
+
+            <h1>Master Informatique </h1>
+
+            <h2>Présentation </h2>
+
+            <p> Le master informatique est un diplome national .</p>
+            <p>Il est organisé en 5 Unités d’Enseignement :</p>
+            <ul>
+                <li> <p> UE1 : Intelligence Artificielle et Management des Connaissances. </p></li>
+                <li> <p> UE2 : Données et Décision. </p></li>
+                <li> <p> UE3 : Modélisation et Maîtrise de la Complexité. </p></li>
+                <li> <p> UE4 : Informatique et Interaction. </p></li>
+                <li> <p> UE5 : Projets et Entreprise, les différents contenus étant déployés sur 4 semestres.</p></li>
+
+            </ul>
+            <p> Les enseignements sont dispensés sous forme de cours magistraux , de travaux dirigés et de
+                travaux pratiqués , l'accent étant mis sur les projets individuels et collectifs , les stages ainsi que
+                sur le controle continu .</p>
+            <p>Un certain nombre d'enseignements sont mutualisés avec d'autres mentions portées par le
+                département mathématiques mécanique et informatique . </p>
+            <p> Les compétences linguistiques et professionelles(Anglais , Gestion de projets , communication
+                , organisation des entreprises ) sont largement considérées . </p>
+        </section>
+        <aside class="acceuil__complement">Compétences Acquises
+            <button  onclick="show()" type="button" class="button acceuil__complement__add"><span class="material-symbols-outlined">+</span></button>
+
+            <div class="slide" id="text">
+
+                <h3>Compétences acquises à l’issue de la formation :</h3>
+                <p> Les compétences disciplinaires acquises se concentrent sur l’intelligence artificielle, les humanités numériques, l’aide à la décision et la fouille de données (UE1), la collecte, l’analyse, la gestion et la fusion/corrélation de données, le Big Data et l’apprentissage machine, appliqués par exemple aux villes/transport/agriculture connectés (UE2), l’apprentissage profond, la classification, la complexité et les statistiques, appliqués par exemple à la modélisation bio-inspirée et à la cognition située (UE3), la programmation, la visualisation et les interactions personnes-machines (UE4).</p>
+
+                <button  onclick="hide()" type="button" class="button acceuil__complement__add"><span class="material-symbols-outlined">-</span></button>
+            </div>
+
+        </aside>
+
+
+
+        <aside class="acceuil__sub-content">Organisation Pédagogique
+            <button  onclick="show1()" type="button" class="button acceuil__complement__add"><span class="material-symbols-outlined">+</span></button>
+
+            <div class="slide" id="text1">
+                <h3>Modalités d'enseignement : </h3>
+                <p>
+                    Formation initiale en présentiel ou en alternance.
+                </p>
+                <h3> Stages et projets tuteurés :</h3>
+                <p> En M1, un projet tutoré et un stage obligatoire de deux mois minimum sont prévus au second semestre (S2).
+
+                    En M2, un projet tutoré et un stage obligatoire de quatre mois minimum sont prévus au second semestre (S4).</p>
+                <button  onclick="hide1()" type="button" class="button acceuil__complement__add"><span class="material-symbols-outlined">-</span></button>
+
+
+            </div>
+        </aside>
+
+
+
+        <aside class="acceuil__sub-complement">Admission
+            <button  onclick="show2()" type="button" class="button acceuil__complement__add"><span class="material-symbols-outlined">+</span></button>
+            <div class="slide" id="text2">
+                <h3>Modalités d'enseignement : </h3>
+                <p>
+                    Formation initiale en présentiel ou en alternance.
+                </p>
+                <h3> Stages et projets tuteurés :</h3>
+                <p> En M1, un projet tutoré et un stage obligatoire de deux mois minimum sont prévus au second semestre (S2).
+
+                    En M2, un projet tutoré et un stage obligatoire de quatre mois minimum sont prévus au second semestre (S4).</p>
+                <button  onclick="hide2()" type="button" class="button acceuil__complement__add"><span class="material-symbols-outlined">-</span></button>
+
+            </div>
+        </aside>
+
+        <aside class="acceuil__sub-complement2">Poursuites D'études et débouchés
+            <button  onclick="show3()" type="button" class="button acceuil__complement__add"><span class="material-symbols-outlined">+</span></button>
+
+            <div class="slide" id="text3">
+                <h3> Poursuites d'études envisageables : </h3>
+                <p>
+                    Les étudiants motivés pourront compléter leur formation par un doctorat.
+                </p>
+                <h3> Débouchés :</h3>
+                <p> Ingénieur en Systèmes d’information et de télécommunication : M1804,
+                    Management et ingénierie études, recherche et développement industriel : H1206,
+                    Data scientist / Études et prospectives socio-économiques : M1403,
+                    Conseil en organisation et management d’entreprise : M1402,
+                    Direction de petite ou moyenne entreprise : M1302,
+                    Réalisateur de contenus multimédias : E1205.
+                    Le ROME est le répertoire des métiers et d’emplois de Pôle Emploi.</p>
+                <button  onclick="hide3()" type="button" class="button acceuil__complement__add"><span class="material-symbols-outlined">-</span></button>
+
+
+            </div>
+        </aside>
+
+
+        <aside class="acceuil__sub-complement3">Informations Pratiques
+            <button  onclick="show4()" type="button" class="button acceuil__complement__add"><span class="material-symbols-outlined">+</span></button>
+
+
+            <div class="slide" id="text4">
+
+                <p>Pour en savoir plus sur l'orientation et l'insertion professionnelle :
+
+                    Mission Orientation du Service d'Accompagnement des Etudiants (SAE)
+
+                    Pour tout renseignement sur la scolarité :
+
+                    Coordonnées des scolarités de l'URCA
+
+                    Pour tout renseignement sur la formation continue et l’insertion professionnelle :
+
+                    La formation continue
+                    L’insertion professionnelle
+                    La Validation des acquis
+                    Vous avez de l'expérience et/ou un parcours de formation à valoriser ? Des procédures de validation des acquis sont possibles pour vous permettre d'accéder à la formation ou pour valider le diplôme. Pour plus d’informations, vous pouvez envoyer un e-mail à vae@univ-reims.fr.
+
+                    Pour en savoir plus sur les relations internationales à l'Université :
+
+                    Direction des Relations Extérieures et du Développement International (DREDI)
+                </p>
+                <button  onclick="hide4()" type="button" class="button acceuil__complement__add"><span class="material-symbols-outlined">-</span></button>
+
+
+            </div>
+
+        </aside>
+
+        <footer>contact
+            <button  onclick="show5()" type="button" class="button acceuil__complement__add"><span class="material-symbols-outlined">+</span></button>
+
+            <div class="slide" id="text5">
+                <p>Composante :Faculté de Sciences Exactes et Naturelles
+                    Moulin de la Housse - BP 1039
+                    51687 Reims Cedex 2
+                    e-mail : scolarite.sciences@univ-reims.fr
+                    Tel : 03 26 91 34 19
+
+                    Responsable de la formation :
+                    Francis ROUSSEAUX
+                    e-mail : francis.rousseaux@univ-reims.fr
+
+                    Coordonnées du secrétariat :
+                    Département MMI
+                    e-mail : secretariat-doyen-sciences@univ-reims.fr
+                </p>
+                <button  onclick="hide5()" type="button" class="button acceuil__complement__add"><span class="material-symbols-outlined">-</span></button>
+
+
+            </div>
+
+
+        </footer>
+    </main>
+
+
+
+{% endblock %}
+{% block javascripts %}
+<script>
+    function show() {
+        document.getElementById('text').style.height = "180px"
+        document.getElementById('text').style.display = "block"
+    }
+    function show1() {
+
+        document.getElementById('text1').style.height = "200px"
+        document.getElementById('text1').style.display = "block"
+    }
+    function show2() {
+
+        document.getElementById('text2').style.height = "200px"
+        document.getElementById('text2').style.display = "block"
+    }
+    function show3() {
+
+
+        document.getElementById('text3').style.height = "230px"
+        document.getElementById('text3').style.display = "block"
+    }
+    function show4() {
+
+
+        document.getElementById('text4').style.height = "180px"
+        document.getElementById('text4').style.display = "block"
+    }
+    function show5() {
+
+
+        document.getElementById('text5').style.height = "100px"
+        document.getElementById('text5').style.display = "block"
+    }
+
+
+
+    function hide() {
+        document.getElementById('text').style.height = "0px"
+        document.getElementById('text').style.display = "none"
+    }
+    function hide1() {
+
+        document.getElementById('text1').style.height = "0px"
+        document.getElementById('text1').style.display = "none"
+    }
+    function hide2() {
+
+        document.getElementById('text2').style.height = "0px"
+        document.getElementById('text2').style.display = "none"
+    }
+    function hide3() {
+
+        document.getElementById('text3').style.height = "0px"
+        document.getElementById('text3').style.display = "none"
+    }
+    function hide4() {
+
+        document.getElementById('text4').style.height = "0px"
+        document.getElementById('text4').style.display = "none"
+    }
+    function hide5(){
+
+        document.getElementById('text5').style.height="0px"
+        document.getElementById('text5').style.display="none"
+
+    }
+
+
+
+</script>
 {% endblock %}
