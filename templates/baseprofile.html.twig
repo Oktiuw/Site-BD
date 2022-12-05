@@ -48,7 +48,8 @@
         {% endif %}
 {% block body %}{% endblock %}
             <div class="bot">
-            <button type="button" class="btn btn-primary"><a href="{{ path('app_logout') }}"></a>Se déconnecter</button>
+                <a href="{{ path('app_logout') }}">
+                    <button class="btn btn-primary">Se déconnecter</button> </a>
             </div>
     </div>
 
