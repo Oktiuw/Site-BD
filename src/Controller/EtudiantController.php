@@ -4,11 +4,14 @@ namespace App\Controller;
 
 use App\Repository\EntrepriseRepository;
 use App\Repository\EtudiantRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[IsGranted('ROLE_ETUDIANT')]
 class EtudiantController extends AbstractController
+
 {
     #[Route('/etudiant', name: 'app_etudiant')]
     public function index(EtudiantRepository $etudiantRepository): Response
