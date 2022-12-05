@@ -1,5 +1,5 @@
 {% if user.avatar is null %}
     <img src="{{ asset('img/avatar_defaut.png') }}" alt="Avatar par défaut"  class="avatar">
 {% else %}
-    <img src="{{ asset(user.avatar) }}" alt="Avatar de l'utilisateur" class="avatar">
+    <img src="{{ asset('img/usersAvatar/'~user.avatar) }}" alt="Avatar de l'utilisateur" class="avatar">
 {% endif %}

@@ -34,7 +34,7 @@ class EntrepriseController extends AbstractController
             'submit',
             SubmitType::class,
             ['label' => 'Modifier']
-        );;
+        );
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entrepriseType=$form->getData();
