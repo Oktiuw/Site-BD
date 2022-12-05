@@ -21,24 +21,14 @@ class EntrepriseController extends AbstractController
     {
         $user=$this->getUser();
         $profile=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
-        $avatar=null;
-        if ($user->getAvatar() !== null) {
-            $avatar=$user->setAvatar(base64_encode(stream_get_contents($user->getAvatar())));
-        }
         return $this->render('entreprise/index.html.twig', [
-            'user' =>$user,'profile'=>$profile,'avatar'=>$avatar
-        ]);
+            'user' =>$user,'profile'=>$profile]);
     }
     #[Route('/entreprise/update')]
     public function update(EntrepriseRepository $entrepriseRepository, ManagerRegistry $doctrine, Request $request): Response
     {
-        $userType=new UtilisateurType();
         $entrepriseType=new EntrepriseType();
         $user=$this->getUser();
-        $avatar=null;
-        if ($user->getAvatar() !== null) {
-            $avatar=$user->setAvatar(base64_encode(stream_get_contents($user->getAvatar())));
-        }
         $entreprise=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
         $form=$this->createForm(EntrepriseType::class, $entreprise)->add(
             'submit',
@@ -54,6 +44,6 @@ class EntrepriseController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('app_entreprise');
         }
-        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'profile'=>$entreprise,'form'=>$form,'avatar'=>$avatar]);
+        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'profile'=>$entreprise,'user'=>$user]);
     }
 }
