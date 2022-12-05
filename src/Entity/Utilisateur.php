@@ -28,8 +28,8 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(type: Types::BLOB, nullable: true)]
-    private $avatar = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $avatar = null;
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
@@ -123,7 +123,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getAvatar()
+    public function getAvatar(): ?string
     {
         return $this->avatar;
     }

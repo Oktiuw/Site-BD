@@ -19,7 +19,7 @@ class Etudiant
     #[ORM\Column(length: 20)]
     private ?string $numEtud = null;
 
-    #[ORM\Column(type: Types::BLOB, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private $cvEtud = null;
 
     #[ORM\Column(length: 100)]
