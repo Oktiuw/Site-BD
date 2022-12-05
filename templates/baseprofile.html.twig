@@ -41,7 +41,7 @@
 <div class="sansnavbar">
     <div class="info_profile">
         <div class="top">
-            <img src="{{ user.avatar }}" alt="Avatar de l'utilisateur" class="avatar">
+            {% include 'useravatar.html.twig' %}
 {% block body %}{% endblock %}
             <div class="bot">
                 <a href="{{ path('app_logout') }}">

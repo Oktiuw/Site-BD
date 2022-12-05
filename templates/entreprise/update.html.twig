@@ -6,9 +6,9 @@
 {% block body %}
     <div class="info">
     <h1>Modification des données de l'entreprise {{ profile.nomEnt }}</h1>
-    {% if avatar!=null %}
-        <img src="data:image/png;base64,{{ avatar.avatar }}" alt="Avatar de l'utilisateur" class="avatar">
-    {% else %}
+    {% if user.avatar!=null %}
+        <img src="{{ user.avatar }}" alt="Avatar de l'utilisateur" class="avatar">
+        {% else %}
         <img  src="{{ asset('img/avatar_defaut.png') }}" alt="Avatar par defaut de l'utilsateur" class="avatar">
     {% endif %}
     </div>
