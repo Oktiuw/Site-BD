@@ -16,7 +16,7 @@ class UtilisateurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('photo', FileType::class, ['label'=>'Photo de profil ( png/jpg/jpeg uniquement)','mapped'=>false,'required'=>false,
+            ->add('photo', FileType::class, ['label'=>'Photo de profil ( png/jpg/jpeg uniquement)','mapped'=>false,'required'=>true,
                 'constraints'=>[new File(['maxSize'=>'1024k','mimeTypes'=>
                     ['image/jpeg','image/png','image/jpg'],'mimeTypesMessage'=>'Veuillez choisir un document valide'])]]);
         ;

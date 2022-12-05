@@ -16,10 +16,11 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class UtilisateurController extends AbstractController
 {
     #[Route('/updateAvatar', name: 'app_utilisateur')]
-    public function index(Request $request, SluggerInterface $slugger,ManagerRegistry $doctrine): Response
+    public function index(Request $request, SluggerInterface $slugger, ManagerRegistry $doctrine): Response
     {
         $user=$this->getUser();
-        $form=$this->createForm(UtilisateurType::class, $user)->add('submit',
+        $form=$this->createForm(UtilisateurType::class, $user)->add(
+            'submit',
             SubmitType::class,
             ['label' => 'Modifier']
         );
@@ -34,12 +35,12 @@ class UtilisateurController extends AbstractController
             try {
                 $avatar->move($this->getParameter('avatars_directory'), $newFilename);
             } catch (FileException $e) {
-                $this->redirectToRoute('app_redirecteur');
             }
             $user->setAvatar($newFilename);
             $manager=$doctrine->getManager();
             $manager->persist($user);
             $manager->flush();
+            $this->redirectToRoute('app_redirecteur');
         }
         return $this->renderForm('utilisateur/index.html.twig', [
             'form' => $form ]);
