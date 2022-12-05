@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\UtilisateurType;
+use Doctrine\Persistence\ManagerRegistry;
 use GuzzleHttp\Psr7\Request;
 use Psy\Readline\Hoa\FileException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,7 +14,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class UtilisateurController extends AbstractController
 {
     #[Route('/updateAvatar', name: 'app_utilisateur')]
-    public function index(Request $request, SluggerInterface $slugger): Response
+    public function index(Request $request, SluggerInterface $slugger,ManagerRegistry $doctrine): Response
     {
         $user=$this->getUser();
         $form=$this->createForm(UtilisateurType::class, $user);
@@ -25,10 +26,15 @@ class UtilisateurController extends AbstractController
                 $safeFilename=$slugger->slug($originalFilename);
                 $newFilename=$safeFilename.'-'.uniqid().'.'.$avatar->guessExtension();
             }
-            try{
-                $avatar->move($this->getParameter('avatars_directory'))
-            } catch (FileException $e){}
+            try {
+                $avatar->move($this->getParameter('avatars_directory'), $newFilename);
+            } catch (FileException $e) {
+                $this->redirectToRoute('app_redirecteur');
+            }
             $user->setAvatar($newFilename);
+            $manager=$doctrine->getManager();
+            $manager->persist($user);
+            $manager->flush();
         }
         return $this->renderForm('utilisateur/index.html.twig', [
             'form' => $form ]);
