@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Form\EntrepriseType;
+use App\Form\EtudiantType;
+use App\Form\UtilisateurType;
 use App\Repository\EntrepriseRepository;
 use App\Repository\EtudiantRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -40,27 +43,21 @@ class EtudiantController extends AbstractController
         if ($user->getAvatar() !== null) {
             $avatar=$user->setAvatar(base64_encode(stream_get_contents($user->getAvatar())));
         }
-        $formUser=$this->createForm(UtilisateurType::class, $user)->add(
+        $etudiant=$etudiantRepository->findOneBy(['cdUtil'=>$user->getId()]);
+        $form=$this->createForm(EtudiantType::class, $etudiant)->add(
             'submit',
             SubmitType::class,
             ['label' => 'Modifier']
-        );
-        $etudiant=$etudiantRepository->findOneBy(['cdUtil'=>$user->getId()]);
-        $form=$this->createForm(EtudiantType::class, $etudiant);
+        );;
         $form->handleRequest($request);
-        $formUser->handleRequest($request);
-        if ($formUser->isSubmitted() && $formUser->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $etudiantType=$form->getData();
-            $userType=$formUser->getData();
             $entityManager=$doctrine->getManager();
-            $etudiant->setNomEnt($etudiantType->getNomEnt());
-            $etudiant->setNomRef($etudiantType->getNomRef());
-            $user->setLogin($userType->getLogin());
-            $user->setEmail($userType->getEmail());
+            $etudiant->setNomEtud($etudiantType->getNomEtud());
             $entityManager->flush();
             return $this->redirectToRoute('app_etudiant');
         }
-        return $this->renderForm('etudiant/update.html.twig', ['form'=>$form,'profile'=>$etudiant,'formUser'=>$formUser,'avatar'=>$avatar]);
+        return $this->renderForm('etudiant/update.html.twig', ['form'=>$form,'profile'=>$etudiant,'form'=>$form,'avatar'=>$avatar]);
     }
 
 }
