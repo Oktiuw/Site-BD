@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\UtilisateurType;
 use GuzzleHttp\Psr7\Request;
+use Psy\Readline\Hoa\FileException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,6 +25,10 @@ class UtilisateurController extends AbstractController
                 $safeFilename=$slugger->slug($originalFilename);
                 $newFilename=$safeFilename.'-'.uniqid().'.'.$avatar->guessExtension();
             }
+            try{
+                $avatar->move($this->getParameter('avatars_directory'))
+            } catch (FileException $e){}
+            $user->setAvatar($newFilename);
         }
         return $this->renderForm('utilisateur/index.html.twig', [
             'form' => $form ]);
