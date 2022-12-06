@@ -1,7 +1,33 @@
-<a href="{{ path('app_utilisateur') }}">
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+{% endblock %}
+<a href="{{ path('app_utilisateur') }}" class="lien-updateavatar">
 {% if user.avatar is null %}
     <img src="{{ asset('img/avatar_defaut.png') }}" alt="Avatar par défaut"  class="avatar">
 {% else %}
     <img src="{{ asset('img/usersAvatar/'~user.avatar) }}" alt="Avatar de l'utilisateur" class="avatar">
 {% endif %}
 </a>
+{% block javascripts %}
+    <script>
+        let ahref=document.querySelector('a.lien-updateavatar');
+        let avatarimg=document.querySelector('img.avatar');
+        let compteur=0;
+        ahref.addEventListener("mouseover",()=>
+        {
+            avatarimg.style.filter='brightness(50%)';
+            if (compteur===0)
+            {
+                window.alert("Cliquez sur votre avatar pour le modifier ")
+            }
+
+            compteur+=1
+
+
+        });
+        ahref.addEventListener("mouseout",()=>
+        {
+            avatarimg.style.filter='brightness(100%)';
+        });
+    </script>
+{% endblock %}
