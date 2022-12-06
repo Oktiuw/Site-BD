@@ -49,6 +49,6 @@ class UtilisateurController extends AbstractController
             return $this->redirectToRoute('app_redirecteur');
         }
         return $this->renderForm('utilisateur/index.html.twig', [
-            'form' => $form ]);
+            'form' => $form ,'user'=>$user]);
     }
 }
