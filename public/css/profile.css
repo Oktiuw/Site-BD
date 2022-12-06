@@ -25,6 +25,7 @@ img.avatar{
     width: 100px;
     border-radius: 75%;
     margin: 10px 10px 10px 10px;
+    z-index:0;
 }
 div.top{
     display: flex;

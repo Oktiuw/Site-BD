@@ -4,6 +4,7 @@
     <link href="{{ asset('css/form.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
+<div class="form">
     <div class="info">
     <h1>Modification des données de l'entreprise {{ profile.nomEnt }}</h1>
     {% include 'useravatar.html.twig' %}
@@ -14,4 +15,5 @@
     <p>Nom et prénom du réferent</p>  {{ form_widget(form.nomRef) }}<br>
     {{ form_end(form) }}
     {% include 'user.html.twig' %}
+</div>
 {% endblock %}

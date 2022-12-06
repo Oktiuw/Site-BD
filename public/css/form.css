@@ -3,7 +3,6 @@ form.formulaire>input{
     width: 50%;
 }
 p{
-    margin-left: 5px;
     font-weight: bold;
 }
 h1{
@@ -18,4 +17,32 @@ img.avatar{
     border-radius: 50%;
     margin: 10px;
 }
+div.mb-3{
+    margin: 10px;
+}
 
+div.form{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    border-top: 3px solid #2169EC;
+    box-shadow: 0 10px 10px 1px rgba(0,0,0,0.3);
+    background: white;
+    margin: 15%;
+    margin-top: 10%;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    background-image: url("/img/bg_form.jpg");
+    background-size: cover;
+}
+h1{
+    margin: 10px;
+}
+div.form>*{
+    margin: 5px;
+}
+input{
+    max-width: 50%;
+}
