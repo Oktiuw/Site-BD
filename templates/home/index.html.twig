@@ -8,75 +8,48 @@
 
 {% block stylesheets%}
 <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Dekko' rel='stylesheet'>
 {% endblock %}
 
 {% block body %}
-    <nav class="menu">
-        <!--<article class="menu__item">Université
-            <ul class="sousMenu">
-                <li> <a href="#">Présentation</a> </li>
-                <li> <a href="#">Actions</a> </li>
-                <li> <a href="#">Projet stratégique/poles</a> </li>
-                <li> <a href="#">Organisation</a> </li>
-                <li> <a href="#">Receuil des actes administratifs</a> </li>
-                <li> <a href="#">Travailler à l'URCA</a> </li>
-                <li> <a href="#">Revue de presse</a> </li>
-                <li> <a href="#">Communiqué de presse</a> </li>
-                <li> <a href="#">Etablisements associés</a> </li>
+    <div class="head-container">
+        <div class="left-menu">
+            <nav class="menu">
+                {% if user is null %}
+                    <a href="{{path('app_login')}}" class="menu__item" >Connexion</a>
+                {% else %}
+                    <a href="{{ path('app_redirecteur') }}" class="menu__item">Mon espace</a>
+                {% endif %}
+            </nav>
 
-            </ul>
+            <footer>Contact
+                <button  onclick="show5()" type="button" class="button btn-primary"><span class="material-symbols-outlined">+</span></button>
 
-        </article>
+                <div class="slide" id="text5">
+                    <p>Composante :Faculté de Sciences Exactes et Naturelles
+                        Moulin de la Housse - BP 1039
+                        51687 Reims Cedex 2
+                        e-mail : scolarite.sciences@univ-reims.fr
+                        Tel : 03 26 91 34 19
 
-        <article class="menu__item">Formation
-            <ul class="sousMenu">
-                <li> <a href="#">Catalogue de formation</a> </li>
-                <li> <a href="#">Candidature - Inscription</a> </li>
-                <li> <a href="#">Scolarité</a> </li>
-                <li> <a href="#">Formation continue</a> </li>
-                <li> <a href="#">Formations à distance</a> </li>
-                <li> <a href="#">Nos certifications</a> </li>
-                <li> <a href="#">UFR , Instituts et Ecoles</a> </li>
-                <li> <a href="#">Poles scientifiques d'applications</a> </li>
-                <li> <a href="#">Alternance</a> </li>
+                        Responsable de la formation :
+                        Francis ROUSSEAUX
+                        e-mail : francis.rousseaux@univ-reims.fr
 
-            </ul>
-        </article>
-        <article class="menu__item">Recherche innovation et valorisation
-            <ul class="sousMenu">
-                <li> <a href="#">Unités de recherche</a> </li>
-                <li> <a href="#">Plateformes technologiques</a> </li>
-                <li> <a href="#">Structures scientifiques d'applications</a> </li>
-                <li> <a href="#">Ecoles doctorales</a> </li>
-                <li> <a href="#">Direction de la recherche et de la valorisation</a> </li>
-                <li> <a href="#">Projets de recherche COVID-19</a> </li>
-                <li> <a href="#">SATT Nord</a> </li>
-                <li> <a href="#">Distributions de logiciels</a> </li>
-                <li> <a href="#">HAL</a> </li>
-
-            </ul>
-        </article>
-        <article class="menu__item">orientation
-            <ul class="sousMenu">
-                <li> <a href="#">Orientation</a> </li>
-                <li> <a href="#">Transition Professionelle</a> </li>
-                <li> <a href="#">Insertion Professionelle</a> </li>
-                <li> <a href="#">Entreprises</a> </li>
-                <li> <a href="#">Devenir des diplomés</a> </li>
-                <li> <a href="#">Service de l'Entrepreneuriat</a> </li>
-                <li> <a href="#">Parrainage</a> </li>
-                <li> <a href="#">Dario - Action contre le décrochage</a> </li>
+                        Coordonnées du secrétariat :
+                        Département MMI
+                        e-mail : secretariat-doyen-sciences@univ-reims.fr
+                    </p>
+                    <button  onclick="hide5()" type="button" class="button btn-primary"><span class="material-symbols-outlined">-</span></button>
 
 
-            </ul>
-        </article>
-        --> <!-- barre de menu désactivé -->
-        {% if user is null %}
-        <a href="{{path('app_login')}}" class="menu__item" >Connexion</a>
-        {% else %}
-        <a href="{{ path('app_redirecteur') }}" class="menu__item">Mon espace</a>
-        {% endif %}
-    </nav>
+                </div>
+
+
+            </footer>
+        </div>
+        <div class="body-container">
+
     <main class="acceuil">
         <section class="acceuil_content" id="titre">
 
@@ -207,36 +180,10 @@
             </div>
 
         </aside>
-
-        <footer>Contact
-            <button  onclick="show5()" type="button" class="button btn-primary"><span class="material-symbols-outlined">+</span></button>
-
-            <div class="slide" id="text5">
-                <p>Composante :Faculté de Sciences Exactes et Naturelles
-                    Moulin de la Housse - BP 1039
-                    51687 Reims Cedex 2
-                    e-mail : scolarite.sciences@univ-reims.fr
-                    Tel : 03 26 91 34 19
-
-                    Responsable de la formation :
-                    Francis ROUSSEAUX
-                    e-mail : francis.rousseaux@univ-reims.fr
-
-                    Coordonnées du secrétariat :
-                    Département MMI
-                    e-mail : secretariat-doyen-sciences@univ-reims.fr
-                </p>
-                <button  onclick="hide5()" type="button" class="button btn-primary"><span class="material-symbols-outlined">-</span></button>
-
-
-            </div>
-
-
-        </footer>
     </main>
+        </div>
 
-
-
+    </div>
 {% endblock %}
 {% block javascripts %}
 <script>
@@ -269,7 +216,7 @@
     function show5() {
 
 
-        document.getElementById('text5').style.height = "100px"
+        document.getElementById('text5').style.height = "250px"
         document.getElementById('text5').style.display = "block"
     }
 

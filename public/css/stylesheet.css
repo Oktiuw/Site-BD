@@ -3,18 +3,6 @@ html,body{
     height: 100%;
 
 }
-body{
-
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 0.25em;
-    box-sizing: border-box;
-    background-size: cover;
-    flex-grow: 1;
-    background-image: url("/img/bg_form.jpg");
-
-}
 .menu, .acceuil{
     display: flex;
     border-radius: 0.125em;
@@ -51,36 +39,16 @@ body{
 
 .menu__item{
     /*flex: 1; */
-    background-color:  lightsteelblue;
-    font-family: sans-serif;
+    background-color: #0d6dfc;
     font-weight: bold;
     color: white;
-    text-decoration: underline;
-    cursor: pointer;
     box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
-    border-color: black;
-    text-align: center;
-    /*list-style: none;
-    float: left; */
-    width: 10%;
-    height: 40px;
-    align-self: center;
-
-
+    padding: 10px;
+    text-decoration: none;
+    transition: background-color 1s ease-in-out;
 }
-/*
-.menu__item:link , .menu__item:visited {
-    display: block;
-    color: #ffffff;
-    background: #293245;
-    padding: 6px 10px;
-    border-right: 1px solid #ffffff;
-    text-align: center;
 
-}
-*/
-
-.menu__item:hover {background-color : #199BD2 ;}
+.menu__item:hover {background-color : rgb(9, 39, 77);}
 .menu__item:active {background-color : #808080 ;}
 
 /*.menu .sousMenu {
@@ -131,35 +99,19 @@ body{
 }
 
 .acceuil__complement , .acceuil__sub-content , .acceuil__sub-complement , .acceuil__sub-complement2 , .acceuil__sub-complement3 {
-    border:2px solid ;
-    margin: 5px 5px 5px 5px;
     flex-grow: 2;
-    width: 80%;
     align-self: center;
-    font-family: sans-serif;
     font-weight: bold;
     text-align: center;
-    border-radius: 10px;
     background-color: white;
-
-
+    width: 101%;
+    box-shadow: 5px 5px 5px 5px gray;
+    margin: 10px 5px 5px;
+    padding: 5px;
 
 
 }
-footer{
-    width: 80%;
-    align-self: center;
-    border:2px solid ;
-    margin: 5px 5px 5px 5px;
-    flex-grow: 1;
-    font-family: sans-serif;
-    font-weight: bold;
-    text-decoration: underline;
-    text-align: center;
-    border-radius: 10px;
-    background-color: white;
 
-}
 
 .slide#text{
     width: 100%;
@@ -212,85 +164,66 @@ h1{
 h2 {
     color: darkturquoise;
 }
+div.head-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
+div.left-menu{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 255, 0.47);
+    box-shadow: 5px 5px 5px 5px gray;
+    padding: 5px;
+    flex-grow: 1;
+}
+footer{
+    color: white;
+    font-weight: bold;
+    font-family: 'Dekko', sans-serif;
+}
+p{
+    font-family: 'Dekko', sans-serif;
+    font-size: 19px;
+}
+@media (min-width: 880px) {
+    div.head-container{
+        display: flex;
+        flex-direction: row;
+        height: 101%;
+        margin: 0 10px 10px 0;
+    }
+    div.body-container{
+        margin:10px;
+    }
+    div.left-menu{
+        max-width: 300px;
+        margin-right: 15px;
+        min-width: 150px;
+    }
+
+}
 
 @media (max-width: 1250px) {
-    body{
+    body {
         display: flex;
         flex-direction: column;
-        margin: 0;
-        padding: 0.25em;
-        box-sizing: border-box;
         background-size: cover;
-        flex-grow: 1;
-        font-family: sans-serif;
-
-    }
-    .acceuil_content{
-        font-size: 0.9em;
-        height: 80%;
-    }
-    .acceuil__complement , .acceuil__sub-content , .acceuil__sub-complement , .acceuil__sub-complement2 , .acceuil__sub-complement3 {
-        font-size: 0.7em;
-
 
     }
 
-    footer{
-        font-size: 0.7em;
-
-    }
-    .menu__item{
-        width: 15%;
-    }
-
-
-}
-@media (min-width: 400px) {
-    body{
-        display: flex;
-        flex-direction: column;
-        margin: 0;
-        padding: 0.25em;
-        box-sizing: border-box;
-        background-size: cover;
-        flex-grow: 1;
-        font-family: sans-serif;
-
-    }
-    .acceuil_content{
+    .acceuil_content {
         font-size: 0.9em;
         height: 80%;
     }
 
-    .acceuil__complement p , .acceuil__sub-content p , .acceuil__sub-complement p, .acceuil__sub-complement2 p , .acceuil__sub-complement3 p {
+    .acceuil__complement, .acceuil__sub-content, .acceuil__sub-complement, .acceuil__sub-complement2, .acceuil__sub-complement3 {
         font-size: 0.7em;
 
 
     }
-    .acceuil__complement h3 , .acceuil__sub-content h3 , .acceuil__sub-complement h3, .acceuil__sub-complement2 h3 , .acceuil__sub-complement3 h3 {
-        font-size: 0.9em;
-
-
-    }
-    .acceuil_content p {
-        font-size: 0.9em;
-
-    }
-    .acceuil_content h2 {
-        font-size: 1.5em;
-    }
-    footer p {
-        font-size: 0.8em;
-
-    }
-    .menu__item{
-        width: 14%;
-        font-size: 0.9em;
-    }
-
 }
-
 
 
 
