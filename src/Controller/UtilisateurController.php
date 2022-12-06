@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+
 #[IsGranted('IS_AUTHENTICATED_FULLY')]
 class UtilisateurController extends AbstractController
 {
@@ -36,11 +37,16 @@ class UtilisateurController extends AbstractController
                 $avatar->move($this->getParameter('avatars_directory'), $newFilename);
             } catch (FileException $e) {
             }
+            $ancienAvatar=$user->getAvatar();
+            if (file_exists("img/usersAvatar/$ancienAvatar"))
+            {
+                unlink("img/usersAvatar/$ancienAvatar");
+            }
             $user->setAvatar($newFilename);
             $manager=$doctrine->getManager();
             $manager->persist($user);
             $manager->flush();
-            $this->redirectToRoute('app_redirecteur');
+            return $this->redirectToRoute('app_redirecteur');
         }
         return $this->renderForm('utilisateur/index.html.twig', [
             'form' => $form ]);
