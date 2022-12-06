@@ -3,7 +3,7 @@
     padding: 0;
 }
 body{
-    background-image: url(aa.jpg);
+    background-image: url(../img/aa.jpg);
     background-size: cover;
     background-position: center;
     font-family: sans-serif;
@@ -63,7 +63,7 @@ h1{
 
 @media (max-width: 1250px) {
     body{
-        background-image: url(aa.jpg);
+        background-image: url(../img/aa.jpg);
         background-size: cover;
         background-position: center;
         font-family: sans-serif;
@@ -85,7 +85,7 @@ h1{
 }
 @media (max-width: 400px) {
     body{
-        background-image: url(aa.jpg);
+        background-image: url(../img/aa.jpg);
         background-size: cover;
         background-position: center;
         font-family: sans-serif;

@@ -38,8 +38,7 @@ class UtilisateurController extends AbstractController
             } catch (FileException $e) {
             }
             $ancienAvatar=$user->getAvatar();
-            if (file_exists("img/usersAvatar/$ancienAvatar"))
-            {
+            if ($ancienAvatar) {
                 unlink("img/usersAvatar/$ancienAvatar");
             }
             $user->setAvatar($newFilename);

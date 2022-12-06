@@ -3,7 +3,6 @@ html,body{
     height: 100%;
 
 }
-
 body{
 
     display: flex;
@@ -11,10 +10,9 @@ body{
     margin: 0;
     padding: 0.25em;
     box-sizing: border-box;
-    background-image:url(aa.jpg);
     background-size: cover;
     flex-grow: 1;
-    font-family: sans-serif;
+    background-image: url("/img/bg_form.jpg");
 
 }
 .menu, .acceuil{
@@ -25,13 +23,11 @@ body{
 }
 
 .button {
-    border: 2px solid #999;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    border-radius: 1.5em;
     align-content : flex-end;
-    background-color: rebeccapurple;
+    margin: 10px;
+    border-radius: 5px;
 }
 
 
@@ -44,9 +40,8 @@ body{
 }
 
 .menu__item ,.acceuil_content {
-    border:2px solid rgb(0, 0, 0) ;
     border-radius: 0.125em;
-    margin: 0.25em;
+    margin: 0.45em;
     padding: 0.25em;
     background-color: lavender;
 
@@ -123,21 +118,20 @@ body{
 
 
 .acceuil_content {
-
-    width: 80%;
-    height: 200px;
+    width: 101%;
     align-self: center;
-    font-family: sans-serif;
-    font-weight: bold;
+
     background: rgba(0,0,0,0.8);
     color: #fff;
     box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
+    border-radius: 10px;
 }
-
+.acceuil_content>*{
+    margin-left: 10px;
+}
 
 .acceuil__complement , .acceuil__sub-content , .acceuil__sub-complement , .acceuil__sub-complement2 , .acceuil__sub-complement3 {
     border:2px solid ;
-    background-color: plum;
     margin: 5px 5px 5px 5px;
     flex-grow: 2;
     width: 80%;
@@ -145,6 +139,8 @@ body{
     font-family: sans-serif;
     font-weight: bold;
     text-align: center;
+    border-radius: 10px;
+    background-color: white;
 
 
 
@@ -154,13 +150,14 @@ footer{
     width: 80%;
     align-self: center;
     border:2px solid ;
-    background-color: plum;
     margin: 5px 5px 5px 5px;
     flex-grow: 1;
     font-family: sans-serif;
     font-weight: bold;
     text-decoration: underline;
     text-align: center;
+    border-radius: 10px;
+    background-color: white;
 
 }
 
@@ -209,7 +206,8 @@ h1{
     text-align: center;
     margin-bottom: 40px;
     text-decoration: underline;
-    color: plum;
+    color: #5670dc;
+    font-size: xx-large;
 }
 h2 {
     color: darkturquoise;
@@ -223,7 +221,6 @@ h2 {
         margin: 0;
         padding: 0.25em;
         box-sizing: border-box;
-        background-image:url(aa.jpg);
         background-size: cover;
         flex-grow: 1;
         font-family: sans-serif;
@@ -256,7 +253,6 @@ h2 {
         margin: 0;
         padding: 0.25em;
         box-sizing: border-box;
-        background-image:url(aa.jpg);
         background-size: cover;
         flex-grow: 1;
         font-family: sans-serif;
@@ -280,9 +276,6 @@ h2 {
     .acceuil_content p {
         font-size: 0.9em;
 
-    }
-    .acceuil_content h1 {
-        font-size: 1.8em;
     }
     .acceuil_content h2 {
         font-size: 1.5em;
