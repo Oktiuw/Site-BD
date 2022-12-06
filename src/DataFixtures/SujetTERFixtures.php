@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use App\Entity\Enseignant;
 use App\Factory\EnseignantFactory;
 use App\Factory\EtudiantFactory;
@@ -11,7 +12,7 @@ use App\Factory\UtilisateurFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class SujetTERFixtures extends Fixture
+class SujetTERFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
