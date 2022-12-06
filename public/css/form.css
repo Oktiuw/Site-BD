@@ -3,7 +3,6 @@ form.formulaire>input{
     width: 50%;
 }
 p{
-    margin-left: 5px;
     font-weight: bold;
 }
 h1{
@@ -30,13 +29,20 @@ div.form{
     box-shadow: 0 10px 10px 1px rgba(0,0,0,0.3);
     background: white;
     margin: 15%;
+    margin-top: 10%;
 }
 body{
     display: flex;
     flex-direction: column;
-    background-image: url("https://hougumlaw.com/wp-content/uploads/2016/05/light-website-backgrounds-light-color-background-images-light-color-background-images-for-website-1024x640.jpg");
+    background-image: url("/img/bg_form.jpg");
     background-size: cover;
 }
 h1{
     margin: 10px;
+}
+div.form>*{
+    margin: 5px;
+}
+input{
+    max-width: 50%;
 }
