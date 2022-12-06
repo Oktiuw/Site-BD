@@ -1,5 +1,7 @@
+<a href="{{ path('app_utilisateur') }}">
 {% if user.avatar is null %}
     <img src="{{ asset('img/avatar_defaut.png') }}" alt="Avatar par défaut"  class="avatar">
 {% else %}
     <img src="{{ asset('img/usersAvatar/'~user.avatar) }}" alt="Avatar de l'utilisateur" class="avatar">
 {% endif %}
+</a>
