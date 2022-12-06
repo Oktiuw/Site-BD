@@ -16,20 +16,19 @@ class SujetTERFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         SujetTERFactory::createMany(10, function () {
-            $niveau_id = NiveauFactory::random();
-            $enseignant_id = EnseignantFactory::random();
+            $niveau = NiveauFactory::random();
+            $enseignant = EnseignantFactory::random();
 
             if (EtudiantFactory::faker()->boolean(20)) {
-                $etudiant_id = EtudiantFactory::random();
+                $etudiant = EtudiantFactory::random();
             } else {
-                $etudiant_id = null;
+                $etudiant = null;
             }
 
-
             return [
-                'niveau_id' => $niveau_id,
-                'enseignant_id' => $enseignant_id,
-                'etudiant_id' => $etudiant_id,
+                'niveau' => $niveau,
+                'enseignant' => $enseignant,
+                'etudiant' => $etudiant
             ];
         });
     }
@@ -39,7 +38,7 @@ class SujetTERFixtures extends Fixture
         return [
             NiveauFixtures::class,
             EnseignantFixtures::class,
-            EtudiantFixtures::class
+            EtudiantFixtures::class,
         ];
     }
 }
