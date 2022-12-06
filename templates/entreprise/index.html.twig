@@ -2,10 +2,7 @@
 
 {% block title %}Bienvenue {{ profile.nomEnt }}{% endblock %}
 {% block body %}
-    <script>
-        const a=document.querySelector('ul');
-        a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Mes Stages</a></li>';
-    </script>
+
     <h1>{{ profile.nomEnt }}</h1>
    <h2>Réferent : <strong>{{ profile.nomRef }}</strong></h2>
     </div>
