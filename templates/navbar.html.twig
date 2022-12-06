@@ -39,9 +39,19 @@
     </div>
 </nav>
 <br><br><br><br>
+<script>
+    const a=document.querySelector('ul');
 {% if user.roles[0]=='ROLE_ENTREPRISE' %}
-    <script>
-        const a=document.querySelector('ul');
         a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Mes Stages</a></li>';
-    </script>
 {% endif %}
+{% if user.roles[0]=='ROLE_ETUDIANT' %}
+    a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Stages</a></li>' +
+    '<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Sujets TER</a></li>'+
+        '<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Emploi du temps</a></li>';
+    {% endif %}
+    {% if user.roles[0]=='ROLE_ENSEIGNANT' %}
+    a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Stages</a></li>' +
+        '<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Sujets TER</a></li>'+
+        '<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Emploi du temps</a></li>';
+    {% endif %}
+</script>
