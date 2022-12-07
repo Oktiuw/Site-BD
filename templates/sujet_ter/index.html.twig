@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sujet TER Controller!{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/sujetTer.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    {% for sujet in sujetsTER %}
+        <div class = "sujetTer">
+            <span class="titre">{{ sujet.titreTer }}</span>
+            <span class="enseignantTER">{{ sujet.enseignant.nomEn }}</span>
+            <span class="descTER">{{ sujet.descTer }}</span>
+            {% if sujet.etudiant is not null %}
+                <span class="badge bg-secondary">{{ sujet.Etudiant.nomEtud }}</span>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+
+{% endblock %}
