@@ -1,21 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Sujet TER Controller!{% endblock %}
+{% block title %}Liste des Sujets TER{% endblock %}
 
 {% block stylesheets %}
     <link href="{{ asset('css/sujetTer.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
+    <h1> Liste des Sujets TER </h1>
     {% for sujet in sujetsTER %}
-        <div class = "sujetTer">
-            <span class="titre">{{ sujet.titreTer }}</span>
-            <span class="enseignantTER">{{ sujet.enseignant.nomEn }}</span>
-            <span class="descTER">{{ sujet.descTer }}</span>
+            <div class="sujetTer">
+                <div class="element_sujetTer"> <div class="param">{{ sujet.titreTer }}</div> </div>
+                <div class="element_sujetTer"><div class="param">Encadrant : </div>{{ sujet.enseignant.nomEn | upper }} {{ sujet.enseignant.pnomEn }}</div>
+                <div class="description_sujetTer"> <div class="param">Description : </div>{{ sujet.descTer }}</div>
             {% if sujet.etudiant is not null %}
-                <span class="badge bg-secondary">{{ sujet.Etudiant.nomEtud }}</span>
+                    <div class="badge bg-secondary"> <div class="param"> Inscrit : </div>{{ sujet.Etudiant.nomEtud }}</div>
             {% endif %}
-        </div>
+            </div>
     {% endfor %}
 
 
