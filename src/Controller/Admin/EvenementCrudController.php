@@ -40,7 +40,14 @@ class EvenementCrudController extends AbstractCrudController
             }),
             AssociationField::new('groupeEtudiants')->setFormTypeOptions(['choice_label'=>'nomGroupe','query_builder'=>function (EntityRepository $entityRepository) {
                 return $entityRepository->createQueryBuilder('c')->orderBy('c.nomGroupe', 'ASC');
-            }])
+            }])->formatValue(function ($value, $entity) {
+                $res="";
+                foreach ($entity->getGroupeEtudiants() as $groupe)
+                {
+                    $res .= " | {$groupe->getNomGroupe()}";
+                }
+                return $res;
+            }),
 
         ];
     }
