@@ -14,12 +14,21 @@ div.sujetTer{
     margin: 10px;
 }
 
+div.element_sujetTer{
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    margin: 4px;
+}
+
+
+div.param{
+    font-weight: bold;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 h1{
     margin: 10px;
-}
-div.form>*{
-    margin: 5px;
-}
-input{
-    max-width: 50%;
+    text-align: center;
 }
