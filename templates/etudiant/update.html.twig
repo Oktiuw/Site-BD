@@ -4,7 +4,8 @@
     <link href="{{ asset('css/form.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-    <div class="info">>
+    <div class="form">
+    <div class="info">
     <h1>Modification des données de l'étudiant {{ profile.nomEtud }}</h1>
     {% if avatar!=null %}
         <img src="data:image/png;base64,{{ avatar.avatar }}" alt="Avatar de l'utilisateur" class="avatar">
@@ -17,4 +18,5 @@
     <p>Nom de l'étudiant</p> {{ form_widget(form.nomEtud)}}<br>
     {{ form_end(form) }}
     {% include 'user.html.twig' %}
+    </div>
 {% endblock %}
