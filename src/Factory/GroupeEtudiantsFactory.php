@@ -39,8 +39,8 @@ final class GroupeEtudiantsFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'nomGroupe' => self::faker()->text(),
+            'niveau' => null,
+            'etudiants' => [],
         ];
     }
 
