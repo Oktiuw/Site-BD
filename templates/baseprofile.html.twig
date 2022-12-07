@@ -6,9 +6,11 @@
             <p>Email : {{ user.email }}</p>
             <p>Login : {{ user.login }}</p>
 {% block body %}{% endblock %}
+            <a href="{{ path('app_update_password') }}">Modifer mon mot de passe</a>
             <div class="bot">
                 <a href="{{ path('app_logout') }}">
                     <button class="btn btn-primary">Se déconnecter</button> </a>
+
             </div>
     </div>
 
