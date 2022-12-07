@@ -3,6 +3,8 @@
     <div class="info_profile">
         <div class="top">
             {% include 'useravatar.html.twig' %}
+            <p>Email : {{ user.email }}</p>
+            <p>Login : {{ user.login }}</p>
 {% block body %}{% endblock %}
             <div class="bot">
                 <a href="{{ path('app_logout') }}">
