@@ -49,6 +49,8 @@ input{
 }
 .hidden-row{
     visibility: hidden;
+    height: 0;
+    width: 0;
 }
 @media (min-width: 600px) {
     img.avatar{
