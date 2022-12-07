@@ -7,9 +7,9 @@
         <h1>Modification de votre avatar</h1>
     </div>
     <BR>
-    {{ form_start(form, {'attr': {'class': 'flex-column formulaire'}}) }}
+    {{ form_start(form)}}
     <p>Nouveau fichier ( png/jpg/jpeg)</p>  {{ form_widget(form.photo)}}<br>
-    {{ form_end(form) }}
+        {{ form_end(form) }}
     </div>
 {% endblock %}
 
