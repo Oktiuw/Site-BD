@@ -21,7 +21,8 @@ class UtilisateurType extends AbstractType
             ->add('photo', FileType::class, ['label'=>'Photo de profil ( png/jpg/jpeg uniquement)','mapped'=>false,'required'=>true,
                 'constraints'=>[new File(['maxSize'=>'1024k','mimeTypes'=>
                     ['image/jpeg','image/png','image/jpg'],'mimeTypesMessage'=>'Veuillez choisir un document valide'])]])
-            ->add('email',EmailType::class)
+            ->add('email', EmailType::class)
+            ->add('password', PasswordType::class, ['required'=>false,'empty_data'=>'rien'])
 
         ;
     }

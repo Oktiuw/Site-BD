@@ -14,12 +14,14 @@
     {% endif %}
     </div>
     <BR>
-    {{ form_start(form, {'attr': {'class': 'flex-column formulaire'}}) }}
+        {{ form_start(form, {'attr': {'class': 'flex-column formulaire'}}) }}
+        {{ form_widget(form.pnomEtud,{'attr':{'class':'hidden-row'}}) }}
         <p>Adresse de l'étudiant</p> {{ form_widget(form.adEtud)}}<br>
         <p>Code Postal de l'étudiant</p> {{ form_widget(form.cpEtud)}}<br>
         <p>Ville de l'étudiant</p> {{ form_widget(form.villeEtud)}}<br>
         <p>email</p>  {{ form_widget(formUser.email) }}<br>
-    {{ form_end(form) }}
-    {% include 'user.html.twig' %}
+        <p>CV</p> {{ form_widget(form.CV) }}
+    {{ form_widget(form.submit) }}
+        {{ form_end(form) }}
     </div>
 {% endblock %}
