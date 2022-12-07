@@ -47,9 +47,6 @@ class EntrepriseController extends AbstractController
             $entreprise->setNomEnt($entrepriseType->getNomEnt());
             $entreprise->setNomRef($entrepriseType->getNomRef());
             $entreprise->getCdUtil()->setEmail($userData->getEmail());
-            if ($userData->getPassword()) {
-                $entreprise->getCdUtil()->setPassword($hasher->hashPassword($user,$userData->getPassword()));
-            }
             $entityManager->flush();
             return $this->redirectToRoute('app_entreprise');
         }

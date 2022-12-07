@@ -55,9 +55,6 @@ class EtudiantController extends AbstractController
             $entityManager=$doctrine->getManager();
             $etudiant->setNomEtud($etudiantType->getNomEtud());
             $etudiant->getCdUtil()->setEmail($userData->getEmail());
-            if ($userData->getPassword()) {
-                $etudiant->getCdUtil()->setPassword($hasher->hashPassword($user,$userData->getPassword()));
-            }
             $entityManager->flush();
             return $this->redirectToRoute('app_etudiant');
         }
