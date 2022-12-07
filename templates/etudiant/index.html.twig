@@ -1,11 +1,8 @@
 {% extends 'baseprofile.html.twig' %}
-
+{% block stylesheets %}{% endblock %}
 {% block title %}Bienvenue{{ profile.nomEtud}}{% endblock %}
 {% block body %}
-    <script>
-        const a=document.querySelector('ul');
-        a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Mes Stages</a></li>';
-    </script>
+
     <h1>{{ profile.nomEtud }} {{ profile.pnomEtud }} </h1>
     <h6> {{ profile.adEtud }}</h6> <h7>{{ profile.cpEtud }}</h7>
     <h8>{{ profile.villeEtud }}</h8>
@@ -13,7 +10,7 @@
         <embed src="{{ asset('img/cvsae.pdf') }}"width=450 height=450 type='application/pdf'/>
     {% endif %}
 
-
+</div>
 
 
 
