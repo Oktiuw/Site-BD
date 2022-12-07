@@ -1,0 +1,22 @@
+{% extends 'baseprofile.html.twig' %}
+
+{% block title %}Bienvenue{{ profile.nomEtud}}{% endblock %}
+{% block body %}
+    <script>
+        const a=document.querySelector('ul');
+        a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Mes Stages</a></li>';
+    </script>
+    <h1>{{ profile.nomEtud }} {{ profile.pnomEtud }} </h1>
+    <h6> {{ profile.adEtud }}</h6> <h7>{{ profile.cpEtud }}</h7>
+    <h8>{{ profile.villeEtud }}</h8>
+
+
+
+
+
+    <hr>
+
+    <p><a href="{{ path('app_etudiant_update')}}">Modifier mes informations personnelles</a></p>
+
+
+{% endblock %}
