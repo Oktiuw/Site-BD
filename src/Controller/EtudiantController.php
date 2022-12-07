@@ -11,10 +11,12 @@ use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[IsGranted('ROLE_ETUDIANT')]
 class EtudiantController extends AbstractController
@@ -35,7 +37,7 @@ class EtudiantController extends AbstractController
     }
 
     #[Route('/etudiant/update')]
-    public function update(EtudiantRepository $etudiantRepository, ManagerRegistry $doctrine, Request $request,  UserPasswordHasherInterface $hasher): Response
+    public function update(SluggerInterface $slug,EtudiantRepository $etudiantRepository, ManagerRegistry $doctrine, Request $request,  UserPasswordHasherInterface $hasher): Response
     {
 
         $user=$this->getUser();
@@ -55,8 +57,27 @@ class EtudiantController extends AbstractController
             $entityManager=$doctrine->getManager();
             $etudiant->setNomEtud($etudiantType->getNomEtud());
             $etudiant->getCdUtil()->setEmail($userData->getEmail());
+            $cv = $form->get("CV")->getData();
+
+            if ($cv) {
+                $originalName = pathinfo($cv->getClientOriginalName(),PATHINFO_FILENAME);
+                $safeFileName = $slug->slug($originalName);
+                $newFile = $safeFileName."-".uniqid()."-".$cv->guessExtension();
+                try {
+                    $cv->move($this->getParameter("pdfs_directory"),$newFile);
+                }
+                catch (FileException $e) {
+
+                }
+                $AncienPdf = $etudiant->getCvEtud();
+                if ($AncienPdf) {
+                    unlink("img/usersCV/$AncienPdf");
+                }
+                $etudiant->setCvEtud($newFile);
+            }
+            $entityManager->persist($etudiant);
             $entityManager->flush();
-            return $this->redirectToRoute('app_etudiant');
+            return $this->redirectToRoute('app_redirecteur');
         }
         return $this->renderForm('etudiant/update.html.twig', ['form'=>$form,'profile'=>$etudiant,'form'=>$form,'avatar'=>$avatar, 'formUser'=>$formUser]);
     }
