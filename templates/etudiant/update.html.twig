@@ -15,7 +15,12 @@
     </div>
     <BR>
     {{ form_start(form, {'attr': {'class': 'flex-column formulaire'}}) }}
-    <p>Nom de l'étudiant</p> {{ form_widget(form.nomEtud)}}<br>
+        <p>Prénom de l'étudiant</p> {{ form_widget(form.pnomEtud)}}<br>
+        <p>Adresse de l'étudiant</p> {{ form_widget(form.adEtud)}}<br>
+        <p>Code Postal de l'étudiant</p> {{ form_widget(form.cpEtud)}}<br>
+        <p>Ville de l'étudiant</p> {{ form_widget(form.villeEtud)}}<br>
+        <p>email</p>  {{ form_widget(formUser.email) }}<br>
+        <p>Nouveau mot de passe</p> {{ form_widget(formUser.password) }}<br>
     {{ form_end(form) }}
     {% include 'user.html.twig' %}
     </div>
