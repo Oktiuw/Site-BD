@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Enseignant;
 use App\Entity\Etudiant;
 use App\Entity\Evenement;
+use App\Entity\GroupeEtudiants;
 use App\Entity\Niveau;
 use App\Entity\TypeEvenement;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -37,5 +38,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('TypeEvenement',null,TypeEvenement::class);
         yield MenuItem::linkToCrud('Etudiant',null,Etudiant::class);
         yield MenuItem::linkToCrud('Enseignant',null,Enseignant::class);
+        yield MenuItem::linkToCrud('GroupeEtudiants',null,GroupeEtudiants::class);
     }
 }
