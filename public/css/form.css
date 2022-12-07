@@ -16,6 +16,7 @@ img.avatar{
     width: 100px;
     border-radius: 50%;
     margin: 10px;
+    visibility: hidden;
 }
 div.mb-3{
     margin: 10px;
@@ -45,4 +46,11 @@ div.form>*{
 }
 input{
     max-width: 50%;
+}
+
+@media (min-width: 600px) {
+    img.avatar{
+        visibility: visible;
+    }
+
 }

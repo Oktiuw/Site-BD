@@ -54,3 +54,6 @@ div.stages{display: flex;}
         min-height: 800px;
     }
 }
+div.info_profile>*{
+    margin: 15px;
+}
