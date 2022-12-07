@@ -13,7 +13,8 @@
     {{ form_start(form, {'attr': {'class': 'flex-column formulaire'}}) }}
     <p>Nom de l'entreprise</p> {{ form_widget(form.nomEnt)}}<br>
     <p>Nom et prénom du réferent</p>  {{ form_widget(form.nomRef) }}<br>
+    <p>email</p>  {{ form_widget(formUser.email) }}<br>
+    <p>Nouveau mot de passe</p> {{ form_widget(formUser.password) }}<br>
     {{ form_end(form) }}
-    {% include 'user.html.twig' %}
 </div>
 {% endblock %}
