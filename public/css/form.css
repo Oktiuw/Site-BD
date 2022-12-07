@@ -47,7 +47,9 @@ div.form>*{
 input{
     max-width: 50%;
 }
-
+.hidden-row{
+    visibility: hidden;
+}
 @media (min-width: 600px) {
     img.avatar{
         visibility: visible;
