@@ -3,7 +3,7 @@
 {% block title %}Bienvenue{{ profile.nomEtud}}{% endblock %}
 {% block body %}
 
-    <h1>{{ profile.nomEtud }} {{ profile.pnomEtud }} </h1>
+    <h1>{{ profile.nomEtud|upper}} {{ profile.pnomEtud }} </h1>
     <h6> {{ profile.adEtud }}</h6> <h7>{{ profile.cpEtud }}</h7>
     <h8>{{ profile.villeEtud }}</h8>
     {% if profile.cvEtud is null %}
