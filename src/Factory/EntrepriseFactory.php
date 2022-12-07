@@ -41,7 +41,9 @@ final class EntrepriseFactory extends ModelFactory
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
             'nomRef' => self::faker()->lastName().' '.self::faker()->firstName(),
-            'nomEnt' => EntrepriseFactory::faker()->unique()->company()
+            'nomEnt' => EntrepriseFactory::faker()->unique()->company(),
+            'telEnt'=>self::faker()->unique()->phoneNumber(),
+            'isDisabled'=>'false'
         ];
     }
 

@@ -28,6 +28,12 @@ class Entreprise
     #[ORM\OneToMany(mappedBy: 'entreprise', targetEntity: Stage::class, orphanRemoval: true)]
     private Collection $stages;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $telEnt = null;
+
+    #[ORM\Column]
+    private ?bool $isDisabled = null;
+
     public function __construct()
     {
         $this->stages = new ArrayCollection();
@@ -100,6 +106,30 @@ class Entreprise
                 $stage->setEntreprise(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTelEnt(): ?string
+    {
+        return $this->telEnt;
+    }
+
+    public function setTelEnt(?string $telEnt): self
+    {
+        $this->telEnt = $telEnt;
+
+        return $this;
+    }
+
+    public function isIsDisabled(): ?bool
+    {
+        return $this->isDisabled;
+    }
+
+    public function setIsDisabled(bool $isDisabled): self
+    {
+        $this->isDisabled = $isDisabled;
 
         return $this;
     }
