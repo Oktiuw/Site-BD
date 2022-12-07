@@ -30,20 +30,25 @@ class EntrepriseController extends AbstractController
         $entrepriseType=new EntrepriseType();
         $user=$this->getUser();
         $entreprise=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
+        $formUser=$this->createForm(UtilisateurType::class,$user);
+
         $form=$this->createForm(EntrepriseType::class, $entreprise)->add(
             'submit',
             SubmitType::class,
             ['label' => 'Modifier']
         );
         $form->handleRequest($request);
+        $formUser->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entrepriseType=$form->getData();
+            $userData=$formUser->getData();
             $entityManager=$doctrine->getManager();
             $entreprise->setNomEnt($entrepriseType->getNomEnt());
             $entreprise->setNomRef($entrepriseType->getNomRef());
+            $entreprise->getCdUtil()->setEmail($userData->getEmail());
             $entityManager->flush();
             return $this->redirectToRoute('app_entreprise');
         }
-        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'profile'=>$entreprise,'user'=>$user]);
+        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'profile'=>$entreprise,'user'=>$user,'formUser'=>$formUser]);
     }
 }
