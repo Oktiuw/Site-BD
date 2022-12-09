@@ -1,0 +1,65 @@
+{% extends 'baseprofile.html.twig' %}
+{% block head %}
+    <meta charset="UTF-8">
+    {% block title %}Bienvenue {{ profile.nomEn }}{% endblock %}
+
+{% endblock %}
+
+{% block stylesheets%}
+    <link rel="stylesheet" href="{{ asset('css/enseignant.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Dekko' rel='stylesheet'>
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="main">
+        <div class="topbar">
+
+            <a href="">Emploi du Temps</a>
+            <a href="">Sujets TER</a>
+            <a href="">Messages</a>
+            <a href="">Acceuil</a>
+
+        </div>
+        <div class="row">
+
+            <div class="cold-md-8 mt-1">
+                <div class="card mb-3 content">
+                    <h1 class="m-3 pt-3">Profil</h1>
+                    <div class="card-body">
+                        <img src="images.png" class="rounded-circle" width="150">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5> Nom Prénom : </h5>
+                            </div>
+                            <div class="col-md-9 text-secondary">
+                                {{ profile.nomEn }} {{ profile.pnomEn}}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Email :</h5>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Telephone</h5>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
