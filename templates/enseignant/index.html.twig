@@ -47,7 +47,7 @@
             <img src="images.png">
 
             <div class="name">
-                nom prénom
+                {{ profile.nomEn }}{{ profile.pnomEn}}
             </div>
             <div class="job">
                 Enseignant
@@ -79,26 +79,31 @@
         <h2>Votre Profil</h2>
         <div class="card">
             <div class="card-body">
-                <i class="fa fa-pen fa-xs edit"></i>
+                <button  onclick="edit()" type="button" class="button btn-primary"><i class="fa fa-pen fa-xs edit"></i></button>
                 <table>
                     <tbody>
                     <tr>
                         <td>Nom :</td>
+                        <td>{{ profile.nomEn}}</td>
 
 
                     </tr>
                     <tr>
                         <td>Prénom :</td>
+                        <td>{{ profile.pnomEn}}</td>
 
 
                     </tr>
                     <tr>
                         <td>Email :</td>
+                        <td>{{ enseignant.email }}</td>
+
 
 
                     </tr>
                     <tr>
                         <td>Addresse :</td>
+                        <td>{{ profile.adEn }} {{ profile.cpEn }} {{ profile.villeEn}}</td>
 
 
                     </tr>
@@ -115,7 +120,7 @@
         <h2>Cours Récents</h2>
         <div class="card">
             <div class="card-body">
-                <i class="fa fa-pen fa-xs edit"></i>
+                <i class="fa fa-pen fa-xs edit">
                 <div class="cours">
 
 
@@ -125,5 +130,15 @@
     </div>
 
 
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+        function edit() {
+            location.href = "{{ path('app_enseignant_update')}}";
+
+        }
+
+    </script>
 
 {% endblock %}
