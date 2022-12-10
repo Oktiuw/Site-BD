@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+
+
+#[IsGranted('ROLE_ENSEIGNANT')]
 class EnseignantController extends AbstractController
 {
     #[Route('/enseignant', name: 'app_enseignant')]
