@@ -1,71 +1,128 @@
 {% extends 'baseprofile.html.twig' %}
 {% block head %}
     <meta charset="UTF-8">
-    {% block title %}Bienvenue {{ profile.nomEn }}{% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}Profil Enseignant{{ profile.nomEn }}{% endblock %}
 
 {% endblock %}
 
 {% block stylesheets%}
     <link rel="stylesheet" href="{{ asset('css/enseignant.css') }}">
-    <link href='https://fonts.googleapis.com/css?family=Dekko' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 {% endblock %}
 
 {% block body %}
 
-<div class="container">
-    <div class="main">
-        <div class="topbar">
+    <div class="navbar-top">
+        <div class="title">
+            <h1>Profil</h1>
+        </div>
 
-            <a href="">Emploi du Temps</a>
-            <a href="">Sujets TER</a>
-            <a href="">Messages</a>
-            <a href="">Acceuil</a>
+        <ul>
+            <li>
+                <a href="#message">
+                    <span class="icon-count">29</span>
+                    <i class="fa fa-envelope fa-2x"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#notification">
+                    <span class="icon-count">59</span>
+                    <i class="fa fa-bell fa-2x"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#sign-out">
+                    <i class="fa fa-sign-out-alt fa-2x"></i>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+
+
+    <div class="sidenav">
+        <div class="profile">
+            <img src="images.png">
+
+            <div class="name">
+                nom prénom
+            </div>
+            <div class="job">
+                Enseignant
+            </div>
+        </div>
+
+        <div class="sidenav-url">
+            <div class="url">
+                <a href="" class="active">Emploi du temps</a>
+                <hr align="center">
+            </div>
+
+            <div class="url">
+                <a href="">Sujets Ter</a>
+                <hr align="center">
+            </div>
+
+            <div class="url">
+                <a href="">Paramètres</a>
+                <hr align="center">
+            </div>
 
         </div>
-        <div class="row">
-
-            <div class="cold-md-8 mt-1">
-                <div class="card mb-3 content">
-                    <h1 class="m-3 pt-3">Profil</h1>
-                    <div class="card-body">
-                        <img src="images.png" class="rounded-circle" width="150">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h5> Nom Prénom : </h5>
-                            </div>
-                            <div class="col-md-9 text-secondary">
-                                {{ profile.nomEn }} {{ profile.pnomEn}}
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h5>Adresse</h5>
-                            </div>
-                            <div class="col-md-9 text-secondary">
-                                {{ profile.adEn }} {{ profile.cpEn}} {{ profile.villeEn}}
-                            </div>
+    </div>
 
 
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h5>Telephone</h5>
-                            </div>
-                            <div class="col-md-9 text-secondary">
-                                {{ profile.numEn}}
-                            </div>
 
-                        </div>
+    <div class="main">
+        <h2>Votre Profil</h2>
+        <div class="card">
+            <div class="card-body">
+                <i class="fa fa-pen fa-xs edit"></i>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>Nom :</td>
 
-                    </div>
+
+                    </tr>
+                    <tr>
+                        <td>Prénom :</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Email :</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Addresse :</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Téléphone :</td>
+
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <h2>Cours Récents</h2>
+        <div class="card">
+            <div class="card-body">
+                <i class="fa fa-pen fa-xs edit"></i>
+                <div class="cours">
+
+
                 </div>
-
             </div>
         </div>
     </div>
-</div>
 
 
 
