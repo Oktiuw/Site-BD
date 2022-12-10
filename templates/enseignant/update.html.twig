@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modification{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('css/form.css') }}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <div class="form">
+        <div class="info">
+            <h1>Modification des données de l'enseignant{{ profile.nomEn }}</h1>
+            {% include 'useravatar.html.twig' %}
+        </div>
+        <BR>
+        {{ form_start(form, {'attr': {'class': 'flex-column formulaire'}}) }}
+        <p>Nom de l'enseignant</p> {{ form_widget(form.nomEnt)}}<br>
+        <p>Prénom de l'enseignant</p>  {{ form_widget(form.pnomEn) }}<br>
+        <p>Email</p> {{ form_widget(formUser.email) }}<br>
+        {{ form_widget(form.submit) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
