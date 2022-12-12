@@ -42,10 +42,11 @@ final class EtudiantFactory extends ModelFactory
             'nomEtud'=> self::faker()->unique()->lastName(),
             'numEtud' => self::faker()->unique()->randomNumber(6),
             'pnomEtud' => self::faker()->firstName(),
-            'dtnsEtud' => self::faker()->dateTimeInInterval('-30 years','+10 years'),
+            'dtnsEtud' => self::faker()->dateTimeInInterval('-30 years', '+10 years'),
             'adEtud' => self::faker()->streetAddress(),
             'cpEtud' => self::faker()->postcode(),
-            'villeEtud' => self::faker()->city()
+            'villeEtud' => self::faker()->city(),
+            'firstConnection'=>true,
         ];
     }
 
