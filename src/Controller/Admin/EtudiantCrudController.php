@@ -51,13 +51,16 @@ class EtudiantCrudController extends AbstractCrudController
 
     public function setUser($entityInstance): void
     {
-        $lastname = $_POST['Enseignant']['nomEn'];
-        $login = strtolower(str_replace(" ", "", "$lastname" . rand(1, 300)));
-        $user = new Utilisateur();
-        $user->setLogin($login);
-        $user->setEmail('default@example.com');
-        $user->setRoles(['ROLE_ETUDIANT']);
-        $user->setPassword('test');
-        $entityInstance->setCdUtil($user);
+        $user=$this->getUser();
+        if ($user==null) {
+            $lastname = $_POST['Etudiant']['nomEtud'];
+            $login = strtolower(str_replace(" ", "", "$lastname" . rand(1, 300)));
+            $user = new Utilisateur();
+            $user->setLogin($login);
+            $user->setEmail('default@example.com');
+            $user->setRoles(['ROLE_ENSEIGNANT']);
+            $user->setPassword('test');
+            $entityInstance->setCdUtil($user);
+        }
     }
 }
