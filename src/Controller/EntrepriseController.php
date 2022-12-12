@@ -52,4 +52,28 @@ class EntrepriseController extends AbstractController
         }
         return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'profile'=>$entreprise,'user'=>$user,'formUser'=>$formUser]);
     }
+
+    #[Route('/entreprise/create')]
+    public function create(Request $request, ManagerRegistry $doctrine): Response
+    {
+        $entreprise = new Entreprise();
+        $form = new EntrepriseType();
+        $form = $this->createForm(EntrepriseType::class, $entreprise)->add('submit', SubmitType::class, ['label' => 'Ajouter']);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entrepriseType = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entreprise->setFirstname($entrepriseType->getFirstName());
+            $entreprise->setLastname($entrepriseType->getLastName());
+            $entreprise->setCategory($entrepriseType->getCategory());
+            $entreprise->setEmail($entrepriseType->getEmail());
+            $entreprise->setPhone($entrepriseType->getPhone());
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_entreprise');
+        }
+
+        return $this->renderForm('entreprise/create.html.twig', ['form' => $form]);
+    }
+
 }
