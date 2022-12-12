@@ -42,10 +42,11 @@ final class EnseignantFactory extends ModelFactory
             'numEn' => "ENS".self::faker()->unique()->randomNumber(6) ,
             'nomEn' => self::faker()->lastName(),
             'pnomEn' => self::faker()->firstName() ,
-            'dtnsEn' => self::faker()->dateTimeInInterval('-70 years','+30 years'),
+            'dtnsEn' => self::faker()->dateTimeInInterval('-70 years', '+30 years'),
             'adEn' => self::faker()->streetAddress(),
             'cpEn' => self::faker()->postcode(),
             'villeEn' => self::faker()->city() ,
+            'firstConnection'=>true,
         ];
     }
 

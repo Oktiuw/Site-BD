@@ -53,6 +53,9 @@ class Etudiant
     #[ORM\OneToMany(mappedBy: 'etudiant', targetEntity: Canditatures::class, orphanRemoval: true)]
     private Collection $canditatures;
 
+    #[ORM\Column]
+    private ?bool $firstConnection = null;
+
 
     public function __construct()
     {
@@ -254,6 +257,18 @@ class Etudiant
                 $canditature->setEtudiant(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isFirstConnection(): ?bool
+    {
+        return $this->firstConnection;
+    }
+
+    public function setFirstConnection(bool $firstConnection): self
+    {
+        $this->firstConnection = $firstConnection;
 
         return $this;
     }
