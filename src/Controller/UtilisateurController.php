@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\UtilisateurType;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Psy\Readline\Hoa\FileException;
@@ -56,7 +57,7 @@ class UtilisateurController extends AbstractController
     public function updatePassword(Request $request, ManagerRegistry $doctrine, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user=$this->getUser();
-        $form=$this->createForm(UtilisateurType::class, $user)->add(
+        $form=$this->createForm(UtilisateurType::class, $user)->add('password',PasswordType::class,['required'=>true,'label'=>'Nouveau mot de passe'])->add(
             'submit',
             SubmitType::class,
             ['label' => 'Modifier']

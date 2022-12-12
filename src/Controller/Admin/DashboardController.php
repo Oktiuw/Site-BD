@@ -8,6 +8,7 @@ use App\Entity\Evenement;
 use App\Entity\GroupeEtudiants;
 use App\Entity\Niveau;
 use App\Entity\TypeEvenement;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -39,5 +40,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Etudiant',null,Etudiant::class);
         yield MenuItem::linkToCrud('Enseignant',null,Enseignant::class);
         yield MenuItem::linkToCrud('GroupeEtudiants',null,GroupeEtudiants::class);
+    }
+    public function configureAssets(): Assets
+    {
+        return parent::configureAssets()->addCssFile('https://fonts.googleapis.com/icon?family=Material+Icons');
     }
 }
