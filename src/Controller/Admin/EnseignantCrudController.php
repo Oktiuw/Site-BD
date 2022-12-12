@@ -13,6 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Bridge\Doctrine\DependencyInjection\Security\UserProvider\EntityFactory;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Twig\Node\Expression\VariadicExpression;
 
 class EnseignantCrudController extends AbstractCrudController
@@ -20,6 +21,12 @@ class EnseignantCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Enseignant::class;
+    }
+    private UserPasswordHasherInterface $hasher;
+
+    public function __construct(UserPasswordHasherInterface $hasher)
+    {
+        $this->hasher = $hasher;
     }
 
     public function configureFields(string $pageName): iterable
@@ -64,7 +71,7 @@ class EnseignantCrudController extends AbstractCrudController
             $user->setLogin($login);
             $user->setEmail('default@example.com');
 
-            $user->setPassword('test');
+            $user->setPassword($this->hasher->hashPassword($user,'test'));
             $entityInstance->setCdUtil($user);
         }
         $user->setRoles(['ROLE_ENSEIGNANT']);
