@@ -213,4 +213,11 @@ class Enseignant
 
         return $this;
     }
+    public function isAdmin($result=null): bool
+    {
+        if ($this->getCdUtil()==null) {
+            return false;
+        }
+        return $this->getCdUtil()->getRoles()[0]==='ROLE_ADMIN,ROLE_ENSEIGNANT';
+    }
 }
