@@ -47,6 +47,9 @@ class Enseignant
     #[ORM\OneToMany(mappedBy: 'Enseignant', targetEntity: SujetTER::class, orphanRemoval: true)]
     private Collection $sujetTERs;
 
+    #[ORM\Column]
+    private ?bool $firstConnection = null;
+
     public function __construct()
     {
         $this->evenements = new ArrayCollection();
@@ -219,5 +222,17 @@ class Enseignant
             return false;
         }
         return $this->getCdUtil()->getRoles()[0]==='ROLE_ADMIN,ROLE_ENSEIGNANT';
+    }
+
+    public function isFirstConnection(): ?bool
+    {
+        return $this->firstConnection;
+    }
+
+    public function setFirstConnection(bool $firstConnection): self
+    {
+        $this->firstConnection = $firstConnection;
+
+        return $this;
     }
 }
