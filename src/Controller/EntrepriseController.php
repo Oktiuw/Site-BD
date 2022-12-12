@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\Entreprise;
 use App\Form\EntrepriseType;
 use App\Form\UtilisateurType;
 use App\Repository\EntrepriseRepository;
@@ -14,9 +14,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[IsGranted('ROLE_ENTREPRISE')]
+
 class EntrepriseController extends AbstractController
 {
+    #[IsGranted('ROLE_ENTREPRISE')]
     #[Route('/entreprise', name: 'app_entreprise')]
     public function index(EntrepriseRepository $entrepriseRepository): Response
     {
@@ -25,6 +26,7 @@ class EntrepriseController extends AbstractController
         return $this->render('entreprise/index.html.twig', [
             'user' =>$user,'profile'=>$profile]);
     }
+    #[IsGranted('ROLE_ENTREPRISE')]
     #[Route('/entreprise/update')]
     public function update(EntrepriseRepository $entrepriseRepository, ManagerRegistry $doctrine, Request $request, UserPasswordHasherInterface $hasher): Response
     {
