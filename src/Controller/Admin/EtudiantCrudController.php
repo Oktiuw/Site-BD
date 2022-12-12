@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class EtudiantCrudController extends AbstractCrudController
 {
@@ -18,6 +19,13 @@ class EtudiantCrudController extends AbstractCrudController
     {
         return Etudiant::class;
     }
+    private UserPasswordHasherInterface $hasher;
+
+    public function __construct(UserPasswordHasherInterface $hasher)
+    {
+        $this->hasher = $hasher;
+    }
+
 
     public function configureFields(string $pageName): iterable
     {
@@ -58,8 +66,8 @@ class EtudiantCrudController extends AbstractCrudController
             $user = new Utilisateur();
             $user->setLogin($login);
             $user->setEmail('default@example.com');
-            $user->setRoles(['ROLE_ENSEIGNANT']);
-            $user->setPassword('test');
+            $user->setRoles(['ROLE_ETUDIANT']);
+            $user->setPassword($this->hasher->hashPassword($user, 'test'));
             $entityInstance->setCdUtil($user);
         }
     }
