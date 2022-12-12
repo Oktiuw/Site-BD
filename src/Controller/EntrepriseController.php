@@ -65,11 +65,9 @@ class EntrepriseController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entrepriseType = $form->getData();
             $entityManager = $doctrine->getManager();
-            $entreprise->setFirstname($entrepriseType->getFirstName());
-            $entreprise->setLastname($entrepriseType->getLastName());
-            $entreprise->setCategory($entrepriseType->getCategory());
-            $entreprise->setEmail($entrepriseType->getEmail());
-            $entreprise->setPhone($entrepriseType->getPhone());
+            $entreprise->setNomEnt($entrepriseType->getNomEnt());
+            $entreprise->setNomRef($entrepriseType->getNomRef());
+            $entreprise->setTelEnt($entrepriseType->getTelEnt());
             $entityManager->flush();
 
             return $this->redirectToRoute('app_entreprise');
