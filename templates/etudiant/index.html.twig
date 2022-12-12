@@ -1,8 +1,9 @@
 {% extends 'baseprofile.html.twig' %}
-{% block stylesheets %}{% endblock %}
 {% block title %}Bienvenue{{ profile.nomEtud}}{% endblock %}
 {% block body %}
-
+     {% if script !="" %}
+    <script>alert('{{ script }}');</script>
+    {% endif %}
     <h1>{{ profile.nomEtud|upper}} {{ profile.pnomEtud }} </h1>
     <h6> {{ profile.adEtud }}</h6> <h7>{{ profile.cpEtud }}</h7>
     <h8>{{ profile.villeEtud }}</h8>

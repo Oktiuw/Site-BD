@@ -20,26 +20,27 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[IsGranted('ROLE_ETUDIANT')]
 class EtudiantController extends AbstractController
-
 {
     #[Route('/etudiant', name: 'app_etudiant')]
-    public function index(EtudiantRepository $etudiantRepository): Response
+    public function index(EtudiantRepository $etudiantRepository, ManagerRegistry $doctrine): Response
     {
         $user=$this->getUser();
         $profile=$etudiantRepository->findOneBy(['cdUtil'=>$user->getId()]);
-        $avatar=null;
-        if ($user->getAvatar() !== null) {
-            $avatar=$user->setAvatar(base64_encode(stream_get_contents($user->getAvatar())));
+        $avatar=$user->getAvatar();
+        $script="";
+        if ($profile->isFirstConnection()) {
+            $profile->setFirstConnection(false);
+            $script='Première connexion détectée ! Modifiez votre mail et votre mot de passe par défaut! ';
+            $doctrine->getManager()->flush();
         }
         return $this->render('etudiant/index.html.twig', [
-            'user' =>$user,'profile'=>$profile,'avatar'=>$avatar
+            'user' =>$user,'profile'=>$profile,'avatar'=>$avatar,'script'=>$script
         ]);
     }
 
     #[Route('/etudiant/update')]
-    public function update(SluggerInterface $slug,EtudiantRepository $etudiantRepository, ManagerRegistry $doctrine, Request $request,  UserPasswordHasherInterface $hasher): Response
+    public function update(SluggerInterface $slug, EtudiantRepository $etudiantRepository, ManagerRegistry $doctrine, Request $request, UserPasswordHasherInterface $hasher): Response
     {
-
         $user=$this->getUser();
         $avatar = $user->getAvatar();
         $etudiant=$etudiantRepository->findOneBy(['cdUtil'=>$user->getId()]);
@@ -48,7 +49,8 @@ class EtudiantController extends AbstractController
             'submit',
             SubmitType::class,
             ['label' => 'Modifier']
-        );;
+        );
+        ;
         $form->handleRequest($request);
         $formUser->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -60,14 +62,12 @@ class EtudiantController extends AbstractController
             $cv = $form->get("CV")->getData();
 
             if ($cv) {
-                $originalName = pathinfo($cv->getClientOriginalName(),PATHINFO_FILENAME);
+                $originalName = pathinfo($cv->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFileName = $slug->slug($originalName);
                 $newFile = $safeFileName."-".uniqid()."-".$cv->guessExtension();
                 try {
-                    $cv->move($this->getParameter("pdfs_directory"),$newFile);
-                }
-                catch (FileException $e) {
-
+                    $cv->move($this->getParameter("pdfs_directory"), $newFile);
+                } catch (FileException $e) {
                 }
                 $AncienPdf = $etudiant->getCvEtud();
                 if ($AncienPdf) {
@@ -79,12 +79,6 @@ class EtudiantController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('app_redirecteur');
         }
-        return $this->renderForm('etudiant/update.html.twig', ['form'=>$form,'profile'=>$etudiant,'form'=>$form,'avatar'=>$avatar, 'formUser'=>$formUser]);
+        return $this->renderForm('etudiant/update.html.twig', ['profile'=>$etudiant,'form'=>$form,'avatar'=>$avatar, 'formUser'=>$formUser]);
     }
-
 }
-
-
-
-
-
