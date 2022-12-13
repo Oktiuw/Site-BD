@@ -15,6 +15,11 @@
 
 {% block body %}
     <h1> Liste des Sujets TER </h1>
+
+    {% if is_granted('ROLE_ENSEIGNANT') %}
+        <div class="btn btn-primary" href="/sujetter" role="button">Ajouter un nouveau sujet</div>
+    {% endif %}
+
     {% for sujet in sujetsTER %}
             {% if is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ETUDIANT') and groupe.niveau is same as(sujet.niveau) %}
             <div class="sujetTer">
@@ -25,9 +30,8 @@
                     <div class="badge bg-secondary"> <div class="param"> Inscrit : </div>{{ sujet.Etudiant.nomEtud }}</div>
             {% endif %}
 
-                {% if is_granted('ROLE_ETUDIANT') %}
-                    {% set groupe = user.groupeEtudiants|first %}
-                    {{ groupe.niveau.libniv }}
+                {% if is_granted('ROLE_ENSEIGNANT') and sujet.enseignant.id == user.id %}
+                    <div class="btn btn-primary" href="/sujetter" role="button">Modifier</div>
                 {% endif %}
             </div>
 
