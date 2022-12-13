@@ -1,257 +1,275 @@
-{% extends 'base.html.twig' %}
-
-{% block head %}
-    <meta charset="UTF-8">
-    {% block title %}Master Informatique IA{% endblock %}
-
-{% endblock %}
-
-{% block stylesheets%}
-<link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}">
-    <link href='https://fonts.googleapis.com/css?family=Dekko' rel='stylesheet'>
-{% endblock %}
-
-{% block body %}
-    <div class="head-container">
-        <div class="left-menu">
-            <nav class="menu">
-                {% if user is null %}
-                    <a href="{{path('app_login')}}" class="menu__item" >Connexion</a>
-                {% else %}
-                    <a href="{{ path('app_redirecteur') }}" class="menu__item">Mon espace</a>
-                {% endif %}
-            </nav>
-
-            <footer>Contact
-                <button  onclick="show5()" type="button" class="button btn-primary"><span class="material-symbols-outlined">+</span></button>
-
-                <div class="slide" id="text5">
-                    <p>Composante :Faculté de Sciences Exactes et Naturelles
-                        Moulin de la Housse - BP 1039
-                        51687 Reims Cedex 2
-                        e-mail : scolarite.sciences@univ-reims.fr
-                        Tel : 03 26 91 34 19
-
-                        Responsable de la formation :
-                        Francis ROUSSEAUX
-                        e-mail : francis.rousseaux@univ-reims.fr
-
-                        Coordonnées du secrétariat :
-                        Département MMI
-                        e-mail : secretariat-doyen-sciences@univ-reims.fr
-                    </p>
-                    <button  onclick="hide5()" type="button" class="button btn-primary"><span class="material-symbols-outlined">-</span></button>
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="fr"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="In our Campus you can, Our Courses, Our Teachers, John Mcallister, Jane Doe, Mary Mgrayan, Hanna Kim, 44, +10 K, +47, 15, Our Blog, Our university, Course Registration">
+    <meta name="description" content="">
+    <title>Accueil</title>
+    <link rel="stylesheet" href="{{ asset('css/nicepage.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ asset('css/Accueil.css') }}" media="screen">
+    <script class="u-script" type="text/javascript" src="{{ asset('js/jquery.js') }}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ asset('js/nicepage.js') }}" defer=""></script>
+    <meta name="generator" content="Nicepage 5.1.5, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700">
 
 
+
+
+
+
+
+    <script type="application/ld+json">{
+            "@context": "http://schema.org",
+            "@type": "Organization",
+            "name": "masterweb",
+            "logo": "images/default-logo.png"
+        }</script>
+    <meta name="theme-color" content="#73a3de">
+    <meta property="og:title" content="Accueil">
+    <meta property="og:type" content="website">
+</head>
+<body data-home-page="Accueil.html" data-home-page-title="Accueil" class="u-body u-xl-mode" data-lang="fr"><header class="u-clearfix u-header u-header" id="sec-e20f"><div class="u-clearfix u-sheet u-sheet-1">
+        <nav class="u-align-left u-menu u-menu-one-level u-nav-spacing-25 u-offcanvas u-menu-1">
+            <div class="menu-collapse">
+                <a class="u-btn-text u-button-style u-nav-link" href="#" style="padding: 4px 0; font-size: calc(1em + 8px);">
+                    <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 302 302" ><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-7b92"></use></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  id="svg-7b92" x="0px" y="0px" viewBox="0 0 302 302" style="enable-background:new 0 0 302 302;" xml:space="preserve" class="u-svg-content"><g><rect y="36" width="302" height="30"></rect><rect y="236" width="302" height="30"></rect><rect y="136" width="302" height="30"></rect>
+                        </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                </a>
+            </div>
+            <div class="u-custom-menu u-nav-container">
+                <ul class="u-nav u-spacing-25 u-unstyled"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="À-propos-de.html" style="padding: 8px 0px;">À propos de</a>
+                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" target="_blank" style="padding: 8px 0px;">Connexion</a>
+                    </li></ul>
+            </div>
+            <div class="u-custom-menu u-nav-container-collapse">
+                <div class="u-align-center u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+                    <div class="u-inner-container-layout u-sidenav-overflow">
+                        <div class="u-menu-close"></div>
+                        <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="À-propos-de.html">À propos de</a>
+                            </li><li class="u-nav-item"><a class="u-button-style u-nav-link" target="_blank">Connexion</a>
+                            </li></ul>
+                    </div>
                 </div>
-
-
-            </footer>
+                <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+            </div>
+        </nav>
+    </div></header>
+<section class="u-clearfix u-image u-shading u-section-1" id="sec-b5dd" data-image-width="3648" data-image-height="2432">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-container-style u-group u-group-1">
+            <div class="u-container-layout">
+                <h1 class="u-custom-font u-font-oswald u-text u-title u-text-1">Master IA&nbsp;</h1>
+                <p class="u-text u-text-2">UNIVERSITE REIMS CHAMPAGNE ARDENNES&nbsp;</p>
+            </div>
         </div>
-        <div class="body-container">
-
-    <main class="acceuil">
-        <section class="acceuil_content" id="titre">
-
-            <h1>Master Informatique </h1>
-
-            <h2>Présentation </h2>
-
-            <p> Le master informatique est un diplome national .</p>
-            <p>Il est organisé en 5 Unités d’Enseignement :</p>
-            <ul>
-                <li> <p> UE1 : Intelligence Artificielle et Management des Connaissances. </p></li>
-                <li> <p> UE2 : Données et Décision. </p></li>
-                <li> <p> UE3 : Modélisation et Maîtrise de la Complexité. </p></li>
-                <li> <p> UE4 : Informatique et Interaction. </p></li>
-                <li> <p> UE5 : Projets et Entreprise, les différents contenus étant déployés sur 4 semestres.</p></li>
-
-            </ul>
-            <p> Les enseignements sont dispensés sous forme de cours magistraux , de travaux dirigés et de
-                travaux pratiqués , l'accent étant mis sur les projets individuels et collectifs , les stages ainsi que
-                sur le controle continu .</p>
-            <p>Un certain nombre d'enseignements sont mutualisés avec d'autres mentions portées par le
-                département mathématiques mécanique et informatique . </p>
-            <p> Les compétences linguistiques et professionelles(Anglais , Gestion de projets , communication
-                , organisation des entreprises ) sont largement considérées . </p>
-        </section>
-        <aside class="acceuil__complement">Compétences Acquises
-            <button  onclick="show()" type="button" class="button btn-primary"><span class="material-symbols-outlined">+</span></button>
-
-            <div class="slide" id="text">
-
-                <h3>Compétences acquises à l’issue de la formation :</h3>
-                <p> Les compétences disciplinaires acquises se concentrent sur l’intelligence artificielle, les humanités numériques, l’aide à la décision et la fouille de données (UE1), la collecte, l’analyse, la gestion et la fusion/corrélation de données, le Big Data et l’apprentissage machine, appliqués par exemple aux villes/transport/agriculture connectés (UE2), l’apprentissage profond, la classification, la complexité et les statistiques, appliqués par exemple à la modélisation bio-inspirée et à la cognition située (UE3), la programmation, la visualisation et les interactions personnes-machines (UE4).</p>
-
-                <button  onclick="hide()" type="button" class="button btn-primary"><span class="material-symbols-outlined">-</span></button>
-            </div>
-
-        </aside>
-
-
-
-        <aside class="acceuil__sub-content">Organisation Pédagogique
-            <button  onclick="show1()" type="button" class="button btn-primary"><span class="material-symbols-outlined">+</span></button>
-
-            <div class="slide" id="text1">
-                <h3>Modalités d'enseignement : </h3>
-                <p>
-                    Formation initiale en présentiel ou en alternance.
-                </p>
-                <h3> Stages et projets tuteurés :</h3>
-                <p> En M1, un projet tutoré et un stage obligatoire de deux mois minimum sont prévus au second semestre (S2).
-
-                    En M2, un projet tutoré et un stage obligatoire de quatre mois minimum sont prévus au second semestre (S4).</p>
-                <button  onclick="hide1()" type="button" class="button btn-primary"><span class="material-symbols-outlined">-</span></button>
-
-
-            </div>
-        </aside>
-
-
-
-        <aside class="acceuil__sub-complement">Admission
-            <button  onclick="show2()" type="button" class="button btn-primary"><span class="material-symbols-outlined">+</span></button>
-            <div class="slide" id="text2">
-                <h3>Modalités d'enseignement : </h3>
-                <p>
-                    Formation initiale en présentiel ou en alternance.
-                </p>
-                <h3> Stages et projets tuteurés :</h3>
-                <p> En M1, un projet tutoré et un stage obligatoire de deux mois minimum sont prévus au second semestre (S2).
-
-                    En M2, un projet tutoré et un stage obligatoire de quatre mois minimum sont prévus au second semestre (S4).</p>
-                <button  onclick="hide2()" type="button" class="button btn-primary"><span class="material-symbols-outlined">-</span></button>
-
-            </div>
-        </aside>
-
-        <aside class="acceuil__sub-complement2">Poursuites D'études et débouchés
-            <button  onclick="show3()" type="button" class="button btn-primary"><span class="material-symbols-outlined">+</span></button>
-
-            <div class="slide" id="text3">
-                <h3> Poursuites d'études envisageables : </h3>
-                <p>
-                    Les étudiants motivés pourront compléter leur formation par un doctorat.
-                </p>
-                <h3> Débouchés :</h3>
-                <p> Ingénieur en Systèmes d’information et de télécommunication : M1804,
-                    Management et ingénierie études, recherche et développement industriel : H1206,
-                    Data scientist / Études et prospectives socio-économiques : M1403,
-                    Conseil en organisation et management d’entreprise : M1402,
-                    Direction de petite ou moyenne entreprise : M1302,
-                    Réalisateur de contenus multimédias : E1205.
-                    Le ROME est le répertoire des métiers et d’emplois de Pôle Emploi.</p>
-                <button  onclick="hide3()" type="button" class="button btn-primary"><span class="material-symbols-outlined">-</span></button>
-
-
-            </div>
-        </aside>
-
-
-        <aside class="acceuil__sub-complement3">Informations Pratiques
-            <button  onclick="show4()" type="button" class="button btn-primary"><span class="material-symbols-outlined">+</span></button>
-
-
-            <div class="slide" id="text4">
-
-                <p>Pour en savoir plus sur l'orientation et l'insertion professionnelle :
-
-                    Mission Orientation du Service d'Accompagnement des Etudiants (SAE)
-
-                    Pour tout renseignement sur la scolarité :
-
-                    Coordonnées des scolarités de l'URCA
-
-                    Pour tout renseignement sur la formation continue et l’insertion professionnelle :
-
-                    La formation continue
-                    L’insertion professionnelle
-                    La Validation des acquis
-                    Vous avez de l'expérience et/ou un parcours de formation à valoriser ? Des procédures de validation des acquis sont possibles pour vous permettre d'accéder à la formation ou pour valider le diplôme. Pour plus d’informations, vous pouvez envoyer un e-mail à vae@univ-reims.fr.
-
-                    Pour en savoir plus sur les relations internationales à l'Université :
-
-                    Direction des Relations Extérieures et du Développement International (DREDI)
-                </p>
-                <button  onclick="hide4()" type="button" class="button btn-primary"><span class="material-symbols-outlined">-</span></button>
-
-
-            </div>
-
-        </aside>
-    </main>
-        </div>
-
     </div>
-{% endblock %}
-{% block javascripts %}
-<script>
-    function show() {
-        document.getElementById('text').style.height = "auto"
-        document.getElementById('text').style.display = "block"
-    }
-    function show1() {
+</section>
+<section class="u-clearfix u-section-2" id="sec-bd00">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-gutter-10 u-layout-spacing-vertical u-layout-wrap u-layout-wrap-1">
+            <div class="u-layout">
+                <div class="u-layout-row">
+                    <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-20 u-size-20-md u-layout-cell-1">
+                        <div class="u-container-layout u-valign-middle u-container-layout-1"><span class="u-align-left u-icon u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 470 470" ><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-6760"></use></svg><svg class="u-svg-content" viewBox="0 0 470 470" id="svg-6760"><g><path d="m429.591,418.378l-62.223-150.218c-1.585-3.826-5.972-5.645-9.799-4.059s-5.645,5.973-4.059,9.799l56.251,135.801-51.309-14.867c-3.368-0.977-6.965,0.513-8.656,3.586l-25.769,46.793-60.357-145.716c69.663-13.434 122.447-74.853 122.447-148.378 0.001-83.327-67.79-151.119-151.117-151.119s-151.119,67.792-151.119,151.119c0,33.751 11.124,64.951 29.896,90.133l-73.368,177.126c-1.103,2.664-0.582,5.724 1.341,7.872 1.922,2.148 4.907,3.004 7.676,2.202l60.533-17.541 30.4,55.207c1.324,2.403 3.847,3.882 6.568,3.882 0.138,0 0.277-0.004 0.416-0.011 2.879-0.16 5.411-1.955 6.515-4.619l58.136-140.353c1.585-3.827-0.232-8.214-4.059-9.799-3.827-1.585-8.214,0.232-9.799,4.059l-52.165,125.936-25.767-46.793c-1.692-3.073-5.291-4.563-8.657-3.586l-51.308,14.867 64.397-155.469c27.598,29.52 66.86,48.005 110.364,48.005 4.491,0 8.933-0.209 13.325-0.594l67.818,163.727c1.103,2.664 3.636,4.459 6.514,4.618 0.14,0.008 0.278,0.012 0.417,0.012 2.721,0 5.244-1.479 6.567-3.882l30.401-55.207 60.533,17.541c2.771,0.803 5.753-0.054 7.676-2.202 1.923-2.148 2.443-5.208 1.34-7.872zm-330.71-267.259c2.84217e-14-75.056 61.063-136.119 136.119-136.119 75.056,0 136.118,61.063 136.118,136.119s-61.062,136.118-136.118,136.118c-75.056,0-136.119-61.062-136.119-136.118z"></path><path d="m321.659,122.961c-0.863-2.658-3.135-4.616-5.892-5.079l-50.467-8.469-23.649-45.379c-1.292-2.479-3.855-4.034-6.651-4.034-2.795,0-5.359,1.555-6.651,4.034l-23.65,45.379-50.466,8.469c-2.757,0.462-5.028,2.42-5.892,5.079-0.864,2.659-0.178,5.577 1.781,7.572l35.85,36.515-7.54,50.614c-0.412,2.765 0.748,5.529 3.01,7.173 2.26,1.642 5.249,1.891 7.751,0.646l45.807-22.812 45.806,22.812c1.059,0.527 2.203,0.787 3.343,0.787 1.557,0 3.104-0.484 4.409-1.432 2.262-1.644 3.422-4.408 3.01-7.173l-7.539-50.614 35.85-36.516c1.958-1.995 2.644-4.913 1.78-7.572zm-50.951,36.244c-1.648,1.679-2.413,4.033-2.066,6.359l5.97,40.074-36.268-18.061c-1.054-0.524-2.198-0.787-3.344-0.787-1.145,0-2.291,0.262-3.343,0.787l-36.268,18.061 5.97-40.074c0.347-2.326-0.418-4.681-2.066-6.359l-28.385-28.912 39.957-6.706c2.32-0.389 4.323-1.844 5.41-3.93l18.725-35.929 18.725,35.93c1.088,2.086 3.09,3.541 5.41,3.93l39.958,6.706-28.385,28.911z"></path><path d="m348.612,158.684c-4.107-0.549-7.877,2.343-8.42,6.45-6.957,52.507-52.18,92.104-105.192,92.104-58.514,0-106.119-47.604-106.119-106.119s47.605-106.119 106.119-106.119c53.013,0 98.235,39.596 105.192,92.104 0.543,4.107 4.32,7.001 8.42,6.45 4.105-0.544 6.994-4.314 6.449-8.42-7.94-59.936-59.555-105.134-120.061-105.134-66.785,0-121.119,54.333-121.119,121.119s54.334,121.118 121.119,121.118c60.506,0 112.121-45.198 120.062-105.134 0.544-4.105-2.344-7.875-6.45-8.419z"></path>
+</g></svg></span>
+                            <h3 class="u-custom-font u-font-oswald u-text u-text-1">Diplôme national</h3>
+                            <p class="u-text u-text-2">Le diplôme est reconnu de grade "master" par l'Etat</p>
+                        </div>
+                    </div>
+                    <div class="u-align-left u-container-style u-layout-cell u-size-20 u-size-20-md u-layout-cell-2">
+                        <div class="u-container-layout u-valign-middle u-container-layout-2"><span class="u-align-left u-icon u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 512 512" ><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-dc20"></use></svg><svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" id="svg-dc20" style="enable-background:new 0 0 512 512;"><g><g><g><path d="M50.918,445.739c1.143,0,2.295-0.23,3.405-0.717c27.221-11.853,73.19-18.022,136.678-18.347l6.161,12.339     c2.116,4.216,7.245,5.939,11.452,3.814c4.215-2.108,5.931-7.228,3.814-11.443l-8.525-17.067     c-1.451-2.893-4.403-4.719-7.637-4.719c-69.538,0-118.204,6.468-148.762,19.772c-4.318,1.886-6.289,6.912-4.412,11.238     C44.493,443.819,47.625,445.739,50.918,445.739z"></path><path d="M494.933,460.8h-17.067v-42.667c0-2.261-0.905-4.437-2.5-6.033l-51.268-51.26c1.604-3.337,2.569-7.031,2.569-10.974     c0-14.114-11.486-25.6-25.6-25.6c-14.114,0-25.6,11.486-25.6,25.6s11.486,25.6,25.6,25.6c3.942,0,7.629-0.964,10.965-2.56     l48.768,48.759V460.8H17.067C7.654,460.8,0,468.454,0,477.867v25.6C0,508.177,3.823,512,8.533,512s8.533-3.823,8.533-8.533v-25.6     h477.867v25.6c0,4.71,3.814,8.533,8.533,8.533c4.719,0,8.533-3.823,8.533-8.533v-25.6C512,468.454,504.337,460.8,494.933,460.8z      M401.067,358.4c-4.71,0-8.533-3.831-8.533-8.533s3.823-8.533,8.533-8.533s8.533,3.831,8.533,8.533S405.777,358.4,401.067,358.4z     "></path><path d="M121.83,255.249c6.221,16.196,26.803,68.42,41.737,90.82l1.348,2.039c10.957,16.614,29.286,44.424,91.085,44.424     c61.79,0,80.128-27.81,91.085-44.424l1.348-2.039c14.933-22.4,35.507-74.624,41.737-90.82c11.145-2.773,19.43-12.86,19.43-24.849     v-34.133c0-11.127-7.134-20.617-17.067-24.141V128c0-33.69-17.741-95.923-83.362-101.931c-0.128-4.028-1.459-7.27-2.944-9.668     C297.839,2.842,274.287,0,256,0C104.158,0,102.4,143.616,102.4,145.067c0,4.71,3.814,8.525,8.516,8.525h0.017     c4.702,0,8.516-3.806,8.533-8.516c0.017-5.222,1.937-128.009,136.533-128.009c24.132,0,33.801,5.222,35.712,8.311     c0.265,0.435,0.99,1.604-0.683,4.941c-1.323,2.645-1.178,5.786,0.375,8.303c1.562,2.509,4.301,4.045,7.262,4.045     c75.657,0,76.791,81.86,76.8,85.333v51.2c0,4.71,3.814,8.533,8.533,8.533c4.71,0,8.533,3.831,8.533,8.533V230.4     c0,4.702-3.823,8.533-8.533,8.533c-3.558,0-6.741,2.21-7.996,5.538c-0.247,0.674-25.446,67.644-41.771,92.126l-1.399,2.116     c-10.223,15.514-24.235,36.753-76.834,36.753c-52.608,0-66.611-21.239-76.834-36.753l-1.399-2.116     c-16.324-24.482-41.523-91.452-41.779-92.126c-1.246-3.328-4.429-5.538-7.987-5.538c-4.702,0-8.533-3.831-8.533-8.533v-34.133     c0-2.313,0.922-4.412,2.423-5.948c3.098,6.955,9.421,13.21,20.045,14.268l29.201,21.897C173.414,243.106,187.554,256,204.8,256     h17.067C240.691,256,256,240.691,256,221.867C256,240.691,271.309,256,290.133,256H307.2c17.237,0,31.394-12.894,33.664-29.525     l31.189-23.381c3.772-2.825,4.54-8.175,1.707-11.947c-2.825-3.772-8.175-4.548-11.947-1.707l-21.751,16.316     c-3.251-10.402-12.86-18.022-24.329-18.022H281.6c-14.114,0-25.6,11.486-25.6,25.6c0-14.114-11.486-25.6-25.6-25.6h-34.133     c-11.46,0-21.069,7.62-24.328,18.022l-16.282-12.211c6.716-16.23,12.8-40.235,14.524-57.088     c26.897-0.478,104.713-3.763,139.332-25.37c7.851,30.31,33.05,55.817,34.321,57.08c3.336,3.336,8.73,3.336,12.066,0     c3.336-3.337,3.336-8.73,0-12.066c-0.316-0.316-31.633-31.983-31.633-62.234c0-3.831-2.56-7.202-6.255-8.226     c-3.678-1.024-7.629,0.546-9.591,3.831c-12.425,20.693-93.022,29.995-146.287,29.995c-4.71,0-8.533,3.823-8.533,8.533     c0,13.85-6.545,41.515-13.508,58.539c-2.722-1.638-3.49-4.693-3.558-7.339c0-4.71-3.823-8.533-8.533-8.533     c-14.114,0-25.6,11.486-25.6,25.6V230.4C102.4,242.389,110.686,252.476,121.83,255.249z M273.067,213.333     c0-4.702,3.823-8.533,8.533-8.533h34.133c4.71,0,8.533,3.831,8.533,8.533v8.533c0,9.412-7.654,17.067-17.067,17.067h-17.067     c-9.412,0-17.067-7.654-17.067-17.067V213.333z M187.733,213.333c0-4.702,3.831-8.533,8.533-8.533H230.4     c4.702,0,8.533,3.831,8.533,8.533v8.533c0,9.412-7.654,17.067-17.067,17.067H204.8c-9.412,0-17.067-7.654-17.067-17.067V213.333z     "></path><path d="M298.658,307.226c0.009-4.702-3.797-8.533-8.499-8.559c-0.162,0-15.42-0.171-30.345-7.637     c-2.398-1.195-5.231-1.195-7.629,0c-14.925,7.467-30.191,7.637-30.319,7.637c-4.71,0-8.533,3.823-8.533,8.533     s3.823,8.533,8.533,8.533c0.725,0,16.845-0.094,34.133-7.654c17.28,7.56,33.408,7.654,34.133,7.654     C294.835,315.733,298.641,311.927,298.658,307.226z"></path><path d="M315.708,409.95c-3.191,0.017-6.118,1.809-7.578,4.659l-8.533,16.708c-2.142,4.198-0.469,9.344,3.721,11.486     c1.237,0.631,2.569,0.93,3.874,0.93c3.106,0,6.101-1.698,7.612-4.651l6.153-12.066c46.643,0.128,84.207,3.618,111.735,10.377     c4.591,1.135,9.199-1.672,10.317-6.246c1.126-4.582-1.664-9.199-6.246-10.325C406.878,413.474,366.345,409.651,315.708,409.95z"></path><path d="M247.467,418.133V435.2c0,4.71,3.823,8.533,8.533,8.533s8.533-3.823,8.533-8.533v-17.067c0-4.71-3.823-8.533-8.533-8.533     S247.467,413.423,247.467,418.133z"></path><path d="M247.467,324.267c-4.71,0-8.533,3.823-8.533,8.533c0,4.71,3.823,8.533,8.533,8.533h17.067     c4.719,0,8.533-3.823,8.533-8.533c0-4.71-3.814-8.533-8.533-8.533H247.467z"></path>
+</g>
+</g>
+</g></svg></span>
+                            <h3 class="u-custom-font u-font-oswald u-text u-text-3">Une équipe impliquée</h3>
+                            <p class="u-text u-text-4">Nos enseignants seront vous aider à obtenir ce diplôme</p>
+                        </div>
+                    </div>
+                    <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-20 u-size-20-md u-layout-cell-3">
+                        <div class="u-container-layout u-valign-middle u-container-layout-3"><span class="u-align-left u-icon u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 512 512" ><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-1784"></use></svg><svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" id="svg-1784" style="enable-background:new 0 0 512 512;"><g><g><path d="M460.8,200.748V51.2c-0.015-14.132-11.468-25.585-25.6-25.6h-8.533c-0.015-14.132-11.468-25.585-25.6-25.6H256    c-9.841,0.032-19.182,4.337-25.6,11.796C223.982,4.337,214.641,0.032,204.8,0H59.733c-14.132,0.015-25.585,11.468-25.6,25.6H25.6    C11.468,25.615,0.015,37.068,0,51.2v315.733c0.015,14.132,11.468,25.585,25.6,25.6h281.6V435.2    c0.049,42.395,34.405,76.751,76.8,76.8h51.2c42.395-0.049,76.751-34.405,76.8-76.8V273.067    C511.943,240.559,491.442,211.602,460.8,200.748z M426.667,42.667h8.533c4.71,0.006,8.527,3.823,8.533,8.533v145.57    c-2.833-0.326-5.682-0.494-8.533-0.503h-8.533V42.667z M85.333,17.067h51.2v112.208l-18.938-23.671    c-1.618-2.025-4.07-3.204-6.662-3.204c-2.592,0-5.044,1.179-6.662,3.204l-18.938,23.671V17.067z M51.2,25.6    c0.006-4.71,3.823-8.527,8.533-8.533h8.533V153.6c-0.002,3.625,2.287,6.854,5.708,8.054c3.42,1.2,7.225,0.107,9.488-2.725    l27.471-34.337l27.471,34.337c1.618,2.026,4.07,3.205,6.662,3.204c2.264,0.002,4.435-0.897,6.036-2.497    c1.601-1.601,2.499-3.772,2.497-6.036V17.067h51.2c9.422,0.009,17.057,7.645,17.067,17.067v278.34    c-5.344-3.407-11.542-5.235-17.879-5.274H51.2V25.6z M51.2,324.267h152.788c9.391,0.329,17.019,7.693,17.678,17.067H51.2V324.267z     M307.2,375.467H25.6c-4.71-0.006-8.527-3.823-8.533-8.533V51.2c0.006-4.71,3.823-8.527,8.533-8.533h8.533v307.2    c0,4.713,3.82,8.533,8.533,8.533H307.2V375.467z M307.2,341.333h-68.066c0.671-9.384,8.317-16.748,17.72-17.067H307.2V341.333z     M307.2,307.2h-50.346c-6.352,0.038-12.565,1.871-17.921,5.286V34.133c0.009-9.422,7.645-17.057,17.067-17.067h145.067    c4.71,0.006,8.527,3.823,8.533,8.533v170.667H384c-42.395,0.049-76.751,34.405-76.8,76.8V307.2z M401.067,213.333v110.933h-76.8    v-51.2c0.037-32.974,26.759-59.696,59.733-59.733H401.067z M494.933,435.2c-0.037,32.974-26.759,59.696-59.733,59.733H384    c-32.974-0.037-59.696-26.759-59.733-59.733v-93.867h170.667V435.2z M494.933,324.267h-76.8V213.333H435.2    c32.974,0.037,59.696,26.759,59.733,59.733V324.267z"></path>
+</g>
+</g></svg></span>
+                            <h3 class="u-custom-font u-font-oswald u-text u-text-5">Des cours intéressants&nbsp;</h3>
+                            <p class="u-text u-text-6">Nos cours permettent de faire grandir dans chaque étudiant l'envie d'évoluer dans le domaine de l'IA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="u-clearfix u-valign-middle u-white u-section-3" id="sec-c797">
+    <img class="u-expanded-width u-image u-image-1" src="{{ asset('img/images/3b91742c7e026b49e43d4d9e3bc6edf4.jpeg') }}">
+    <div class="u-container-style u-group u-group-1">
+        <div class="u-container-layout">
+            <h2 class="u-custom-font u-font-oswald u-text u-text-body-alt-color u-text-1">Les unités d'enseignement</h2>
+            <p class="u-text u-text-body-alt-color u-text-2">Elles sont au nombre de 5</p>
+        </div>
+    </div>
+    <div class="u-clearfix u-gutter-20 u-layout-wrap u-layout-wrap-1">
+        <div class="u-layout">
+            <div class="u-layout-row">
+                <div class="u-container-style u-layout-cell u-size-12 u-layout-cell-1">
+                    <div class="u-container-layout u-container-layout-2">
+                        <img class="u-expanded-width u-image u-image-2" src="{{ asset('img/images/technology-4256272_1920.jpg') }}" data-image-width="1920" data-image-height="1281">
+                        <h6 class="u-custom-font u-font-oswald u-text u-text-3">Intelligence Artificielle et Management des Connaissances</h6>
+                        <p class="u-text u-text-4">Gestion des données, fouille de données, aide à la décison</p>
+                    </div>
+                </div>
+                <div class="u-container-style u-layout-cell u-size-12 u-layout-cell-2">
+                    <div class="u-container-layout u-container-layout-3">
+                        <img class="u-expanded-width u-image u-image-3" src="{{ asset('img/images/server-1235959_1920.jpg') }}" data-image-width="1920" data-image-height="1280">
+                        <h6 class="u-custom-font u-font-oswald u-text u-text-default u-text-5">Données et&nbsp; Décision</h6>
+                        <p class="u-text u-text-6"> L’analyse, la gestion et la fusion/corrélation de données, le Big Data et l’apprentissage machine, appliqués par exemple aux villes/transport/agriculture connectés</p>
+                    </div>
+                </div>
+                <div class="u-container-style u-layout-cell u-size-12 u-layout-cell-3">
+                    <div class="u-container-layout u-container-layout-4">
+                        <img class="u-expanded-width u-image u-image-4" src="{{ asset('img/images/3fc11f88a285d97ae68cff4fb70747c6.jpeg') }}">
+                        <h6 class="u-custom-font u-font-oswald u-text u-text-default u-text-7">Modélisation et Maîtrise de la Compléxité</h6>
+                        <p class="u-text u-text-8"> L'apprentissage profond, la classification, la complexité et les statistiques, appliqués par exemple à la modélisation bio-inspirée et à la cognition située</p>
+                    </div>
+                </div>
+                <div class="u-align-left-sm u-align-left-xs u-container-style u-layout-cell u-left-cell u-size-12 u-layout-cell-4">
+                    <div class="u-container-layout u-container-layout-5">
+                        <img class="u-expanded-width u-image u-image-5" src="{{ asset('img/images/Deep-Learning-1024x576.jpg') }}" data-image-width="1024" data-image-height="576">
+                        <h6 class="u-align-left u-custom-font u-font-oswald u-text u-text-default u-text-9">Informatique et Interaction</h6>
+                        <p class="u-text u-text-10">La programmation, la visualisation et les interactions personnes-machines</p>
+                    </div>
+                </div>
+                <div class="u-align-left-sm u-align-left-xs u-container-style u-layout-cell u-right-cell u-size-12 u-layout-cell-5">
+                    <div class="u-container-layout u-container-layout-6">
+                        <img class="u-expanded-width u-image u-image-6" src="{{ asset('img/images/33496b61e8c69d633c310dadab3f03dd.jpeg') }}">
+                        <h6 class="u-custom-font u-font-oswald u-text u-text-default u-text-11">Projets et Entreprise</h6>
+                        <p class="u-text u-text-12">Gestion de projets, aide au développement pro, anglais</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="u-clearfix u-image u-shading u-section-4" id="sec-3471">
+    <div class="u-clearfix u-sheet u-valign-bottom u-sheet-1">
+        <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
+            <div class="u-layout">
+                <div class="u-layout-row">
+                    <div class="u-align-center u-container-style u-layout-cell u-left-cell u-size-20 u-layout-cell-1">
+                        <div class="u-container-layout u-container-layout-1">
+                            <h1 class="u-custom-font u-font-oswald u-text u-title u-text-1" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000">87%</h1>
+                            <p class="u-text u-text-2">Taux d'insertion*</p>
+                        </div>
+                    </div>
+                    <div class="u-align-center u-container-style u-layout-cell u-size-20 u-layout-cell-2">
+                        <div class="u-container-layout u-valign-top u-container-layout-2">
+                            <h1 class="u-custom-font u-font-oswald u-text u-title u-text-3" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000">25 200</h1>
+                            <p class="u-text u-text-4">Salaire médian<br>Hors primes et et 13ème mois*
+                            </p>
+                        </div>
+                    </div>
+                    <div class="u-align-center u-container-style u-layout-cell u-size-20 u-layout-cell-3">
+                        <div class="u-container-layout u-valign-top u-container-layout-3">
+                            <h1 class="u-custom-font u-font-oswald u-text u-title u-text-5" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000">46</h1>
+                            <p class="u-text u-text-6">Etudiants*<br>Petites équipes
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="u-text u-text-7">Sur l'année scolaire 2015-2016</p>
+    </div>
+</section>
+<section class="u-clearfix u-section-5" id="sec-80d0">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-container-style u-group u-group-1">
+            <div class="u-container-layout u-valign-middle">
+                <h2 class="u-custom-font u-font-oswald u-text u-text-1">Modalités d'enseignement</h2>
+                <p class="u-text u-text-2">Formation initale en présentiel ou en alternance</p>
+            </div>
+        </div>
+        <div class="u-clearfix u-expanded-width u-gutter-20 u-layout-wrap u-layout-wrap-1">
+            <div class="u-layout">
+                <div class="u-layout-row">
+                    <div class="u-size-20 u-size-30-md">
+                        <div class="u-layout-col">
+                            <div class="u-container-style u-image u-layout-cell u-left-cell u-size-20 u-image-1">
+                                <div class="u-container-layout"></div>
+                            </div>
+                            <div class="u-container-style u-layout-cell u-left-cell u-size-40 u-layout-cell-2">
+                                <div class="u-container-layout u-container-layout-3">
+                                    <h2 class="u-custom-font u-font-oswald u-text u-text-3">
+                                        <a name="top">Admission</a>
+                                    </h2>
+                                    <p class="u-text u-text-4">En M1 :<br>Être titulaire d'une L3 ou équivalent (180 crédits ECTS)<br>En M2 :<br>Être titulaire d'un M1<br>De nationalité étrangère :<br>Envoyer un mail à&nbsp;<a href="mailto:etudiants.etrangers@univ-reims.fr" class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1">etudiants.etrangers@univ-reims.fr</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="u-size-20 u-size-30-md">
+                        <div class="u-layout-col">
+                            <div class="u-container-style u-image u-layout-cell u-size-60 u-image-2" data-image-width="1920" data-image-height="1280">
+                                <div class="u-container-layout"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="u-size-20 u-size-60-md">
+                        <div class="u-layout-col">
+                            <div class="u-container-style u-image u-layout-cell u-right-cell u-size-20 u-image-3">
+                                <div class="u-container-layout"></div>
+                            </div>
+                            <div class="u-container-style u-layout-cell u-right-cell u-size-40 u-layout-cell-5">
+                                <div class="u-container-layout">
+                                    <h2 class="u-custom-font u-font-oswald u-text u-text-5">
+                                        <a class="nicdark_color_greydark nicdark_first_font" href="http://www.nicdarkthemes.com/themes/education/html/demo/university/single.php">S</a>tages
+                                    </h2>
+                                    <p class="u-text u-text-6">M1 :&nbsp;<br>Stage obligatoire de deux mois minimum en S2<br>M2 :<br>Stage obligatoire de quatre mois minimum en S4
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="u-clearfix u-grey-5 u-section-6" id="sec-2e33">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-gutter-20 u-layout-wrap u-layout-wrap-1">
+            <div class="u-layout">
+                <div class="u-layout-row">
+                    <div class="u-align-center-md u-align-center-sm u-align-center-xs u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-1">
+                        <div class="u-container-layout u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-container-layout-1">
+                            <img src="{{ asset('img/images/logo_urca-rf-hr.png') }}" alt="" class="u-image u-image-default u-image-1" data-image-width="513" data-image-height="70">
+                        </div>
+                    </div>
+                    <div class="u-align-center-sm u-align-center-xs u-container-style u-hidden-md u-layout-cell u-right-cell u-size-30 u-layout-cell-2">
+                        <div class="u-container-layout u-valign-middle-sm u-valign-middle-xs u-container-layout-2">
+                            <h2 class="u-text u-text-default u-text-1">Contact</h2>
+                            <p class="u-text u-text-default u-text-2"> Composante :Faculté de Sciences Exactes et Naturelles Moulin de la Housse - BP 1039 51687 Reims Cedex 2 e-mail : scolarite.sciences@univ-reims.fr Tel : 03 26 91 34 19 Responsable de la formation : Francis ROUSSEAUX e-mail : francis.rousseaux@univ-reims.fr Coordonnées du secrétariat : Département MMI e-mail : secretariat-doyen-sciences@univ-reims.fr</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        document.getElementById('text1').style.height = "auto"
-        document.getElementById('text1').style.display = "block"
-    }
-    function show2() {
-
-        document.getElementById('text2').style.height = "auto"
-        document.getElementById('text2').style.display = "block"
-    }
-    function show3() {
 
 
-        document.getElementById('text3').style.height = "auto"
-        document.getElementById('text3').style.display = "block"
-    }
-    function show4() {
-        document.getElementById('text4').style.height = "auto"
-        document.getElementById('text4').style.display = "block"
-    }
-    function show5() {
+<section class="u-backlink u-clearfix u-grey-80">
+    <a class="u-link" href="https://nicepage.com/html-templates" target="_blank">
+        <span>HTML Website Templates</span>
+    </a>
+    <p class="u-text">
+        <span>created with</span>
+    </p>
+    <a class="u-link" href="https://nicepage.com/html-website-builder" target="_blank">
+        <span>HTML Builder</span>
+    </a>.
+</section>
 
-
-        document.getElementById('text5').style.height = "auto"
-        document.getElementById('text5').style.display = "block"
-    }
-
-
-
-    function hide() {
-        document.getElementById('text').style.height = "0px"
-        document.getElementById('text').style.display = "none"
-    }
-    function hide1() {
-
-        document.getElementById('text1').style.height = "0px"
-        document.getElementById('text1').style.display = "none"
-    }
-    function hide2() {
-
-        document.getElementById('text2').style.height = "0px"
-        document.getElementById('text2').style.display = "none"
-    }
-    function hide3() {
-
-        document.getElementById('text3').style.height = "0px"
-        document.getElementById('text3').style.display = "none"
-    }
-    function hide4() {
-
-        document.getElementById('text4').style.height = "0px"
-        document.getElementById('text4').style.display = "none"
-    }
-    function hide5(){
-
-        document.getElementById('text5').style.height="0px"
-        document.getElementById('text5').style.display="none"
-
-    }
-
-
-
-</script>
-{% endblock %}
+</body></html>
