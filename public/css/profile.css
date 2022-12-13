@@ -1,9 +1,9 @@
 div.sansnavbar{
     background-image: url("/img/bg.jpg");
-    min-height: 700px;
+    min-height: 1000px;
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 100px;
+    padding-top:  100px;
     display: flex;
 }
 .logo-urca{
@@ -20,6 +20,9 @@ div.info_profile{
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10%;
 }
 img.avatar{
     width: 100px;
