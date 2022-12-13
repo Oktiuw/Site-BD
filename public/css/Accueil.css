@@ -12,9 +12,8 @@
 .login_btn:hover{
   box-shadow: 10px 5px 5px grey;
   border: #042d6e solid 1px;
-  background-color: #013c98;
   font-weight: bold;
-  font-size: x-large;
+  color: white;
 }
 .u-section-1 .u-sheet-1 {
   min-height: 758px;
