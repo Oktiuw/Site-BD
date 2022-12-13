@@ -42,8 +42,7 @@ class EvenementCrudController extends AbstractCrudController
                 return $entityRepository->createQueryBuilder('c')->orderBy('c.nomGroupe', 'ASC');
             }])->formatValue(function ($value, $entity) {
                 $res="";
-                foreach ($entity->getGroupeEtudiants() as $groupe)
-                {
+                foreach ($entity->getGroupeEtudiants() as $groupe) {
                     $res .= " | {$groupe->getNomGroupe()}";
                 }
                 return $res;
