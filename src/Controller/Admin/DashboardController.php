@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Enseignant;
+use App\Entity\Entreprise;
 use App\Entity\Etudiant;
 use App\Entity\Evenement;
 use App\Entity\GroupeEtudiants;
@@ -39,6 +40,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('TypeEvenement',null,TypeEvenement::class);
         yield MenuItem::linkToCrud('Etudiant',null,Etudiant::class);
         yield MenuItem::linkToCrud('Enseignant',null,Enseignant::class);
+        yield MenuItem::linkToCrud('Entreprise',null,Entreprise::class);
         yield MenuItem::linkToCrud('GroupeEtudiants',null,GroupeEtudiants::class);
     }
     public function configureAssets(): Assets
