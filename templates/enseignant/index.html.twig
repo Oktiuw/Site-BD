@@ -1,0 +1,144 @@
+{% extends 'baseprofile.html.twig' %}
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}Profil Enseignant{{ profile.nomEn }}{% endblock %}
+
+{% endblock %}
+
+{% block stylesheets%}
+    <link rel="stylesheet" href="{{ asset('css/enseignant.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+{% endblock %}
+
+{% block body %}
+
+    <div class="navbar-top">
+        <div class="title">
+            <h1>Profil</h1>
+        </div>
+
+        <ul>
+            <li>
+                <a href="#message">
+                    <span class="icon-count">29</span>
+                    <i class="fa fa-envelope fa-2x"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#notification">
+                    <span class="icon-count">59</span>
+                    <i class="fa fa-bell fa-2x"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#sign-out">
+                    <i class="fa fa-sign-out-alt fa-2x"></i>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+
+
+    <div class="sidenav">
+        <div class="profile">
+            <img src="images.png">
+
+            <div class="name">
+                {{ profile.nomEn }}{{ profile.pnomEn}}
+            </div>
+            <div class="job">
+                Enseignant
+            </div>
+        </div>
+
+        <div class="sidenav-url">
+            <div class="url">
+                <a href="" class="active">Emploi du temps</a>
+                <hr align="center">
+            </div>
+
+            <div class="url">
+                <a href="">Sujets Ter</a>
+                <hr align="center">
+            </div>
+
+            <div class="url">
+                <a href="">Paramètres</a>
+                <hr align="center">
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="main">
+        <h2>Votre Profil</h2>
+        <div class="card">
+            <div class="card-body">
+                <button  onclick="edit()" type="button" class="button btn-primary"><i class="fa fa-pen fa-xs edit"></i></button>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>Nom :</td>
+                        <td>{{ profile.nomEn}}</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Prénom :</td>
+                        <td>{{ profile.pnomEn}}</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Email :</td>
+                        <td>{{ enseignant.email }}</td>
+
+
+
+                    </tr>
+                    <tr>
+                        <td>Addresse :</td>
+                        <td>{{ profile.adEn }} {{ profile.cpEn }} {{ profile.villeEn}}</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Téléphone :</td>
+
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <h2>Cours Récents</h2>
+        <div class="card">
+            <div class="card-body">
+                <i class="fa fa-pen fa-xs edit">
+                <div class="cours">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+        function edit() {
+            location.href = "{{ path('app_enseignant_update')}}";
+
+        }
+
+    </script>
+
+{% endblock %}
