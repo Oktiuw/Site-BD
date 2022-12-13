@@ -29,19 +29,19 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Sae3 01');
+            ->setTitle('Administration')->setLocales(['fr']);
     }
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Niveau',null,Niveau::class);
-        yield MenuItem::linkToCrud('Evenement',null,Evenement::class);
-        yield MenuItem::linkToCrud('TypeEvenement',null,TypeEvenement::class);
-        yield MenuItem::linkToCrud('Etudiant',null,Etudiant::class);
-        yield MenuItem::linkToCrud('Enseignant',null,Enseignant::class);
-        yield MenuItem::linkToCrud('Entreprise',null,Entreprise::class);
-        yield MenuItem::linkToCrud('GroupeEtudiants',null,GroupeEtudiants::class);
+        yield MenuItem::linkToDashboard('Menu', 'fa fa-home');
+        yield MenuItem::linkToCrud('Niveau',"fa-solid fa-bars",Niveau::class);
+        yield MenuItem::linkToCrud('Evenement',"fa-solid fa-calendar-days",Evenement::class);
+        yield MenuItem::linkToCrud('Type evenement',"fa-solid fa-font-awesome",TypeEvenement::class);
+        yield MenuItem::linkToCrud('Etudiant',"fa-solid fa-user",Etudiant::class);
+        yield MenuItem::linkToCrud('Enseignant',"fa-solid fa-graduation-cap",Enseignant::class);
+        yield MenuItem::linkToCrud('Entreprise',"fa-solid fa-building",Entreprise::class);
+        yield MenuItem::linkToCrud('Groupe etudiants',"fa-solid fa-people-group",GroupeEtudiants::class);
     }
     public function configureAssets(): Assets
     {
