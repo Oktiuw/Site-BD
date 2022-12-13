@@ -23,7 +23,6 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {
         return $this->render('admin/index.html.twig');
-
     }
 
     public function configureDashboard(): Dashboard
@@ -34,14 +33,14 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Menu', 'fa fa-home');
-        yield MenuItem::linkToCrud('Niveau',"fa-solid fa-bars",Niveau::class);
-        yield MenuItem::linkToCrud('Evenement',"fa-solid fa-calendar-days",Evenement::class);
-        yield MenuItem::linkToCrud('Type evenement',"fa-solid fa-font-awesome",TypeEvenement::class);
-        yield MenuItem::linkToCrud('Etudiant',"fa-solid fa-user",Etudiant::class);
-        yield MenuItem::linkToCrud('Enseignant',"fa-solid fa-graduation-cap",Enseignant::class);
-        yield MenuItem::linkToCrud('Entreprise',"fa-solid fa-building",Entreprise::class);
-        yield MenuItem::linkToCrud('Groupe etudiants',"fa-solid fa-people-group",GroupeEtudiants::class);
+        yield MenuItem::linkToCrud('Niveau', "fa-solid fa-book", Niveau::class);
+        yield MenuItem::linkToCrud('Evenement', "fa-solid fa-calendar-days", Evenement::class);
+        yield MenuItem::linkToCrud('Type evenement', "fa-solid fa-font-awesome", TypeEvenement::class);
+        yield MenuItem::linkToCrud('Etudiant', "fa-solid fa-user", Etudiant::class);
+        yield MenuItem::linkToCrud('Enseignant', "fa-solid fa-graduation-cap", Enseignant::class);
+        yield MenuItem::linkToCrud('Entreprise', "fa-solid fa-building", Entreprise::class);
+        yield MenuItem::linkToCrud('Groupe etudiants', "fa-solid fa-people-group", GroupeEtudiants::class);
+        yield MenuItem::linkToRoute("Retour à l'accueil", 'fa fa-home','app_home');
     }
     public function configureAssets(): Assets
     {
