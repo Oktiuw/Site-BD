@@ -23,6 +23,7 @@ class SujetTERController extends AbstractController
         $enseignant=$enseignantRepository->findOneBy(['cdUtil'=>$user->getId()]);
 
         $sujetsTER = $sujetTERRepository->findBy([], ['titreTer'=> 'ASC']);
+
         return $this->render('sujet_ter/index.html.twig', [
             'sujetsTER' => $sujetsTER,
             'etudiant' => $etudiant,
