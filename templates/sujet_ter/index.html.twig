@@ -16,6 +16,10 @@
             {% if sujet.etudiant is not null %}
                     <div class="badge bg-secondary"> <div class="param"> Inscrit : </div>{{ sujet.Etudiant.nomEtud }}</div>
             {% endif %}
+
+                {% if is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ETUDIANT') %}
+                    oui
+                {% endif %}
             </div>
     {% endfor %}
 
