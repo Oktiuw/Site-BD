@@ -1,21 +1,28 @@
 {% extends 'base.html.twig' %}
-{% block title %}Modification{% endblock %}
+{% block title %}Entreprise{% endblock %}
 {% block stylesheets %}
     <link href="{{ asset('css/form.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
     <div class="form">
         <div class="info">
-            <h1>Modification des données de l'entreprise {{ profile.nomEnt }}</h1>
-            {% include 'useravatar.html.twig' %}
+    {% if (profile is defined) %}
+    <h1>Modification des données de l'entreprise {{ profile.nomEnt }}</h1>
+    {% include 'useravatar.html.twig' %}
+        </div>
+    {% else  %}
+    <h1>Création de profile Entreprise</h1>
+     {% endif %}
         </div>
         <BR>
         {{ form_start(form, {'attr': {'class': 'flex-column formulaire'}}) }}
         <p>Nom de l'entreprise</p> {{ form_widget(form.nomEnt)}}<br>
         <p>Nom et prénom du réferent</p>  {{ form_widget(form.nomRef) }}<br>
+        <p>Num. Téléphone</p> {{ form_widget(form.telEnt) }}<br>
         <p>Email</p> {{ form_widget(formUser.email) }}<br>
+        <p>Mot de passe</p> {{ form_widget(formUser.password) }}<br>
         {{ form_widget(form.submit) }}
         {{ form_end(form) }}
-    </div>
+
 {% endblock %}
 
