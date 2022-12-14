@@ -25,7 +25,7 @@ class GroupeEtudiants
     #[ORM\ManyToMany(targetEntity: Evenement::class, mappedBy: 'groupeEtudiants')]
     private Collection $evenements;
 
-    #[ORM\ManyToMany(targetEntity: Etudiant::class, mappedBy: 'groupeEtudiants')]
+    #[ORM\ManyToMany(targetEntity: Etudiant::class, inversedBy: 'groupeEtudiants')]
     private Collection $etudiants;
 
     public function __construct()

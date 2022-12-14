@@ -57,7 +57,7 @@ class UtilisateurController extends AbstractController
     public function updatePassword(Request $request, ManagerRegistry $doctrine, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user=$this->getUser();
-        $form=$this->createForm(UtilisateurType::class, $user)->add('password',PasswordType::class,['required'=>true,'label'=>'Nouveau mot de passe'])->add(
+        $form=$this->createForm(UtilisateurType::class, $user)->add('password', PasswordType::class, ['required'=>true,'label'=>'Nouveau mot de passe'])->add(
             'submit',
             SubmitType::class,
             ['label' => 'Modifier']
