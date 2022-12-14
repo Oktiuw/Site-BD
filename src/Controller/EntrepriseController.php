@@ -50,7 +50,7 @@ class EntrepriseController extends AbstractController
             $entreprise->setNomRef($entrepriseType->getNomRef());
             $entreprise->getCdUtil()->setEmail($userData->getEmail());
             $entityManager->flush();
-            return $this->redirectToRoute('app_entreprise');
+            return $this->redirectToRoute('app_redirecteur');
         }
         return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'profile'=>$entreprise,'user'=>$user,'formUser'=>$formUser]);
     }
