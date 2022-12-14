@@ -47,7 +47,7 @@ class Etudiant
     #[ORM\OneToMany(mappedBy: 'Etudiant', targetEntity: SujetTER::class)]
     private Collection $sujetTERs;
 
-    #[ORM\ManyToMany(targetEntity: GroupeEtudiants::class, inversedBy: 'etudiants')]
+    #[ORM\ManyToMany(targetEntity: GroupeEtudiants::class, mappedBy: 'etudiants')]
     private Collection $groupeEtudiants;
 
     #[ORM\OneToMany(mappedBy: 'etudiant', targetEntity: Canditatures::class, orphanRemoval: true)]
