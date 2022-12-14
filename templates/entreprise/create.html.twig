@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+
+{%set var="Création de votre Profile Entreprise" %}
+{% block title %}{{ var }}{%endblock %}
+{% block body %}
+    <h1>{{ var }}</h1>
+    {{ form_start(form, {'attr': {'class': 'flex-column'}}) }}
+    Nom de votre Entreprise{{ form_widget(form.nomEnt)}}<br>
+    Nom du référent {{ form_widget(form.nomRef) }}<br>
+    Num. Téléphone {{ form_widget(form.telEnt) }}<br>
+    {{ form_widget(form.submit) }}
+    {{ form_end(form) }}<br>
+{% endblock %}

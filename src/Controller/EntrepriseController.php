@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\Entreprise;
 use App\Form\EntrepriseType;
 use App\Form\UtilisateurType;
 use App\Repository\EntrepriseRepository;
@@ -14,9 +14,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[IsGranted('ROLE_ENTREPRISE')]
+
 class EntrepriseController extends AbstractController
 {
+    #[IsGranted('ROLE_ENTREPRISE')]
     #[Route('/entreprise', name: 'app_entreprise')]
     public function index(EntrepriseRepository $entrepriseRepository): Response
     {
@@ -25,6 +26,7 @@ class EntrepriseController extends AbstractController
         return $this->render('entreprise/index.html.twig', [
             'user' =>$user,'profile'=>$profile]);
     }
+    #[IsGranted('ROLE_ENTREPRISE')]
     #[Route('/entreprise/update')]
     public function update(EntrepriseRepository $entrepriseRepository, ManagerRegistry $doctrine, Request $request, UserPasswordHasherInterface $hasher): Response
     {
@@ -52,4 +54,26 @@ class EntrepriseController extends AbstractController
         }
         return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'profile'=>$entreprise,'user'=>$user,'formUser'=>$formUser]);
     }
+
+    #[Route('/entreprise/create')]
+    public function create(Request $request, ManagerRegistry $doctrine): Response
+    {
+        $entreprise = new Entreprise();
+        $form = new EntrepriseType();
+        $form = $this->createForm(EntrepriseType::class, $entreprise)->add('submit', SubmitType::class, ['label' => 'Ajouter']);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entrepriseType = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entreprise->setNomEnt($entrepriseType->getNomEnt());
+            $entreprise->setNomRef($entrepriseType->getNomRef());
+            $entreprise->setTelEnt($entrepriseType->getTelEnt());
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_entreprise');
+        }
+
+        return $this->renderForm('entreprise/create.html.twig', ['form' => $form]);
+    }
+
 }
