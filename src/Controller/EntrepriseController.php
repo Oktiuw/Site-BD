@@ -2,13 +2,15 @@
 
 namespace App\Controller;
 use App\Entity\Entreprise;
+use App\Entity\Utilisateur;
 use App\Form\EntrepriseType;
 use App\Form\UtilisateurType;
 use App\Repository\EntrepriseRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -30,7 +32,6 @@ class EntrepriseController extends AbstractController
     #[Route('/entreprise/update')]
     public function update(EntrepriseRepository $entrepriseRepository, ManagerRegistry $doctrine, Request $request, UserPasswordHasherInterface $hasher): Response
     {
-        $entrepriseType=new EntrepriseType();
         $user=$this->getUser();
         $entreprise=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
         $formUser=$this->createForm(UtilisateurType::class, $user);
@@ -56,24 +57,36 @@ class EntrepriseController extends AbstractController
     }
 
     #[Route('/entreprise/create')]
-    public function create(Request $request, ManagerRegistry $doctrine): Response
+    public function create(Request $request, ManagerRegistry $doctrine,UserPasswordHasherInterface $hasher): Response
     {
-        $entreprise = new Entreprise();
-        $form = new EntrepriseType();
-        $form = $this->createForm(EntrepriseType::class, $entreprise)->add('submit', SubmitType::class, ['label' => 'Ajouter']);
+        $user=new Utilisateur();
+        $entreprise=new Entreprise();
+        $formUser=$this->createForm(UtilisateurType::class, $user)->add('password',PasswordType::class)->add('login',TextType::class);
+        $form=$this->createForm(EntrepriseType::class, $entreprise)->add(
+            'submit',
+            SubmitType::class,
+            ['label' => 'Ajouter']
+        );
         $form->handleRequest($request);
+        $formUser->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $entrepriseType = $form->getData();
-            $entityManager = $doctrine->getManager();
+            $entrepriseType=$form->getData();
+            $userData=$formUser->getData();
+            $entityManager=$doctrine->getManager();
             $entreprise->setNomEnt($entrepriseType->getNomEnt());
             $entreprise->setNomRef($entrepriseType->getNomRef());
-            $entreprise->setTelEnt($entrepriseType->getTelEnt());
+            $user->setEmail($userData->getEmail());
+            $user->setPassword($hasher->hashPassword($user,$userData->getPassword()));
+            $user->setLogin($userData->getLogin());
+            $entreprise->setCdUtil($user);
+            $user->setRoles(['ROLE_ENTREPRISE']);
+            $entreprise->setIsDisabled(true);
+            $entityManager->persist($user);
+            $entityManager->persist($entreprise);
             $entityManager->flush();
-
-            return $this->redirectToRoute('app_entreprise');
+            return $this->render('entreprise/succes.html.twig',['user'=>$user]);
         }
-
-        return $this->renderForm('entreprise/create.html.twig', ['form' => $form]);
+        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'formUser'=>$formUser]);
     }
 
 }
