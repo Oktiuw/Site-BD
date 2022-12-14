@@ -33,7 +33,9 @@ class GroupeEtudiantsCrudController extends AbstractCrudController
                 return $entityRepository->createQueryBuilder('c')->orderBy('c.libNiv', 'ASC');
             }]),
             AssociationField::new('etudiants')
-                ->setFormTypeOptions(['choice_label'=>'nomEtud'])->formatValue(function ($value, $entity) {
+                ->setFormTypeOptions(['choice_label'=>function ($entity) {
+                    return strtoupper($entity->getNomEtud()).  " {$entity->getPnomEtud()}";
+                }])->formatValue(function ($value, $entity) {
                     $res="";
                     $compteur=0;
                     foreach ($entity->getEtudiants() as $etudiant) {
