@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Niveau;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class NiveauCrudController extends AbstractCrudController
 {
@@ -12,14 +13,10 @@ class NiveauCrudController extends AbstractCrudController
         return Niveau::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            TextField::new('LibNiv')->setLabel("Nom niveau"),
         ];
     }
-    */
 }

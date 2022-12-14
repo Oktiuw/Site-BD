@@ -43,7 +43,7 @@ final class EntrepriseFactory extends ModelFactory
             'nomRef' => self::faker()->lastName().' '.self::faker()->firstName(),
             'nomEnt' => EntrepriseFactory::faker()->unique()->company(),
             'telEnt'=>self::faker()->unique()->phoneNumber(),
-            'isDisabled'=>'false'
+            'isDisabled'=>false
         ];
     }
 
