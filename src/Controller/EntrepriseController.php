@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 use App\Entity\Entreprise;
+use App\Entity\Utilisateur;
 use App\Form\EntrepriseType;
 use App\Form\UtilisateurType;
 use App\Repository\EntrepriseRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -59,9 +60,11 @@ class EntrepriseController extends AbstractController
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
         $entreprise = new Entreprise();
-        $form = new EntrepriseType();
+        $user = new Utilisateur();
         $form = $this->createForm(EntrepriseType::class, $entreprise)->add('submit', SubmitType::class, ['label' => 'Ajouter']);
+        $formUser = $this->createForm(UtilisateurType::class, $user)->add('password',PasswordType::class);
         $form->handleRequest($request);
+        $formUser->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entrepriseType = $form->getData();
             $entityManager = $doctrine->getManager();
@@ -73,7 +76,7 @@ class EntrepriseController extends AbstractController
             return $this->redirectToRoute('app_entreprise');
         }
 
-        return $this->renderForm('entreprise/create.html.twig', ['form' => $form]);
+        return $this->renderForm('entreprise/update.html.twig', ['form' => $form, 'formUser' => $formUser]);
     }
 
 }
