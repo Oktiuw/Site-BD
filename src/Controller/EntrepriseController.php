@@ -32,7 +32,6 @@ class EntrepriseController extends AbstractController
     #[Route('/entreprise/update')]
     public function update(EntrepriseRepository $entrepriseRepository, ManagerRegistry $doctrine, Request $request, UserPasswordHasherInterface $hasher): Response
     {
-        $entrepriseType=new EntrepriseType();
         $user=$this->getUser();
         $entreprise=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
         $formUser=$this->createForm(UtilisateurType::class, $user);
@@ -60,30 +59,34 @@ class EntrepriseController extends AbstractController
     #[Route('/entreprise/create')]
     public function create(Request $request, ManagerRegistry $doctrine,UserPasswordHasherInterface $hasher): Response
     {
-        $entreprise = new Entreprise();
-        $user = new Utilisateur();
-        $form = $this->createForm(EntrepriseType::class, $entreprise)->add('submit', SubmitType::class, ['label' => 'Ajouter']);
-        $formUser = $this->createForm(UtilisateurType::class, $user)->add('password',PasswordType::class)->add('login',TextType::class);
+        $user=new Utilisateur();
+        $entreprise=new Entreprise();
+        $formUser=$this->createForm(UtilisateurType::class, $user)->add('password',PasswordType::class)->add('login',TextType::class);
+        $form=$this->createForm(EntrepriseType::class, $entreprise)->add(
+            'submit',
+            SubmitType::class,
+            ['label' => 'Ajouter']
+        );
         $form->handleRequest($request);
         $formUser->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $entrepriseType = $form->getData();
-            $data=$formUser->getData();
+            $entrepriseType=$form->getData();
+            $userData=$formUser->getData();
+            $entityManager=$doctrine->getManager();
             $entreprise->setNomEnt($entrepriseType->getNomEnt());
             $entreprise->setNomRef($entrepriseType->getNomRef());
-            $entreprise->setTelEnt($entrepriseType->getTelEnt());
-            $user->setPassword($hasher->hashPassword($user, $data->getPassword()));
-            $user->setEmail($data->getEmail());
-            $user->setLogin($data->getLogin());
-            $user->setRoles(['ROLE_ENTREPRISE']);
-            $entreprise->setIsDisabled(false);
-            $manager=$doctrine->getManager();
+            $user->setEmail($userData->getEmail());
+            $user->setPassword($hasher->hashPassword($user,$userData->getPassword()));
+            $user->setLogin($userData->getLogin());
             $entreprise->setCdUtil($user);
-            $manager->flush();
-            return $this->redirectToRoute('app_home');
+            $user->setRoles(['ROLE_ENTREPRISE']);
+            $entreprise->setIsDisabled(true);
+            $entityManager->persist($user);
+            $entityManager->persist($entreprise);
+            $entityManager->flush();
+            return $this->render('entreprise/succes.html.twig');
         }
-
-        return $this->renderForm('entreprise/update.html.twig', ['form' => $form, 'formUser' => $formUser]);
+        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'formUser'=>$formUser]);
     }
 
 }
