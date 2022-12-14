@@ -69,7 +69,6 @@ class EntrepriseController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entrepriseType = $form->getData();
             $data=$formUser->getData();
-            $entityManager = $doctrine->getManager();
             $entreprise->setNomEnt($entrepriseType->getNomEnt());
             $entreprise->setNomRef($entrepriseType->getNomRef());
             $entreprise->setTelEnt($entrepriseType->getTelEnt());
@@ -77,9 +76,10 @@ class EntrepriseController extends AbstractController
             $user->setEmail($data->getEmail());
             $user->setLogin($data->getLogin());
             $user->setRoles(['ROLE_ENTREPRISE']);
-            $entreprise->setIsDisabled(true);
-            $entityManager->flush();
-
+            $entreprise->setIsDisabled(false);
+            $manager=$doctrine->getManager();
+            $entreprise->setCdUtil($user);
+            $manager->flush();
             return $this->redirectToRoute('app_home');
         }
 

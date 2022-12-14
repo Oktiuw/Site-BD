@@ -9,7 +9,7 @@
     {% if (profile is defined) %}
     <h1>Modification des données de l'entreprise {{ profile.nomEnt }}</h1>
     {% include 'useravatar.html.twig' %}
-        </div>
+
     {% else  %}
     <h1>Création de profile Entreprise</h1>
      {% endif %}
@@ -20,10 +20,12 @@
         <p>Nom et prénom du réferent</p>  {{ form_widget(form.nomRef) }}<br>
         <p>Num. Téléphone</p> {{ form_widget(form.telEnt) }}<br>
         <p>Email</p> {{ form_widget(formUser.email) }}<br>
+    {% if (profile is not defined) %}
     <p>Login</p> {{ form_widget(formUser.login) }}<br>
         <p>Mot de passe</p> {{ form_widget(formUser.password) }}<br>
+    {% endif %}
         {{ form_widget(form.submit) }}
         {{ form_end(form) }}
-
+    </div>
 {% endblock %}
 
