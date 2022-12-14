@@ -84,7 +84,7 @@ class EntrepriseController extends AbstractController
             $entityManager->persist($user);
             $entityManager->persist($entreprise);
             $entityManager->flush();
-            return $this->render('entreprise/succes.html.twig');
+            return $this->render('entreprise/succes.html.twig',['user'=>$user]);
         }
         return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'formUser'=>$formUser]);
     }
