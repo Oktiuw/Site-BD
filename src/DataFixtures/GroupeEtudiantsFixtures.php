@@ -18,24 +18,31 @@ class GroupeEtudiantsFixtures extends Fixture implements DependentFixtureInterfa
         $niveaux = $manager->getRepository(Niveau::class)->findAll();
 
         # on crée des groupes d'étudiants en utilisant un niveau et des étudiants aléatoires
-        foreach ($niveaux as $niveau) {
-            $groupe = new GroupeEtudiants();
-            $groupe->setNomGroupe('test');
-            $groupe->setNiveau($niveau);
-            shuffle($etudiants);
-            for ($i = 0; $i < rand(1, count($etudiants)); $i++) {
-                $groupe->addEtudiant($etudiants[$i]);
+        $groupe = new GroupeEtudiants();
+        $groupe->setNomGroupe('CMM1');
+        $groupe2 = new GroupeEtudiants();
+        $groupe2->setNomGroupe('CMM2');
+        $groupe->setNiveau($niveaux[0]);
+        $groupe2->setNiveau($niveaux[1]);
+        shuffle($etudiants);
+        $compteur=0;
+        foreach ($etudiants as $etudiant) {
+            $compteur+=1;
+            if ($compteur>=$compteur/2) {
+                $groupe2->addEtudiant($etudiant);
+            } else {
+                $groupe->addEtudiant($etudiant);
             }
-            $manager->persist($groupe);
         }
-
+        $manager->persist($groupe);
+        $manager->persist($groupe2);
         $manager->flush();
     }
 
     public function getDependencies()
     {
         return [
-            UtilisateurFixtures::class, # on dépend des données de l'entité Utilisateur
+            EtudiantFixtures::class, # on dépend des données de l'entité Utilisateur
             NiveauFixtures::class, # on dépend des données de l'entité Niveau
         ];
     }
