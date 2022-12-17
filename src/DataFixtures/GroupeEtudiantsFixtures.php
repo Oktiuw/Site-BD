@@ -28,7 +28,7 @@ class GroupeEtudiantsFixtures extends Fixture implements DependentFixtureInterfa
         $compteur=0;
         foreach ($etudiants as $etudiant) {
             $compteur+=1;
-            if ($compteur>=$compteur/2) {
+            if ($compteur>=count($etudiants)/2) {
                 $groupe2->addEtudiant($etudiant);
             } else {
                 $groupe->addEtudiant($etudiant);
