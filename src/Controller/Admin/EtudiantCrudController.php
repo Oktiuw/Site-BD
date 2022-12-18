@@ -70,5 +70,6 @@ class EtudiantCrudController extends AbstractCrudController
             $user->setPassword($this->hasher->hashPassword($user, 'test'));
             $entityInstance->setCdUtil($user);
         }
+        $entityInstance->setFirstConnection(true);
     }
 }

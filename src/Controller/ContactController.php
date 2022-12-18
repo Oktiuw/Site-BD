@@ -40,7 +40,7 @@ class ContactController extends AbstractController
     public function contactEntreprise(Request $request): Response
     {
         $form=$this->createForm(EmailType::class)
-            ->add('societe', EntityType::class, [
+            ->add('profile', EntityType::class, [
                 'class' => Entreprise::class,
                 'placeholder' => 'Destinataire?',
                 'choice_label' => 'nomEnt',
@@ -55,7 +55,7 @@ class ContactController extends AbstractController
             $mail = $form->getData();
             $e=new EmailSender();
             $mailer=$e->createMailSender();
-            $e->sendEmail($mailer, $this->getUser()->getEmail(), $mail['societe']->getCdUtil()->getEmail(), $mail['objet'], $mail['body']);
+            $e->sendEmail($mailer, $this->getUser()->getEmail(), $mail['profile']->getCdUtil()->getEmail(), $mail['objet'], $mail['body']);
 
             return $this->redirectToRoute('app_redirecteur');
         }
@@ -65,8 +65,8 @@ class ContactController extends AbstractController
     public function contactEnseignant(Request $request): Response
     {
         $form=$this->createForm(EmailType::class)
-            ->add('enseignant', EntityType::class, [
-                'class' => Entreprise::class,
+            ->add('profile', EntityType::class, [
+                'class' => Enseignant::class,
                 'placeholder' => 'Destinataire?',
                  'choice_label'=>function (Enseignant $enseignant) {
                      return strtoupper($enseignant->getNomEn()).' '.$enseignant->getPnomEn();
@@ -80,7 +80,7 @@ class ContactController extends AbstractController
             $mail = $form->getData();
             $e=new EmailSender();
             $mailer=$e->createMailSender();
-            $e->sendEmail($mailer, $this->getUser()->getEmail(), $mail['enseignant']->getCdUtil()->getEmail(), $mail['objet'], $mail['body']);
+            $e->sendEmail($mailer, $this->getUser()->getEmail(), $mail['profile']->getCdUtil()->getEmail(), $mail['objet'], $mail['body']);
 
             return $this->redirectToRoute('app_redirecteur');
         }

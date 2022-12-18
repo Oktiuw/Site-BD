@@ -71,12 +71,13 @@ class EnseignantCrudController extends AbstractCrudController
             $user->setLogin($login);
             $user->setEmail('default@example.com');
 
-            $user->setPassword($this->hasher->hashPassword($user,'test'));
+            $user->setPassword($this->hasher->hashPassword($user, 'test'));
             $entityInstance->setCdUtil($user);
         }
         $user->setRoles(['ROLE_ENSEIGNANT']);
         if (array_key_exists('isAdmin', $_POST['Enseignant'])) {
             $user->setRoles(['ROLE_ADMIN,ROLE_ENSEIGNANT']);
         }
+        $entityInstance->setFirstConnection(true);
     }
 }
