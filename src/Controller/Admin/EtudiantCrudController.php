@@ -59,7 +59,7 @@ class EtudiantCrudController extends AbstractCrudController
 
     public function setUser($entityInstance): void
     {
-        $user=$this->getUser();
+        $user=$entityInstance->getCdUtil();
         if ($user==null) {
             $lastname = $_POST['Etudiant']['nomEtud'];
             $login = strtolower(str_replace(" ", "", "$lastname" . rand(1, 300)));
@@ -70,5 +70,6 @@ class EtudiantCrudController extends AbstractCrudController
             $user->setPassword($this->hasher->hashPassword($user, 'test'));
             $entityInstance->setCdUtil($user);
         }
+        $entityInstance->setFirstConnection(true);
     }
 }
