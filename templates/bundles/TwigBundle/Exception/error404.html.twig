@@ -1,0 +1,10 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Page inconnue</h1>
+
+    <p>
+        La page demandée n'a pas pu être localisée par le serveur. Regardez bien l'uRL ou <a href="{{ path('app_home') }}">revenez à l'accueil</a>.
+    </p>
+{% endblock %}
