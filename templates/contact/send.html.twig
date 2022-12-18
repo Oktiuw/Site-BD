@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <div class="form">
+        <div class="info">
+                <h1>Envoi de mail</h1>
+        </div>
+
+        <BR>
+        {{ form_start(form, {'attr': {'class': 'flex-column formulaire'}}) }}
+        <p>Destinataire</p> {{ form_widget(form.societe)}}<br>
+        <p>Objet du mail</p>  {{ form_widget(form.objet) }}<br>
+        <p>Contenu du mail</p> {{ form_widget(form.body) }}<br>
+        {{ form_widget(form.submit) }}
+        {{ form_end(form) }}
+    </div>
+    <script> function javascriptAlert() {
+            alert("Mail bien envoyé ! Vous allez être redirigé. Pensez a cliquer sur ok")
+
+        }</script>
+
+{% endblock %}
+

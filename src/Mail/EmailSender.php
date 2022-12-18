@@ -17,6 +17,7 @@ class EmailSender
         $e->Password='fvovijvmjtgfrjac';
         $e->SMTPSecure='ssl';
         $e->Port=465;
+        return $e;
     }
 
     /**
