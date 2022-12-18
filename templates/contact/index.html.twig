@@ -3,13 +3,14 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}
+    {% include 'navbar.html.twig' %}
 <div><h1>Choisissez une entité à contacter </h1></div>
-    <div class="choix">
-        <div class="top">
+    <div class="liste_choix">
+        <div class="top_contacts">
             <div class="choix" id="etudiant">Contacter un étudiant</div>
             <div class="choix" id="groupeEtudiants">Contacter un groupe d'étudiants</div>
         </div>
-        <div class="bot">
+        <div class="bot_contacts">
             <div class="choix" id="entreprise">Contacter une entreprise</div>
             <div class="choix" id="enseignant">Contacter un enseignant</div>
         </div>

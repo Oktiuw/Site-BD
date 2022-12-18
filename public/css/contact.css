@@ -1,0 +1,8 @@
+div.liste_choix{
+    display: flex;
+}
+body{
+    width: 98%;
+    height: 98%;
+    display: flex;
+}
