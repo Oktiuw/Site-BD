@@ -130,4 +130,15 @@ class Evenement
 
         return $this;
     }
+    public function etreEtale($number=0): int
+    {
+        return 1;
+    }
+    public function addGroupesEtudiants(array $collection): self
+    {
+        foreach ($collection as $item) {
+            $this->addGroupeEtudiant($item);
+        }
+        return $this;
+    }
 }
