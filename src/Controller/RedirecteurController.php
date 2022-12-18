@@ -14,13 +14,14 @@ class RedirecteurController extends AbstractController
     #[Route('/redirecteur', name: 'app_redirecteur')]
     public function index(EntrepriseRepository $entrepriseRepository): Response
     {
-        if ($this->getUser()->getRoles()[0]=="ROLE_ETUDIANT") {
+        $user=$this->getUser();
+        if ($user->getRoles()[0]=="ROLE_ETUDIANT") {
             return $this->redirectToRoute('app_etudiant');
         }
-        if ($this->getUser()->getRoles()[0]=="ROLE_ENTREPRISE") {
-            $entreprise=$entrepriseRepository->find($this->getUser()->getId());
+        if ($user->getRoles()[0]=="ROLE_ENTREPRISE") {
+            $entreprise=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
             if ($entreprise->isIsDisabled()) {
-                return $this->render('entreprise/succes.html.twig');
+                return $this->render('entreprise/succes.html.twig', ['user'=>$user]);
             }
             return $this->redirectToRoute('app_entreprise');
         }
