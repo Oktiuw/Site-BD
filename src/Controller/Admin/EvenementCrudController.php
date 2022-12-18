@@ -125,6 +125,7 @@ class EvenementCrudController extends AbstractCrudController
             $hfin = new DateTime($_POST['Evenement']['dateEvmt']);
             $hdeb->setTime($_POST['Evenement']['hDeb']['hour'], $_POST['Evenement']['hDeb']['minute']);
             $hdeb->setTime($_POST['Evenement']['hFin']['hour'], $_POST['Evenement']['hFin']['minute']);
+            var_dump($hdeb);
             $evenement->setHDeb($hdeb);
             $evenement->setHFin($hfin);
             $entityManager->persist($evenement);
