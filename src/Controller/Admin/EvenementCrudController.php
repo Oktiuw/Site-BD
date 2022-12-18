@@ -4,6 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Enseignant;
 use App\Entity\Evenement;
+use App\Repository\EnseignantRepository;
+use App\Repository\GroupeEtudiantsRepository;
+use App\Repository\TypeEvenementRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
@@ -21,6 +24,15 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TimeField;
 
 class EvenementCrudController extends AbstractCrudController
 {
+    private GroupeEtudiantsRepository $groupeEtudiantsRepository;
+    private TypeEvenementRepository $typeEvenementRepository;
+    private EnseignantRepository $enseignantRepository;
+    public function __construct(GroupeEtudiantsRepository $groupeEtudiantsRepository, TypeEvenementRepository $typeEvenementRepository, EnseignantRepository $enseignantRepository)
+    {
+        $this->groupeEtudiantsRepository=$groupeEtudiantsRepository;
+        $this->typeEvenementRepository=$typeEvenementRepository;
+        $this->enseignantRepository=$enseignantRepository;
+    }
     public static function getEntityFqcn(): string
     {
         return Evenement::class;
@@ -52,8 +64,8 @@ class EvenementCrudController extends AbstractCrudController
                     $res .= " | {$groupe->getNomGroupe()}";
                 }
                 return $res;
-            }),
-            IntegerField::new('etreEtale')->setLabel('Nombre de semaine')->hideOnIndex()->hideOnDetail()
+            })->setRequired(true),
+            IntegerField::new('etreEtale')->setLabel('Nombre de semaine')->hideOnIndex()->hideOnDetail()->setRequired(true)
 
         ];
     }
@@ -93,10 +105,18 @@ class EvenementCrudController extends AbstractCrudController
         if ($semaines <= 0) {
             $semaines = 1;
         }
+        $groupeEtudiants=$_POST['Evenement']['groupeEtudiants'];
+        foreach ($groupeEtudiants as $groupeEtudiant) {
+            $groupeEtudiants[]=$this->groupeEtudiantsRepository->find($groupeEtudiant);
+        }
         for ($i = 0; $i <= $semaines; $i++) {
             $evenement = new Evenement();
-            $evenement->addGroupesEtudiants($_POST['Evenement']['groupeEtudiants']);
-            $evenement->setDateEvmt($_POST['Evenement']['dateEvmt']);
+            $evenement->addGroupesEtudiants($groupeEtudiants);
+            $jours=$i*7;
+            $date=$_POST['Evenement']['dateEvmt'];
+            $jours='P'.$jours.'D';
+            $date->add(new \DateInterval($jours));
+            $evenement->setDateEvmt($date);
             $evenement->setTypeEvenement($_POST['Evenement']['TypeEvenement']);
             $evenement->setEnseignant($_POST['Evenement']['Enseignant']);
             $hdeb = new DateTime($evenement->getDateEvmt());

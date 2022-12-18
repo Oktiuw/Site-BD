@@ -134,7 +134,7 @@ class Evenement
     {
         return 1;
     }
-    public function addGroupesEtudiants(Collection $collection): self
+    public function addGroupesEtudiants(array $collection): self
     {
         foreach ($collection as $item) {
             $this->addGroupeEtudiant($item);
