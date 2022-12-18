@@ -130,4 +130,8 @@ class Evenement
 
         return $this;
     }
+    public function etreEtale(): int
+    {
+        return 1;
+    }
 }
