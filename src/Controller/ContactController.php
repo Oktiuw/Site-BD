@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Enseignant;
 use App\Entity\Entreprise;
+use App\Entity\Etudiant;
 use App\Form\EmailType;
 use App\Mail\EmailSender;
 use App\Repository\EntrepriseRepository;
@@ -50,16 +51,7 @@ class ContactController extends AbstractController
                 },
             ])->add('submit', SubmitType::class, ['label' => 'Envoyer','attr'=>['onclick'=>'javascriptAlert()']])
         ;
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $mail = $form->getData();
-            $e=new EmailSender();
-            $mailer=$e->createMailSender();
-            $e->sendEmail($mailer, $this->getUser()->getEmail(), $mail['profile']->getCdUtil()->getEmail(), $mail['objet'], $mail['body']);
-
-            return $this->redirectToRoute('app_redirecteur');
-        }
-        return $this->renderForm('contact/send.html.twig', ['form'=>$form]);
+        return $this->formSendEmail($form, $request);
     }
     #[Route('/contact/enseignant', name: 'app_contact_enseignant')]
     public function contactEnseignant(Request $request): Response
@@ -75,15 +67,42 @@ class ContactController extends AbstractController
                  }
             ])->add('submit', SubmitType::class, ['label' => 'Envoyer','attr'=>['onclick'=>'javascriptAlert()']])
         ;
+        return $this->formSendEmail($form, $request);
+    }
+    #[Route('/contact/etudiant', name: 'app_contact_etudiant')]
+    public function contactEtudiant(Request $request): Response
+    {
+        $form=$this->createForm(EmailType::class)
+            ->add('profile', EntityType::class, [
+                'class' => Etudiant::class,
+                'placeholder' => 'Destinataire?',
+                'choice_label'=>function (Etudiant $etudiant) {
+                    return strtoupper($etudiant->getNomEtud()).' '.$etudiant->getPnomEtud();
+                },'query_builder'=>function (EntityRepository $entityRepository) {
+                    return $entityRepository->createQueryBuilder('c')->orderBy('c.nomEtud', 'ASC');
+                }
+            ])->add('submit', SubmitType::class, ['label' => 'Envoyer','attr'=>['onclick'=>'javascriptAlert()']])
+        ;
+        return $this->formSendEmail($form, $request);
+    }
+
+    /**
+     * @param \Symfony\Component\Form\FormInterface $form
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @throws \PHPMailer\PHPMailer\Exception
+     */
+    public function formSendEmail(\Symfony\Component\Form\FormInterface $form, Request $request): Response|\Symfony\Component\HttpFoundation\RedirectResponse
+    {
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $mail = $form->getData();
-            $e=new EmailSender();
-            $mailer=$e->createMailSender();
+            $e = new EmailSender();
+            $mailer = $e->createMailSender();
             $e->sendEmail($mailer, $this->getUser()->getEmail(), $mail['profile']->getCdUtil()->getEmail(), $mail['objet'], $mail['body']);
 
             return $this->redirectToRoute('app_redirecteur');
         }
-        return $this->renderForm('contact/send.html.twig', ['form'=>$form]);
+        return $this->renderForm('contact/send.html.twig', ['form' => $form]);
     }
 }
