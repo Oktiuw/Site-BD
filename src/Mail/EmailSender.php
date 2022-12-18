@@ -18,4 +18,18 @@ class EmailSender
         $e->SMTPSecure='ssl';
         $e->Port=465;
     }
+
+    /**
+     * @throws Exception
+     */
+    public function sendEmail(PHPMailer $mailer, String $from, string $to, string $subject, string $body)
+    {
+        $mailer->setFrom($from);
+        $mailer->addAddress($to);
+        $mailer->isHTML();
+        $mailer->Subject=$subject;
+        $body=nl2br("Message de $from :\n $body");
+        $mailer->Body=$body;
+        $mailer->send();
+    }
 }
