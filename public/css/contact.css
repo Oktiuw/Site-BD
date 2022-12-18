@@ -1,8 +1,61 @@
 div.liste_choix{
     display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
 }
 body{
     width: 98%;
     height: 98%;
     display: flex;
+    flex-direction: column;
+}
+div.choix{
+    flex-grow: 1;
+    background-color: white;
+    margin: 10px;
+    border: solid 1px;
+    align-items: center;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+div#header-title{
+    margin-top:20px;
+    display:flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+div.top_contacts{
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    width: 100%;
+}
+div.bot_contacts{
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    width: 100%;
+}
+p{
+    font-weight: bold;
+    font-size: x-large;
+}
+span.material-symbols-outlined{
+    font-size: xxx-large;
+}
+@media (min-width: 800px) {
+    div.liste_choix{
+        flex-direction: row;
+    }
+    div.bot_contacts{
+        height: 1000px;
+    }
+    div.top_contacts{
+        height: 1000px;
+    }
+
 }

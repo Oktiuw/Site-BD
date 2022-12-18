@@ -1,18 +1,24 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Contact{% endblock %}
-
+{% include 'navbar.html.twig' %}
+{% block stylesheets %}<link href="{{asset('css/contact.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />{% endblock %}
 {% block body %}
-    {% include 'navbar.html.twig' %}
-<div><h1>Choisissez une entité à contacter </h1></div>
+<div id="header-title"><h1>Choisissez une entité à contacter </h1></div>
     <div class="liste_choix">
         <div class="top_contacts">
-            <div class="choix" id="etudiant">Contacter un étudiant</div>
-            <div class="choix" id="groupeEtudiants">Contacter un groupe d'étudiants</div>
+            <div class="choix" id="etudiant"><p>Contacter un étudiant</p><span class="material-symbols-outlined">
+person
+</span></div>
+            <div class="choix" id="groupeEtudiants"><p>Contacter un groupe d'étudiants</p><span class="material-symbols-outlined">
+groups
+</span></div>
         </div>
         <div class="bot_contacts">
-            <div class="choix" id="entreprise">Contacter une entreprise</div>
-            <div class="choix" id="enseignant">Contacter un enseignant</div>
+            <div class="choix" id="entreprise"><p>Contacter une entreprise</p><span class="material-symbols-outlined">
+apartment
+</span></div>
+            <div class="choix" id="enseignant"><p>Contacter un enseignant</p><span class="material-symbols-outlined">
+school
+</span></div>
         </div>
     </div>
 {% endblock %}
