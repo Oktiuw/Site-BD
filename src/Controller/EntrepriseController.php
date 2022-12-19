@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\Entreprise;
 use App\Entity\Utilisateur;
 use App\Form\EntrepriseType;
@@ -16,7 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-
 
 class EntrepriseController extends AbstractController
 {
@@ -58,11 +58,11 @@ class EntrepriseController extends AbstractController
     }
 
     #[Route('/entreprise/create')]
-    public function create(Request $request, ManagerRegistry $doctrine,UserPasswordHasherInterface $hasher): Response
+    public function create(Request $request, ManagerRegistry $doctrine, UserPasswordHasherInterface $hasher): Response
     {
         $user=new Utilisateur();
         $entreprise=new Entreprise();
-        $formUser=$this->createForm(UtilisateurType::class, $user)->add('password',PasswordType::class)->add('login',TextType::class);
+        $formUser=$this->createForm(UtilisateurType::class, $user)->add('password', PasswordType::class)->add('login', TextType::class);
         $form=$this->createForm(EntrepriseType::class, $entreprise)->add(
             'submit',
             SubmitType::class,
@@ -77,7 +77,7 @@ class EntrepriseController extends AbstractController
             $entreprise->setNomEnt($entrepriseType->getNomEnt());
             $entreprise->setNomRef($entrepriseType->getNomRef());
             $user->setEmail($userData->getEmail());
-            $user->setPassword($hasher->hashPassword($user,$userData->getPassword()));
+            $user->setPassword($hasher->hashPassword($user, $userData->getPassword()));
             $user->setLogin($userData->getLogin());
             $entreprise->setCdUtil($user);
             $user->setRoles(['ROLE_ENTREPRISE']);
@@ -85,7 +85,7 @@ class EntrepriseController extends AbstractController
             $entityManager->persist($user);
             $entityManager->persist($entreprise);
             $entityManager->flush();
-            return $this->render('entreprise/succes.html.twig',['user'=>$user]);
+            return $this->render('entreprise/succes.html.twig', ['user'=>$user]);
         }
         return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'formUser'=>$formUser]);
     }
