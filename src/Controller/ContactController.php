@@ -27,17 +27,20 @@ class ContactController extends AbstractController
     #[Route('/contact', name: 'app_contact')]
     public function index(EntrepriseRepository $entrepriseRepository): Response
     {
-        var_dump("ok");
-        $this->isAccountDisabled($entrepriseRepository);
+        if ($this->isAccountDisabled($entrepriseRepository)) {
+            return $this->redirectToRoute('app_redirecteur');
+        }
         $user=$this->getUser();
         return $this->render('contact/index.html.twig', [
             'user' => $user,
         ]);
     }
     #[Route('/contact/entreprise', name: 'app_contact_entreprise')]
-    public function contactEntreprise(Request $request,EntrepriseRepository $entrepriseRepository): Response
+    public function contactEntreprise(Request $request, EntrepriseRepository $entrepriseRepository): Response
     {
-        $this->isAccountDisabled($entrepriseRepository);
+        if ($this->isAccountDisabled($entrepriseRepository)) {
+            return $this->redirectToRoute('app_redirecteur');
+        }
         $form=$this->createForm(EmailType::class)
             ->add('profile', EntityType::class, [
                 'class' => Entreprise::class,
@@ -52,9 +55,11 @@ class ContactController extends AbstractController
         return $this->formSendEmail($form, $request);
     }
     #[Route('/contact/enseignant', name: 'app_contact_enseignant')]
-    public function contactEnseignant(Request $request,EntrepriseRepository $entrepriseRepository): Response
+    public function contactEnseignant(Request $request, EntrepriseRepository $entrepriseRepository): Response
     {
-        $this->isAccountDisabled($entrepriseRepository);
+        if ($this->isAccountDisabled($entrepriseRepository)) {
+            return $this->redirectToRoute('app_redirecteur');
+        }
         $form=$this->createForm(EmailType::class)
             ->add('profile', EntityType::class, [
                 'class' => Enseignant::class,
@@ -69,9 +74,11 @@ class ContactController extends AbstractController
         return $this->formSendEmail($form, $request);
     }
     #[Route('/contact/etudiant', name: 'app_contact_etudiant')]
-    public function contactEtudiant(Request $request,EntrepriseRepository $entrepriseRepository): Response
+    public function contactEtudiant(Request $request, EntrepriseRepository $entrepriseRepository): Response
     {
-        $this->isAccountDisabled($entrepriseRepository);
+        if ($this->isAccountDisabled($entrepriseRepository)) {
+            return $this->redirectToRoute('app_redirecteur');
+        }
         $form=$this->createForm(EmailType::class)
             ->add('profile', EntityType::class, [
                 'class' => Etudiant::class,
@@ -86,8 +93,11 @@ class ContactController extends AbstractController
         return $this->formSendEmail($form, $request);
     }
     #[Route('/contact/groupeEtudiants', name: 'app_contact_groupeEtudiants')]
-    public function contactGroupeEtudiants(Request $request): Response
+    public function contactGroupeEtudiants(EntrepriseRepository $entrepriseRepository, Request $request): Response
     {
+        if ($this->isAccountDisabled($entrepriseRepository)) {
+            return $this->redirectToRoute('app_redirecteur');
+        }
         $form=$this->createForm(EmailType::class)
             ->add('profile', EntityType::class, [
                 'class' => GroupeEtudiants::class,
@@ -131,14 +141,14 @@ class ContactController extends AbstractController
         }
         return $this->renderForm('contact/send.html.twig', ['form' => $form]);
     }
-    public function isAccountDisabled(EntrepriseRepository $entrepriseRepository)
+    public function isAccountDisabled(EntrepriseRepository $entrepriseRepository): bool
     {
         $user=$this->getUser();
         if ($user->getRoles()[0]==='ROLE_ENTREPRISE') {
             $entreprise=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
             var_dump($entreprise->isIsDisabled());
             if ($entreprise->isIsdisabled()) {
-                return $this->redirectToRoute('app_redirecteur');
+                return true;
             }
         }
         return false;
