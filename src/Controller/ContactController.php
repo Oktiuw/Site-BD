@@ -105,7 +105,7 @@ class ContactController extends AbstractController
             $mailer = $e->createMailSender();
             $etudiants=$mail['profile']->getEtudiants();
             foreach ($etudiants as $etudiant) {
-                $e->sendEmail($mailer, $this->getUser()->getEmail(), $etudiant->getCdUtil()->getEmail(), $mail['objet'], $mail['body']);
+                $e->sendEmail($mailer, $this->getUser()->getEmail(), $etudiant->getCdUtil()->getEmail(), $mail['objet'], $mail['body']."\n Message envoyé par le système. Ne pas répondre directement à ce mail");
             }
 
             return $this->redirectToRoute('app_redirecteur');
@@ -126,7 +126,7 @@ class ContactController extends AbstractController
             $mail = $form->getData();
             $e = new EmailSender();
             $mailer = $e->createMailSender();
-            $e->sendEmail($mailer, $this->getUser()->getEmail(), $mail['profile']->getCdUtil()->getEmail(), $mail['objet'], $mail['body']);
+            $e->sendEmail($mailer, $this->getUser()->getEmail(), $mail['profile']->getCdUtil()->getEmail(), $mail['objet'], $mail['body']."\n Message envoyé par le système. Ne pas répondre directement à ce mail");
 
             return $this->redirectToRoute('app_redirecteur');
         }

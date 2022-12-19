@@ -11,7 +11,8 @@ body{
     height: 98%;
     display: flex;
     flex-direction: column;
-
+    background-image: url("/img/bg_form.jpg");
+    background-size: cover;
 
 }
 a.choix{
@@ -51,6 +52,7 @@ div.top_contacts{
     flex-direction: column;
     height: 600px;
     width: 100%;
+    margin-left: 10px;
 }
 div.bot_contacts{
     display: flex;
