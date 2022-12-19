@@ -27,7 +27,9 @@ class ContactController extends AbstractController
     #[Route('/contact', name: 'app_contact')]
     public function index(EntrepriseRepository $entrepriseRepository): Response
     {
+        var_dump("ok");
         $this->isAccountDisabled($entrepriseRepository);
+        $user=$this->getUser();
         return $this->render('contact/index.html.twig', [
             'user' => $user,
         ]);
@@ -134,6 +136,7 @@ class ContactController extends AbstractController
         $user=$this->getUser();
         if ($user->getRoles()[0]==='ROLE_ENTREPRISE') {
             $entreprise=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
+            var_dump($entreprise->isIsDisabled());
             if ($entreprise->isIsdisabled()) {
                 return $this->redirectToRoute('app_redirecteur');
             }
