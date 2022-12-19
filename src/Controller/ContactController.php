@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Enseignant;
 use App\Entity\Entreprise;
 use App\Entity\Etudiant;
+use App\Entity\GroupeEtudiants;
 use App\Form\EmailType;
 use App\Mail\EmailSender;
 use App\Repository\EntrepriseRepository;
@@ -85,13 +86,39 @@ class ContactController extends AbstractController
         ;
         return $this->formSendEmail($form, $request);
     }
+    #[Route('/contact/groupeEtudiants', name: 'app_contact_groupeEtudiants')]
+    public function contactGroupeEtudiants(Request $request): Response
+    {
+        $form=$this->createForm(EmailType::class)
+            ->add('profile', EntityType::class, [
+                'class' => GroupeEtudiants::class,
+                'placeholder' => 'Destinataire?',
+                'choice_label'=>'nomGroupe','query_builder'=>function (EntityRepository $entityRepository) {
+                    return $entityRepository->createQueryBuilder('c')->orderBy('c.nomGroupe', 'ASC');
+                }
+            ])->add('submit', SubmitType::class, ['label' => 'Envoyer','attr'=>['onclick'=>'javascriptAlert()']])
+        ;
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $mail = $form->getData();
+            $e = new EmailSender();
+            $mailer = $e->createMailSender();
+            $etudiants=$mail['profile']->getEtudiants();
+            foreach ($etudiants as $etudiant) {
+                $e->sendEmail($mailer, $this->getUser()->getEmail(), $etudiant->getCdUtil()->getEmail(), $mail['objet'], $mail['body']."\n Message envoyé par le système. Ne pas répondre directement à ce mail");
+            }
+
+            return $this->redirectToRoute('app_redirecteur');
+        }
+        return $this->renderForm('contact/send.html.twig', ['form' => $form]);
+    }
 
     /**
-     * @param \Symfony\Component\Form\FormInterface $form
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @throws \PHPMailer\PHPMailer\Exception
-     */
+         * @param \Symfony\Component\Form\FormInterface $form
+         * @param Request $request
+         * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+         * @throws \PHPMailer\PHPMailer\Exception
+         */
     public function formSendEmail(\Symfony\Component\Form\FormInterface $form, Request $request): Response|\Symfony\Component\HttpFoundation\RedirectResponse
     {
         $form->handleRequest($request);
@@ -99,7 +126,7 @@ class ContactController extends AbstractController
             $mail = $form->getData();
             $e = new EmailSender();
             $mailer = $e->createMailSender();
-            $e->sendEmail($mailer, $this->getUser()->getEmail(), $mail['profile']->getCdUtil()->getEmail(), $mail['objet'], $mail['body']);
+            $e->sendEmail($mailer, $this->getUser()->getEmail(), $mail['profile']->getCdUtil()->getEmail(), $mail['objet'], $mail['body']."\n Message envoyé par le système. Ne pas répondre directement à ce mail");
 
             return $this->redirectToRoute('app_redirecteur');
         }

@@ -11,7 +11,8 @@ body{
     height: 98%;
     display: flex;
     flex-direction: column;
-
+    background-image: url("/img/bg_form.jpg");
+    background-size: cover;
 
 }
 a.choix{
@@ -30,6 +31,7 @@ a.choix{
     transition: ease-in-out 0.5s;
     opacity: 0.75;
     border: solid black 1px;
+    border-radius: 10px;
 }
 a.choix:hover{
     box-shadow: rgba(0, 0, 0, 0.35) 10px 15px 25px;
@@ -38,6 +40,7 @@ a.choix:hover{
     color: black;
     opacity: 1;
     border: solid 1px dodgerblue;
+    border-radius: 50px;
 }
 div#header-title{
     margin-top:20px;
@@ -49,6 +52,7 @@ div.top_contacts{
     flex-direction: column;
     height: 600px;
     width: 100%;
+    margin-left: 10px;
 }
 div.bot_contacts{
     display: flex;

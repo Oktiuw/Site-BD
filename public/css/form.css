@@ -35,6 +35,7 @@ div.form{
     margin-top: 10%;
     min-width: 300px;
     width: 50%;
+    margin-bottom: 10%;
 }
 body{
     display: flex;
