@@ -39,6 +39,7 @@ div.container__div{
 }
 body>*{
     font-family: Oswald,sans-serif;
+    font-family: Oswald,sans-serif;
 }
 body{
     display: flex;
@@ -60,7 +61,7 @@ p{
 }
 section.three{
     height: 600px;
-    background-image: linear-gradient(0deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("../img/images/3b91742c7e026b49e43d4d9e3bc6edf4.jpeg");
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("../img/images/amphi.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;
@@ -100,7 +101,7 @@ div#ue2{
     background-image: url("../img/images/server-1235959_1920.jpg");
 }
 div#ue3{
-    background-image: url("../img/images/3fc11f88a285d97ae68cff4fb70747c6.jpeg");
+    background-image: url("../img/images/bookspen.jpeg");
 }
 div#ue4{
     background-image: url("../img/images/Deep-Learning-1024x576.jpg");
@@ -109,7 +110,7 @@ div#ue5{
     background-image: url("../img/images/student-849825_1920.jpg");
 }
 section.data{
-    background-image: linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../img/images/2ab06c7a94c3125deb4b9084c6f6ca19.jpeg');
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../img/images/data.jpeg');
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -140,16 +141,16 @@ div.info_bg{
     background-position: 50% 50%;
 }
 div#info2{
-    background-image: url("../img/images/33496b61e8c69d633c310dadab3f03dd.jpeg");
+    background-image: url("../img/images/studentworking.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 70% 50%;
 }
 div#info1{
-    background-image: url("../img/images/6f7e0c7ddbf77837b886129cde31f441.jpeg");
+    background-image: url("../img/images/meeting.jpeg");
 }
 div#info3{
-    background-image: url("../img/images/514def4ff7d179aefd43f99a639d048c.jpeg");
+    background-image: url("../img/images/cours.jpeg");
 }
 div.info__school{
     display: flex;
