@@ -125,6 +125,42 @@ div.data{
     align-items: center;
     flex-grow: 1;
 }
+section.infos{
+    height: 800px;
+}
+div.liste_infos{
+    display: flex;
+    flex-direction: column;
+}
+div.info_bg{
+    height: 300px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+div#info2{
+    background-image: url("../img/images/33496b61e8c69d633c310dadab3f03dd.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 70% 50%;
+}
+div#info1{
+    background-image: url("../img/images/6f7e0c7ddbf77837b886129cde31f441.jpeg");
+}
+div#info3{
+    background-image: url("../img/images/514def4ff7d179aefd43f99a639d048c.jpeg");
+}
+div.info__school{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    height: 600px;
+    margin-top:40px;
+}
+div.text{
+    margin-left: 15px;
+}
 @media (min-width: 500px) {
     h1.smaller{font-size: xxx-large;}
 
@@ -155,5 +191,25 @@ div.data{
     }
     section.data{
         margin-top: 600px;
+    }
+    div.liste_infos{
+        flex-direction: row
+    }
+    div.info__school{
+        margin-left: 15px;
+    }
+    div#info1{
+        background-position: 30% 30%;
+    }
+    div.liste_infos{
+        width: 80%;
+    }
+    div.container__school{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    div.info_bg{
+        height: 400px;
     }
 }
