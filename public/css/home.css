@@ -1,0 +1,244 @@
+section.section__principale{
+    min-height: 160px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+section.header{
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url("../img/images/people-2557396.jpg");
+    background-position: 50% 50%;
+    background-size: cover  ;
+    height: 800px;
+    margin-left: 0;
+    margin-right: 0;
+}
+div.texte__hearder{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    justify-content: flex-end;
+}
+h1.white{
+    margin:0;
+
+    color: white;
+    font-size: xxx-large;
+}
+h2.white{
+    margin: 0 0 5%;
+    color: white;
+    font-family: Oswald, sans-serif
+
+}
+span.material-symbols-outlined{
+    font-size: xxx-large;
+}
+div.container__div{
+    display: flex;
+    flex-direction: column;
+}
+body>*{
+    font-family: Oswald,sans-serif;
+    font-family: Oswald,sans-serif;
+}
+body{
+    display: flex;
+    margin:0;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+div.info{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-left: 10px;
+}
+p{
+    margin:0;
+    font-family: 'Open Sans',sans-serif;
+}
+section.three{
+    height: 600px;
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("../img/images/amphi.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
+div.two{
+    margin-top: 150px;
+    height: 150px;
+}
+h1.smaller{
+    font-size: xx-large;
+}
+div.liste__ue{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+div.ue{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: auto;
+    width: 95%;
+    align-items: center;
+    margin-bottom: 10%;
+}
+div.ue__fond{
+    height: 350px;
+    background-size: cover;
+    background-position: 50% 50%;
+    width: 100%;
+}
+div#ue1{
+    background-image: url("../img/images/technology-4256272_1920.jpg");
+}
+div#ue2{
+    background-image: url("../img/images/server-1235959_1920.jpg");
+}
+div#ue3{
+    background-image: url("../img/images/bookspen.jpeg");
+}
+div#ue4{
+    background-image: url("../img/images/Deep-Learning-1024x576.jpg");
+}
+div#ue5{
+    background-image: url("../img/images/student-849825_1920.jpg");
+}
+section.data{
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../img/images/data.jpeg');
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+h1.big{
+    font-size: 4.5rem;
+    color: white;
+    margin: 15% 0 0;
+}
+div.data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+section.infos{
+    height: 800px;
+}
+div.liste_infos{
+    display: flex;
+    flex-direction: column;
+}
+div.info_bg{
+    height: 300px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+div#info2{
+    background-image: url("../img/images/studentworking.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 70% 50%;
+}
+div#info1{
+    background-image: url("../img/images/meeting.jpeg");
+}
+div#info3{
+    background-image: url("../img/images/cours.jpeg");
+}
+div.info__school{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    height: 600px;
+    margin-top:40px;
+}
+div.text{
+    margin-left: 15px;
+}
+section.footer{
+    margin-top: 1300px;
+    background-color: #f2f2f2 ;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+img.logo_etire{
+    width: 100%;
+}
+h1.gros{
+    font-size: 2em;
+}
+@media (min-width: 500px) {
+    h1.smaller{font-size: xxx-large;}
+
+}
+@media (min-width: 800px) {
+    div.container__div{
+        flex-direction: row;
+    }
+    div.liste__data{
+        display: flex;
+    }
+    section.footer{
+        flex-direction: row;
+    }
+    div.liste_infos{
+          flex-direction: row
+      }
+    div.info__school{
+        margin-left: 15px;
+        min-width: 30%;
+    }
+    div#info1{
+        background-position: 30% 30%;
+    }
+    div.liste_infos{
+        width: 80%;
+    }
+    div.container__school{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    div.info_bg{
+        height: 400px;
+    }
+    section.footer{
+        margin: 0;
+        justify-content: space-around;
+    }
+    div.footer_elmt{
+        width: 50%;
+    }
+    div#footerimg{
+        margin-top: 50px;
+        max-width: 500px;
+    }
+}
+@media (min-width: 1200px) {
+    div.liste__ue{
+        flex-direction: row;
+    }
+    div.ue{
+        margin-left: 2%;
+        margin-right: 2%;
+        height: 800px;
+    }
+    div.ue__fond{
+        height: 500px;
+    }
+    section.absolute{
+        position: absolute;
+        top: 1500px;
+    }
+    section.data{
+        margin-top: 600px;
+    }
+}
