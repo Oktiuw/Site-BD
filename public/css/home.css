@@ -1,12 +1,15 @@
 section.section__principale{
     min-height: 160px;
     margin-bottom: 30px;
+    margin-top: 30px;
 }
 section.header{
-    background-image: url("/img/images/people-2557396.jpg");
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url("../img/images/people-2557396.jpg");
     background-position: 50% 50%;
     background-size: cover  ;
     height: 800px;
+    margin-left: 0;
+    margin-right: 0;
 }
 div.texte__hearder{
     height: 100%;
@@ -38,6 +41,11 @@ div.container__div{
 body>*{
     font-family: Oswald,sans-serif;
 }
+body{
+    display: flex;
+    margin:0;
+    flex-direction: column;
+}
 div.info{
     display:flex;
     flex-direction: column;
@@ -48,10 +56,36 @@ div.info{
 p{
     margin:0;
 }
+section.three{
+    height: 400px;
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("../img/images/3b91742c7e026b49e43d4d9e3bc6edf4.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
+div.two{
+    margin-top: 150px;
+    height: 150px;
+}
+h1.smaller{
+    font-size: xx-large;
+}
+div.ue__fond{
+    width: 150px;
+    height: 300px;
 
+
+}
+@media (min-width: 500px) {
+    h1.smaller{font-size: xxx-large;}
+
+}
 @media (min-width: 800px) {
     div.container__div{
         flex-direction: row;
+    }
+    section.three{
+        height: 600px;
     }
 
 }
