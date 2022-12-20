@@ -161,6 +161,19 @@ div.info__school{
 div.text{
     margin-left: 15px;
 }
+section.footer{
+    margin-top: 1300px;
+    background-color: #f2f2f2 ;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+img.logo_etire{
+    width: 100%;
+}
+h1.gros{
+    font-size: 2em;
+}
 @media (min-width: 500px) {
     h1.smaller{font-size: xxx-large;}
 
@@ -171,6 +184,41 @@ div.text{
     }
     div.liste__data{
         display: flex;
+    }
+    section.footer{
+        flex-direction: row;
+    }
+    div.liste_infos{
+          flex-direction: row
+      }
+    div.info__school{
+        margin-left: 15px;
+        min-width: 30%;
+    }
+    div#info1{
+        background-position: 30% 30%;
+    }
+    div.liste_infos{
+        width: 80%;
+    }
+    div.container__school{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    div.info_bg{
+        height: 400px;
+    }
+    section.footer{
+        margin: 0;
+        justify-content: space-around;
+    }
+    div.footer_elmt{
+        width: 50%;
+    }
+    div#footerimg{
+        margin-top: 50px;
+        max-width: 500px;
     }
 }
 @media (min-width: 1200px) {
@@ -191,25 +239,5 @@ div.text{
     }
     section.data{
         margin-top: 600px;
-    }
-    div.liste_infos{
-        flex-direction: row
-    }
-    div.info__school{
-        margin-left: 15px;
-    }
-    div#info1{
-        background-position: 30% 30%;
-    }
-    div.liste_infos{
-        width: 80%;
-    }
-    div.container__school{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    div.info_bg{
-        height: 400px;
     }
 }
