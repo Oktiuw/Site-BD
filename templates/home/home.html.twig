@@ -17,6 +17,20 @@
         divAll.style.filter="brightness(30%)";
         divAll.style.backgroundColor="gray";
         document.querySelector('span.menu').style.visibility='hidden';
+        document.addEventListener("click", (event) => {
+            if (divAll.contains(event.target)) {
+                hideNavBar();
+            }
+        });
+    }
+    function hideNavBar(){
+        const nav= document.querySelector('nav')
+        nav.style.display='none';
+        const divAll=document.querySelector('div.big__container');
+        divAll.style.filter="brightness(100%)";
+        divAll.style.backgroundColor="white";
+        document.querySelector('span.menu').style.visibility='visible';
+
     }
 </script>
 <nav>
