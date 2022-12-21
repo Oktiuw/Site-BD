@@ -10,6 +10,7 @@ section.header{
     height: 800px;
     margin-left: 0;
     margin-right: 0;
+    margin-top: 10px;
 }
 div.texte__hearder{
     height: 100%;
@@ -38,7 +39,6 @@ div.container__div{
     flex-direction: column;
 }
 body>*{
-    font-family: Oswald,sans-serif;
     font-family: Oswald,sans-serif;
 }
 body{
@@ -175,11 +175,68 @@ img.logo_etire{
 h1.gros{
     font-size: 2em;
 }
+div.big__container{
+    display: flex;
+    flex-direction: column;
+}
+
+span.menu{
+    position: fixed;
+    background-color: #f0f0f1;
+    border-radius: 15px;
+    z-index: 10;
+    margin-left: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+span.menu:hover{
+    background-color: #2f2f2f;
+}
+nav{
+    position: fixed;
+    display: none;
+    z-index: 15;
+    background-color: black;
+    background-image: url("../img/images/background_nav.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    align-items: center;
+    flex-direction: row;
+    height: 200px;
+}
+p.lien{
+    text-decoration: none;
+    font-size: x-large;
+    color: grey;
+    text-align: center;
+    margin: 25px;
+}
+p.lien:hover{
+    font-weight: bold;
+    color: white;
+}
+a.lien{
+    text-decoration: none;
+    cursor: pointer;
+}
+
 @media (min-width: 500px) {
     h1.smaller{font-size: xxx-large;}
 
 }
 @media (min-width: 800px) {
+    p.lien{
+        font-size: xx-large;
+    }
+    body{
+        flex-direction: column;
+    }
+    nav{
+        height: 100%;
+        position: fixed;
+        flex-direction: column;
+        justify-content: center;
+    }
     div.container__div{
         flex-direction: row;
     }

@@ -8,6 +8,38 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <body>
+<span class="material-symbols-outlined menu" onclick="showNavbar()">menu</span>
+<script>
+    function showNavbar(){
+        const nav= document.querySelector('nav')
+        nav.style.display='flex';
+        const divAll=document.querySelector('div.big__container');
+        divAll.style.filter="brightness(30%)";
+        divAll.style.backgroundColor="gray";
+        document.querySelector('span.menu').style.visibility='hidden';
+        document.addEventListener("click", (event) => {
+            if (divAll.contains(event.target)) {
+                hideNavBar();
+            }
+        });
+    }
+    function hideNavBar(){
+        const nav= document.querySelector('nav')
+        nav.style.display='none';
+        const divAll=document.querySelector('div.big__container');
+        divAll.style.filter="brightness(100%)";
+        divAll.style.backgroundColor="white";
+        document.querySelector('span.menu').style.visibility='visible';
+
+    }
+</script>
+<nav>
+    <div class="redirections">
+        <a href="{{ path('app_redirecteur') }}" class="lien"><p class="lien">Mon espace</p></a>
+        <a href="{{ path('app_entreprise_create') }}" class="lien"><p class="lien">Je représente une entreprise...</p></a>
+    </div>
+</nav>
+<div class="big__container">
 <section class="section__principale header">
     <div class="texte__hearder">
         <h1 class="white">Master IA</h1>
@@ -117,4 +149,5 @@ library_books
     <div class="footer_elmt" id="footerimg"><img class="logo_etire" src="{{ asset('img/images/logo_urca-rf-hr.png') }}" alt="logo urca"></div>
     <div class="footer_elmt"><h1>Contact</h1><br><p>Composante :Faculté de Sciences Exactes et Naturelles Moulin de la Housse - BP 1039 51687 Reims Cedex 2 e-mail : scolarite.sciences@univ-reims.fr Tel : 03 26 91 34 19 Responsable de la formation : Francis ROUSSEAUX e-mail : francis.rousseaux@univ-reims.fr Coordonnées du secrétariat : Département MMI e-mail : secretariat-doyen-sciences@univ-reims.fr</p></div>
 </section>
+</div>
 </body>
