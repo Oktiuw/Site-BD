@@ -1,8 +1,12 @@
 body{
     display: flex;
     flex-direction: column;
-    background-image: url("/img/bg_form.jpg");
+    background-image: url("../img/bg_form.jpg");
     background-size: cover;
+}
+
+div.space{
+    opacity: 0;
 }
 
 div.sujetTer{
@@ -21,7 +25,6 @@ div.element_sujetTer{
     margin: 4px;
 }
 
-
 div.param{
     font-weight: bold;
     margin-left: 20px;
@@ -32,3 +35,22 @@ h1{
     margin: 10px;
     text-align: center;
 }
+
+.modifbtn{
+    display: flex;
+    align-content: stretch;
+    align-self: stretch;
+}
+
+a.btn-primary{
+    flex-grow: 2;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+button.btn-danger{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+
+
