@@ -36,6 +36,7 @@ class SujetTERController extends AbstractController
     }
 
     #[Route('/sujetter/create')]
+    #[IsGranted('ROLE_ENSEIGNANT')]
     public function create(ManagerRegistry $doctrine, Request $request, EnseignantRepository $enseignantRepository)
     {
         $sujetTER = new SujetTER();
@@ -57,6 +58,7 @@ class SujetTERController extends AbstractController
         ]);
     }
     #[Route('/sujetter/{id}/update', requirements: ['id'=>'\d+'])]
+    #[IsGranted('ROLE_ENSEIGNANT')]
     public function update(ManagerRegistry $doctrine, SujetTER $sujetTER, Request $request)
     {
         $form = $this->createForm(SujetTERType::class, $sujetTER);
@@ -75,6 +77,7 @@ class SujetTERController extends AbstractController
     }
 
     #[Route('/sujetter/{id}/delete', name: 'sujetter_delete', requirements: ['id'=>'\d+'])]
+    #[IsGranted('ROLE_ENSEIGNANT')]
     public function delete(ManagerRegistry $doctrine, SujetTER $sujetTER)
     {
         $doctrine->getManager()->remove($sujetTER);
