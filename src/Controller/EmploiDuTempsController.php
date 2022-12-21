@@ -6,15 +6,16 @@ use App\Entity\Enseignant;
 use App\Entity\Evenement;
 use App\Repository\EnseignantRepository;
 use App\Repository\EtudiantRepository;
-use http\Env\Request;
 use phpDocumentor\Reflection\Types\Boolean;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bridge\Doctrine\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Security("is_granted('ROLE_ETUDIANT') or is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ADMIN')")]
+#[IsGranted('IS_AUTHENTICATED_FULLY')]
 class EmploiDuTempsController extends AbstractController
 {
     #[Route('/emploidutemps', name: 'app_emploi_du_temps')]
@@ -62,15 +63,18 @@ class EmploiDuTempsController extends AbstractController
             'date' =>$date,'cours'=>$cours,'user'=>$this->getUser(),'beforeDate'=>$beforeDate,'afterDate'=>$afterDate,'nextWeek'=>$nextWeek,'previousWeek'=>$previousWeek
         ]);
     }
-    public function getTypeUser(EtudiantRepository $etudiantRepository, EnseignantRepository $enseignantRepository): \App\Entity\Etudiant|\App\Entity\Enseignant|null
+    public function getTypeUser(EtudiantRepository $etudiantRepository, EnseignantRepository $enseignantRepository): \Symfony\Component\HttpFoundation\RedirectResponse|\App\Entity\Etudiant|Enseignant|null
     {
         $user=$this->getUser();
         if ($user->getRoles()[0]=="ROLE_ETUDIANT") {
             return $etudiantRepository->findOneBy(['cdUtil'=>$user->getId()]);
         }
+        if ($user->getRoles()[0]=="ROLE_ENTREPRISE") {
+            return $this->redirectToRoute('app_redirecteur');
+        }
         return $enseignantRepository->findOneBy(['cdUtil'=>$user->getId()]);
     }
-    #[Security("is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ADMIN')")]
+    #[Security("is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT')")]
     #[Route('/emploidutemps/{id}/update', name: 'app_emploi_du_temps_update')]
     public function updateEvmt(Request $request, Evenement $evenement, ManagerRegistry $doctrine): Response
     {

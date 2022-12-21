@@ -31,6 +31,10 @@
                     {% else %}
                         <img src="{{ asset('img/usersAvatar/'~cour.enseignant.cdUtil.avatar) }}" alt="Avatar de l'utilisateur" class="avatar">
                     {% endif %}
+                    {% if is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT') or is_granted('ROLE_ENSEIGNANT') %}
+                        <a href="{{ path('app_emploi_du_temps_update',{'id':cour.id})}}" class="lien__arrow">
+                        <span class="material-symbols-outlined">edit</span></a>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
