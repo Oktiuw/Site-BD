@@ -17,13 +17,15 @@
     <h1> Liste des Sujets TER </h1>
 
     {% if is_granted('ROLE_ENSEIGNANT') %}
-        <div class="btn btn-primary" href="/sujetter" role="button">Ajouter un nouveau sujet</div>
+        <a class="btn btn-primary"  href="{{ path('app_sujetter_create') }}" > Ajouter un nouveau sujet</a>
     {% endif %}
 
     {% for sujet in sujetsTER %}
             {% if is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ETUDIANT') and groupe.niveau is same as(sujet.niveau) %}
             <div class="sujetTer">
-                <div class="element_sujetTer"> <div class="param">{{ sujet.titreTer }}</div> </div>
+                <div class="element_sujetTer">
+                    <div class="param">{{ sujet.titreTer }}</div>
+                </div>
                 <div class="element_sujetTer"><div class="param">Encadrant : </div>{{ sujet.enseignant.nomEn | upper }} {{ sujet.enseignant.pnomEn }}</div>
                 <div class="description_sujetTer"> <div class="param">Description : </div>{{ sujet.descTer }}</div>
             {% if sujet.etudiant is not null %}
@@ -31,7 +33,10 @@
             {% endif %}
 
                 {% if is_granted('ROLE_ENSEIGNANT') and sujet.enseignant.id == user.id %}
-                    <a class="btn btn-primary"  href="{{ path('app_sujetter_update', {'id': sujet.id }) }}" > Modifier</a>
+                    <div class="modifbtn">
+                    <a class="btn btn-primary" href="{{ path('app_sujetter_update', {'id': sujet.id }) }}" >Modifier</a>
+                    <a class="btn btn-danger" href="{{ path('app_sujetter_delete', {'id': sujet.id }) }}" >Supprimer</a>
+                    </div>
                 {% endif %}
             </div>
 
