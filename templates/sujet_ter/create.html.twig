@@ -5,7 +5,7 @@
 {% block title %} {{ title }}{% endblock %}
 
 {% block stylesheets %}
-    <link href="{{ asset('css/sujetTer.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/form.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -16,7 +16,5 @@
     {{ form_widget(form) }}
     <input type="submit" class="btn btn-success" value="Créer" />
     {{ form_end(form) }}
-
-
 
 {% endblock %}
