@@ -21,7 +21,6 @@ div.element_sujetTer{
     margin: 4px;
 }
 
-
 div.param{
     font-weight: bold;
     margin-left: 20px;
@@ -32,3 +31,16 @@ h1{
     margin: 10px;
     text-align: center;
 }
+
+.modifbtn{
+    display: flex;
+    align-content: stretch;
+    align-self: stretch;
+}
+
+a.btn-primary{
+    flex-grow: 2;
+}
+
+
+
