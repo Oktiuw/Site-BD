@@ -4,9 +4,11 @@
     {% include 'navbar.html.twig' %}
     <div class="edt">
         <div class="header">
-            <a href="{{ path('app_emploi_du_temps')}}" class="lien__arrow"><span class="material-symbols-outlined edt">arrow_back</span></a>
+            <a href="{{ path('app_emploi_du_temps_date',{'currentDate':previousWeek.format('d-m-y')})}}" class="lien__arrow"><span class="material-symbols-outlined edt">first_page</span></a>
+            <a href="{{ path('app_emploi_du_temps_date',{'currentDate':beforeDate.format('d-m-y')})}}" class="lien__arrow"><span class="material-symbols-outlined edt">arrow_back</span></a>
             <h1>Emploi du temps du {{ date.format('d/m/Y') }}</h1>
-            <a href="{{ path('app_emploi_du_temps')}}" class="lien__arrow"><span class="material-symbols-outlined edt">arrow_forward</span></a>
+            <a href="{{ path('app_emploi_du_temps_date',{'currentDate':afterDate.format('d-m-y')})}}" class="lien__arrow"><span class="material-symbols-outlined edt">arrow_forward</span></a>
+            <a href="{{ path('app_emploi_du_temps_date',{'currentDate':nextWeek.format('d-m-y')})}}" class="lien__arrow"><span class="material-symbols-outlined edt">last_page</span></a>
         </div>
         <div class="liste__cours">
         {% for cour in cours %}

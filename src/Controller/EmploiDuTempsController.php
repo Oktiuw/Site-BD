@@ -23,8 +23,14 @@ class EmploiDuTempsController extends AbstractController
     #[Route('/emploidutemps/{currentDate}', name: 'app_emploi_du_temps_date')]
     public function edtdate(EtudiantRepository $etudiantRepository, EnseignantRepository $enseignantRepository, $currentDate): Response
     {
-        $currentDate=\DateTime::createFromFormat('d-m-y', $currentDate);
-        if ($currentDate===false) {
+        $date=\DateTime::createFromFormat('d-m-y', $currentDate);
+        $beforeDate=\DateTime::createFromFormat('d-m-y', $currentDate);
+        $afterDate=\DateTime::createFromFormat('d-m-y', $currentDate);
+        $beforeDate->modify("-1 day");
+        $afterDate->modify("+1 day");
+        $nextWeek=\DateTime::createFromFormat('d-m-y', $currentDate)->modify("+7 day");
+        $previousWeek=\DateTime::createFromFormat('d-m-y', $currentDate)->modify("-7 day");
+        if ($date===false) {
             return $this->redirectToRoute('app_emploi_du_temps');
         }
         $user=$this->getTypeUser($etudiantRepository, $enseignantRepository);
@@ -39,7 +45,7 @@ class EmploiDuTempsController extends AbstractController
         }
         $cours=[];
         foreach ($evenements as $evenement) {
-            if ($evenement->getDateEvmt()->format('d/m/Y')==$currentDate->format('d/m/Y')) {
+            if ($evenement->getDateEvmt()->format('d/m/Y')==$date->format('d/m/Y')) {
                 $cours[]=$evenement;
             }
         }
@@ -50,7 +56,7 @@ class EmploiDuTempsController extends AbstractController
             return ($a->getHDeb()<$b->getHDeb() ? -1 : 1);
         });
         return $this->render('emploi_du_temps/index.html.twig', [
-            'date' =>$currentDate,'cours'=>$cours,'user'=>$this->getUser(),
+            'date' =>$date,'cours'=>$cours,'user'=>$this->getUser(),'beforeDate'=>$beforeDate,'afterDate'=>$afterDate,'nextWeek'=>$nextWeek,'previousWeek'=>$previousWeek
         ]);
     }
     public function getTypeUser(EtudiantRepository $etudiantRepository, EnseignantRepository $enseignantRepository): \App\Entity\Etudiant|\App\Entity\Enseignant|null
