@@ -6,14 +6,23 @@
     <link href="{{ asset('css/sujetTer.css') }}" rel="stylesheet">
 {% endblock %}
 
+{% block javascripts %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+{% endblock %}
+
 {% if etudiant %}
-    {% set user = etudiant %}
-    {% set groupe = user.groupeEtudiants|first %}
+    {% set usr = etudiant %}
+    {% set groupe = usr.groupeEtudiants|first %}
 {% else %}
-    {% set user = enseignant %}
+    {% set usr = enseignant %}
 {% endif %}
 
 {% block body %}
+
+    {% include 'navbar.html.twig' %}
     <h1> Liste des Sujets TER </h1>
 
     {% if is_granted('ROLE_ENSEIGNANT') %}
@@ -32,10 +41,31 @@
                     <div class="badge bg-secondary"> <div class="param"> Inscrit : </div>{{ sujet.Etudiant.nomEtud }}</div>
             {% endif %}
 
-                {% if is_granted('ROLE_ENSEIGNANT') and sujet.enseignant.id == user.id %}
+                {% if is_granted('ROLE_ENSEIGNANT') and sujet.enseignant.id == usr.id %}
                     <div class="modifbtn">
                     <a class="btn btn-primary" href="{{ path('app_sujetter_update', {'id': sujet.id }) }}" >Modifier</a>
-                    <a class="btn btn-danger" href="{{ path('app_sujetter_delete', {'id': sujet.id }) }}" >Supprimer</a>
+                        <!-- Bouton pour ouvrir le Modal -->
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#{{ sujet.id }}" data-whatever="@{{ sujet.id }}" >
+                            Supprimer
+                        </button>
+                        <!-- Le Modal -->
+                        <div class="modal" id="{{ sujet.id }}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">{{ sujet.titreTer }}</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Êtes-vous sûr de vouloir supprimer ce sujet TER ?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-danger" href="{{ path('sujetter_delete', {'id': sujet.id } )}}" >Supprimer</a>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 {% endif %}
             </div>
