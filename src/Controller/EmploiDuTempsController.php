@@ -15,8 +15,9 @@ class EmploiDuTempsController extends AbstractController
     #[Route('/emploi_du_temps', name: 'app_emploi_du_temps')]
     public function index(): Response
     {
+        $currentDate= new \DateTime();
         return $this->render('emploi_du_temps/index.html.twig', [
-            'controller_name' => 'EmploiDuTempsController',
+            'date' =>$currentDate->format('Y-m-d H:i:s')
         ]);
     }
     public function getTypeUser(EtudiantRepository $etudiantRepository, EnseignantRepository $enseignantRepository): \App\Entity\Etudiant|\App\Entity\Enseignant|null
