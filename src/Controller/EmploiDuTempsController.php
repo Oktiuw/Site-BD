@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Security("is_granted('ROLE_ETUDIANT') or is_granted('ROLE_ENSEIGNANT')")]
 class EmploiDuTempsController extends AbstractController
 {
-    #[Route('/emploi/du/temps', name: 'app_emploi_du_temps')]
+    #[Route('/emploi_du_temps', name: 'app_emploi_du_temps')]
     public function index(): Response
     {
         return $this->render('emploi_du_temps/index.html.twig', [
