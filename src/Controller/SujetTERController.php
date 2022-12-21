@@ -29,6 +29,7 @@ class SujetTERController extends AbstractController
 
         return $this->render('sujet_ter/index.html.twig', [
             'sujetsTER' => $sujetsTER,
+            'user' => $user,
             'etudiant' => $etudiant,
             'enseignant' => $enseignant
         ]);
@@ -73,11 +74,12 @@ class SujetTERController extends AbstractController
         ]);
     }
 
-    #[Route('/sujetter/{id}/delete', requirements: ['id'=>'\d+'])]
-    public function delete(SujetTER $sujetTER)
+    #[Route('/sujetter/{id}/delete', name: 'sujetter_delete', requirements: ['id'=>'\d+'])]
+    public function delete(ManagerRegistry $doctrine, SujetTER $sujetTER)
     {
-        return $this->renderForm('sujet_ter/delete.html.twig', [
-            'sujetTER' => $sujetTER,
-        ]);
+        $doctrine->getManager()->remove($sujetTER);
+        $doctrine->getManager()->flush();
+
+        return $this->redirectToRoute('app_sujet_ter');
     }
 }
