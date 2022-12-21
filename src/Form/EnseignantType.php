@@ -7,14 +7,17 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-
 class EnseignantType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nomEn')
-            ->add('pnomEn');
+
+            ->add('adEn')
+            ->add('cpEn')
+            ->add('villeEn')
+
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
