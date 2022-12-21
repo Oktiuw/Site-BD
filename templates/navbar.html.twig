@@ -46,12 +46,12 @@
 {% endif %}
 {% if user.roles[0]=='ROLE_ETUDIANT' %}
     a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Stages</a></li>' +
-    '<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Sujets TER</a></li>'+
-        '<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Emploi du temps</a></li>';
+    '<li class="nav-item"><a class="nav-link" href="{{ path('app_sujet_ter') }}">Sujets TER</a></li>'+
+        '<li class="nav-item"><a class="nav-link" href="{{ path('app_emploi_du_temps') }}">Emploi du temps</a></li>';
     {% endif %}
     {% if user.roles[0]=='ROLE_ENSEIGNANT' %}
     a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Stages</a></li>' +
-        '<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Sujets TER</a></li>'+
-        '<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Emploi du temps</a></li>';
+        '<li class="nav-item"><a class="nav-link" href="{{ path('app_sujet_ter') }}">Sujets TER</a></li>'+
+        '<li class="nav-item"><a class="nav-link" href="{{ path('app_emploi_du_temps') }}">Emploi du temps</a></li>';
     {% endif %}
 </script>
