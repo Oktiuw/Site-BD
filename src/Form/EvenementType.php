@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Evenement;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,12 +13,8 @@ class EvenementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('hDeb')
-            ->add('hFin')
-            ->add('dateEvmt')
-            ->add('TypeEvenement')
-            ->add('Enseignant')
-            ->add('groupeEtudiants')
+            ->add('hDeb', DateTimeType::class, ['label'=>'Horaire de début'])
+            ->add('hFin', DateTimeType::class, ['label'=>'Horaire de fin'])
         ;
     }
 

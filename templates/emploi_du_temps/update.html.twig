@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}Entreprise{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('css/form.css') }}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <div class="form">
+        <div class="info">
+    <h1>Modification horaire</h1>
+        </div>
+        <BR>
+        {{ form_start(form, {'attr': {'class': 'flex-column formulaire'}}) }}
+        {{ form_row(form.hDeb) }}
+            {{ form_row(form.hFin) }}
+        {{ form_widget(form.submit) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Enseignant;
 use App\Entity\Evenement;
+use App\Form\EvenementType;
 use App\Repository\EnseignantRepository;
 use App\Repository\EtudiantRepository;
 use phpDocumentor\Reflection\Types\Boolean;
@@ -11,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -78,5 +80,11 @@ class EmploiDuTempsController extends AbstractController
     #[Route('/emploidutemps/{id}/update', name: 'app_emploi_du_temps_update')]
     public function updateEvmt(Request $request, Evenement $evenement, ManagerRegistry $doctrine): Response
     {
+        $form=$this->createForm(EvenementType::class, $evenement)->add('submit', SubmitType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            return $this->redirectToRoute('app_emploi_du_temps');
+        }
+        return $this->renderForm('emploi_du_temps/update.html.twig', ['form'=>$form]);
     }
 }
