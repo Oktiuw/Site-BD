@@ -37,9 +37,10 @@ img.avatar{
 }
 div.header{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-grow: 1;
     justify-content: center;
+
 }
 span.edt{
     margin-top:15px;
@@ -53,6 +54,15 @@ a.lien__arrow{
 }
 a.lien__arrow:hover{
     color: black;
+}
+div.btns{
+    display: flex;
+}
+@media (min-width: 600px) {
+    div.header{
+        flex-direction: row;
+    }
+
 }
 @media (min-width: 1000px) {
     img.avatar{
