@@ -35,9 +35,24 @@ class SujetTERController extends AbstractController
     }
 
     #[Route('/sujetter/create')]
-    public function create()
+    public function create(ManagerRegistry $doctrine, Request $request, EnseignantRepository $enseignantRepository)
     {
+        $sujetTER = new SujetTER();
+        $sujetTER->setEnseignant($enseignantRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()]));
+
+        $form = $this->createForm(SujetTERType::class, $sujetTER);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $doctrine->getManager()->persist($sujetTER);
+            $doctrine->getManager()->flush();
+            return $this->redirectToRoute('app_sujet_ter');
+        }
+
         return $this->renderForm('sujet_ter/create.html.twig', [
+            'sujetTER' => $sujetTER,
+            'form' => $form,
         ]);
     }
     #[Route('/sujetter/{id}/update', requirements: ['id'=>'\d+'])]
