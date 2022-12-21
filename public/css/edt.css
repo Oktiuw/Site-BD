@@ -48,6 +48,12 @@ span.edt{
 span.edt:hover{
     font-weight: bold;
 }
+a.lien__arrow{
+    color: black;
+}
+a.lien__arrow:hover{
+    color: black;
+}
 @media (min-width: 1000px) {
     img.avatar{
         display: block;
