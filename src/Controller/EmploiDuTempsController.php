@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Security("is_granted('ROLE_ETUDIANT') or is_granted('ROLE_ENSEIGNANT')")]
 class EmploiDuTempsController extends AbstractController
 {
-    #[Route('/emploi_du_temps', name: 'app_emploi_du_temps')]
+    #[Route('/emploidutemps', name: 'app_emploi_du_temps')]
     public function index(EtudiantRepository $etudiantRepository, EnseignantRepository $enseignantRepository, $currentDate=null): Response
     {
         if ($currentDate===null) {
@@ -30,8 +30,20 @@ class EmploiDuTempsController extends AbstractController
                 $evenements+=$groupeEtudiants->getEvenements()->toArray();
             }
         }
+        $cours=[];
+        foreach ($evenements as $evenement) {
+            if ($evenement->getDateEvmt()->format('d/m/Y')==$currentDate->format('d/m/Y')) {
+                $cours[]=$evenement;
+            }
+        }
+        uasort($cours, function ($a, $b): int {
+            if ($a->getHDeb()==$b->getHDeb()) {
+                return 0;
+            }
+            return ($a->getHDeb()<$b->getHDeb() ? -1 : 1);
+        });
         return $this->render('emploi_du_temps/index.html.twig', [
-            'date' =>$currentDate->format('d/m/Y'),'cours'=>$evenements
+            'date' =>$currentDate->format('d/m/Y'),'cours'=>$cours,'user'=>$this->getUser()
         ]);
     }
     public function getTypeUser(EtudiantRepository $etudiantRepository, EnseignantRepository $enseignantRepository): \App\Entity\Etudiant|\App\Entity\Enseignant|null
