@@ -2,4 +2,14 @@
 {% block title %}Emploi du temps{% endblock %}
 {% block body %}
 <h1>Emploi du temps du {{ date }}</h1>
+    <div class="edt">
+        {{dump(cours) }}
+        <div class="liste__cours">
+        {% for cour in cours %}
+            <div class="evmt">
+                <h1>ok</h1>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
 {% endblock %}
