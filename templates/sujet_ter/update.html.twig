@@ -1,7 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier un sujetTER{% endblock %}
+{% set title = "Édition d'un sujetTER" %}
+
+{% block title %} {{ title }}{% endblock %}
 
 {% block stylesheets %}
     <link href="{{ asset('css/sujetTer.css') }}" rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+
+    <h1> {{ title }} </h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" class="btn btn-primary" value="Modifier" />
+    {{ form_end(form) }}
+
+
+
 {% endblock %}
