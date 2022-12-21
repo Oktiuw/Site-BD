@@ -2,13 +2,31 @@
 {% block title %}Emploi du temps{% endblock %}
 {% block body %}
     {% include 'navbar.html.twig' %}
-<h1>Emploi du temps du {{ date }}</h1>
+
     <div class="edt">
-        {{dump(cours) }}
+        <div class="header">
+            <span class="material-symbols-outlined edt">arrow_back</span>
+            <h1>Emploi du temps du {{ date }}</h1>
+            <span class="material-symbols-outlined edt">arrow_forward</span>
+        </div>
         <div class="liste__cours">
         {% for cour in cours %}
+            <hr>
             <div class="evmt">
-                <h1>ok</h1>
+                <div class="horaire">
+                <h2>De {{ cour.hDeb.format('H:i') }} à {{ cour.hFin.format('H:i') }}</h2>
+                </div>
+                <div class="details">
+                    <div class="texte">
+                        <h3> Cours {{ cour.typeEvenement.intTpEvmt }}</h3>
+                        <h3>Enseignant {{ cour.enseignant.nomEn }} {{ cour.enseignant.pnomEn }}</h3>
+                    </div>
+                    {% if cour.enseignant.cdUtil.avatar is null %}
+                        <img src="{{ asset('img/avatar_defaut.png') }}" alt="Avatar par défaut"  class="avatar">
+                    {% else %}
+                        <img src="{{ asset('img/usersAvatar/'~cour.enseignant.cdUtil.avatar) }}" alt="Avatar de l'utilisateur" class="avatar">
+                    {% endif %}
+                </div>
             </div>
         {% endfor %}
         </div>

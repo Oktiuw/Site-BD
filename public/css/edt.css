@@ -1,0 +1,56 @@
+div.edt{
+    display: flex;
+    background-color: white;
+    border-radius: 15px;
+    width: 80%;
+    flex-direction: column;
+}
+div.evmt{
+    display: flex;
+    align-items: center;
+    margin: 15px;
+}
+div.liste__cours{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+div.horaire{
+    margin: 15px;
+    width: 30%;
+    border-right: black solid 1px;
+
+}
+div.details{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+div.texte{
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+}
+img.avatar{
+    display: none;
+
+}
+div.header{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+}
+span.edt{
+    margin-top:15px;
+    cursor: pointer;
+}
+span.edt:hover{
+    font-weight: bold;
+}
+@media (min-width: 1000px) {
+    img.avatar{
+        display: block;
+    }
+
+}
