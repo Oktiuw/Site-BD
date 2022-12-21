@@ -3,10 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\SujetTER;
+use App\Form\SujetTERType;
 use App\Repository\EnseignantRepository;
 use App\Repository\EtudiantRepository;
 use App\Repository\SujetTERRepository;
-use Symfony\Bridge\Doctrine\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,18 +37,32 @@ class SujetTERController extends AbstractController
     #[Route('/sujetter/create')]
     public function create()
     {
-
+        return $this->renderForm('sujet_ter/create.html.twig', [
+        ]);
     }
     #[Route('/sujetter/{id}/update', requirements: ['id'=>'\d+'])]
     public function update(ManagerRegistry $doctrine, SujetTER $sujetTER, Request $request)
     {
+        $form = $this->createForm(SujetTERType::class, $sujetTER);
 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $doctrine->getManager()->flush();
+            return $this->redirectToRoute('app_sujet_ter');
+        }
+
+        return $this->renderForm('sujet_ter/update.html.twig', [
+            'sujetTER' => $sujetTER,
+            'form' => $form,
+        ]);
     }
 
-    #[Route('/sujetter/{id}/delete')]
-    public function delete()
+    #[Route('/sujetter/{id}/delete', requirements: ['id'=>'\d+'])]
+    public function delete(SujetTER $sujetTER)
     {
-
+        return $this->renderForm('sujet_ter/delete.html.twig', [
+            'sujetTER' => $sujetTER,
+        ]);
     }
-
 }
