@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Sujets TER{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/sujetTer.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% if etudiant %}
+    {% set user = etudiant %}
+    {% set groupe = user.groupeEtudiants|first %}
+{% else %}
+    {% set user = enseignant %}
+{% endif %}
+
+{% block body %}
+    <h1> Liste des Sujets TER </h1>
+
+    {% if is_granted('ROLE_ENSEIGNANT') %}
+        <div class="btn btn-primary" href="/sujetter" role="button">Ajouter un nouveau sujet</div>
+    {% endif %}
+
+    {% for sujet in sujetsTER %}
+            {% if is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ETUDIANT') and groupe.niveau is same as(sujet.niveau) %}
+            <div class="sujetTer">
+                <div class="element_sujetTer"> <div class="param">{{ sujet.titreTer }}</div> </div>
+                <div class="element_sujetTer"><div class="param">Encadrant : </div>{{ sujet.enseignant.nomEn | upper }} {{ sujet.enseignant.pnomEn }}</div>
+                <div class="description_sujetTer"> <div class="param">Description : </div>{{ sujet.descTer }}</div>
+            {% if sujet.etudiant is not null %}
+                    <div class="badge bg-secondary"> <div class="param"> Inscrit : </div>{{ sujet.Etudiant.nomEtud }}</div>
+            {% endif %}
+
+                {% if is_granted('ROLE_ENSEIGNANT') and sujet.enseignant.id == user.id %}
+                    <div class="btn btn-primary" href="/sujetter" role="button">Modifier</div>
+                {% endif %}
+            </div>
+
+            {% endif %}
+    {% endfor %}
+
+{% endblock %}
