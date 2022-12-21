@@ -1,23 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% set title = "Édition d'un sujetTER" %}
+{% set title = "Édition d'un sujet TER" %}
 
 {% block title %} {{ title }}{% endblock %}
 
 {% block stylesheets %}
-    <link href="{{ asset('css/sujetTer.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/form.css') }}" rel="stylesheet">
 {% endblock %}
 
 
 {% block body %}
 
     <h1> {{ title }} </h1>
-
-    {{ form_start(form) }}
+    {{ form_start(form, {'attr': {'class': 'flex-column formulaire'}}) }}
+    <p>Titre </p> {{ form_widget(form.titreTer)}}<br>
+    <p>Description </p> {{ form_widget(form.descTer)}}<br>
+    <p>Niveau </p> {{ form_widget(form.niveau)}}<br>
     {{ form_widget(form) }}
     <input type="submit" class="btn btn-primary" value="Modifier" />
     {{ form_end(form) }}
-
-
 
 {% endblock %}
