@@ -23,10 +23,12 @@
 {% block body %}
 
     {% include 'navbar.html.twig' %}
+    <div class="space"><br>.<br>.<br>.<br>.<br></div>
+
     <h1> Liste des Sujets TER </h1>
 
     {% if is_granted('ROLE_ENSEIGNANT') %}
-        <a class="btn btn-primary"  href="{{ path('app_sujetter_create') }}" > Ajouter un nouveau sujet</a>
+        <a class="btn btn-dark"  href="{{ path('app_sujetter_create') }}" > Ajouter un nouveau sujet</a>
     {% endif %}
 
     {% for sujet in sujetsTER %}
@@ -72,5 +74,4 @@
 
             {% endif %}
     {% endfor %}
-
 {% endblock %}
