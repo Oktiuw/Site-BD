@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Enseignant;
+use App\Entity\Evenement;
 use App\Repository\EnseignantRepository;
 use App\Repository\EtudiantRepository;
+use http\Env\Request;
 use phpDocumentor\Reflection\Types\Boolean;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -66,5 +69,10 @@ class EmploiDuTempsController extends AbstractController
             return $etudiantRepository->findOneBy(['cdUtil'=>$user->getId()]);
         }
         return $enseignantRepository->findOneBy(['cdUtil'=>$user->getId()]);
+    }
+    #[Security("is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ADMIN')")]
+    #[Route('/emploidutemps/{id}/update', name: 'app_emploi_du_temps_update')]
+    public function updateEvmt(Request $request, Evenement $evenement, ManagerRegistry $doctrine): Response
+    {
     }
 }
