@@ -41,9 +41,9 @@ class EvenementCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TimeField::new('hDeb')->renderAsChoice()->setLabel("Horaire de début")->setFormat('HH:mm')->setTimezone('Europe/Paris'),
-            TimeField::new('hFin')->setLabel("Horaire de fin")->setFormat('HH:mm')->renderAsChoice()->setTimezone('Europe/Paris'),
-            DateField::new('dateEvmt')->setLabel("Date de l'evenement")->setTimezone('Europe/Paris'),
+            TimeField::new('hDeb')->renderAsChoice()->setLabel("Horaire de début")->setFormat('HH:mm'),
+            TimeField::new('hFin')->setLabel("Horaire de fin")->setFormat('HH:mm')->renderAsChoice(),
+            DateField::new('dateEvmt')->setLabel("Date de l'evenement"),
             AssociationField::new('TypeEvenement')->setFormTypeOptions(['choice_label'=>'intTpEvmt','query_builder'=>function (EntityRepository $entityRepository) {
                 return $entityRepository->createQueryBuilder('c')->orderBy('c.intTpEvmt', 'ASC');
             }])->formatValue(function ($value, $entity) {
