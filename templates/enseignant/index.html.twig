@@ -1,4 +1,4 @@
-{% extends 'baseprofile.html.twig' %}
+{% extends 'base.html.twig' %}
 {% block head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block stylesheets%}
-    <link rel="stylesheet" href="{{ asset('css/enseignant.css') }}">
+    <link rel="stylesheet" href={{ asset('css/enseignant.css') }}>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 {% endblock %}
 
@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li>
-                <a href="#sign-out">
+                <a href="{{ path('app_logout') }}">
                     <i class="fa fa-sign-out-alt fa-2x"></i>
                 </a>
             </li>
@@ -47,7 +47,7 @@
             <img src="images.png">
 
             <div class="name">
-                {{ profile.nomEn }}{{ profile.pnomEn}}
+                <h3>{{ profile.nomEn }} {{ profile.pnomEn}}</h3>
             </div>
             <div class="job">
                 Enseignant
@@ -66,9 +66,10 @@
             </div>
 
             <div class="url">
-                <a href="">Paramètres</a>
+                <a href="{{ path('app_update_password') }}">Modifier Mon mot de passe</a>
                 <hr align="center">
             </div>
+
 
         </div>
     </div>
@@ -76,7 +77,7 @@
 
 
     <div class="main">
-        <h2>Votre Profil</h2>
+        <h1>Votre Profil</h1>
         <div class="card">
             <div class="card-body">
                 <button  onclick="edit()" type="button" class="button btn-primary"><i class="fa fa-pen fa-xs edit"></i></button>
@@ -96,7 +97,7 @@
                     </tr>
                     <tr>
                         <td>Email :</td>
-                        <td>{{ enseignant.email }}</td>
+                        <td>{{ user.email }}</td>
 
 
 
@@ -117,10 +118,10 @@
             </div>
         </div>
 
-        <h2>Cours Récents</h2>
+        <h1>Cours Récents</h1>
         <div class="card">
             <div class="card-body">
-                <i class="fa fa-pen fa-xs edit">
+
                 <div class="cours">
 
 
@@ -131,13 +132,15 @@
 
 
 
+
 {% endblock %}
 {% block javascripts %}
     <script>
         function edit() {
-            location.href = "{{ path('app_enseignant_update')}}";
+            location.href='{{ path('app_enseignant_update') }}'
 
         }
+
 
     </script>
 

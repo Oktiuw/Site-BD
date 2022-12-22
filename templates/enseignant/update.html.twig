@@ -6,18 +6,12 @@
 {% block body %}
     <div class="form">
         <div class="info">
-            <h1>Modification des données {{ profile.nomEn }} {{ profile.pnomEn }}</h1>
-            {% if avatar!=null %}
-                <img src="data:image/png;base64,{{ avatar.avatar }}" alt="Avatar de l'utilisateur" class="avatar">
-            {% else %}
-                <img  src="{{ asset('img/avatar_defaut.png') }}" alt="Avatar par defaut de l'utilsateur" class="avatar">
-            {% endif %}
+            <h1>Modification des données de l'enseignant {{ profile.nomEn }} {{ profile.pnomEn }}</h1>
         </div>
         <BR>
         {{ form_start(form, {'attr': {'class': 'flex-column formulaire'}}) }}
-        {{ form_widget(form.pnomEn,{'attr':{'class':'hidden-row'}}) }}
         <p>Adresse </p> {{ form_widget(form.adEn)}}<br>
-        <p>Code Postal</p> {{ form_widget(form.cpEn)}}<br>
+        <p>Code Postal </p> {{ form_widget(form.cpEn)}}<br>
         <p>Ville </p> {{ form_widget(form.villeEn)}}<br>
         <p>email</p>  {{ form_widget(formUser.email) }}<br>
         {{ form_widget(form.submit) }}

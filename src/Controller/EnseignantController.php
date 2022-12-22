@@ -56,7 +56,7 @@ class EnseignantController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('app_enseignant');
         }
-        return $this->renderForm('enseignant/update', ['form'=>$form,'profile'=>$enseignant,'user'=>$user,'formUser'=>$formUser]);
+        return $this->renderForm('enseignant/update.html.twig', ['form'=>$form,'profile'=>$enseignant,'user'=>$user,'formUser'=>$formUser]);
     }
 }
 
