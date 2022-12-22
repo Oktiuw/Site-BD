@@ -80,9 +80,14 @@ class EmploiDuTempsController extends AbstractController
     #[Route('/emploidutemps/{id}/update', name: 'app_emploi_du_temps_update')]
     public function updateEvmt(Request $request, Evenement $evenement, ManagerRegistry $doctrine): Response
     {
-        $form=$this->createForm(EvenementType::class, $evenement)->add('submit', SubmitType::class);
+        $form=$this->createForm(EvenementType::class, $evenement)->add('submit', SubmitType::class, ['label'=>'Modifier']);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $form=$form->getData();
+            $evenement->setHDeb($form->getHDeb());
+            $evenement->setHFin($form->getHFin());
+            $doctrine=$doctrine->getManager();
+            $doctrine->flush();
             return $this->redirectToRoute('app_emploi_du_temps');
         }
         return $this->renderForm('emploi_du_temps/update.html.twig', ['form'=>$form]);
