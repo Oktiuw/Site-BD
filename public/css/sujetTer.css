@@ -32,6 +32,11 @@ div.param{
     margin-right: 20px;
 }
 
+div.description_sujetTer{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 h1{
     margin: 10px;
     text-align: center;
@@ -51,6 +56,13 @@ a.btn-primary{
 button.btn-danger{
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+}
+
+@media (min-width:400px){
+    div.description_sujetTer{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
 }
 
 @media (min-width:1000px){
