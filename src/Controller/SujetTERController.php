@@ -97,4 +97,15 @@ class SujetTERController extends AbstractController
 
         return $this->redirectToRoute('app_sujet_ter');
     }
+
+    #[Route('/sujetter/{id}/unregister', name: 'sujetter_unregister', requirements: ['id'=>'\d+'])]
+    #[IsGranted('ROLE_ETUDIANT')]
+    public function unregister(ManagerRegistry $doctrine, EtudiantRepository $etudiantRepository, SujetTER $sujetTER)
+    {
+        $sujetTER->setEtudiant(null);
+        $doctrine->getManager()->persist($sujetTER);
+        $doctrine->getManager()->flush();
+
+        return $this->redirectToRoute('app_sujet_ter');
+    }
 }
