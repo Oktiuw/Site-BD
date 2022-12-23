@@ -57,6 +57,7 @@ class SujetTERController extends AbstractController
             'form' => $form,
         ]);
     }
+
     #[Route('/sujetter/{id}/update', requirements: ['id'=>'\d+'])]
     #[IsGranted('ROLE_ENSEIGNANT')]
     public function update(ManagerRegistry $doctrine, SujetTER $sujetTER, Request $request)
@@ -81,6 +82,17 @@ class SujetTERController extends AbstractController
     public function delete(ManagerRegistry $doctrine, SujetTER $sujetTER)
     {
         $doctrine->getManager()->remove($sujetTER);
+        $doctrine->getManager()->flush();
+
+        return $this->redirectToRoute('app_sujet_ter');
+    }
+
+    #[Route('/sujetter/{id}/register', name: 'sujetter_register', requirements: ['id'=>'\d+'])]
+    #[IsGranted('ROLE_ETUDIANT')]
+    public function register(ManagerRegistry $doctrine, EtudiantRepository $etudiantRepository, SujetTER $sujetTER)
+    {
+        $sujetTER->setEtudiant($etudiantRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()]));
+        $doctrine->getManager()->persist($sujetTER);
         $doctrine->getManager()->flush();
 
         return $this->redirectToRoute('app_sujet_ter');
