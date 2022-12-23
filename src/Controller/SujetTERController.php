@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 
-#[Security("is_granted('ROLE_ETUDIANT') or is_granted('ROLE_ENSEIGNANT')")]
+#[Security("is_granted('ROLE_ETUDIANT') or is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT')")]
 class SujetTERController extends AbstractController
 {
     #[Route('/sujetter', name: 'app_sujet_ter')]
@@ -36,7 +36,7 @@ class SujetTERController extends AbstractController
     }
 
     #[Route('/sujetter/create')]
-    #[IsGranted('ROLE_ENSEIGNANT')]
+    #[Security("is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT')")]
     public function create(ManagerRegistry $doctrine, Request $request, EnseignantRepository $enseignantRepository)
     {
         $sujetTER = new SujetTER();
@@ -59,7 +59,7 @@ class SujetTERController extends AbstractController
     }
 
     #[Route('/sujetter/{id}/update', requirements: ['id'=>'\d+'])]
-    #[IsGranted('ROLE_ENSEIGNANT')]
+    #[Security("is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT')")]
     public function update(ManagerRegistry $doctrine, SujetTER $sujetTER, Request $request)
     {
         $form = $this->createForm(SujetTERType::class, $sujetTER);
@@ -78,7 +78,7 @@ class SujetTERController extends AbstractController
     }
 
     #[Route('/sujetter/{id}/delete', name: 'sujetter_delete', requirements: ['id'=>'\d+'])]
-    #[IsGranted('ROLE_ENSEIGNANT')]
+    #[Security("is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT')")]
     public function delete(ManagerRegistry $doctrine, SujetTER $sujetTER)
     {
         $doctrine->getManager()->remove($sujetTER);
@@ -100,7 +100,7 @@ class SujetTERController extends AbstractController
 
     #[Route('/sujetter/{id}/unregister', name: 'sujetter_unregister', requirements: ['id'=>'\d+'])]
     #[IsGranted('ROLE_ETUDIANT')]
-    public function unregister(ManagerRegistry $doctrine, EtudiantRepository $etudiantRepository, SujetTER $sujetTER)
+    public function unregister(ManagerRegistry $doctrine, SujetTER $sujetTER)
     {
         $sujetTER->setEtudiant(null);
         $doctrine->getManager()->persist($sujetTER);
