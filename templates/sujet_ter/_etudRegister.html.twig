@@ -4,6 +4,27 @@
         <div class="param">{{ sujetEtudiant.titreTer }}</div>
     </div>
     <div class="element_sujetTer"><div class="param">Encadrant : </div>{{ sujetEtudiant.enseignant.nomEn | upper }} {{ sujetEtudiant.enseignant.pnomEn }}</div>
-    <div class="description_sujetTer"> <div class="param">Description : </div>{{ sujetEtudiant.descTer }}</div>
-    <button type="button" class="btn btn-dark">Se désinscrire</button>
+    <div class="param">Description : </div> <div class="description_sujetTer"> {{ sujetEtudiant.descTer }}</div>
+    <!-- Bouton pour ouvrir le Modale -->
+    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#{{ sujetEtudiant.id }}" data-whatever="@{{ sujetEtudiant.id }}" >
+        Se désinscrire
+    </button>
+    <!-- Le Modale -->
+    <div class="modal" id="{{ sujetEtudiant.id }}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ sujetEtudiant.titreTer | capitalize }}</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    Êtes-vous sûr de vouloir vous désinscrire de ce sujet TER ?
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-success" href="" >Valider</a>
+                    <a class="btn btn-outline-secondary" data-dismiss="modal">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

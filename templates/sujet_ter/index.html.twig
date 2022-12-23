@@ -49,8 +49,7 @@
                     <div class="param">{{ sujet.titreTer | capitalize }}</div>
                 </div>
                 <div class="element_sujetTer"><div class="param">&nbsp Encadrant : </div>{{ sujet.enseignant.nomEn | upper }} {{ sujet.enseignant.pnomEn }}</div>
-                <div class="param">Description : </div>
-                                                <div class="description_sujetTer"> {{ sujet.descTer }}</div>
+                <div class="param">Description :</div> <div class="description_sujetTer"> {{ sujet.descTer }}</div>
 
                 {% if is_granted('ROLE_ETUDIANT') and sujet.etudiant is null %}
                         <!-- Bouton pour ouvrir le Modale -->
