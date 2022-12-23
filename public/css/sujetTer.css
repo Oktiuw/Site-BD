@@ -37,6 +37,10 @@ div.description_sujetTer{
     margin-right: 10px;
 }
 
+div.etudiantWarning{
+    font-weight: 900;
+}
+
 h1{
     margin: 10px;
     text-align: center;

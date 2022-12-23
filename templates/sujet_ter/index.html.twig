@@ -19,6 +19,7 @@
     {% set sujetEtudiant = etudiant.sujetTERs|first %}
 {% else %}
     {% set usr = enseignant %}
+    {% set sujetEtudiant = null %}
 {% endif %}
 
 {% block body %}
@@ -52,11 +53,11 @@
                 <div class="param">Description :</div> <div class="description_sujetTer"> {{ sujet.descTer }}</div>
 
                 {% if is_granted('ROLE_ETUDIANT') and sujet.etudiant is null %}
-                        <!-- Bouton pour ouvrir le Modale -->
+                        <!-- Bouton pour ouvrir le Modale d'inscription -->
                         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#{{ sujet.id }}" data-whatever="@{{ sujet.id }}" >
                             S'inscrire
                         </button>
-                        <!-- Le Modale -->
+                        <!-- Le Modale d'inscription-->
                         <div class="modal" id="{{ sujet.id }}">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -83,11 +84,11 @@
                 {% if is_granted('ROLE_ENSEIGNANT') and sujet.enseignant.id == usr.id %}
                     <div class="modifbtn">
                     <a class="btn btn-primary" href="{{ path('app_sujetter_update', {'id': sujet.id }) }}" >Modifier</a>
-                        <!-- Bouton pour ouvrir le Modale -->
+                        <!-- Bouton pour ouvrir le Modale de suppression de sujet TER -->
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#{{ sujet.id }}" data-whatever="@{{ sujet.id }}" >
                             Supprimer
                         </button>
-                        <!-- Le Modale -->
+                        <!-- Le Modale de suppression de sujet TER -->
                         <div class="modal" id="{{ sujet.id }}">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -97,6 +98,11 @@
                                     </div>
                                     <div class="modal-body">
                                         Êtes-vous sûr de vouloir supprimer ce sujet TER ?
+                                    {% if sujet.etudiant %}
+                                        <div class="etudiantWarning">
+                                            Attention : l'étudiant {{ sujet.Etudiant.nomEtud|upper }} {{ sujet.Etudiant.pnomEtud }} est inscrit à ce sujet !
+                                        </div>
+                                    {% endif %}
                                     </div>
                                     <div class="modal-footer">
                                         <a class="btn btn-danger" href="{{ path('sujetter_delete', {'id': sujet.id } )}}" >Supprimer</a>

@@ -5,11 +5,11 @@
     </div>
     <div class="element_sujetTer"><div class="param">Encadrant : </div>{{ sujetEtudiant.enseignant.nomEn | upper }} {{ sujetEtudiant.enseignant.pnomEn }}</div>
     <div class="param">Description : </div> <div class="description_sujetTer"> {{ sujetEtudiant.descTer }}</div>
-    <!-- Bouton pour ouvrir le Modale -->
+    <!-- Bouton pour ouvrir le Modale pour se désinscrire -->
     <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#{{ sujetEtudiant.id }}" data-whatever="@{{ sujetEtudiant.id }}" >
         Se désinscrire
     </button>
-    <!-- Le Modale -->
+    <!-- Le Modale de désinscription -->
     <div class="modal" id="{{ sujetEtudiant.id }}">
         <div class="modal-dialog">
             <div class="modal-content">
