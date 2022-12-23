@@ -16,6 +16,7 @@
 {% if etudiant %}
     {% set usr = etudiant %}
     {% set groupe = usr.groupeEtudiants|first %}
+    {% set sujetEtudiant = etudiant.sujetTERs|first %}
 {% else %}
     {% set usr = enseignant %}
 {% endif %}
@@ -24,11 +25,32 @@
 
     {% include 'navbar.html.twig' %}
     <div class="space"><br>.<br>.<br>.<br>.<br></div>
-    {% if is_granted('ROLE_ENSEIGNANT') %}
-        <a class="btn btn-dark"  href="{{ path('app_sujetter_create') }}" > Ajouter un nouveau sujet</a>
+
+    {% if sujetEtudiant %}
+        <h1> Votre sujet TER </h1>
+        <div class="sujetTer">
+            <div class="element_sujetTer">
+                <div class="param">{{ sujetEtudiant.titreTer }}</div>
+            </div>
+            <div class="element_sujetTer"><div class="param">Encadrant : </div>{{ sujetEtudiant.enseignant.nomEn | upper }} {{ sujetEtudiant.enseignant.pnomEn }}</div>
+            <div class="description_sujetTer"> <div class="param">Description : </div>{{ sujetEtudiant.descTer }}</div>
+            <button type="button" class="btn btn-dark">Se désinscrire</button>
+        </div>
     {% endif %}
 
-    {% for sujet in sujetsTER %}
+
+    {% if not sujetEtudiant  %}
+        <h1> Liste des Sujets TER </h1>
+
+        {% if is_granted('ROLE_ENSEIGNANT') %}
+            <a class="btn btn-dark"  href="{{ path('app_sujetter_create') }}" > Ajouter un nouveau sujet</a>
+        {% endif %}
+
+        {% if is_granted('ROLE_ETUDIANT') and sujetEtudiant %}
+            {{ sujetEtudiant.titreTer }}
+        {% endif %}
+
+        {% for sujet in sujetsTER %}
             {% if is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ETUDIANT') and groupe.niveau is same as(sujet.niveau) %}
             <div class="sujetTer">
                 <div class="element_sujetTer">
@@ -36,9 +58,10 @@
                 </div>
                 <div class="element_sujetTer"><div class="param">Encadrant : </div>{{ sujet.enseignant.nomEn | upper }} {{ sujet.enseignant.pnomEn }}</div>
                 <div class="description_sujetTer"> <div class="param">Description : </div>{{ sujet.descTer }}</div>
-            {% if sujet.etudiant is not null %}
+
+                {% if sujet.etudiant is not null %}
                     <div class="badge bg-secondary"> <div class="param"> Inscrit : </div>{{ sujet.Etudiant.nomEtud }}</div>
-            {% endif %}
+                {% endif %}
 
                 {% if is_granted('ROLE_ENSEIGNANT') and sujet.enseignant.id == usr.id %}
                     <div class="modifbtn">
@@ -68,7 +91,7 @@
                     </div>
                 {% endif %}
             </div>
-
             {% endif %}
-    {% endfor %}
+        {% endfor %}
+    {% endif %}
 {% endblock %}
