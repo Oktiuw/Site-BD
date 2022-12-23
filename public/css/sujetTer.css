@@ -16,6 +16,7 @@ div.sujetTer{
     flex-direction: column;
     flex-grow: 1;
     margin: 10px;
+    align-self: center;
 }
 
 div.element_sujetTer{
@@ -52,5 +53,8 @@ button.btn-danger{
     border-bottom-left-radius: 0;
 }
 
-
-
+@media (min-width:1000px){
+    div.sujetTer{
+        width: 70%;
+    }
+}

@@ -27,15 +27,7 @@
     <div class="space"><br>.<br>.<br>.<br>.<br></div>
 
     {% if sujetEtudiant %}
-        <h1> Votre sujet TER </h1>
-        <div class="sujetTer">
-            <div class="element_sujetTer">
-                <div class="param">{{ sujetEtudiant.titreTer }}</div>
-            </div>
-            <div class="element_sujetTer"><div class="param">Encadrant : </div>{{ sujetEtudiant.enseignant.nomEn | upper }} {{ sujetEtudiant.enseignant.pnomEn }}</div>
-            <div class="description_sujetTer"> <div class="param">Description : </div>{{ sujetEtudiant.descTer }}</div>
-            <button type="button" class="btn btn-dark">Se désinscrire</button>
-        </div>
+        {{ include('sujet_ter/_etudRegister.html.twig') }}
     {% endif %}
 
 
