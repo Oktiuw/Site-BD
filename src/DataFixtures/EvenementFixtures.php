@@ -16,15 +16,13 @@ class EvenementFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        $etudiants=$manager->getRepository(GroupeEtudiants::class);
+        $etudiants=$manager->getRepository(GroupeEtudiants::class)->findAll();
         $enseignants=$manager->getRepository(Enseignant::class);
         $users=$manager->getRepository(Utilisateur::class);
-        $typeEvmts=$manager->getRepository(TypeEvenement::class);
+        $typeEvmts=$manager->getRepository(TypeEvenement::class)->findAll();
         $enseignant=$enseignants->findOneBy(['cdUtil'=>$users->findOneBy(['login'=>'Enseignant'])]);
-        foreach ($etudiants as $etudiant) {
-            for ($i=2;$i<=4;$i++) {
-                EvenementFactory::createOne(['hDeb'=>EvenementFactory::faker()->dateTime()->setTime($i*3, '0'),'hFin'=>EvenementFactory::faker()->dateTime()->setTime(($i*3)+2, '0'),'tpEvmt'=>array_rand((array)$typeEvmts),'enseignant'=>$enseignant]);
-            }
+        for ($i=2;$i<=5;$i++) {
+            EvenementFactory::createOne(['hDeb'=>EvenementFactory::faker()->dateTime()->setTime($i*3, '0'),'hFin'=>EvenementFactory::faker()->dateTime()->setTime(($i*3)+2, '0'),'typeEvenement'=>$typeEvmts[array_rand((array)$typeEvmts)],'enseignant'=>$enseignant,'groupeEtudiants'=>$etudiants]);
         }
     }
 

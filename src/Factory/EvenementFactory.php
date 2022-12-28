@@ -41,7 +41,7 @@ final class EvenementFactory extends ModelFactory
         return [
             'hDeb' =>  self::faker()->dateTime()->setTime(0, 0),
             'hFin' => self::faker()->dateTime()->setTime(2, 0),
-            'dateEvmt' => self::faker()->dateTime(),
+            'dateEvmt' => new \DateTime(),
         ];
     }
 
