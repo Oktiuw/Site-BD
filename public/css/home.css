@@ -10,7 +10,6 @@ section.header{
     height: 800px;
     margin-left: 0;
     margin-right: 0;
-    margin-top: 10px;
 }
 div.texte__hearder{
     height: 100%;
@@ -32,14 +31,13 @@ h2.white{
 
 }
 span.material-symbols-outlined{
-    font-size: xxx-large;
+    font-size: xx-large;
 }
 div.container__div{
     display: flex;
     flex-direction: column;
 }
 body>*{
-    font-family: Oswald,sans-serif;
     font-family: Oswald,sans-serif;
 }
 body{
@@ -179,19 +177,22 @@ h1.gros{
 div.big__container{
     display: flex;
     flex-direction: column;
+    padding-top: 10px;
 }
 
 span.menu{
     position: fixed;
-    background-color: #f0f0f1;
-    border-radius: 15px;
+    border-radius: 150px;
     z-index: 10;
     margin-left: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
     cursor: pointer;
+    transition: background-color,font-size 500ms ease-in-out;
 }
 span.menu:hover{
-    background-color: #2f2f2f;
+    background-color: white;
+    font-size: xxx-large;
+
 }
 nav{
     position: fixed;
