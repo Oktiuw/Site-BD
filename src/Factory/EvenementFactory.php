@@ -39,9 +39,8 @@ final class EvenementFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'hDeb' => null, // TODO add TIME ORM type manually
-            'hFin' => null, // TODO add TIME ORM type manually
+            'hDeb' =>  self::faker()->dateTime()->setTime(0, 0),
+            'hFin' => self::faker()->dateTime()->setTime(2, 0),
             'dateEvmt' => self::faker()->dateTime(),
         ];
     }
