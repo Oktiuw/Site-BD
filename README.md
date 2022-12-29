@@ -10,7 +10,7 @@
   <h4 align="center">
     Description du projet
   </h4>
-<p>Ce projet a pour but d'intégrer au master IA de Reims une application web permettant la gestion des stages/sujets TERs/contact</p>
+<p>Ce projet a pour but d'intégrer au master IA de Reims une application web permettant la gestion des Stages/sujets TERs/Contact entre profs entreprises et élèves</p>
 </div>
 
 
@@ -29,6 +29,8 @@
       </ul>
     </li>
     <li><a href="#Basededonnees">Base de données</a></li>
+    <li><a href="#Tests">Test</a></li>
+    <li><a href="#Auteurs">Auteurs</a></li>
   </ol>
 </details>
 
@@ -73,40 +75,30 @@ Voici une liste d'instructions pour commencer à développer sur ce projet
 <h2 id="Basededonnees"> Base de données  </h2>
 La base comporte plusieurs entités ainsi que des relations de type 1,n n,m
 N'hésitez pas à regarder le schéma dans votre SGBD pour mieux comprendre
+<h3>Comptes de bases</h3>
+Tous les comptes ont pour mot de passe par défaut 'test'<br>
+Liste des comptes par défaut (login)
+
+* Etudiant
+* Enseignant
+* Entreprise
+* EnseignantAdmin
+
+<h2 id="Tests"> Test  </h2>
+Pour les tests, l'application utilise Codeception et doctrine2
+
+   ```sh
+  composer test
+   ```
+
+<h2 id="Auteurs"> Auteurs  </h2>
+
+* Fouad BELHIA
+* Alix PAYRAUDREAU
+* Harun SEZGIN
+* Khadija SIALA
+* Aurélien VINCENT
 
 
 
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
-[Php-url]: https://www.php.net/
-[Php.net]:https://s2.qwant.com/thumbr/700x0/c/8/631bd608443c04234c908d1c1dac87e1b65a9a28439a652a13c7c77c151ef0/1459870313PHP-logo.svg.png?u=https%3A%2F%2Fdab1nmslvvntp.cloudfront.net%2Fwp-content%2Fuploads%2F2016%2F04%2F1459870313PHP-logo.svg.png&q=0&b=1&p=0&a=0
