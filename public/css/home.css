@@ -187,12 +187,10 @@ span.menu{
     margin-left: 10px;
     margin-top: 10px;
     cursor: pointer;
-    transition: background-color,font-size 500ms ease-in-out;
+    transition: background-color 200ms ease-in-out;
 }
 span.menu:hover{
-    background-color: white;
-    font-size: xxx-large;
-
+    background-color: grey;
 }
 nav{
     position: fixed;
