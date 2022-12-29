@@ -7,6 +7,7 @@ use App\Entity\Utilisateur;
 use App\Form\EntrepriseType;
 use App\Form\UtilisateurType;
 use App\Repository\EntrepriseRepository;
+use App\Repository\UtilisateurRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -58,7 +59,7 @@ class EntrepriseController extends AbstractController
     }
 
     #[Route('/entreprise/create')]
-    public function create(Request $request, ManagerRegistry $doctrine, UserPasswordHasherInterface $hasher): Response
+    public function create(Request $request, ManagerRegistry $doctrine, UserPasswordHasherInterface $hasher, UtilisateurRepository $utilisateurRepository): Response
     {
         $user=new Utilisateur();
         $entreprise=new Entreprise();
@@ -66,22 +67,28 @@ class EntrepriseController extends AbstractController
         $form=$this->createForm(EntrepriseType::class, $entreprise)->add(
             'submit',
             SubmitType::class,
-            ['label' => 'Ajouter']
+            ['label' => 'Envoyer','attr'=>['onclick'=>'javascriptAlert()']]
         );
         $form->handleRequest($request);
         $formUser->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $logins=$utilisateurRepository->findAll();
             $entrepriseType=$form->getData();
             $userData=$formUser->getData();
+            foreach ($logins as $login) {
+                if ($login->getLogin()===$userData->getLogin()) {
+                    return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'formUser'=>$formUser]);
+                }
+            }
             $entityManager=$doctrine->getManager();
             $entreprise->setNomEnt($entrepriseType->getNomEnt());
             $entreprise->setNomRef($entrepriseType->getNomRef());
             $user->setEmail($userData->getEmail());
+            $user->setRoles(['ROLE_ENTREPRISE']);
+            $entreprise->setIsDisabled(true);
             $user->setPassword($hasher->hashPassword($user, $userData->getPassword()));
             $user->setLogin($userData->getLogin());
             $entreprise->setCdUtil($user);
-            $user->setRoles(['ROLE_ENTREPRISE']);
-            $entreprise->setIsDisabled(true);
             $entityManager->persist($user);
             $entityManager->persist($entreprise);
             $entityManager->flush();
@@ -89,5 +96,4 @@ class EntrepriseController extends AbstractController
         }
         return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'formUser'=>$formUser]);
     }
-
 }
