@@ -1,22 +1,104 @@
-# Symfony SAE site masterWebIa
-## Auteur
-Aurélien VINCENT/Harun SEZGIN/Alix PAYRAUDEAUX/Fouad BELHIA/Khadija SIALA
-## Installation/Configuration
-git clone https://iut-info.univ-reims.fr/gitlab/votre_login/sitewebia |
-cd sitewebia |
-composer install 
-## Scripts
-"start": "Lance le seveur web",
-"test:cs": "Effectue une vérification du code",
-"fix:cs": "Corrige le code"
-"db": "Crée la base, ne pas oublier de créer le .env.local !"
+<!-- Logo PROJET -->
+<br />
+<div align="center">
+  <a href="https://github.com/github_username/repo_name">
+    <img src="public/img/logo_urca.JPG" alt="Logo" width="412" height="80">
+  </a>
 
-## Base de données 
+<h3 align="center">Site Web Master IA</h3>
+
+  <h4 align="center">
+    Description du projet
+  </h4>
+<p>Ce projet a pour but d'intégrer au master IA de Reims une application web permettant la gestion des Stages/sujets TERs/Contact entre profs entreprises et élèves</p>
+</div>
 
 
-## Installation des requirements pour créer les forges de données :
-composer require orm-fixtures --dev
-composer require zenstruck/foundry:* --dev
+<!-- Sommaire -->
+<details>
+  <summary>Sommaire</summary>
+  <ol>
+    <li>
+      <a href="#Apropos">A propos</a>
+    </li>
+    <li>
+      <a href="#Installation">Installation</a>
+      <ul>
+        <li><a href="#Debut">Début</a></li>
+        <li><a href="#Clonage">Clonage</a></li>
+      </ul>
+    </li>
+    <li><a href="#Basededonnees">Base de données</a></li>
+    <li><a href="#Tests">Test</a></li>
+    <li><a href="#Auteurs">Auteurs</a></li>
+  </ol>
+</details>
+
+
+
+<!-- A propos -->
+<h2 id="Apropos"> A propos </h2>
+
+Ce projet a été réalisé dans le cadre d'une SAE au BUT Informatique de REIMS par des étudiants en 2nd année de BUT Informatique, ici, tous spécialisés dans le parcours "data" (=données).
+
+<h2 id="Installation"> Installation </h2>
+
+Voici une liste d'instructions pour commencer à développer sur ce projet
+
+<h3 id="Debut"> Début </h3>
+
+* composer
+* php
+* symfony
+
+<h3 id="Clonage"> Clonage </h3>
+
+1. Clonage
+   ```sh
+   git clone https://iut-info.univ-reims.fr/gitlab/vinc0064/sae3-01
+   ```
+2. Installation des paquets composer
+   ```sh
+   composer install
+   ```
+3. Configuration de la base de données
+   ```
+   Copier-coller le .env en .env.local et définir votre base de donées
+   Ensuite, lancer le script 'composer db'
+   ```
+
+   
+
+
+
+<!-- Base de données -->
+<h2 id="Basededonnees"> Base de données  </h2>
+La base comporte plusieurs entités ainsi que des relations de type 1,n n,m
+N'hésitez pas à regarder le schéma dans votre SGBD pour mieux comprendre
+<h3>Comptes de bases</h3>
+Tous les comptes ont pour mot de passe par défaut 'test'<br>
+Liste des comptes par défaut (login)
+
+* Etudiant
+* Enseignant
+* Entreprise
+* EnseignantAdmin
+
+<h2 id="Tests"> Test  </h2>
+Pour les tests, l'application utilise Codeception et doctrine2
+
+   ```sh
+  composer test
+   ```
+
+<h2 id="Auteurs"> Auteurs  </h2>
+
+* Fouad BELHIA
+* Alix PAYRAUDREAU
+* Harun SEZGIN
+* Khadija SIALA
+* Aurélien VINCENT
+
 
 
 
