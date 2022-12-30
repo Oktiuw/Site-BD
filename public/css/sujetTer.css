@@ -16,6 +16,7 @@ div.sujetTer{
     flex-direction: column;
     flex-grow: 1;
     margin: 10px;
+    align-self: center;
 }
 
 div.element_sujetTer{
@@ -29,6 +30,15 @@ div.param{
     font-weight: bold;
     margin-left: 20px;
     margin-right: 20px;
+}
+
+div.description_sujetTer{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+div.etudiantWarning{
+    font-weight: 900;
 }
 
 h1{
@@ -52,5 +62,15 @@ button.btn-danger{
     border-bottom-left-radius: 0;
 }
 
+@media (min-width:400px){
+    div.description_sujetTer{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
 
-
+@media (min-width:1000px){
+    div.sujetTer{
+        width: 70%;
+    }
+}
