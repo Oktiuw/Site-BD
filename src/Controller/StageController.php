@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Security("is_granted('ROLE_ETUDIANT') or is_granted('ROLE_ENTREPRISE')")]
+#[Security("is_granted('ROLE_ETUDIANT') or is_granted('ROLE_ENTREPRISE') or is_granted('ROLE_ENSEIGNANT')")]
 class StageController extends AbstractController
 {
     #[Route('/stage', name: 'app_stage')]
@@ -27,7 +27,11 @@ class StageController extends AbstractController
         $enseignant=$enseignantRepository->findOneBy(['cdUtil'=>$user->getId()]);
         $entreprise=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
 
-        $stages = $stageRepository->findBy([], ['titreStage'=> 'ASC']);
+        if ($etudiant || $enseignant) {
+            $stages = $stageRepository->findBy([], ['titreStage'=> 'ASC']);
+        } else {
+            $stages = $stageRepository->findBy(['entreprise' => $entreprise], ['titreStage'=> 'ASC']);
+        }
 
         return $this->render('stage/index.html.twig', [
             'stages' => $stages,
@@ -36,6 +40,7 @@ class StageController extends AbstractController
             'entreprise' => $entreprise
         ]);
     }
+
 
     #[Route('/stage/create')]
     #[IsGranted('ROLE_ENTREPRISE')]
