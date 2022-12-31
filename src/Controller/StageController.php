@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Security("is_granted('ROLE_ETUDIANT') or is_granted('ROLE_ENTREPRISE') or is_granted('ROLE_ENSEIGNANT')")]
+#[Security("is_granted('IS_AUTHENTICATED_FULLY')")]
 class StageController extends AbstractController
 {
     #[Route('/stage', name: 'app_stage')]
