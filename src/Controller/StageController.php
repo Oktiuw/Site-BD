@@ -82,4 +82,14 @@ class StageController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Route('/stage/{id}/delete', name: 'stage_delete', requirements: ['id'=>'\d+'])]
+    #[IsGranted('ROLE_ENTREPRISE')]
+    public function delete(ManagerRegistry $doctrine, Stage $stage)
+    {
+        $doctrine->getManager()->remove($stage);
+        $doctrine->getManager()->flush();
+
+        return $this->redirectToRoute('app_stage');
+    }
 }
