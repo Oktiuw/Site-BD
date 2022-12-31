@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% set title = "Candidatures" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    {% include 'navbar.html.twig' %}
+    
+    <h1>Candidatures au stage: {{ stage.titreStage }}</h1>
+    
+    
+    {% for candidature in canditatures %}
+        <div class="candidature">
+            <div class="nom_candidat">
+                {{candidature.etudiant.nomEtud | upper}} {{candidature.etudiant.pnomEtud}}
+            </div>
+
+            <div class="pj_candidat">
+            
+            </div>
+        </div>
+
+    {% endfor %}
+
+{% endblock %}
+    
