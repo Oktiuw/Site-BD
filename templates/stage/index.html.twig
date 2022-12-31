@@ -16,7 +16,7 @@
 {% if etudiant %}
     {% set usr = etudiant %}
     {% set groupe = usr.groupeEtudiants|first %}
-{% else %}
+{% elseif entreprise %}
     {% set usr = entreprise %}
 {% endif %}
 
@@ -24,12 +24,12 @@
 
     {% include 'navbar.html.twig' %}
     <div class="space"><br>.<br>.<br>.<br>.<br></div>
-    {% if is_granted('ROLE_ENSEIGNANT') %}
-        <a class="btn btn-dark"  href="{{ path('app_sujetter_create') }}" > Ajouter un nouveau sujet</a>
+    {% if is_granted('ROLE_ENTREPRISE') %}
+        <a class="btn btn-dark"  href="{{ path('app_stage_create') }}" > Ajouter un nouveau stage</a>
     {% endif %}
 
     {% for stage in stages %}
-        {% if is_granted('ROLE_ENTREPRISE') or is_granted('ROLE_ETUDIANT') and groupe.niveau is same as(stage.niveau) %}
+        {% if is_granted('ROLE_ENTREPRISE') or is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ETUDIANT') and groupe.niveau is same as(stage.niveau) %}
             <div class="stage">
                 <div class="element_stage">
                     <div class="param">{{ stage.titreStage }}</div>
@@ -44,7 +44,7 @@
                     {% endfor %}
                 {% endif %}
                 #}
-                {% if is_granted('ROLE_ENTREPRISE') and sujet.entreprise.id == usr.id %}
+                {% if is_granted('ROLE_ENTREPRISE') and stage.entreprise.id == usr.id %}
                     <div class="modifbtn">
                         <a class="btn btn-primary" href="{{ path('app_stage_update', {'id': stage.id }) }}" >Modifier</a>
                         <!-- Bouton pour ouvrir le Modal -->
@@ -72,7 +72,6 @@
                     </div>
                 {% endif %}
             </div>
-
         {% endif %}
     {% endfor %}
 {% endblock %}
