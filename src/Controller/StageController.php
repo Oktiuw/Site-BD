@@ -41,7 +41,6 @@ class StageController extends AbstractController
         ]);
     }
 
-
     #[Route('/stage/create')]
     #[IsGranted('ROLE_ENTREPRISE')]
     public function create(ManagerRegistry $doctrine, Request $request, EntrepriseRepository $entrepriseRepository)
@@ -60,6 +59,25 @@ class StageController extends AbstractController
         }
 
         return $this->renderForm('stage/create.html.twig', [
+            'stage' => $stage,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/stage/{id}/update', requirements: ['id' => '\d+'])]
+    #[IsGranted('ROLE_ENTREPRISE')]
+    public function update(Stage $stage, Request $request, ManagerRegistry $doctrine)
+    {
+        $form = $this->createForm(StageType::class, $stage);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $doctrine->getManager()->flush();
+            return $this->redirectToRoute('app_stage');
+        }
+
+        return $this->renderForm('stage/update.html.twig', [
             'stage' => $stage,
             'form' => $form,
         ]);
