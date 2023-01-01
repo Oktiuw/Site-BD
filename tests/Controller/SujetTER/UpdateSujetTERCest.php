@@ -34,7 +34,7 @@ class UpdateSujetTERCest
         $I->see("Édition d'un sujet TER", 'h1');
     }
 
-    public function EnseignantOnly(ControllerTester $I)
+    public function EnseignantOwnerOnly(ControllerTester $I)
     {
         SujetTERFactory::createOne([
             'titreTer' => 'Création de site web',
@@ -44,14 +44,22 @@ class UpdateSujetTERCest
             'etudiant' => null
         ]);
 
+        #acces refusé pour les Etudiant
         $userEtud = UtilisateurFactory::createOne(['roles' => ['ROLE_ETUDIANT']]);
         $I->amLoggedInAs($userEtud->object());
         $I->amOnPage('/sujetter/1/update');
         $I->seeResponseCodeIs(HttpCode::FORBIDDEN);
 
+        #acces refusé pour les Entreprise
         $userEnt = UtilisateurFactory::createOne(['roles' => ['ROLE_ENTREPRISE']]);
         $I->amLoggedInAs($userEnt->object());
         $I->amOnPage('/sujetter/1/update');
         $I->seeResponseCodeIs(HttpCode::FORBIDDEN);
+
+        #acces refusé par le serveur pour les Enseignant qui ne sont pas responsable du sujet en question
+        $userEns = UtilisateurFactory::createOne(['roles' => ['ROLE_ENSEIGNANT']]);
+        $I->amLoggedInAs($userEns->object());
+        $I->amOnPage('/sujetter/1/update');
+        $I->seeResponseCodeIs(HttpCode::INTERNAL_SERVER_ERROR);
     }
 }
