@@ -35,20 +35,44 @@
                     <div class="param">{{ stage.titreStage }}</div>
                 </div>
                 <div class="entreprise_stage"><div class="param">Entreprise : </div>{{ stage.entreprise.nomEnt }}</div>
+                <div class="responsable_stage"><div class="param">Responsable : </div>{{ stage.entreprise.nomRef }}</div>
+                <div class="tel_stage"><div class="param">Téléphone : </div>{{ stage.entreprise.telEnt }}</div>
                 <div class="niveau_stage"><div class="param">Niveau : </div>{{ stage.niveau.libNiv }}</div>
                 <div class="description_stage"> <div class="param">Description : </div>{{ stage.descStage }}</div>
                 <div class="adresse_stage"><div class="param">Adresse : </div>{{ stage.adStage }}, {{ stage.cpStage }} {{ stage.villeStage }}</div>
 
                 {% if is_granted('ROLE_ETUDIANT') %}
-                    <a class="btn btn-primary" href="{{ path('app_candidature_create', {'id': stage.id }) }}" >Candidater</a>
+                    <!-- Bouton pour ouvrir le Modal -->
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#{{ stage.id }}" data-whatever="@{{ stage.id }}" >
+                        Candidater
+                    </button>
+                    <!-- Le Modal -->
+                    <div class="modal" id="{{ stage.id }}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">{{ stage.titreStage }}</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                Êtes-vous sûr de vouloir candidater à ce stage ?
+                                </div>
+                                <div class="modal-footer">
+                                    <a class="btn btn-danger" href="{{ path('app_candidature_create', {'id': stage.id }) }}" >Candidater</a>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 {% endif %}
+                
                 
                 {% if is_granted('ROLE_ENTREPRISE') %}
                     <div class="modifbtn">
                         <a class="btn btn-primary" href="{{ path('app_stage_update', {'id': stage.id }) }}" >Modifier</a>
                         {# bouton permettant de voir les candidatures, seulement si il existe des candidatures sur ce stage #}
                         {% if stage.canditatures|length > 0 %}
-                            <a class="btn btn-primary" href="{{ path('app_candidature', {'id': stage.id }) }}" >Voir les candidatures</a>
+                            <a class="btn btn-primary" href="{{ path('app_candidature', {'id': stage.id }) }}" >{{ stage.canditatures|length }} candidature(s)</a>
                         {% endif %}
                         <!-- Bouton pour ouvrir le Modal -->
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#{{ stage.id }}" data-whatever="@{{ stage.id }}" >
@@ -67,7 +91,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <a class="btn btn-danger" href="{{ path('stage_delete', {'id': stage.id } )}}" >Supprimer</a>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                                     </div>
                                 </div>
                             </div>
