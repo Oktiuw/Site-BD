@@ -60,51 +60,69 @@ class SujetTERController extends AbstractController
 
     #[Route('/sujetter/{id}/update', requirements: ['id'=>'\d+'])]
     #[Security("is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT')")]
-    public function update(ManagerRegistry $doctrine, SujetTER $sujetTER, Request $request)
+    public function update(ManagerRegistry $doctrine, SujetTER $sujetTER, Request $request, EnseignantRepository $enseignantRepository)
     {
-        $form = $this->createForm(SujetTERType::class, $sujetTER);
+        #un Enseignant ne peut modifier qu'un sujet TER dont il est le responsable
+        if ($enseignantRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()]) === $sujetTER->getEnseignant()) {
+            $form = $this->createForm(SujetTERType::class, $sujetTER);
 
-        $form->handleRequest($request);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $doctrine->getManager()->flush();
-            return $this->redirectToRoute('app_sujet_ter');
+            if ($form->isSubmitted() && $form->isValid()) {
+                $doctrine->getManager()->flush();
+                return $this->redirectToRoute('app_sujet_ter');
+            }
+
+            return $this->renderForm('sujet_ter/update.html.twig', [
+                'sujetTER' => $sujetTER,
+                'form' => $form,
+            ]);
         }
-
-        return $this->renderForm('sujet_ter/update.html.twig', [
-            'sujetTER' => $sujetTER,
-            'form' => $form,
-        ]);
+        return $this->redirectToRoute('app_sujet_ter');
     }
 
     #[Route('/sujetter/{id}/delete', name: 'sujetter_delete', requirements: ['id'=>'\d+'])]
     #[Security("is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT')")]
-    public function delete(ManagerRegistry $doctrine, SujetTER $sujetTER)
+    public function delete(ManagerRegistry $doctrine, SujetTER $sujetTER, EnseignantRepository $enseignantRepository)
     {
-        $doctrine->getManager()->remove($sujetTER);
-        $doctrine->getManager()->flush();
-
+        #un Enseignant ne peut supprimer qu'un sujet TER dont il est le responsable
+        if ($enseignantRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()]) === $sujetTER->getEnseignant()) {
+            $doctrine->getManager()->remove($sujetTER);
+            $doctrine->getManager()->flush();
+        }
         return $this->redirectToRoute('app_sujet_ter');
     }
 
     #[Route('/sujetter/{id}/register', name: 'sujetter_register', requirements: ['id'=>'\d+'])]
     #[IsGranted('ROLE_ETUDIANT')]
-    public function register(ManagerRegistry $doctrine, EtudiantRepository $etudiantRepository, SujetTER $sujetTER)
+    public function register(ManagerRegistry $doctrine, EtudiantRepository $etudiantRepository, SujetTER $sujetTER, SujetTERRepository $sujetTERRepository)
     {
-        $sujetTER->setEtudiant($etudiantRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()]));
-        $doctrine->getManager()->persist($sujetTER);
-        $doctrine->getManager()->flush();
+        $etudiant = $etudiantRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()]);
+        $niveau = $etudiant->getGroupeEtudiants()[0];
+        #test si l'Etudiant connecté possède deja un sujet TER
+        #test si le sujet est bien de son niveau
+        #test si le sujet est bien disponible
+        if ($sujetTERRepository->findOneBy(['Etudiant'=>$etudiant])!==$etudiant
+            and $sujetTER->getNiveau() == $niveau->getNiveau()
+            and $sujetTER->getEtudiant() == null) {
+            $sujetTER->setEtudiant($etudiant);
+            $doctrine->getManager()->persist($sujetTER);
+            $doctrine->getManager()->flush();
+        }
 
         return $this->redirectToRoute('app_sujet_ter');
     }
 
     #[Route('/sujetter/{id}/unregister', name: 'sujetter_unregister', requirements: ['id'=>'\d+'])]
     #[IsGranted('ROLE_ETUDIANT')]
-    public function unregister(ManagerRegistry $doctrine, SujetTER $sujetTER)
+    public function unregister(ManagerRegistry $doctrine, EtudiantRepository $etudiantRepository, SujetTER $sujetTER)
     {
-        $sujetTER->setEtudiant(null);
-        $doctrine->getManager()->persist($sujetTER);
-        $doctrine->getManager()->flush();
+        #test si c'est bien le sujet TER de l'Etudiant connecté
+        if ($sujetTER->getEtudiant() === $etudiantRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()])) {
+            $sujetTER->setEtudiant(null);
+            $doctrine->getManager()->persist($sujetTER);
+            $doctrine->getManager()->flush();
+        }
 
         return $this->redirectToRoute('app_sujet_ter');
     }
