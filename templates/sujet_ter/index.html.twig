@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des Sujets TER{% endblock %}
+{% set title = 'Liste des Sujets TER' %}
+
+{% block title %}{{ title }}{% endblock %}
 
 {% block stylesheets %}
     <link href="{{ asset('css/sujetTer.css') }}" rel="stylesheet">
@@ -33,7 +35,7 @@
 
 
     {% if not sujetEtudiant  %}
-        <h1> Liste des Sujets TER </h1>
+        <h1>{{ title }}</h1>
 
         {% if is_granted('ROLE_ENSEIGNANT') %}
             <a class="btn btn-dark"  href="{{ path('app_sujetter_create') }}" > Ajouter un nouveau sujet</a>
