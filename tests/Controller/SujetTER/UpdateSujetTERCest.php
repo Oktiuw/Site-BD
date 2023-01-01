@@ -16,16 +16,12 @@ class UpdateSujetTERCest
 {
     public function form(ControllerTester $I)
     {
-        $niveau = NiveauFactory::createOne([
-            'libNiv' => 'M1'
-        ]);
-
         $user = UtilisateurFactory::createOne(['roles' => ['ROLE_ENSEIGNANT']]);
 
         SujetTERFactory::createOne([
             'titreTer' => 'Création de site web',
             'descTer' => 'Créer et concevoir un site dans son ensemble',
-            'niveau' => $niveau,
+            'niveau' => NiveauFactory::createOne(['libNiv' => 'M1']),
             'enseignant' => EnseignantFactory::createOne(['cdUtil' => $user]),
             'etudiant' => null
         ]);
@@ -38,4 +34,24 @@ class UpdateSujetTERCest
         $I->see("Édition d'un sujet TER", 'h1');
     }
 
+    public function EnseignantOnly(ControllerTester $I)
+    {
+        SujetTERFactory::createOne([
+            'titreTer' => 'Création de site web',
+            'descTer' => 'Créer et concevoir un site dans son ensemble',
+            'niveau' => NiveauFactory::createOne(['libNiv' => 'M1']),
+            'enseignant' => EnseignantFactory::createOne(['cdUtil' => UtilisateurFactory::createOne(['roles' => ['ROLE_ENSEIGNANT']])]),
+            'etudiant' => null
+        ]);
+
+        $userEtud = UtilisateurFactory::createOne(['roles' => ['ROLE_ETUDIANT']]);
+        $I->amLoggedInAs($userEtud->object());
+        $I->amOnPage('/sujetter/1/update');
+        $I->seeResponseCodeIs(HttpCode::FORBIDDEN);
+
+        $userEnt = UtilisateurFactory::createOne(['roles' => ['ROLE_ENTREPRISE']]);
+        $I->amLoggedInAs($userEnt->object());
+        $I->amOnPage('/sujetter/1/update');
+        $I->seeResponseCodeIs(HttpCode::FORBIDDEN);
+    }
 }
