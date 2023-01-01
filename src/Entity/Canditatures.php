@@ -14,7 +14,7 @@ class Canditatures
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::BLOB)]
+    #[ORM\Column(type: Types::BLOB, nullable: true)]
     private $PJ = null;
 
     #[ORM\ManyToOne(inversedBy: 'canditatures')]
