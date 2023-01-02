@@ -104,7 +104,7 @@ class ContactController extends AbstractController
         }
         $form=$this->createForm(EmailType::class)->add('submit', SubmitType::class, ['label' => 'Envoyer','attr'=>['onclick'=>'javascriptAlert()']])
         ;
-        return $this->formSendEmail($form, $request, $etudiant->getCdUtil()->getEmail());
+        return $this->formSendEmail($form, $request, $etudiant->getCdUtil()->getEmail(), true);
     }
     #[Route('/contact/groupeEtudiants', name: 'app_contact_groupeEtudiants')]
     public function contactGroupeEtudiants(EntrepriseRepository $entrepriseRepository, Request $request): Response
@@ -142,7 +142,7 @@ class ContactController extends AbstractController
          * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
          * @throws \PHPMailer\PHPMailer\Exception
          */
-    public function formSendEmail(\Symfony\Component\Form\FormInterface $form, Request $request, $to=null): Response|\Symfony\Component\HttpFoundation\RedirectResponse
+    public function formSendEmail(\Symfony\Component\Form\FormInterface $form, Request $request, $to=null, $hideDest=false): Response|\Symfony\Component\HttpFoundation\RedirectResponse
     {
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -156,7 +156,7 @@ class ContactController extends AbstractController
 
             return $this->redirectToRoute('app_redirecteur');
         }
-        return $this->renderForm('contact/send.html.twig', ['form' => $form]);
+        return $this->renderForm('contact/send.html.twig', ['form' => $form,'hideDest'=>$hideDest]);
     }
     public function isAccountDisabled(EntrepriseRepository $entrepriseRepository): bool
     {
