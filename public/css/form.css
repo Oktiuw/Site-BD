@@ -40,7 +40,7 @@ div.form{
 body{
     display: flex;
     flex-direction: column;
-    background-image: url("/img/bg_form.jpg");
+    background-image: url("../img/bg_form.jpg");
     background-size: cover;
     align-items: center;
     background-repeat: no-repeat;

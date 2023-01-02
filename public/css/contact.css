@@ -7,11 +7,9 @@ div.liste_choix {
     margin-bottom: 15px;
 }
 body{
-    width: 98%;
-    height: 98%;
     display: flex;
     flex-direction: column;
-    background-image: url("/img/bg_form.jpg");
+    background-image: url("../img/bg_form.jpg");
     background-size: cover;
 
 }
@@ -25,7 +23,7 @@ a.choix{
     justify-content: center;
     flex-direction: column;
     text-decoration: none;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
     height: 100%;
     width: 95%;
     transition: ease-in-out 0.5s;
