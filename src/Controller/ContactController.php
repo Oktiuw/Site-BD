@@ -133,7 +133,7 @@ class ContactController extends AbstractController
 
             return $this->redirectToRoute('app_redirecteur');
         }
-        return $this->renderForm('contact/send.html.twig', ['form' => $form]);
+        return $this->renderForm('contact/send.html.twig', ['form' => $form,'hideDest'=>false]);
     }
 
     /**

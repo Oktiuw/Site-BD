@@ -52,14 +52,12 @@ div.top_contacts{
     flex-direction: column;
     height: 600px;
     width: 100%;
-    margin-left: 10px;
 }
 div.bot_contacts{
     display: flex;
     flex-direction: column;
     height: 600px;
     width: 100%;
-
 }
 p{
     font-weight: bold;
@@ -77,6 +75,7 @@ span.material-symbols-outlined{
     }
     div.top_contacts{
         height: 1000px;
+        margin-left:  10px;
     }
 
 }

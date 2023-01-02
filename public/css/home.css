@@ -203,6 +203,8 @@ nav{
     align-items: center;
     flex-direction: row;
     height: 200px;
+    width: 100%;
+    transition: all 1s ease-in-out;
 }
 p.lien{
     text-decoration: none;
@@ -236,6 +238,7 @@ a.lien{
         position: fixed;
         flex-direction: column;
         justify-content: center;
+        width: 500px;
     }
     div.container__div{
         flex-direction: row;
