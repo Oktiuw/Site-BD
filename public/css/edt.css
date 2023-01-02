@@ -60,6 +60,7 @@ a.lien__arrow:hover{
 }
 div.btns{
     display: flex;
+    justify-content: center;
 }
 @media (min-width: 600px) {
     div.header{
