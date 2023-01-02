@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 
 class EmailSender
 {
-    public function createMailSender()
+    public function createMailSender(): PHPMailer
     {
         $e=new PHPMailer(true);
         $e->isSMTP();
@@ -23,7 +23,7 @@ class EmailSender
     /**
      * @throws Exception
      */
-    public function sendEmail(PHPMailer $mailer, String $from, string $to, string $subject, string $body)
+    public function sendEmail(PHPMailer $mailer, String $from, string $to, string $subject, string $body): void
     {
         $mailer->setFrom($from);
         $mailer->addAddress($to);
