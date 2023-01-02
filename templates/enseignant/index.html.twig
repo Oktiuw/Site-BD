@@ -1,5 +1,25 @@
 {% extends 'baseprofile.html.twig' %}
+{% block title %}Bienvenue{{ profile.n}}{% endblock %}
 {% block body %}
-</div>
+    {% if script !="" %}
+        <script>alert('{{ script }}');</script>
+    {% endif %}
+    <h1>{{ profile.nomEtud|upper}} {{ profile.pnomEtud }} </h1>
+    <h6> {{ profile.adEtud }}</h6> <p>{{ profile.cpEtud }}</p>
+    <p>{{ profile.villeEtud }}</p>
+    {% if profile.cvEtud is null %}
+        <embed src="{{ asset('img/cvsae.pdf') }}" width=450 height=450 type='application/pdf'>
+    {% else %}
+        <embed src="{{ asset('img/usersCV/'~profile.CVEtud) }}" width=450 height=450 type='application/pdf'>
+    {% endif %}
+
+    </div>
+
+
+
     <hr>
+
+    <p><a href="{{ path('app_etudiant_update')}}">Modifier mes informations personnelles</a></p>
+
+
 {% endblock %}
