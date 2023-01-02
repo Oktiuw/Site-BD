@@ -1,11 +1,12 @@
 actor: ControllerTester
 suite_namespace: App\Tests\Controller
 modules:
-    enabled:
-        - Symfony:
-              app_path: 'src'
-              environment: 'test'
-        - Doctrine2:
-            depends: Symfony
-            cleanup: true
-        - Asserts:
+  # enable helpers as array
+  enabled:
+    - Symfony:
+        app_path: 'src'
+        environment: 'test'
+    - Doctrine2:
+        depends: Symfony
+        cleanup: true
+    - Asserts:
