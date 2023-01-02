@@ -21,9 +21,10 @@
 {% endif %}
 
 {% block body %}
-
     {% include 'navbar.html.twig' %}
-    <div class="space">Liste des stages</div>
+
+    <h1>Liste des stages</h1>
+
     {% if is_granted('ROLE_ENTREPRISE') %}
         <a class="btn btn-dark"  href="{{ path('app_stage_create') }}" > Ajouter un nouveau stage</a>
         <br>
