@@ -27,7 +27,7 @@ a.choix{
     height: 100%;
     width: 95%;
     transition: ease-in-out 0.5s;
-    opacity: 0.75;
+    opacity: 0.5;
     border: solid black 1px;
     border-radius: 10px;
 }
