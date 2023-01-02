@@ -61,6 +61,9 @@ class EntrepriseController extends AbstractController
     #[Route('/entreprise/create')]
     public function create(Request $request, ManagerRegistry $doctrine, UserPasswordHasherInterface $hasher, UtilisateurRepository $utilisateurRepository): Response
     {
+        if ($this->getUser()!==null){
+            return $this->redirectToRoute('app_home');
+        }
         $user=new Utilisateur();
         $entreprise=new Entreprise();
         $formUser=$this->createForm(UtilisateurType::class, $user)->add('password', PasswordType::class)->add('login', TextType::class);
