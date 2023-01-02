@@ -2,7 +2,7 @@
 
 {% set title = "Édition d'un sujet TER" %}
 
-{% block title %} {{ title }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block stylesheets %}
     <link href="{{ asset('css/form.css') }}" rel="stylesheet">
@@ -10,17 +10,14 @@
 
 
 {% block body %}
-    <div class="form">
-        <div class="info">
-            <h1> {{ title }} </h1>
-        </div>
-            {{ form_start(form, {'attr': {'class': 'flex-column formulaire'}}) }}
-            <p>Titre </p> {{ form_widget(form.titreTer)}}<br>
-            <p>Description </p> {{ form_widget(form.descTer)}}<br>
-            <p>Niveau </p> {{ form_widget(form.niveau)}}<br>
-            {{ form_widget(form) }}
-            <input type="submit" class="btn btn-primary" value="Modifier" />
+
+    <h1>{{ title }}</h1>
+    {{ form_start(form, {'attr': {'class': 'flex-column formulaire'}}) }}
+    <p>Titre </p> {{ form_widget(form.titreTer)}}<br>
+    <p>Description </p> {{ form_widget(form.descTer)}}<br>
+    <p>Niveau </p> {{ form_widget(form.niveau)}}<br>
+    {{ form_widget(form) }}
+    <input type="submit" class="btn btn-primary" value="Modifier" />
     {{ form_end(form) }}
-    </div>
 
 {% endblock %}
