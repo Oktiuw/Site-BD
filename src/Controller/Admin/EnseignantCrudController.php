@@ -66,9 +66,7 @@ class EnseignantCrudController extends AbstractCrudController
         $user=$entityInstance->getCdUtil();
         if ($user==null) {
             $lastname = $_POST['Enseignant']['nomEn'];
-            $firstname=$_POST['Enseignant']['pnomEn'];
-            $cp=$_POST['Enseignant']['cpEn'];
-            $login = "$lastname-$firstname-$cp";
+            $login = strtolower(str_replace(" ", "", "$lastname" . rand(1, 300)));
             $user = new Utilisateur();
             $user->setLogin($login);
             $user->setEmail('default@example.com');
