@@ -9,8 +9,7 @@
 
         <BR>
         {{ form_start(form, {'attr': {'class': 'flex-column formulaire'}}) }}
-        {% if hideDest %}
-        {% else %}
+        {% if hideDest == false %}
         <p>Destinataire</p> {{ form_widget(form.profile)}}<br>
         {% endif %}
         <p>Objet du mail</p>  {{ form_widget(form.objet) }}<br>
