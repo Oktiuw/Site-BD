@@ -16,15 +16,19 @@
     {% endif %}
 
     <h1 class="h3 mb-3 font-weight-normal">Identifiez-vous</h1>
-    <label for="inputLogin"><p>Login</p></label>
+            {% if app.user is null %}
+            <p style="color: grey; font-size: small">Pour une première connexion : </p>
+            <p style="color: grey; font-size: small">Votre login : Nom-Prénom-CodePostal</p>
+            <p style="color: grey; font-size: small">Votre de mot de passe, date de naissance : yyyy-mm-dd</p>
+            {% endif %}
+
+            <label for="inputLogin"><p>Login</p></label>
     <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control" autocomplete="username" required autofocus>
         <label for="inputPassword"><p>Mot de passe</p></label>
-            <p style="color: grey; font-size: small">Pour une première connexion, votre de mot de passe est votre date de naissance sour la forme yyyy-mm-dd</p>
             <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
     <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+           value="{{ csrf_token('authenticate') }}">
 
 
         <div class="checkbox mb-3">
@@ -36,6 +40,7 @@
     <button class="btn btn-lg btn-primary" type="submit" style="max-width: 40%">
         Me connecter
     </button>
-    </div>
+
 </form>
+    </div>
 {% endblock %}
