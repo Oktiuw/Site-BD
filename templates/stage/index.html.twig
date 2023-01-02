@@ -26,6 +26,7 @@
     <div class="space">Liste des stages</div>
     {% if is_granted('ROLE_ENTREPRISE') %}
         <a class="btn btn-dark"  href="{{ path('app_stage_create') }}" > Ajouter un nouveau stage</a>
+        <br>
     {% endif %}
 
     {% for stage in stages %}

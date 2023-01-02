@@ -13,12 +13,13 @@ div.space {
 }
 
 div.stage {
-    background: white;
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     margin: 10px;
+
 }
 
 div.element_stage {
