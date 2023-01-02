@@ -163,7 +163,6 @@ class ContactController extends AbstractController
         $user=$this->getUser();
         if ($user->getRoles()[0]==='ROLE_ENTREPRISE') {
             $entreprise=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
-            var_dump($entreprise->isIsDisabled());
             if ($entreprise->isIsdisabled()) {
                 return true;
             }
