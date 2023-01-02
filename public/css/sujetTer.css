@@ -1,12 +1,14 @@
 body{
     display: flex;
     flex-direction: column;
-    background-image: url("../img/bg_form.jpg");
+    background-image: url("../img/bg_opaque.png");
     background-size: cover;
 }
 
 div.space{
     opacity: 0;
+    min-height: 20px;
+    width: 100%;
 }
 
 div.sujetTer{
@@ -15,8 +17,10 @@ div.sujetTer{
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    margin: 10px;
     align-self: center;
+    margin: 10px 10px 30px;
+    box-shadow: 0 10px 10px 1px rgba(0,0,0,0.3);
+
 }
 
 div.element_sujetTer{
