@@ -1,0 +1,57 @@
+body {
+    background-image: url("../img/bg_form.jpg");
+    background-size: cover;
+}
+
+.candidature {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.informations_candidat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(237, 237, 237, 0.7);
+
+}
+
+
+.avatar_candidat img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar_candidat {
+    display: flex;
+    justify-content: center;
+}
+
+.nom_candidat {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.email_candidat {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.cv_candidat {
+    width: 75%;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.7);
+}
+
