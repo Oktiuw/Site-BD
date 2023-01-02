@@ -19,16 +19,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class EnseignantController extends AbstractController
 {
     #[Route('/enseignant', name: 'app_enseignant')]
-    public function index(EnseignantRepository $enseignantRepository): Response
+    public function index(EnseignantRepository $enseignantRepository,ManagerRegistry $doctrine): Response
     {
         $user=$this->getUser();
         $profile=$enseignantRepository->findOneBy(['cdUtil'=>$user->getId()]);
-        $avatar=null;
-        if ($user->getAvatar() !== null) {
-            $avatar=$user->setAvatar(base64_encode(stream_get_contents($user->getAvatar())));
+        $script="";
+        if ($profile->isFirstConnection()) {
+            $profile->setFirstConnection(false);
+            $script='Première connexion détectée ! Modifiez votre mail et votre mot de passe par défaut! ';
+            $doctrine->getManager()->flush();
         }
         return $this->render('enseignant/index.html.twig', [
-            'user' =>$user,'profile'=>$profile,'avatar'=>$avatar
+            'user' =>$user,'profile'=>$profile,'avatar'=>$user->getAvatar(),'script'=>$script
         ]);
     }
     #[Route('/enseignant/update')]
