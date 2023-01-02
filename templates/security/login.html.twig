@@ -19,7 +19,8 @@
     <label for="inputLogin"><p>Login</p></label>
     <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control" autocomplete="username" required autofocus>
         <label for="inputPassword"><p>Mot de passe</p></label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            <p style="color: grey; font-size: small">Pour une première connexion, votre de mot de passe est votre date de naissance sour la forme yyyy-mm-dd</p>
+            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
