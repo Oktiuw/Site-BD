@@ -1,0 +1,51 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-image: url("../img/bg_form.jpg");
+    background-size: cover;
+}
+
+div.space {
+    display: flex;
+    justify-content: center;
+}
+
+div.stage {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 10px;
+
+}
+
+div.element_stage {
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    margin: 4px;
+    justify-content: center;
+
+}
+
+div.param {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+h1 {
+    margin: 10px;
+    text-align: center;
+}
+
+.modifbtn {
+    display: flex;
+    align-content: stretch;
+    align-self: stretch;
+}
+
+a.btn-primary {
+    flex-grow: 2;
+}
+

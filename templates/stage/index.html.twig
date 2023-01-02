@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des stages{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/stage.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% if etudiant %}
+    {% set usr = etudiant %}
+    {% set groupe = usr.groupeEtudiants|first %}
+{% elseif entreprise %}
+    {% set usr = entreprise %}
+{% endif %}
+
+{% block body %}
+    {% include 'navbar.html.twig' %}
+
+    <h1>Liste des stages</h1>
+
+    {% if is_granted('ROLE_ENTREPRISE') %}
+        <a class="btn btn-dark"  href="{{ path('app_stage_create') }}" > Ajouter un nouveau stage</a>
+        <br>
+    {% endif %}
+
+    {% for stage in stages %}
+        {# on affiche que si l'étudiant n'a pas déjà candidaté à ce stage #}
+        {% if is_granted('ROLE_ENTREPRISE') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT') or is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ETUDIANT') and groupe.niveau is same as(stage.niveau) and stage not in etudiant.canditatures|map(c => c.stage) %} 
+            <div class="stage">
+                <div class="element_stage">
+                    <div class="param">{{ stage.titreStage }}</div>
+                </div>
+                <div class="entreprise_stage"><div class="param">Entreprise : </div>{{ stage.entreprise.nomEnt }}</div>
+                <div class="responsable_stage"><div class="param">Responsable : </div>{{ stage.entreprise.nomRef }}</div>
+                <div class="tel_stage"><div class="param">Téléphone : </div>{{ stage.entreprise.telEnt }}</div>
+                <div class="niveau_stage"><div class="param">Niveau : </div>{{ stage.niveau.libNiv }}</div>
+                <div class="description_stage"> <div class="param">Description : </div>{{ stage.descStage }}</div>
+                <div class="adresse_stage"><div class="param">Adresse : </div>{{ stage.adStage }}, {{ stage.cpStage }} {{ stage.villeStage }}</div>
+
+                {% if is_granted('ROLE_ETUDIANT') %}
+                    <!-- Bouton pour ouvrir le Modal -->
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#{{ stage.id }}" data-whatever="@{{ stage.id }}" >
+                        Candidater
+                    </button>
+                    <!-- Le Modal -->
+                    <div class="modal" id="{{ stage.id }}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">{{ stage.titreStage }}</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                Êtes-vous sûr de vouloir candidater à ce stage ?
+                                </div>
+                                <div class="modal-footer">
+                                    <a class="btn btn-danger" href="{{ path('app_candidature_create', {'id': stage.id }) }}" >Candidater</a>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                
+                
+                {% if is_granted('ROLE_ENTREPRISE') %}
+                    <div class="modifbtn">
+                        <a class="btn btn-primary" href="{{ path('app_stage_update', {'id': stage.id }) }}" >Modifier</a>
+                        {# bouton permettant de voir les candidatures, seulement si il existe des candidatures sur ce stage #}
+                        {% if stage.canditatures|length > 0 %}
+                            <a class="btn btn-primary" href="{{ path('app_candidature', {'id': stage.id }) }}" >{{ stage.canditatures|length }} candidature(s)</a>
+                        {% endif %}
+                        <!-- Bouton pour ouvrir le Modal -->
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#{{ stage.id }}" data-whatever="@{{ stage.id }}" >
+                            Supprimer
+                        </button>
+                        <!-- Le Modal -->
+                        <div class="modal" id="{{ stage.id }}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">{{ stage.titreStage }}</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Êtes-vous sûr de vouloir supprimer ce stage ?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-danger" href="{{ path('stage_delete', {'id': stage.id } )}}" >Supprimer</a>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+

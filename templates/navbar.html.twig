@@ -26,15 +26,15 @@
 <script>
     const a=document.querySelector('ul');
 {% if user.roles[0]=='ROLE_ENTREPRISE' %}
-        a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Mes Stages</a></li>';
+        a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_stage') }}">Mes Stages</a></li>';
 {% endif %}
 {% if user.roles[0]=='ROLE_ETUDIANT' %}
-    a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Stages</a></li>' +
+    a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_stage') }}">Stages</a></li>' +
     '<li class="nav-item"><a class="nav-link" href="{{ path('app_sujet_ter') }}">Sujets TER</a></li>'+
         '<li class="nav-item"><a class="nav-link" href="{{ path('app_emploi_du_temps') }}">Emploi du temps</a></li>';
     {% endif %}
     {% if user.roles[0]=='ROLE_ENSEIGNANT' or user.roles[0]=='ROLE_ADMIN,ROLE_ENSEIGNANT'%}
-    a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_redirecteur') }}">Stages</a></li>' +
+    a.innerHTML+='<li class="nav-item"><a class="nav-link" href="{{ path('app_stage') }}">Stages</a></li>' +
         '<li class="nav-item"><a class="nav-link" href="{{ path('app_sujet_ter') }}">Sujets TER</a></li>'+
         '<li class="nav-item"><a class="nav-link" href="{{ path('app_emploi_du_temps') }}">Emploi du temps</a></li>';
     {% if user.roles[0]=='ROLE_ADMIN,ROLE_ENSEIGNANT' %}

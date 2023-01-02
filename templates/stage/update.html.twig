@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% set title = "Édition d'un stage" %}
+
+{% block title %} {{ title }}{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/form.css') }}" rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+
+    <h1> {{ title }} </h1>
+    {{ form_start(form, {'attr': {'class': 'flex-column formulaire'}}) }}
+    <p>Titre </p> {{ form_widget(form.titreStage)}}<br>
+    <p>Description </p> {{ form_widget(form.descStage)}}<br>
+    <p>Niveau </p> {{ form_widget(form.niveau)}}<br>
+    <p>Ville </p> {{ form_widget(form.villeStage)}}<br>
+    <p>Code Postal </p> {{ form_widget(form.cpStage)}}<br>
+    <p>Adresse </p> {{ form_widget(form.adStage)}}<br>
+    {{ form_widget(form) }}
+    <input type="submit" class="btn btn-success" value="Modifier" />
+    {{ form_end(form) }}
+
+
+{% endblock %}

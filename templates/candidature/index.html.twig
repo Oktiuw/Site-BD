@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% set title = "Candidatures" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/candidatures.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% include 'navbar.html.twig' %}
+    
+    <h1>Candidature(s) au stage: {{ stage.titreStage }}</h1>
+    
+    {% for candidature in canditatures %}
+        <div class="candidature">
+            <div class="informations_candidat">
+                <div class="avatar_candidat">
+                    {% if candidature.etudiant.cdUtil.avatar is null %}
+                        <img src="{{ asset('img/avatar_defaut.png') }}" alt="Avatar par défaut"  class="avatar">
+                    {% else %}
+                        <img src="{{ asset('img/usersAvatar/'~candidature.etudiant.cdUtil.avatar) }}" alt="Avatar de l'utilisateur" class="avatar">
+                    {% endif %}
+                </div>
+
+                <div class="nom_candidat">
+                    {{candidature.etudiant.nomEtud | upper}} {{candidature.etudiant.pnomEtud}}
+                </div>
+
+                <div class="email_candidat">
+                    {{ candidature.etudiant.cdUtil.email }}
+                </div>
+
+                <div class="contact_candidat">
+                    <br>
+                    <a href="{{ path('app_contact_etudiant_specific', {'id': candidature.etudiant.id}) }}" class="btn btn-primary">Contacter</a>
+                </div>
+            </div>
+
+            <div class="cv_candidat">
+                {% if candidature.etudiant.cvEtud is null %}
+                    <embed src="{{ asset('img/cvsae.pdf') }}" width=450 height=450 type='application/pdf'>
+                {% else %}
+                    <embed src="{{ asset('img/usersCV/'~candidature.etudiant.CVEtud) }}" width=450 height=450 type='application/pdf'>
+                {% endif %}
+            </div>
+        </div>
+
+    {% endfor %}
+
+{% endblock %}
+    
