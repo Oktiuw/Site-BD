@@ -37,7 +37,9 @@
 <nav>
     <div class="redirections">
         <a href="{{ path('app_redirecteur') }}" class="lien"><p class="lien">Mon espace</p></a>
+        {% if app.user is null %}
         <a href="{{ path('app_entreprise_create') }}" class="lien"><p class="lien">Je représente une entreprise...</p></a>
+    {% endif %}
     </div>
 </nav>
 <div class="big__container">

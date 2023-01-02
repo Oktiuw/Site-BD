@@ -1,11 +1,12 @@
 div.sansnavbar{
     background-image: url("/img/aa.jpg");
-    min-height: 1000px;
+    min-height: 800px;
     background-repeat: no-repeat;
     background-size: cover;
     padding-top:  100px;
     display: flex;
 }
+
 .logo-urca{
     width:200px;
 }
@@ -48,6 +49,15 @@ div.bot{
     display: flex;
 }
 div.stages{display: flex;}
+embed{
+    display: none;
+}
+@media (min-width: 600px) {
+    embed{
+        display: flex;
+    }
+
+}
 @media (min-width:800px){
     button.btn-primary{
         width: 200px;
