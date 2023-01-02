@@ -23,13 +23,14 @@
 {% block body %}
 
     {% include 'navbar.html.twig' %}
-    <div class="space"><br>.<br>.<br>.<br>.<br></div>
+    <div class="space">Liste des stages</div>
     {% if is_granted('ROLE_ENTREPRISE') %}
         <a class="btn btn-dark"  href="{{ path('app_stage_create') }}" > Ajouter un nouveau stage</a>
     {% endif %}
 
     {% for stage in stages %}
-        {% if is_granted('ROLE_ENTREPRISE') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT') or is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ETUDIANT') and groupe.niveau is same as(stage.niveau) %}
+        {# on affiche que si l'étudiant n'a pas déjà candidaté à ce stage #}
+        {% if is_granted('ROLE_ENTREPRISE') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT') or is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ETUDIANT') and groupe.niveau is same as(stage.niveau) and stage not in etudiant.canditatures|map(c => c.stage) %} 
             <div class="stage">
                 <div class="element_stage">
                     <div class="param">{{ stage.titreStage }}</div>
