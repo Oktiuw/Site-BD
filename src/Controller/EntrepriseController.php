@@ -72,7 +72,7 @@ class EntrepriseController extends AbstractController
         $form=$this->createForm(EntrepriseType::class, $entreprise)->add(
             'submit',
             SubmitType::class,
-            ['label' => 'Envoyer','attr'=>['onclick'=>'javascriptAlert()']]
+            ['label' => 'Envoyer']
         );
         $form->handleRequest($request);
         $formUser->handleRequest($request);
@@ -82,7 +82,7 @@ class EntrepriseController extends AbstractController
             $userData=$formUser->getData();
             foreach ($logins as $login) {
                 if ($login->getLogin()===$userData->getLogin()) {
-                    return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'formUser'=>$formUser]);
+                    return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'formUser'=>$formUser,'script'=>"javascriptAlert()"]);
                 }
             }
             $entityManager=$doctrine->getManager();
@@ -102,11 +102,11 @@ class EntrepriseController extends AbstractController
             foreach ($enseignants as $enseignant) {
                 if ($enseignant->isAdmin()) {
                     $mailer = $e->createMailSender();
-                    $e->sendEmail($mailer, 'masteriareims@gmail.com', $enseignant->getCdUtil()->getEmail(), 'Création de compte', 'Cette entreprise vient de créer ce compte. Il faut le valider ou non '."\n Message envoyé par le système. Ne pas répondre directement à ce mail");
+                    $e->sendEmail($mailer, 'masteriareims@gmail.com', $enseignant->getCdUtil()->getEmail(), 'Notifcation', 'Une entreprise vient de créer ce compte. Il faut le valider ou non '."\n\n\n Message envoyé par le système. Ne pas répondre directement à ce mail");
                 }
             }
             return $this->render('entreprise/succes.html.twig', ['user'=>$user]);
         }
-        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'formUser'=>$formUser]);
+        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'formUser'=>$formUser,"script"=>'']);
     }
 }
