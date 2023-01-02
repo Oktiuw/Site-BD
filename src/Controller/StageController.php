@@ -30,6 +30,9 @@ class StageController extends AbstractController
         if ($etudiant || $enseignant) {
             $stages = $stageRepository->findBy([], ['titreStage'=> 'ASC']);
         } else {
+            if ($this->isAccountDisabled($entrepriseRepository)) {
+                return $this->redirectToRoute('app_redirecteur');
+            }
             $stages = $stageRepository->findBy(['entreprise' => $entreprise], ['titreStage'=> 'ASC']);
         }
 
@@ -45,6 +48,9 @@ class StageController extends AbstractController
     #[IsGranted('ROLE_ENTREPRISE')]
     public function create(ManagerRegistry $doctrine, Request $request, EntrepriseRepository $entrepriseRepository)
     {
+        if ($this->isAccountDisabled($entrepriseRepository)) {
+            return $this->redirectToRoute('app_redirecteur');
+        }
         $stage = new Stage();
         $stage->setEntreprise($entrepriseRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()]));
 
@@ -66,8 +72,11 @@ class StageController extends AbstractController
 
     #[Route('/stage/{id}/update', requirements: ['id' => '\d+'])]
     #[IsGranted('ROLE_ENTREPRISE')]
-    public function update(Stage $stage, Request $request, ManagerRegistry $doctrine)
+    public function update(Stage $stage, Request $request, ManagerRegistry $doctrine, EntrepriseRepository $entrepriseRepository)
     {
+        if ($this->isAccountDisabled($entrepriseRepository)) {
+            return $this->redirectToRoute('app_redirecteur');
+        }
         $form = $this->createForm(StageType::class, $stage);
 
         $form->handleRequest($request);
@@ -91,5 +100,16 @@ class StageController extends AbstractController
         $doctrine->getManager()->flush();
 
         return $this->redirectToRoute('app_stage');
+    }
+    public function isAccountDisabled(EntrepriseRepository $entrepriseRepository): bool
+    {
+        $user=$this->getUser();
+        if ($user->getRoles()[0]==='ROLE_ENTREPRISE') {
+            $entreprise=$entrepriseRepository->findOneBy(['cdUtil'=>$user->getId()]);
+            if ($entreprise->isIsdisabled()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
