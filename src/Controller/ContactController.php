@@ -92,6 +92,20 @@ class ContactController extends AbstractController
         ;
         return $this->formSendEmail($form, $request);
     }
+
+    /**
+     * @throws \PHPMailer\PHPMailer\Exception
+     */
+    #[Route('/contact/etudiant/{id}', name: 'app_contact_etudiant_specific', requirements: ['id'=>'\d+'])]
+    public function contactEtudiantSpecific(Request $request, EntrepriseRepository $entrepriseRepository, Etudiant $etudiant): Response
+    {
+        if ($this->isAccountDisabled($entrepriseRepository)) {
+            return $this->redirectToRoute('app_redirecteur');
+        }
+        $form=$this->createForm(EmailType::class)->add('submit', SubmitType::class, ['label' => 'Envoyer','attr'=>['onclick'=>'javascriptAlert()']])
+        ;
+        return $this->formSendEmail($form, $request, $etudiant->getCdUtil()->getEmail());
+    }
     #[Route('/contact/groupeEtudiants', name: 'app_contact_groupeEtudiants')]
     public function contactGroupeEtudiants(EntrepriseRepository $entrepriseRepository, Request $request): Response
     {
@@ -128,14 +142,17 @@ class ContactController extends AbstractController
          * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
          * @throws \PHPMailer\PHPMailer\Exception
          */
-    public function formSendEmail(\Symfony\Component\Form\FormInterface $form, Request $request): Response|\Symfony\Component\HttpFoundation\RedirectResponse
+    public function formSendEmail(\Symfony\Component\Form\FormInterface $form, Request $request, $to=null): Response|\Symfony\Component\HttpFoundation\RedirectResponse
     {
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $mail = $form->getData();
             $e = new EmailSender();
             $mailer = $e->createMailSender();
-            $e->sendEmail($mailer, $this->getUser()->getEmail(), $mail['profile']->getCdUtil()->getEmail(), $mail['objet'], $mail['body']."\n Message envoyé par le système. Ne pas répondre directement à ce mail");
+            if ($to==null) {
+                $to=$mail['profile']->getCdUtil()->getEmail();
+            }
+            $e->sendEmail($mailer, $this->getUser()->getEmail(), $to, $mail['objet'], $mail['body']."\n Message envoyé par le système. Ne pas répondre directement à ce mail");
 
             return $this->redirectToRoute('app_redirecteur');
         }
