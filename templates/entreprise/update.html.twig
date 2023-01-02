@@ -9,12 +9,10 @@
     {% if (profile is defined) %}
     <h1>Modification des données de l'entreprise {{ profile.nomEnt }}</h1>
     {% include 'useravatar.html.twig' %}
-
     {% else  %}
     <h1>Création de profile Entreprise</h1>
      {% endif %}
         </div>
-
         <BR>
         {{ form_start(form, {'attr': {'class': 'flex-column formulaire'}}) }}
         <p>Nom de l'entreprise</p> {{ form_widget(form.nomEnt)}}<br>
@@ -28,7 +26,9 @@
         {{ form_widget(form.submit) }}
         {{ form_end(form) }}
     </div>
-    <script> function javascriptAlert() {
+    <script>
+        {{ script }}
+        function javascriptAlert() {
             alert("Login déja utilisé ! Veuillez en choisir un autre")
         }</script>
 {% endblock %}

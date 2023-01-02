@@ -67,7 +67,7 @@ class EtudiantCrudController extends AbstractCrudController
             $user->setLogin($login);
             $user->setEmail('default@example.com');
             $user->setRoles(['ROLE_ETUDIANT']);
-            $user->setPassword($this->hasher->hashPassword($user, 'test'));
+            $user->setPassword($this->hasher->hashPassword($user, $_POST['Etudiant']['dtnsEtud']));
             $entityInstance->setCdUtil($user);
         }
         $entityInstance->setFirstConnection(true);

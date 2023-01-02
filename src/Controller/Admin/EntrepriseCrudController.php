@@ -20,10 +20,10 @@ class EntrepriseCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('NomEnt','Nom entreprise')->hideOnForm(),
-            TextField::new('NomRef','Nom du referent')->hideOnForm(),
-            TelephoneField::new('TelEnt','Telephone')->hideOnForm(),
-            BooleanField::new('isDisabled','Compte désactivé')
+            TextField::new('NomEnt', 'Nom entreprise')->hideOnForm(),
+            TextField::new('NomRef', 'Nom du referent')->hideOnForm(),
+            TelephoneField::new('TelEnt', 'Telephone')->hideOnForm(),
+            BooleanField::new('isDisabled', 'Compte désactivé')
         ];
     }
    public function configureActions(Actions $actions): Actions

@@ -5,8 +5,9 @@
     <script>alert('{{ script }}');</script>
     {% endif %}
     <h1>{{ profile.nomEtud|upper}} {{ profile.pnomEtud }} </h1>
-    <h6> {{ profile.adEtud }}</h6> <p>{{ profile.cpEtud }}</p>
-    <p>{{ profile.villeEtud }}</p>
+    <h6> {{ profile.adEtud }}</h6>
+    <h6>{{ profile.cpEtud }}</h6>
+    <h6>{{ profile.villeEtud }}</h6>
     {% if profile.cvEtud is null %}
         <embed src="{{ asset('img/cvsae.pdf') }}" width=450 height=450 type='application/pdf'>
         {% else %}

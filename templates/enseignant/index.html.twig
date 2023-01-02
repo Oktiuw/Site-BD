@@ -5,8 +5,9 @@
         <script>alert('{{ script }}');</script>
     {% endif %}
     <h1>{{ profile.nomEn|upper}} {{ profile.pnomEn }} </h1>
-    <h6> {{ profile.adEn }}</h6> <p>{{ profile.cpEn }}</p>
-    <p>{{ profile.villeEn }}</p>
+    <h6> {{ profile.adEn }}</h6>
+    <h6>{{ profile.cpEn }}</h6>
+    <h6>{{ profile.villeEn }}</h6>
     </div>
     <hr>
     <p><a href="{{ path('app_enseignant_update')}}">Modifier mes informations personnelles</a></p>

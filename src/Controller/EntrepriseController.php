@@ -6,6 +6,8 @@ use App\Entity\Entreprise;
 use App\Entity\Utilisateur;
 use App\Form\EntrepriseType;
 use App\Form\UtilisateurType;
+use App\Mail\EmailSender;
+use App\Repository\EnseignantRepository;
 use App\Repository\EntrepriseRepository;
 use App\Repository\UtilisateurRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -59,9 +61,9 @@ class EntrepriseController extends AbstractController
     }
 
     #[Route('/entreprise/create')]
-    public function create(Request $request, ManagerRegistry $doctrine, UserPasswordHasherInterface $hasher, UtilisateurRepository $utilisateurRepository): Response
+    public function create(Request $request, ManagerRegistry $doctrine, UserPasswordHasherInterface $hasher, UtilisateurRepository $utilisateurRepository, EnseignantRepository $enseignantRepository): Response
     {
-        if ($this->getUser()!==null){
+        if ($this->getUser()!==null) {
             return $this->redirectToRoute('app_home');
         }
         $user=new Utilisateur();
@@ -70,7 +72,7 @@ class EntrepriseController extends AbstractController
         $form=$this->createForm(EntrepriseType::class, $entreprise)->add(
             'submit',
             SubmitType::class,
-            ['label' => 'Envoyer','attr'=>['onclick'=>'javascriptAlert()']]
+            ['label' => 'Envoyer']
         );
         $form->handleRequest($request);
         $formUser->handleRequest($request);
@@ -80,7 +82,7 @@ class EntrepriseController extends AbstractController
             $userData=$formUser->getData();
             foreach ($logins as $login) {
                 if ($login->getLogin()===$userData->getLogin()) {
-                    return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'formUser'=>$formUser]);
+                    return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'formUser'=>$formUser,'script'=>"javascriptAlert()"]);
                 }
             }
             $entityManager=$doctrine->getManager();
@@ -95,8 +97,16 @@ class EntrepriseController extends AbstractController
             $entityManager->persist($user);
             $entityManager->persist($entreprise);
             $entityManager->flush();
+            $e=new EmailSender();
+            $enseignants=$enseignantRepository->findAll();
+            foreach ($enseignants as $enseignant) {
+                if ($enseignant->isAdmin()) {
+                    $mailer = $e->createMailSender();
+                    $e->sendEmail($mailer, 'masteriareims@gmail.com', $enseignant->getCdUtil()->getEmail(), 'Notifcation', 'Une entreprise vient de créer ce compte. Il faut le valider ou non '."\n\n\n Message envoyé par le système. Ne pas répondre directement à ce mail");
+                }
+            }
             return $this->render('entreprise/succes.html.twig', ['user'=>$user]);
         }
-        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'formUser'=>$formUser]);
+        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'formUser'=>$formUser,"script"=>'']);
     }
 }

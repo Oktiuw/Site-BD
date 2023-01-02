@@ -7,6 +7,7 @@ use App\Form\UtilisateurType;
 use App\Repository\EnseignantRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,12 +15,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-
-#[IsGranted('ROLE_ENSEIGNANT')]
+#[Security("is_granted('ROLE_ETUDIANT') or is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT')")]
 class EnseignantController extends AbstractController
 {
     #[Route('/enseignant', name: 'app_enseignant')]
-    public function index(EnseignantRepository $enseignantRepository,ManagerRegistry $doctrine): Response
+    public function index(EnseignantRepository $enseignantRepository, ManagerRegistry $doctrine): Response
     {
         $user=$this->getUser();
         $profile=$enseignantRepository->findOneBy(['cdUtil'=>$user->getId()]);
@@ -61,8 +61,3 @@ class EnseignantController extends AbstractController
         return $this->renderForm('enseignant/update.html.twig', ['form'=>$form,'profile'=>$enseignant,'user'=>$user,'formUser'=>$formUser]);
     }
 }
-
-
-
-
-
