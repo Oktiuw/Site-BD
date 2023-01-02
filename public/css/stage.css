@@ -1,7 +1,7 @@
 body {
     display: flex;
     flex-direction: column;
-    background-image: url("../img/bg_form.jpg");
+    background-image: url("../img/bg_opaque.png");
     background-size: cover;
 
 }
