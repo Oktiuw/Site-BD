@@ -57,7 +57,7 @@ class EntrepriseController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('app_redirecteur');
         }
-        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'profile'=>$entreprise,'user'=>$user,'formUser'=>$formUser]);
+        return $this->renderForm('entreprise/update.html.twig', ['form'=>$form,'profile'=>$entreprise,'user'=>$user,'formUser'=>$formUser,'script'=>""]);
     }
 
     #[Route('/entreprise/create')]
