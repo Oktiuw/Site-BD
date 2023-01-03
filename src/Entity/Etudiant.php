@@ -56,6 +56,9 @@ class Etudiant
     #[ORM\Column]
     private ?bool $firstConnection = null;
 
+    #[ORM\ManyToOne(inversedBy: 'etudiants')]
+    private ?Niveau $niveau = null;
+
 
     public function __construct()
     {
@@ -269,6 +272,18 @@ class Etudiant
     public function setFirstConnection(bool $firstConnection): self
     {
         $this->firstConnection = $firstConnection;
+
+        return $this;
+    }
+
+    public function getNiveau(): ?Niveau
+    {
+        return $this->niveau;
+    }
+
+    public function setNiveau(?Niveau $niveau): self
+    {
+        $this->niveau = $niveau;
 
         return $this;
     }
