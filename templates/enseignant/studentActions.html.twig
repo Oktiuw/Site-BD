@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% include 'navbar.html.twig' %}
+    <div class="liste_choix">
+        <div class="top_contacts">
+            <a class="choix" id="etudiant" href="{{ path('app_contact_etudiant') }}"><p>Passer les étudiants de M1 à M2</p><span class="material-symbols-outlined">
+school
+</span></a>
+            <a class="choix" id="groupeEtudiants" href="{{ path('app_contact_groupeEtudiants') }}"><p>Supprimer les étudiants diplomés</p><span class="material-symbols-outlined">
+history_edu
+</span></a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block title %}
+Actions spéciales
+{% endblock %}
+

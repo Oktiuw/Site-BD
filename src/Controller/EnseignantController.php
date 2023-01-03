@@ -33,7 +33,7 @@ class EnseignantController extends AbstractController
             'user' =>$user,'profile'=>$profile,'avatar'=>$user->getAvatar(),'script'=>$script
         ]);
     }
-    #[Route('/enseignant/update')]
+    #[Route('/enseignant/update', name: 'app_enseignant_update')]
     public function update(EnseignantRepository $enseignantRepository, ManagerRegistry $doctrine, Request $request, UserPasswordHasherInterface $hasher): Response
     {
         $enseignantType=new EnseignantType();
@@ -59,5 +59,11 @@ class EnseignantController extends AbstractController
             return $this->redirectToRoute('app_enseignant');
         }
         return $this->renderForm('enseignant/update.html.twig', ['form'=>$form,'profile'=>$enseignant,'user'=>$user,'formUser'=>$formUser]);
+    }
+    #[IsGranted("ROLE_ADMIN,ROLE_ENSEIGNANT")]
+    #[Route('/enseignant/studentActions', name: 'app_enseignant_studentActions')]
+    public function studentActions(EnseignantRepository $enseignantRepository, ManagerRegistry $doctrine, Request $request, UserPasswordHasherInterface $hasher): Response
+    {
+        return $this->render('enseignant/studentActions.html.twig',['user'=>$this->getUser()]);
     }
 }

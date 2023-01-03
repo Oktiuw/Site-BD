@@ -5,6 +5,7 @@ div.liste_choix {
     flex-direction: column;
     width: 100%;
     margin-bottom: 15px;
+    align-items: center;
 }
 body{
     display: flex;
