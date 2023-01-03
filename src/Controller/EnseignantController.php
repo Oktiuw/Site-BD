@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Form\EnseignantType;
 use App\Form\UtilisateurType;
 use App\Repository\EnseignantRepository;
+use App\Repository\EtudiantRepository;
+use App\Repository\NiveauRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -62,8 +64,15 @@ class EnseignantController extends AbstractController
     }
     #[IsGranted("ROLE_ADMIN,ROLE_ENSEIGNANT")]
     #[Route('/enseignant/studentActions', name: 'app_enseignant_studentActions')]
-    public function studentActions(EnseignantRepository $enseignantRepository, ManagerRegistry $doctrine, Request $request, UserPasswordHasherInterface $hasher): Response
+    public function studentActions(): Response
     {
-        return $this->render('enseignant/studentActions.html.twig',['user'=>$this->getUser()]);
+        return $this->render('enseignant/studentActions.html.twig', ['user'=>$this->getUser()]);
+    }
+    #[IsGranted("ROLE_ADMIN,ROLE_ENSEIGNANT")]
+    #[Route('/enseignant/studentActions/m1tom2', name: 'app_enseignant_m1tom2')]
+    public function m1toM2(NiveauRepository $niveauRepository): Response
+    {
+        $students=$niveauRepository->findOneBy(['libNiv'=>'M1'])->getEtudiants();
+        return $this->render('enseignant/studentList.html.twig', ['user'=>$this->getUser(),'var'=>'Du M1 au M2','students'=>$students]);
     }
 }
