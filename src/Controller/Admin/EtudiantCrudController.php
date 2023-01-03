@@ -40,9 +40,16 @@ class EtudiantCrudController extends AbstractCrudController
             AssociationField::new('cdUtil')->formatValue(function ($value, $entity) {
                 return $entity->getCdUtil()->getLogin();
             })->setLabel('login')->hideOnForm(),
+            AssociationField::new('niveau')->setRequired(true)->formatValue(function ($value, $entity) {
+                return $entity->getNiveau()->getLibNiv();
+            })->setFormTypeOptions(['choice_label'=>'LibNiv', 'query_builder'=>function (EntityRepository $entityRepository) {
+                return $entityRepository->createQueryBuilder('c')->orderBy('c.libNiv', 'ASC');
+            }]),
         ];
     }
+
     /**
+     * @param EntityManagerInterface $entityManager
      * @param $entityInstance
      * @return void
      */

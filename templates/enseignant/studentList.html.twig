@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="form">
+        <div class="info">
+<h1>{{ var }}</h1>
+        </div>
+    {{ form_start(form) }}
+        {{ form_row(form.Liste) }}
+    {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block title %}
+{{ var }}
+{% endblock %}
+

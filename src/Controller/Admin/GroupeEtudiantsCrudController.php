@@ -27,7 +27,7 @@ class GroupeEtudiantsCrudController extends AbstractCrudController
     {
         return [
             TextField::new('nomGroupe'),
-            AssociationField::new('niveau')->formatValue(function ($value, $entity) {
+            AssociationField::new('niveau')->setRequired(false)->formatValue(function ($value, $entity) {
                 return $entity->getNiveau()->getLibNiv();
             })->setFormTypeOptions(['choice_label'=>'LibNiv', 'query_builder'=>function (EntityRepository $entityRepository) {
                 return $entityRepository->createQueryBuilder('c')->orderBy('c.libNiv', 'ASC');

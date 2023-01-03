@@ -17,6 +17,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 #[IsGranted('ROLE_ADMIN,ROLE_ENSEIGNANT')]
 class DashboardController extends AbstractDashboardController
 {
@@ -29,7 +30,8 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Administration')->setLocales(['fr']);
+            ->setTitle('Administration')->setLocales(['fr'])
+            ->setFaviconPath('img/logo_icone.ico');
     }
 
     public function configureMenuItems(): iterable
@@ -38,10 +40,12 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Evenement', "fa-solid fa-calendar-days", Evenement::class);
         yield MenuItem::linkToCrud('Type evenement', "fa-solid fa-font-awesome", TypeEvenement::class);
         yield MenuItem::linkToCrud('Etudiant', "fa-solid fa-user", Etudiant::class);
+        yield MenuItem::linkToRoute('Actions étudiants', "fa fa-level-up", 'app_enseignant_studentActions');
         yield MenuItem::linkToCrud('Enseignant', "fa-solid fa-graduation-cap", Enseignant::class);
         yield MenuItem::linkToCrud('Entreprise', "fa-solid fa-building", Entreprise::class);
         yield MenuItem::linkToCrud('Groupe etudiants', "fa-solid fa-people-group", GroupeEtudiants::class);
         yield MenuItem::linkToRoute("Retour à l'accueil", 'fa fa-home', 'app_home');
+        yield MenuItem::linkToLogout("Déconnexion", "fa  fa-sign-out");
     }
     public function configureAssets(): Assets
     {

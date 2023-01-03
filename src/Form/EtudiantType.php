@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\Etudiant;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -17,10 +19,10 @@ class EtudiantType extends AbstractType
             ->add('CV', FileType::class, ['label'=>'CV Etudiant ( pdf uniquement)','mapped'=>false,'required'=>false,
                 'constraints'=>[new File(['maxSize'=>'3000k','mimeTypes'=>
                     ['application/pdf'],'mimeTypesMessage'=>'Veuillez choisir un document valide'])]])
-            ->add('pnomEtud')
-            ->add('adEtud')
-            ->add('cpEtud')
-            ->add('villeEtud')
+            ->add('pnomEtud', TextType::class)
+            ->add('adEtud', TextType::class)
+            ->add('cpEtud', NumberType::class)
+            ->add('villeEtud', TextType::class)
 
         ;
     }
