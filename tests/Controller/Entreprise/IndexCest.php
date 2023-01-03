@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Tests\Controller\Entreprise;
 
 use App\Factory\EntrepriseFactory;
@@ -15,9 +16,21 @@ class IndexCest
         $I->see('nomEnt', 'h1');
     }
 
-
-
-
+    public function contactEtudiant(ControllerTester $I)
+    {
+        $user = UtilisateurFactory::createOne(['roles' => ['ROLE_ENTREPRISE']]);
+        EntrepriseFactory::createOne([
+            'nomRef' => 'Jean Jean',
+            'nomEnt' => 'SARL Jean',
+            'cdUtil' => $user,
+            'telEnt' => null,
+            'isDisabled' => false,
+        ]);
+        $I->amLoggedInAs($user->object());
+        $I->amOnPage('/contact/etudiant');
+        $I->seeInTitle("Contact");
+        $I->see('Envoi de mail', 'h1');
+    }
 
 
 
