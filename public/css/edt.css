@@ -4,7 +4,6 @@ div.edt{
     border-radius: 15px;
     width: 80%;
     flex-direction: column;
-    margin-top: 100px;
 }
 div.evmt{
     display: flex;
