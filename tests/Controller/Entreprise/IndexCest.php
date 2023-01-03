@@ -32,6 +32,24 @@ class IndexCest
         $I->see('Envoi de mail', 'h1');
     }
 
+    public function contactGroupe(ControllerTester $I)
+    {
+        $user = UtilisateurFactory::createOne(['roles' => ['ROLE_ENTREPRISE']]);
+        EntrepriseFactory::createOne([
+            'nomRef' => 'Jean Jean',
+            'nomEnt' => 'SARL Jean',
+            'cdUtil' => $user,
+            'telEnt' => null,
+            'isDisabled' => false,
+        ]);
+        $I->amLoggedInAs($user->object());
+        $I->amOnPage('/contact/groupeEtudiants');
+        $I->seeInTitle("Contact");
+        $I->see('Envoi de mail', 'h1');
+    }
+
+
+
 
 
 }
