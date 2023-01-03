@@ -29,8 +29,6 @@ class EntrepriseCrudController extends AbstractCrudController
    public function configureActions(Actions $actions): Actions
    {
        return $actions
-           // ...
-           // this will forbid to create or delete entities in the backend
            ->disable(Action::NEW);
    }
 }

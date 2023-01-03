@@ -47,7 +47,9 @@ class EtudiantCrudController extends AbstractCrudController
             }]),
         ];
     }
+
     /**
+     * @param EntityManagerInterface $entityManager
      * @param $entityInstance
      * @return void
      */

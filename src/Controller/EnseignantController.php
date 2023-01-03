@@ -110,7 +110,7 @@ class EnseignantController extends AbstractController
         $form=$this->createForm(StudenListType::class)->add(
             'submit',
             SubmitType::class,
-            ['label' => 'Modifier']
+            ['label' => 'Supprimer']
         )->add('Liste', EntityType::class, ['class'=>Etudiant::class,'multiple'=>true,'placeholder'=>'Etudiants?','choice_label'=>function ($entity) {
             return strtoupper($entity->getNomEtud()).  " {$entity->getPnomEtud()}";
         },'query_builder'=>function (EntityRepository $entityRepository) use ($idniveau2) {

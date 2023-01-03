@@ -36,12 +36,11 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Menu administration', ' fa-solid fa-bars');
         yield MenuItem::linkToCrud('Niveau', "fa-solid fa-book", Niveau::class);
         yield MenuItem::linkToCrud('Evenement', "fa-solid fa-calendar-days", Evenement::class);
         yield MenuItem::linkToCrud('Type evenement', "fa-solid fa-font-awesome", TypeEvenement::class);
         yield MenuItem::linkToCrud('Etudiant', "fa-solid fa-user", Etudiant::class);
-        yield MenuItem::linkToRoute('Actions étudiants',"fa fa-level-up",'app_enseignant_studentActions');
+        yield MenuItem::linkToRoute('Actions étudiants', "fa fa-level-up", 'app_enseignant_studentActions');
         yield MenuItem::linkToCrud('Enseignant', "fa-solid fa-graduation-cap", Enseignant::class);
         yield MenuItem::linkToCrud('Entreprise', "fa-solid fa-building", Entreprise::class);
         yield MenuItem::linkToCrud('Groupe etudiants', "fa-solid fa-people-group", GroupeEtudiants::class);
