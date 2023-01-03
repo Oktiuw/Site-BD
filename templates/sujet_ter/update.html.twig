@@ -10,8 +10,10 @@
 
 
 {% block body %}
-
+<div class="form">
+    <div class="info">
     <h1>{{ title }}</h1>
+    </div>
     {{ form_start(form, {'attr': {'class': 'flex-column formulaire'}}) }}
     <p>Titre </p> {{ form_widget(form.titreTer)}}<br>
     <p>Description </p> {{ form_widget(form.descTer)}}<br>
@@ -19,5 +21,5 @@
     {{ form_widget(form) }}
     <input type="submit" class="btn btn-primary" value="Modifier" />
     {{ form_end(form) }}
-
+</div>
 {% endblock %}

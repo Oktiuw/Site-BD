@@ -7,7 +7,7 @@ body {
 }
 div.space{
     opacity: 0;
-    min-height: 20px;
+    min-height: 100px;
     width: 100%;
 }
 

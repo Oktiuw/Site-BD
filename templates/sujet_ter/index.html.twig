@@ -37,7 +37,7 @@
     {% if not sujetEtudiant  %}
         <h1>{{ title }}</h1>
 
-        {% if is_granted('ROLE_ENSEIGNANT') %}
+        {% if is_granted('ROLE_ENSEIGNANT')  %}
             <a class="btn btn-dark"  href="{{ path('app_sujetter_create') }}" > Ajouter un nouveau sujet</a>
         {% endif %}
 
