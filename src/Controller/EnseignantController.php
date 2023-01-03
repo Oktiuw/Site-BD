@@ -79,7 +79,7 @@ class EnseignantController extends AbstractController
     public function m1toM2(NiveauRepository $niveauRepository, Request $request, ManagerRegistry $doctrine): Response
     {
         $idniveau=$niveauRepository->findOneBy(['libNiv'=>'M1'])->getId();
-        $idniveau2=$niveauRepository->findOneBy(['libNiv'=>'M2'])->getId();
+        $idniveau2=$niveauRepository->findOneBy(['libNiv'=>'M2']);
         $form=$this->createForm(StudenListType::class)->add(
             'submit',
             SubmitType::class,
@@ -94,11 +94,11 @@ class EnseignantController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $students=$form->getData();
-            foreach ($students['Liste'] as $student){
+            foreach ($students['Liste'] as $student) {
                 $student->setNiveau($idniveau2);
                 $doctrine->getManager()->flush();
-                return $this->redirectToRoute('admin');
             }
+            return $this->redirectToRoute('admin');
         }
         return $this->renderForm('enseignant/studentList.html.twig', ['user'=>$this->getUser(),'var'=>'Du M1 au M2','form'=>$form]);
     }
