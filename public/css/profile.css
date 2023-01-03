@@ -5,6 +5,7 @@ div.sansnavbar{
     background-size: cover;
     padding-top:  100px;
     display: flex;
+    height: 100%;
 }
 
 .logo-urca{
@@ -26,6 +27,7 @@ div.info_profile{
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 10%;
+    height: 600px;
 }
 img.avatar{
     width: 100px;

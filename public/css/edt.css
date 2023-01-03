@@ -4,6 +4,7 @@ div.edt{
     border-radius: 15px;
     width: 80%;
     flex-direction: column;
+    margin-top: 100px;
 }
 div.evmt{
     display: flex;
@@ -20,6 +21,12 @@ div.horaire{
     width: 30%;
     border-right: black solid 1px;
 
+}
+body{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    min-height: 1200px;
 }
 div.details{
     display: flex;
