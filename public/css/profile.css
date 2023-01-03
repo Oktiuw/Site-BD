@@ -4,6 +4,7 @@ div.sansnavbar{
     background-size: cover;
     padding-top:  100px;
     display: flex;
+    min-height: 100%;
 }
 body{
     display: flex;
@@ -28,6 +29,8 @@ div.info_profile{
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 10%;
+    justify-content: space-around;
+
 }
 img.avatar{
     width: 100px;
