@@ -16,9 +16,9 @@ div.liste__cours{
     width: 100%;
 }
 div.horaire{
-    margin: 15px;
-    width: 30%;
     border-right: black solid 1px;
+    padding-right: 10px;
+    margin-right: 10px;
 
 }
 body{
