@@ -66,12 +66,3 @@ input{
         visibility: visible;
     }
 }
-@media (min-height: 800px) {
-    body{
-        overflow-y: hidden;
-    }
-    div.form{
-        margin-bottom: 1000px;
-    }
-
-}
