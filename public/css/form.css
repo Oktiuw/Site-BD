@@ -47,6 +47,9 @@ body{
     background-repeat: no-repeat;
     flex-grow: 1;
 }
+button.btn-lg{
+    min-width: 200px;
+}
 h1{
     margin: 10px;
 }
