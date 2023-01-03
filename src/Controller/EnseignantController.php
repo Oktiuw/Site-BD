@@ -102,4 +102,31 @@ class EnseignantController extends AbstractController
         }
         return $this->renderForm('enseignant/studentList.html.twig', ['user'=>$this->getUser(),'var'=>'Du M1 au M2','form'=>$form]);
     }
+    #[IsGranted("ROLE_ADMIN,ROLE_ENSEIGNANT")]
+    #[Route('/enseignant/studentActions/delete', name: 'app_enseignant_delete')]
+    public function delete(NiveauRepository $niveauRepository, Request $request, ManagerRegistry $doctrine): Response
+    {
+        $idniveau2=$niveauRepository->findOneBy(['libNiv'=>'M2'])->getId();
+        $form=$this->createForm(StudenListType::class)->add(
+            'submit',
+            SubmitType::class,
+            ['label' => 'Modifier']
+        )->add('Liste', EntityType::class, ['class'=>Etudiant::class,'multiple'=>true,'placeholder'=>'Etudiants?','choice_label'=>function ($entity) {
+            return strtoupper($entity->getNomEtud()).  " {$entity->getPnomEtud()}";
+        },'query_builder'=>function (EntityRepository $entityRepository) use ($idniveau2) {
+            return $entityRepository->createQueryBuilder('c')
+                ->orderBy('c.nomEtud', 'ASC')
+                ->where("c.niveau=$idniveau2");
+        },'expanded'=>true]);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $students=$form->getData();
+            foreach ($students['Liste'] as $student) {
+                $doctrine->getManager()->remove($student);
+            }
+            $doctrine->getManager()->flush();
+            return $this->redirectToRoute('admin');
+        }
+        return $this->renderForm('enseignant/studentList.html.twig', ['user'=>$this->getUser(),'var'=>'Suppresion des étudiants diplomés','form'=>$form]);
+    }
 }
