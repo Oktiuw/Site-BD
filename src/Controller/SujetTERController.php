@@ -101,7 +101,7 @@ class SujetTERController extends AbstractController
         #test si l'Etudiant connecté possède deja un sujet TER
         #test si le sujet est bien de son niveau
         #test si le sujet est bien disponible
-        if ($sujetTERRepository->findOneBy(['Etudiant'=>$etudiant])!==$etudiant
+        if ($sujetTERRepository->findOneBy(['Etudiant'=>$etudiant])==null
             and $sujetTER->getNiveau() == $etudiant->getNiveau()
             and $sujetTER->getEtudiant() == null) {
             $sujetTER->setEtudiant($etudiant);
