@@ -15,7 +15,6 @@
 
 {% if etudiant %}
     {% set usr = etudiant %}
-    {% set groupe = usr.groupeEtudiants|first %}
 {% elseif entreprise %}
     {% set usr = entreprise %}
 {% endif %}
@@ -32,7 +31,7 @@
 
     {% for stage in stages %}
         {# on affiche que si l'étudiant n'a pas déjà candidaté à ce stage #}
-        {% if is_granted('ROLE_ENTREPRISE') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT') or is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ETUDIANT') and groupe.niveau is same as(stage.niveau) and stage not in etudiant.canditatures|map(c => c.stage) %}
+        {% if is_granted('ROLE_ENTREPRISE') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT') or is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ETUDIANT') and etudiant.niveau is same as(stage.niveau) and stage not in etudiant.canditatures|map(c => c.stage) %}
             <div class="stage">
                 <div class="element_stage">
                     <div class="param">{{ stage.titreStage }}</div>

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Canditatures;
+use App\Repository\CanditaturesRepository;
 use App\Repository\EtudiantRepository;
 use App\Repository\StageRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -15,14 +16,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class CandidatureController extends AbstractController
 {
     #[Route('/candidature', name: 'app_candidature_create')]
-    public function create(ManagerRegistry $doctrine, Request $request, StageRepository $stageRepository, EtudiantRepository $etudiantRepository)
-    {
-        $candidature = new Canditatures();
-        $candidature->setEtudiant($etudiantRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()]));
-        $candidature->setStage($stageRepository->findOneBy(['id'=>$request->get('id')]));
+    #[IsGranted('ROLE_ETUDIANT')]
+    public function create(
+        ManagerRegistry $doctrine,
+        Request $request,
+        StageRepository $stageRepository,
+        EtudiantRepository $etudiantRepository,
+        CanditaturesRepository $canditaturesRepository
+    ) {
+        $stage = $stageRepository->findOneBy(['id'=>$request->get('id')]);
+        $etudiant = $etudiantRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()]);
 
-        $doctrine->getManager()->persist($candidature);
-        $doctrine->getManager()->flush();
+        if ($stage->getNiveau() === $etudiant->getNiveau()
+            and $canditaturesRepository->findOneBy(['stage'=>$stage, 'etudiant'=>$etudiant])==null) {
+
+            $candidature = new Canditatures();
+            $candidature->setEtudiant($etudiant);
+            $candidature->setStage($stage);
+
+            $doctrine->getManager()->persist($candidature);
+            $doctrine->getManager()->flush();
+        }
         return $this->redirectToRoute('app_stage');
     }
 
