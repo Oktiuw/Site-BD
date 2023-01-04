@@ -24,6 +24,6 @@ class NiveauCrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         return $actions
-            ->disable(Action::DELETE,Action::EDIT);
+            ->disable(Action::DELETE, Action::EDIT);
     }
 }

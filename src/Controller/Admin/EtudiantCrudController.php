@@ -33,7 +33,7 @@ class EtudiantCrudController extends AbstractCrudController
             TextField::new('numEtud')->setLabel('Numero'),
             TextField::new('nomEtud')->setLabel('Nom'),
             TextField::new('pnomEtud')->setLabel('Prénom'),
-            DateField::new('dtnsEtud')->setLabel('Date de naissance'),
+            DateField::new('dtnsEtud')->setLabel('Date de naissance, attention au format mm/dd/yyyy'),
             TextField::new('adEtud')->setLabel("Adresse"),
             TextField::new('cpEtud')->setLabel("Code postal"),
             TextField::new('villeEtud')->setLabel('Ville'),
@@ -42,7 +42,7 @@ class EtudiantCrudController extends AbstractCrudController
             })->setLabel('login')->hideOnForm(),
             AssociationField::new('niveau')->setRequired(true)->formatValue(function ($value, $entity) {
                 return $entity->getNiveau()->getLibNiv();
-            })->setFormTypeOptions(['choice_label'=>'LibNiv', 'query_builder'=>function (EntityRepository $entityRepository) {
+            })->setFormTypeOptions(['choice_label'=>'LibNiv','placeholder'=>'Niveau?', 'query_builder'=>function (EntityRepository $entityRepository) {
                 return $entityRepository->createQueryBuilder('c')->orderBy('c.libNiv', 'ASC');
             }]),
         ];
