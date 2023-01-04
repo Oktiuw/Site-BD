@@ -63,7 +63,7 @@ class SujetTERController extends AbstractController
     public function update(ManagerRegistry $doctrine, SujetTER $sujetTER, Request $request, EnseignantRepository $enseignantRepository)
     {
         #un Enseignant ne peut modifier qu'un sujet TER dont il est le responsable
-        if ($enseignantRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()]) === $sujetTER->getEnseignant()) {
+        if ($enseignantRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()]) === $sujetTER->getEnseignant() or $this->getUser()->getRoles()[0]==='ROLE_ADMIN,ROLE_ENSEIGNANT') {
             $form = $this->createForm(SujetTERType::class, $sujetTER);
 
             $form->handleRequest($request);
@@ -86,7 +86,7 @@ class SujetTERController extends AbstractController
     public function delete(ManagerRegistry $doctrine, SujetTER $sujetTER, EnseignantRepository $enseignantRepository)
     {
         #un Enseignant ne peut supprimer qu'un sujet TER dont il est le responsable
-        if ($enseignantRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()]) === $sujetTER->getEnseignant()) {
+        if ($enseignantRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()]) === $sujetTER->getEnseignant() or $this->getUser()->getRoles()[0]==='ROLE_ADMIN,ROLE_ENSEIGNANT') {
             $doctrine->getManager()->remove($sujetTER);
             $doctrine->getManager()->flush();
         }

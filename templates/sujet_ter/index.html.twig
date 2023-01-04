@@ -37,7 +37,7 @@
     {% if not sujetEtudiant  %}
         <h1>{{ title }}</h1>
 
-        {% if is_granted('ROLE_ENSEIGNANT')  %}
+        {% if is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT') %}
             <a class="btn btn-dark"  href="{{ path('app_sujetter_create') }}" > Ajouter un nouveau sujet</a>
         {% endif %}
 
@@ -46,7 +46,7 @@
         {% endif %}
 
         {% for sujet in sujetsTER %}
-            {% if is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ETUDIANT') and groupe.niveau is same as(sujet.niveau) %}
+            {% if is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT') or is_granted('ROLE_ETUDIANT') and groupe.niveau is same as(sujet.niveau) %}
             <div class="sujetTer">
                 <div class="element_sujetTer">
                     <div class="param">{{ sujet.titreTer | capitalize }}</div>
@@ -83,7 +83,7 @@
                     <div class="badge bg-secondary"> <div class="param"> Inscrit : </div>{{ sujet.Etudiant.nomEtud|upper }} {{ sujet.Etudiant.pnomEtud }}</div>
                 {% endif %}
 
-                {% if is_granted('ROLE_ENSEIGNANT') and sujet.enseignant.id == usr.id %}
+                {% if is_granted('ROLE_ENSEIGNANT') and sujet.enseignant.id == usr.id or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT')%}
                     <div class="modifbtn">
                     <a class="btn btn-primary" href="{{ path('app_sujetter_update', {'id': sujet.id }) }}" >Modifier</a>
                         <!-- Bouton pour ouvrir le Modale de suppression de sujet TER -->
