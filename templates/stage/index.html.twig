@@ -73,8 +73,8 @@
                     <div class="modifbtn">
                         <a class="btn btn-primary" href="{{ path('app_stage_update', {'id': stage.id }) }}" >Modifier</a>
                         {# bouton permettant de voir les candidatures, seulement si il existe des candidatures sur ce stage #}
-                        {% if stage.canditatures|length > 0 %}
-                            <a class="btn btn-primary" href="{{ path('app_candidature', {'id': stage.id }) }}" >{{ stage.canditatures|length }} candidature(s)</a>
+                        {% if stage.candidatures|length > 0 %}
+                            <a class="btn btn-primary" href="{{ path('app_candidature', {'id': stage.id }) }}" >{{ stage.candidatures|length }} candidature(s)</a>
                         {% endif %}
                         <!-- Bouton pour ouvrir le Modal -->
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#{{ stage.id }}" data-whatever="@{{ stage.id }}" >

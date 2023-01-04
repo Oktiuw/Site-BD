@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\CanditaturesRepository;
+use App\Repository\CandidaturesRepository;
 use App\Entity\Candidatures;
 use App\Repository\EtudiantRepository;
 use App\Repository\StageRepository;
@@ -22,7 +22,7 @@ class CandidatureController extends AbstractController
         Request $request,
         StageRepository $stageRepository,
         EtudiantRepository $etudiantRepository,
-        CanditaturesRepository $canditaturesRepository
+        CandidaturesRepository $canditaturesRepository
     ) {
         $stage = $stageRepository->findOneBy(['id'=>$request->get('id')]);
         $etudiant = $etudiantRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()]);
