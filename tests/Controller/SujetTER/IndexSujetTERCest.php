@@ -1,12 +1,10 @@
 <?php
 
-
 namespace App\Tests\Controller\SujetTER;
 
 use App\Tests\Support\ControllerTester;
 use App\Factory\UtilisateurFactory;
 use Codeception\Util\HttpCode;
-
 
 class IndexSujetTERCest
 {

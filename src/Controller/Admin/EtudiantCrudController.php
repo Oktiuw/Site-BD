@@ -42,7 +42,7 @@ class EtudiantCrudController extends AbstractCrudController
             })->setLabel('login')->hideOnForm(),
             AssociationField::new('niveau')->setRequired(true)->formatValue(function ($value, $entity) {
                 return $entity->getNiveau()->getLibNiv();
-            })->setFormTypeOptions(['choice_label'=>'LibNiv', 'query_builder'=>function (EntityRepository $entityRepository) {
+            })->setFormTypeOptions(['choice_label'=>'LibNiv','placeholder'=>'Niveau?', 'query_builder'=>function (EntityRepository $entityRepository) {
                 return $entityRepository->createQueryBuilder('c')->orderBy('c.libNiv', 'ASC');
             }]),
         ];

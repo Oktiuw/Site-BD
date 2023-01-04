@@ -28,7 +28,6 @@ class CandidatureController extends AbstractController
         $etudiant = $etudiantRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()]);
         if ($stage->getNiveau() === $etudiant->getNiveau()
             and $canditaturesRepository->findOneBy(['stage'=>$stage, 'etudiant'=>$etudiant])==null) {
-
             $candidature = new Candidatures();
             $candidature->setEtudiant($etudiant);
             $candidature->setStage($stage);

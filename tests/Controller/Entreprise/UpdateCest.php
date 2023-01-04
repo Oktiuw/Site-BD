@@ -2,7 +2,6 @@
 
 namespace App\Tests\Controller\Entreprise;
 
-
 use App\Factory\EntrepriseFactory;
 use App\Factory\UtilisateurFactory;
 use App\Tests\Support\ControllerTester;
@@ -21,6 +20,5 @@ class UpdateCest
         ]);
         $I->amLoggedInAs($user->object());
         $I->amOnPage('/entreprise/1/update');
-
     }
 }
