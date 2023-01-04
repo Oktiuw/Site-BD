@@ -81,15 +81,19 @@ class EmploiDuTempsController extends AbstractController
     public function updateEvmt(Request $request, Evenement $evenement, ManagerRegistry $doctrine): Response
     {
         $form=$this->createForm(EvenementType::class, $evenement)->add('submit', SubmitType::class, ['label'=>'Modifier']);
+        $script="";
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $form=$form->getData();
-            $evenement->setHDeb($form->getHDeb());
-            $evenement->setHFin($form->getHFin());
+            $formdata=$form->getData();
+            $evenement->setHDeb($formdata->getHDeb());
+            $evenement->setHFin($formdata->getHFin());
+            if ($evenement->getHDeb()>=$evenement->getHFin()) {
+                return $this->renderForm('emploi_du_temps/update.html.twig', ['form'=>$form,'script'=>"Alert()"]);
+            }
             $doctrine=$doctrine->getManager();
             $doctrine->flush();
             return $this->redirectToRoute('app_emploi_du_temps');
         }
-        return $this->renderForm('emploi_du_temps/update.html.twig', ['form'=>$form]);
+        return $this->renderForm('emploi_du_temps/update.html.twig', ['form'=>$form,'script'=>""]);
     }
 }

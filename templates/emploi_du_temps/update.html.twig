@@ -15,5 +15,10 @@
         {{ form_widget(form.submit) }}
         {{ form_end(form) }}
     </div>
+    <script>
+        {{ script }}
+        function Alert() {
+            alert("L''heure de début ne peut être inférieur à l'heure de fin de l'évenement")
+        }</script>
 {% endblock %}
 
