@@ -19,7 +19,7 @@ class GroupeEtudiants
     private ?string $nomGroupe = null;
 
     #[ORM\ManyToOne(inversedBy: 'groupeEtudiants')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Niveau $niveau = null;
 
     #[ORM\ManyToMany(targetEntity: Evenement::class, mappedBy: 'groupeEtudiants')]
