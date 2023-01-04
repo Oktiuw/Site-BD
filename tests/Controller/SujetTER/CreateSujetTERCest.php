@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Tests\Controller\SujetTER;
 
 use App\Factory\EnseignantFactory;

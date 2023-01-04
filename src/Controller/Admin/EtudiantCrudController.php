@@ -33,7 +33,7 @@ class EtudiantCrudController extends AbstractCrudController
             TextField::new('numEtud')->setLabel('Numero'),
             TextField::new('nomEtud')->setLabel('Nom'),
             TextField::new('pnomEtud')->setLabel('Prénom'),
-            DateField::new('dtnsEtud')->setLabel('Date de naissance, attention au format mm/dd/yyyy'),
+            DateField::new('dtnsEtud')->setLabel('Date de naissance'),
             TextField::new('adEtud')->setLabel("Adresse"),
             TextField::new('cpEtud')->setLabel("Code postal"),
             TextField::new('villeEtud')->setLabel('Ville'),

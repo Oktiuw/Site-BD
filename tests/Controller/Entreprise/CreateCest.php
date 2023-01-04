@@ -13,5 +13,4 @@ class CreateCest
         $I->seeInTitle("Entreprise");
         $I->see("Création de Profile Entreprise", 'h1');
     }
-
 }

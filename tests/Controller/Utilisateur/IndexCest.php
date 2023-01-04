@@ -15,9 +15,4 @@ class IndexCest
         $I->seeInTitle("Modification avatar");
         $I->see("Modification de votre avatar", 'h1');
     }
-
-
-
-
-
 }

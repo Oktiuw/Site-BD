@@ -133,5 +133,4 @@ class Entreprise
 
         return $this;
     }
-
 }

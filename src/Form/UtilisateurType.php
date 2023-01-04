@@ -23,7 +23,6 @@ class UtilisateurType extends AbstractType
                 'constraints'=>[new File(['maxSize'=>'1024k','mimeTypes'=>
                     ['image/jpeg','image/png','image/jpg'],'mimeTypesMessage'=>'Veuillez choisir un document valide'])]])
             ->add('email', EmailType::class);
-
     }
 
     public function configureOptions(OptionsResolver $resolver): void
