@@ -44,7 +44,7 @@ class CandidatureController extends AbstractController
     public function index($id, StageRepository $stageRepository): Response
     {
         $stage = $stageRepository->findOneBy(['id'=>$id]);
-        $candidatures = $stage->getCanditatures();
+        $candidatures = $stage->getCandidatures();
         $user = $this->getUser();
 
         if ($stage->getEntreprise()->getCdUtil()->getId() != $user->getId()) {

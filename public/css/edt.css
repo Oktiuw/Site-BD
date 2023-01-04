@@ -2,8 +2,10 @@ div.edt{
     display: flex;
     background-color: white;
     border-radius: 15px;
-    width: 80%;
     flex-direction: column;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-top: 20px;
 }
 div.evmt{
     display: flex;
@@ -17,8 +19,9 @@ div.liste__cours{
 }
 div.horaire{
     border-right: black solid 1px;
-    padding-right: 10px;
+    padding-right: 20px;
     margin-right: 10px;
+    display: flex;
 
 }
 body{
@@ -31,6 +34,7 @@ div.details{
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-grow: 1;
 }
 div.texte{
     display: flex;
@@ -52,6 +56,7 @@ span.edt{
     margin-top:15px;
     cursor: pointer;
     transition: font-size ease-in-out 100ms;
+    font-size: 40px;
 
 }
 span.edt:hover{
