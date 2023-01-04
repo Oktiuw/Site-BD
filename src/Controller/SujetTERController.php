@@ -98,12 +98,11 @@ class SujetTERController extends AbstractController
     public function register(ManagerRegistry $doctrine, EtudiantRepository $etudiantRepository, SujetTER $sujetTER, SujetTERRepository $sujetTERRepository)
     {
         $etudiant = $etudiantRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()]);
-        $niveau = $etudiant->getGroupeEtudiants()->first();
         #test si l'Etudiant connecté possède deja un sujet TER
         #test si le sujet est bien de son niveau
         #test si le sujet est bien disponible
         if ($sujetTERRepository->findOneBy(['Etudiant'=>$etudiant])!==$etudiant
-            and $sujetTER->getNiveau() == $niveau->getNiveau()
+            and $sujetTER->getNiveau() == $etudiant->getNiveau()
             and $sujetTER->getEtudiant() == null) {
             $sujetTER->setEtudiant($etudiant);
             $doctrine->getManager()->persist($sujetTER);

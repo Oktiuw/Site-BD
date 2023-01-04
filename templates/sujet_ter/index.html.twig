@@ -17,7 +17,6 @@
 
 {% if etudiant %}
     {% set usr = etudiant %}
-    {% set groupe = usr.groupeEtudiants|first %}
     {% set sujetEtudiant = etudiant.sujetTERs|first %}
 {% else %}
     {% set usr = enseignant %}
@@ -46,7 +45,7 @@
         {% endif %}
 
         {% for sujet in sujetsTER %}
-            {% if is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT') or is_granted('ROLE_ETUDIANT') and groupe.niveau is same as(sujet.niveau) %}
+            {% if is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT') or is_granted('ROLE_ETUDIANT') and etudiant.niveau is same as(sujet.niveau) %}
             <div class="sujetTer">
                 <div class="element_sujetTer">
                     <div class="param">{{ sujet.titreTer | capitalize }}</div>
