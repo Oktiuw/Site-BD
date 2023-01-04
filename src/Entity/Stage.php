@@ -38,7 +38,7 @@ class Stage
     #[ORM\JoinColumn(nullable: false)]
     private ?Niveau $niveau = null;
 
-    #[ORM\OneToMany(mappedBy: 'stage', targetEntity: Canditatures::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'stage', targetEntity: Candidatures::class, orphanRemoval: true)]
     private Collection $canditatures;
 
     public function __construct()
@@ -136,14 +136,14 @@ class Stage
     }
 
     /**
-     * @return Collection<int, Canditatures>
+     * @return Collection<int, Candidatures>
      */
     public function getCanditatures(): Collection
     {
         return $this->canditatures;
     }
 
-    public function addCanditature(Canditatures $canditature): self
+    public function addCanditature(Candidatures $canditature): self
     {
         if (!$this->canditatures->contains($canditature)) {
             $this->canditatures->add($canditature);
@@ -153,7 +153,7 @@ class Stage
         return $this;
     }
 
-    public function removeCanditature(Canditatures $canditature): self
+    public function removeCanditature(Candidatures $canditature): self
     {
         if ($this->canditatures->removeElement($canditature)) {
             // set the owning side to null (unless already changed)

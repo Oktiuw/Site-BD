@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Canditatures;
 use App\Repository\CanditaturesRepository;
+use App\Entity\Candidatures;
 use App\Repository\EtudiantRepository;
 use App\Repository\StageRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -26,11 +26,10 @@ class CandidatureController extends AbstractController
     ) {
         $stage = $stageRepository->findOneBy(['id'=>$request->get('id')]);
         $etudiant = $etudiantRepository->findOneBy(['cdUtil'=>$this->getUser()->getId()]);
-
         if ($stage->getNiveau() === $etudiant->getNiveau()
             and $canditaturesRepository->findOneBy(['stage'=>$stage, 'etudiant'=>$etudiant])==null) {
 
-            $candidature = new Canditatures();
+            $candidature = new Candidatures();
             $candidature->setEtudiant($etudiant);
             $candidature->setStage($stage);
 
