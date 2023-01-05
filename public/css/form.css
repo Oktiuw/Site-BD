@@ -16,9 +16,9 @@ div.info{
 }
 img.avatar{
     width: 100px;
+    height: 100px;
     border-radius: 75%;
-    margin: 10px;
-    visibility: hidden;
+    margin: 10px 10px 10px 10px;
 }
 div.mb-3{
     margin: 10px;
