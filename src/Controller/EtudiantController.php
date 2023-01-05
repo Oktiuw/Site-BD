@@ -79,6 +79,6 @@ class EtudiantController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('app_redirecteur');
         }
-        return $this->renderForm('etudiant/update.html.twig', ['profile'=>$etudiant,'form'=>$form,'avatar'=>$avatar, 'formUser'=>$formUser]);
+        return $this->renderForm('etudiant/update.html.twig', ['user'=>$this->getUser(),'profile'=>$etudiant,'form'=>$form,'avatar'=>$avatar, 'formUser'=>$formUser]);
     }
 }
