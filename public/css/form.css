@@ -16,7 +16,7 @@ div.info{
 }
 img.avatar{
     width: 100px;
-    border-radius: 50%;
+    border-radius: 75%;
     margin: 10px;
     visibility: hidden;
 }
