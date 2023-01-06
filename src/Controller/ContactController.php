@@ -106,6 +106,13 @@ class ContactController extends AbstractController
         ;
         return $this->formSendEmail($form, $request, $etudiant->getCdUtil()->getEmail(), true);
     }
+    #[Route('/contact/admin', name: 'app_contact_admin', requirements: ['id'=>'\d+'])]
+    public function contactAdmin(Request $request, EntrepriseRepository $entrepriseRepository, Etudiant $etudiant): Response
+    {
+        $form=$this->createForm(EmailType::class)->add('submit', SubmitType::class, ['label' => 'Envoyer','attr'=>['onclick'=>'javascriptAlert()']])
+        ;
+        return $this->formSendEmail($form, $request, $this->getUser()->getEmail(), true);
+    }
     #[Route('/contact/groupeEtudiants', name: 'app_contact_groupeEtudiants')]
     public function contactGroupeEtudiants(EntrepriseRepository $entrepriseRepository, Request $request): Response
     {
