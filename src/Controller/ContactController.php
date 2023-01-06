@@ -8,8 +8,10 @@ use App\Entity\Etudiant;
 use App\Entity\GroupeEtudiants;
 use App\Form\EmailType;
 use App\Mail\EmailSender;
+use App\Repository\EnseignantRepository;
 use App\Repository\EntrepriseRepository;
 use App\Repository\EtudiantRepository;
+use App\Repository\UtilisateurRepository;
 use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -107,11 +109,28 @@ class ContactController extends AbstractController
         return $this->formSendEmail($form, $request, $etudiant->getCdUtil()->getEmail(), true);
     }
     #[Route('/contact/admin', name: 'app_contact_admin', requirements: ['id'=>'\d+'])]
-    public function contactAdmin(Request $request, EntrepriseRepository $entrepriseRepository, Etudiant $etudiant): Response
+    public function contactAdmin(Request $request, EnseignantRepository $enseignantRepository): Response
     {
-        $form=$this->createForm(EmailType::class)->add('submit', SubmitType::class, ['label' => 'Envoyer','attr'=>['onclick'=>'javascriptAlert()']])
-        ;
-        return $this->formSendEmail($form, $request, $this->getUser()->getEmail(), true);
+        $form=$this->createForm(EmailType::class)->add('submit', SubmitType::class, ['label' => 'Envoyer','attr'=>['onclick'=>'javascriptAlert()']]);
+        $enseignantRepository=$enseignantRepository->findAll();
+        $listeAdmin=[];
+        foreach ($enseignantRepository as $enseignant) {
+            if ($enseignant->isAdmin()) {
+                $listeAdmin[]=$enseignant;
+            }
+        }
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $mail = $form->getData();
+            $e = new EmailSender();
+            $mailer = $e->createMailSender();
+
+            foreach ($listeAdmin as $utilisateur) {
+                $e->sendEmail($mailer, $this->getUser()->getEmail(), $utilisateur->getCdUtil()->getEmail(), $mail['objet'], $mail['body']."\n Message envoyé par le système. Ne pas répondre directement à ce mail");
+            }
+            return $this->redirectToRoute('app_redirecteur');
+        }
+        return $this->renderForm('contact/send.html.twig', ['form' => $form,'hideDest'=>true]);
     }
     #[Route('/contact/groupeEtudiants', name: 'app_contact_groupeEtudiants')]
     public function contactGroupeEtudiants(EntrepriseRepository $entrepriseRepository, Request $request): Response
