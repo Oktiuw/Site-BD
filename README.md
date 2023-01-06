@@ -99,6 +99,16 @@ Pour les tests, l'application utilise Codeception et doctrine2
 * Khadija SIALA
 * Aurélien VINCENT
 
+<h2>Production</h2>
+ip : 10.31.11.92 (VPN du département requis) \
+phpmyadmin : 10.31.11.92/phpmyadmin
+Compte:\
+Pour obtenir un compte autre qu'entreprise contacter :\
+<strong>aurelien.vincent@etudiant.univ-reims.fr</strong>
+--------------------
+M Jonquet :
+Nous vous avons crée un compte avec comme login 'Jonquet' et comme mot de passe 'sae3-01' pour le serveur en production
+
 
 
 
