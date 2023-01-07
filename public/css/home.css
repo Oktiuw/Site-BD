@@ -190,7 +190,6 @@ span.menu{
     transition: font-size 100ms ease;
 }
 span.menu:hover{
-    font-weight:bold;
     font-size: 40px;
 }
 nav{
@@ -274,6 +273,7 @@ a.lien{
     section.footer{
         margin: 0;
         justify-content: space-around;
+        padding-bottom: 30px;
     }
     div.footer_elmt{
         width: 50%;
