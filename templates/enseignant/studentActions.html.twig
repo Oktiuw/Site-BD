@@ -6,15 +6,13 @@
 {% include 'navbar.html.twig' %}
     <div class="space"></div>
     <div class="liste_choix">
-        <div class="top_contacts">
-            <a class="choix" id="etudiant" href="{{ path('app_enseignant_m1tom2') }}"><p>Passer les étudiants de M1 à M2</p><span class="material-symbols-outlined">
+            <a class="choix" href="{{ path('app_enseignant_m1tom2') }}"><p>Passer les étudiants de M1 à M2</p><span class="material-symbols-outlined">
 school
 </span></a>
-            <a class="choix" id="groupeEtudiants" href="{{ path('app_enseignant_delete') }}"><p>Supprimer les étudiants diplomés</p><span class="material-symbols-outlined">
+            <a class="choix" href="{{ path('app_enseignant_delete') }}"><p>Supprimer les étudiants diplomés</p><span class="material-symbols-outlined">
 history_edu
 </span></a>
         </div>
-    </div>
 {% endblock %}
 
 {% block title %}
