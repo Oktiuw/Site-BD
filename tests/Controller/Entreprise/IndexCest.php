@@ -16,6 +16,20 @@ class IndexCest
         $I->see('nomEnt', 'h1');
     }
 
+    public function testRestriction(ControllerTester $I): void
+    {
+        $I->amOnPage('/entreprise');
+        #On voit si on est bien redirigé vers redircteur
+        $I->seeResponseCodeIs(200);
+    }
+    public function testRestrictionOtherRoles(ControllerTester $I): void
+    {
+        $user = UtilisateurFactory::createOne(['roles' => ['ROLE_ENSEIGNANT']]);
+        $I->amLoggedInAs($user->object());
+        $I->amOnPage('/entreprise');
+        $I->seeResponseCodeIs(403);
+    }
+
     public function contactEtudiant(ControllerTester $I)
     {
         $user = UtilisateurFactory::createOne(['roles' => ['ROLE_ENTREPRISE']]);
