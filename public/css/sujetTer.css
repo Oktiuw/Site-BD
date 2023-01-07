@@ -5,12 +5,6 @@ body{
     background-size: cover;
 }
 
-div.space{
-    opacity: 0;
-    width: 100%;
-    min-height: 90px;
-}
-
 div.sujetTer{
     background: white;
     border-radius: 10px;

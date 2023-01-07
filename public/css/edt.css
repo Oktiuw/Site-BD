@@ -12,6 +12,7 @@ div.evmt{
     align-items: center;
     margin: 15px;
 }
+
 div.liste__cours{
     display: flex;
     flex-direction: column;
