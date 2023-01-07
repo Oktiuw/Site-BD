@@ -61,11 +61,11 @@ class EvenementCrudController extends AbstractCrudController
             }])->formatValue(function ($value, $entity) {
                 $res="";
                 foreach ($entity->getGroupeEtudiants() as $groupe) {
-                    $res .= " | {$groupe->getNomGroupe()}";
+                    $res .= " {$groupe->getNomGroupe()} ";
                 }
                 return $res;
             })->setRequired(true),
-            IntegerField::new('etreEtale')->setLabel('Nombre de semaine')->hideOnIndex()->hideOnDetail()->setRequired(true)
+            IntegerField::new('etreEtale')->setLabel('Nombre de semaine(s)')->hideOnIndex()->hideOnDetail()->setRequired(true)
 
         ];
     }
