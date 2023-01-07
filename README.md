@@ -100,14 +100,16 @@ Pour les tests, l'application utilise Codeception et doctrine2
 * Aurélien VINCENT
 
 <h2>Production</h2>
-ip : 10.31.11.92 (VPN du département requis) \
+ip : 10.31.11.92 (VPN du département requis) \n
 phpmyadmin : 10.31.11.92/phpmyadmin
-Compte:\
-Pour obtenir un compte autre qu'entreprise contacter :\
+Compte:\n
+Pour obtenir un compte autre qu'entreprise contacter :\n
 <strong>aurelien.vincent@etudiant.univ-reims.fr</strong>
 --------------------
 M Jonquet :
-Nous vous avons crée un compte avec comme login 'Jonquet' et comme mot de passe 'sae3-01' pour le serveur en production
+Nous vous avons crée un compte avec comme login 'Jonquet' et comme mot de passe 'sae3-01' pour le serveur en production\n
+Ce compte est un compte admin, il vous permettra d'effectuer ajout/suppressions/modifications de compte\n
+Nous pouvons aussi vous octroyer un compte sur phpmyadmin si vous le désirez.
 
 
 
