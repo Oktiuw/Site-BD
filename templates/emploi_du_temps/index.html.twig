@@ -1,15 +1,18 @@
 {% extends 'base.html.twig' %}
 {% block title %}Emploi du temps{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('css/edt.css') }}" rel="stylesheet">
+{% endblock %}
 {% block body %}
     {% include 'navbar.html.twig' %}
-
+    <div class="space"></div>
     <div class="edt">
         <div class="header">
             <div class="btns">
                 <a href="{{ path('app_emploi_du_temps_date',{'currentDate':previousWeek.format('d-m-y')})}}" class="lien__arrow"><span class="material-symbols-outlined edt">first_page</span></a>
                 <a href="{{ path('app_emploi_du_temps_date',{'currentDate':beforeDate.format('d-m-y')})}}" class="lien__arrow"><span class="material-symbols-outlined edt">arrow_back</span></a>
             </div>
-            <h1>Emploi du temps du {{ date.format('d/m/Y') }}</h1>
+            <h1 style="margin-top: 5px;">Emploi du temps du {{ date.format('d/m/Y') }}</h1>
             <div class="btns">
                 <a href="{{ path('app_emploi_du_temps_date',{'currentDate':afterDate.format('d-m-y')})}}" class="lien__arrow"><span class="material-symbols-outlined edt">arrow_forward</span></a>
                 <a href="{{ path('app_emploi_du_temps_date',{'currentDate':nextWeek.format('d-m-y')})}}" class="lien__arrow"><span class="material-symbols-outlined edt">last_page</span></a>
