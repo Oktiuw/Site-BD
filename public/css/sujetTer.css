@@ -5,16 +5,23 @@ body{
     background-size: cover;
 }
 
+div.listeSujet{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+
+}
+
 div.sujetTer{
     background: white;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    align-self: center;
     margin: 10px 10px 30px;
+    justify-content: flex-end;
     box-shadow: 0 10px 10px 1px rgba(0,0,0,0.3);
-
 }
 
 div.element_sujetTer{
@@ -33,6 +40,7 @@ div.param{
 div.description_sujetTer{
     margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 15px;
 }
 
 div.etudiantWarning{
@@ -68,7 +76,8 @@ button.btn-danger{
 }
 
 @media (min-width:1000px){
-    div.sujetTer{
-        width: 70%;
+    div.listeSujet{
+        width: 80%;
+        align-self: center;
     }
 }
