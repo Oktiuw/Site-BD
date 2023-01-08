@@ -52,10 +52,14 @@ h1{
     text-align: center;
 }
 
-.modifbtn{
+.modifbtn, .inscbtn{
     display: flex;
     align-content: stretch;
     align-self: stretch;
+}
+
+button.btn-dark{
+    flex-grow: 2;
 }
 
 a.btn-primary{
