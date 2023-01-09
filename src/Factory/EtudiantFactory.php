@@ -44,7 +44,7 @@ final class EtudiantFactory extends ModelFactory
             'pnomEtud' => self::faker()->firstName(),
             'dtnsEtud' => self::faker()->dateTimeInInterval('-30 years', '+10 years'),
             'adEtud' => self::faker()->streetAddress(),
-            'cpEtud' => self::faker()->postcode(),
+            'cpEtud' => self::faker()->randomNumber(5, true),
             'villeEtud' => self::faker()->city(),
             'firstConnection'=>true,
         ];
