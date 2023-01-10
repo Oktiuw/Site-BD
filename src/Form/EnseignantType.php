@@ -16,7 +16,7 @@ class EnseignantType extends AbstractType
         $builder
 
             ->add('adEn', TextType::class)
-            ->add('cpEn', NumberType::class)
+            ->add('cpEn', TextType::class)
             ->add('villeEn', TextType::class)
 
         ;

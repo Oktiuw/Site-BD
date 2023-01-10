@@ -21,7 +21,7 @@ class EtudiantType extends AbstractType
                     ['application/pdf'],'mimeTypesMessage'=>'Veuillez choisir un document valide'])]])
             ->add('pnomEtud', TextType::class)
             ->add('adEtud', TextType::class)
-            ->add('cpEtud', NumberType::class)
+            ->add('cpEtud', TextType::class)
             ->add('villeEtud', TextType::class)
 
         ;
