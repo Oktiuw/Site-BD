@@ -27,11 +27,6 @@ img.avatar{
     margin: 10px 10px 10px 10px;
     z-index:0;
 }
-div.space{
-    opacity: 0;
-    width: 100%;
-    min-height: 120px;
-}
 div.top{
     display: flex;
     flex-direction: column;
