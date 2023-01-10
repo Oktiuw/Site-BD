@@ -100,8 +100,8 @@ Pour les tests, l'application utilise Codeception et doctrine2
 * Aurélien VINCENT
 
 <h2>Production</h2>
-ip : 10.31.11.92 (VPN du département requis) <br>
-phpmyadmin : 10.31.11.92/phpmyadmin<br>
+ip : 10.31.11.27 (VPN du département requis) <br>
+phpmyadmin : 10.31.11.27/phpmyadmin<br>
 Compte:<br>
 Pour obtenir un compte autre qu'entreprise contacter :<br>
 <strong>aurelien.vincent@etudiant.univ-reims.fr</strong><br>
