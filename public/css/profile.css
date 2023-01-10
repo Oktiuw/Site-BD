@@ -25,12 +25,10 @@ div.info_profile{
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 10%;
-    justify-content: space-around;
-
+    width: 100%;
 }
 img.avatar{
     width: 100px;
@@ -57,6 +55,10 @@ button.btn-primary{
 }
 div.bot{
     display: flex;
+    flex-direction: column;
+}
+a.logout{
+    margin-top: 20px;
 }
 div.stages{display: flex;}
 embed{
