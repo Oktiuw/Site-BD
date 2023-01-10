@@ -5,6 +5,11 @@ nav{
 .logo-urca{
     width:200px;
 }
+div.space{
+    opacity: 0;
+    width: 100%;
+    min-height: 120px;
+}
 @media (min-width:800px) {
 
     img.logo-urca {
