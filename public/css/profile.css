@@ -1,7 +1,4 @@
-div.sansnavbar{
-    display: flex;
-    flex-direction: column;
-}
+
 body{
     display: flex;
     flex-direction: column;
@@ -9,13 +6,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
-.logo-urca{
-    width:200px;
-}
-nav{
-    border-bottom: #cacad1 solid 1px;
-    box-shadow: 0 3px 3px 1px rgba(0,0,0,0.3);
-}
+
 button{
     min-width: 150px;
 }
@@ -79,9 +70,7 @@ embed{
     button.btn-primary{
         width: 200px;
     }
-    img.logo-urca{
-        width: 300px;
-    }
+
 }
 div.info_profile>*{
     margin: 15px;

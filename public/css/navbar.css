@@ -1,0 +1,13 @@
+nav{
+    border-bottom: #cacad1 solid 1px;
+    box-shadow: 0 3px 3px 1px rgba(0,0,0,0.3);
+}
+.logo-urca{
+    width:200px;
+}
+@media (min-width:800px) {
+
+    img.logo-urca {
+        width: 300px;
+    }
+}
