@@ -56,9 +56,11 @@ button.btn-primary{
 div.bot{
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    justify-content: flex-end;
 }
-a.logout{
-    margin-top: 20px;
+div.bot>*{
+    margin: 5px;
 }
 div.stages{display: flex;}
 embed{
