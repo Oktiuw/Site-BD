@@ -87,6 +87,9 @@ div.btns{
 @media (min-width: 1000px) {
     img.avatar{
         display: block;
+        width: 100px;
+        height: 100px;
+        border-radius: 75%;
     }
 
 }
