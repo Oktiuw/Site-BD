@@ -47,7 +47,6 @@
 
         <div class="listeSujet">
             <div class="accordion" id="sujetTERAccordeon">
-
                 {% for sujet in sujetsTER %}
                     {% if is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT') or is_granted('ROLE_ETUDIANT') and etudiant.niveau is same as(sujet.niveau) %}
                         <div class="sujetTer">
@@ -139,8 +138,8 @@
                                 </div>
                             </div>
                         {% endif %}
+                        </div>
                     {% endif %}
-                    </div>
                 {% endfor %}
             </div>
         </div>
