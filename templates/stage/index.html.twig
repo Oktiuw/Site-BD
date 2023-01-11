@@ -29,19 +29,30 @@
         <br>
     {% endif %}
 
+    <div class="accordion" id="sujetTERAccordeon">
     {% for stage in stages %}
         {# on affiche que si l'étudiant n'a pas déjà candidaté à ce stage #}
         {% if is_granted('ROLE_ENTREPRISE') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT') or is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ETUDIANT') and etudiant.niveau is same as(stage.niveau) and stage not in etudiant.canditatures|map(c => c.stage) %}
+        <div class="" type="button" data-toggle="collapse" data-target="#collapse{{ stage.id }}" aria-expanded="true" aria-controls="collapse{{ stage.id }}" id="header{{ stage.id }}">
             <div class="stage">
                 <div class="element_stage">
                     <div class="param">{{ stage.titreStage }}</div>
                 </div>
                 <div class="entreprise_stage"><div class="param">Entreprise : </div>{{ stage.entreprise.nomEnt }}</div>
-                <div class="responsable_stage"><div class="param">Responsable : </div>{{ stage.entreprise.nomRef }}</div>
-                <div class="tel_stage"><div class="param">Téléphone : </div>{{ stage.entreprise.telEnt }}</div>
+            {% if is_granted('ROLE_ENTREPRISE') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT') or is_granted('ROLE_ENSEIGNANT')%}
                 <div class="niveau_stage"><div class="param">Niveau : </div>{{ stage.niveau.libNiv }}</div>
-                <div class="description_stage"> <div class="param">Description : </div>{{ stage.descStage }}</div>
+            {% endif %}
                 <div class="adresse_stage"><div class="param">Adresse : </div>{{ stage.adStage }}, {{ stage.cpStage }} {{ stage.villeStage }}</div>
+
+            <div id="collapse{{ stage.id }}" class="collapse" aria-labelledby="header{{ stage.id }}" data-parent="#sujetTERAccordeon">
+                <div class="card-body">
+                    <hr>
+                    <div class="responsable_stage"><div class="param">Responsable : </div>{{ stage.entreprise.nomRef }}</div>
+                    <div class="tel_stage"><div class="param">Téléphone : </div>{{ stage.entreprise.telEnt }}</div>
+                    <div class="description_stage"> <div class="param">Description : </div>{{ stage.descStage }}</div>
+                </div>
+            </div>
+
 
                 {% if is_granted('ROLE_ETUDIANT') %}
                     <!-- Bouton pour ouvrir le Modal -->
@@ -67,7 +78,6 @@
                         </div>
                     </div>
                 {% endif %}
-                
                 
                 {% if is_granted('ROLE_ENTREPRISE') %}
                     <div class="modifbtn">
@@ -102,6 +112,8 @@
                 {% endif %}
             </div>
         {% endif %}
+        </div>
     {% endfor %}
+    </div>
 {% endblock %}
 
