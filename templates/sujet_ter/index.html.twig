@@ -106,7 +106,7 @@
                         {% endif %}
 
                         <!-- gestion de la mofification et de la suppressions -->
-                        {% if is_granted('ROLE_ENSEIGNANT') and sujet.enseignant.id == usr.id or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT')%}
+                        {% if (is_granted('ROLE_ENSEIGNANT') or is_granted('ROLE_ADMIN,ROLE_ENSEIGNANT')) and sujet.enseignant.id == usr.id %}
                             <div class="modifbtn">
                                 <a class="btn btn-primary" href="{{ path('app_sujetter_update', {'id': sujet.id }) }}" >Modifier</a>
                                 <!-- Bouton pour ouvrir le Modale de suppression de sujet TER -->
