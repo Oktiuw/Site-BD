@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link href="{{ asset('css/tuto.css') }}" rel="stylesheet">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <title>Tutoriel</title>
+</head>
+<body>
+<section id="header">
+    <div id="ie4h" class="container">
+        <h1 id="if54" data-anim-type="fadeInUp" class="gpd-header animate__animated animate__backInDown">Emploi du temps
+        </h1>
+        <h1 id="id2rn" data-anim-type="fadeInUp" class="gpd-header animate__animated animate__backInUp">Modifier un cours
+        </h1>
+    </div>
+</section>
+<br><br>
+<div class="contain">
+    <div class="nav animate__animated animate__zoomIn">
+        <h1 style="margin-left: 15px;">Sommaire</h1>
+        <ul id="sommaire">
+            <li>
+                <a href="#login" accesskey="login">Se connecter</a>
+            </li>
+            <li>
+                <a href="#edt" accesskey="edt">Emploi du temps</a>
+            </li>
+            <li>
+                <a href="#nav" accesskey="nav">Naviguer</a>
+            </li>
+            <li>
+                <a href="#edit" accesskey="edit">Menu modification</a>
+            </li>
+            <li>
+                <a href="#put" accesskey="put">Modifier</a>
+            </li>
+            <li>
+                <a href="#save" accesskey="save">Enregistrer</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tuto">
+        <div class="desc animate__animated animate__fadeInBottomLeft">
+            <h2 id="login">Se connecter</h2>
+            <ul>
+                <li>Rendez vous sur la page d'accueil du site.</li>
+                <li>Cliquer sur le menu en haut a gauche puis sur "mon espace".</li>
+                <li>Vous devriez obtenir une page comme celle-ci :</li>
+                <div class="img">
+                    <img class="tuto" src="{{ asset('img/login.png') }}" alt="Page d'accueil login">
+                </div>
+                <li>Entrez ensuite vos identifiants et connectez vous</li>
+                <div class="img">
+                    <img class="tuto" src="{{ asset('img/logged.png') }}" alt="Page d'accueil login">
+                </div>
+            </ul>
+        </div>
+        <div class="desc">
+            <h2 id="edt">Accèder à l'emploi du teps</h2>
+            <ul>
+                <li>Cliquez sur "Emploi du temps"</li>
+                <li>
+                    <div class="img">
+                        <img class="tuto" src="{{ asset('img/click.png') }}" alt="Page d'accueil login">
+                    </div>
+                </li>
+                <li>Résultat</li>
+                <div class="img">
+                    <img class="tuto" src="{{ asset('img/result.png') }}" alt="Page d'accueil login">
+                </div>
+            </ul>
+
+        </div>
+        <div class="desc">
+            <h2 id="nav">Navigation vers la date du cours</h2>
+            <ul>
+                <li>Les flêches situés aux extrémités permettent de revenir à la semaine précedente ou aller à la suivante. </li>
+                <li>Celles situées à côté de la date permettent de naviguer entre les jours.</li>
+                <li style="text-align: center"><strong>Utilisez ces flêches pour vous rendre vers la date où votre cours se tient.</strong></li>
+            </ul>
+        </div>
+        <div class="desc">
+            <h2 id="edit">Modification du cours</h2>
+            <ul>
+                <li>Cliquez sur le petit crayon comme ci-dessous</li>
+                <div class="img">
+                    <img class="tuto" src="{{ asset('img/pen.png') }}" alt="Page d'accueil login">
+                </div>
+            </ul>
+        </div>
+        <div class="desc">
+            <h2 id="put">Mettre les valeurs souhaitées</h2>
+            <ul>
+                <li>Grâce aux deux champs "Horaire de début" et "Horaire de fin",<strong> mettez les horaires desirées</strong></li>
+                <div class="img">
+                    <img class="tuto" src="{{ asset('img/horaires.png') }}" alt="Page d'accueil login">
+                </div>
+            </ul>
+        </div>
+        <div class="desc">
+            <h2 id="save">Enregistrer</h2>
+            <ul><li>Une fois que vos valeurs sont rentrées, appuyez sur <strong>Modifier</strong></li></ul>
+        </div>
+    </div>
+</div>
+<script>
+    let a= document.querySelector('ul#sommaire').children
+    let b=Array.from(a).map((li)=>li.children[0]);
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            const id=entry.target.id;
+            console.log(id)
+            if (entry.intersectionRatio > 0) {
+                b.forEach((a)=>{
+                if (a.accessKey === id)
+                {
+                    a.classList.add('active')
+                }
+                else{
+                    a.classList.remove('active')
+                }
+            })
+        }
+    })})
+    const boxElList = document.querySelectorAll('h2');
+    boxElList.forEach((el) => {
+        io.observe(el);
+    })
+</script>
+</body>
+</html>
