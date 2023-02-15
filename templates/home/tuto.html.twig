@@ -7,6 +7,8 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <title>Tutoriel</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
 </head>
 <body>
 <section id="header">
@@ -22,87 +24,92 @@
     <div class="nav animate__animated animate__zoomIn">
         <h1 style="margin-left: 15px;">Sommaire</h1>
         <ul id="sommaire">
-            <li>
-                <a  accesskey="login">Se connecter</a>
+            <li style="list-style: none">
+                <a  accesskey="login" href="#login">Se connecter</a>
             </li>
-            <li>
-                <a  accesskey="edt">Emploi du temps</a>
+            <li style="list-style: none">
+                <a  accesskey="edt" href="#edt">Emploi du temps</a>
             </li>
-            <li>
-                <a accesskey="nav">Naviguer</a>
+            <li style="list-style: none">
+                <a accesskey="nav" href="#nav">Naviguer</a>
             </li>
-            <li>
-                <a  accesskey="edit">Menu modification</a>
+            <li style="list-style: none">
+                <a  accesskey="edit" href="#edit">Menu modification</a>
             </li>
-            <li>
-                <a accesskey="put">Modifier</a>
-            </li>
-            <li>
-                <a accesskey="save">Enregistrer</a>
+            <li style="list-style: none">
+                <a accesskey="put" href="#put">Modifier</a>
             </li>
         </ul>
     </div>
     <div class="tuto">
-        <div class="desc animate__animated animate__fadeInBottomLeft">
+        <div class="desc animate__animated">
             <h2 id="login">Se connecter</h2>
-            <ul>
-                <li>Rendez vous sur la page d'accueil du site.</li>
-                <li>Cliquer sur le menu en haut a gauche puis sur "mon espace".</li>
-                <li>Vous devriez obtenir une page comme celle-ci :</li>
+            <ol>
+                <li>Allez sur la page d'accueil du site, <a href="{{ path('app_home') }}" target="_blank">juste ici </a> </li>
+                <li>Cliquez sur le menu en haut à gauche puis sur "mon espace"</li>
+                <div class="img">
+                    <img class="tuto" src="{{ asset('img/home.png') }}" alt="Page d'accueil login">
+                </div>
+                <li>Connectez vous</li>
                 <div class="img">
                     <img class="tuto" src="{{ asset('img/login.png') }}" alt="Page d'accueil login">
                 </div>
-                <li>Entrez ensuite vos identifiants et connectez vous</li>
                 <div class="img">
                     <img class="tuto" src="{{ asset('img/logged.png') }}" alt="Page d'accueil login">
                 </div>
-            </ul>
+            </ol>
         </div>
+        <hr>
         <div class="desc">
             <h2 id="edt">Accèder à l'emploi du temps</h2>
-            <ul>
+            <ol>
                 <li>Cliquez sur "Emploi du temps"</li>
-                <li>
                     <div class="img">
                         <img class="tuto" src="{{ asset('img/click.png') }}" alt="Page d'accueil login">
                     </div>
-                </li>
                 <li>Résultat</li>
                 <div class="img">
                     <img class="tuto" src="{{ asset('img/result.png') }}" alt="Page d'accueil login">
                 </div>
-            </ul>
+            </ol>
 
         </div>
+        <hr>
+
         <div class="desc">
             <h2 id="nav">Navigation vers la date du cours</h2>
-            <ul>
-                <li>Les flêches situés aux extrémités permettent de revenir à la semaine précedente ou aller à la suivante. </li>
-                <li>Celles situées à côté de la date permettent de naviguer entre les jours.</li>
-                <li style="text-align: center"><strong>Utilisez ces flêches pour vous rendre vers la date où votre cours se tient.</strong></li>
-            </ul>
+            <ol>
+                <li>Les flèches <span class="material-symbols-outlined edt">first_page</span>   <span class="material-symbols-outlined edt">last_page</span> changent la semaine</li>
+                <li>Les flèches <span class="material-symbols-outlined edt">arrow_back</span>   <span class="material-symbols-outlined edt">arrow_forward</span> changent le jour </li>
+                <li><strong>Utilisez ces flêches pour vous rendre vers la date où votre cours se tient.</strong></li>
+                <div class="img">
+                    <img class="tuto" src="{{ asset('img/nav.png') }}" alt="Page d'accueil login">
+                </div>
+            </ol>
         </div>
+        <hr>
+
         <div class="desc">
             <h2 id="edit">Modification du cours</h2>
-            <ul>
-                <li>Cliquez sur le petit crayon comme ci-dessous</li>
+            <ol>
+                <li>Cliquez sur le petit crayon</li>
+                <br><br><BR>
                 <div class="img">
                     <img class="tuto" src="{{ asset('img/pen.png') }}" alt="Page d'accueil login">
                 </div>
-            </ul>
+            </ol>
         </div>
+        <hr>
+
         <div class="desc">
             <h2 id="put">Mettre les valeurs souhaitées</h2>
-            <ul>
-                <li>Grâce aux deux champs "Horaire de début" et "Horaire de fin",<strong> mettez les horaires desirées</strong></li>
+            <ol>
+                <li><strong>Mettez les horaires désirées.</strong></li>
                 <div class="img">
                     <img class="tuto" src="{{ asset('img/horaires.png') }}" alt="Page d'accueil login">
                 </div>
-            </ul>
-        </div>
-        <div class="desc">
-            <h2 id="save">Enregistrer</h2>
-            <ul><li>Une fois que vos valeurs sont rentrées, appuyez sur <strong>Modifier</strong></li></ul>
+                <li>Une fois que vos valeurs sont rentrées, appuyez sur <strong>Modifier</strong></li>
+            </ol>
         </div>
     </div>
 </div>
@@ -112,8 +119,8 @@
     const io = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             const id=entry.target.id;
-            console.log(id)
-            if (entry.intersectionRatio > 0) {
+            console.log(entry.intersectionRatio,id)
+            if (entry.intersectionRatio > 0.8) {
                 b.forEach((a)=>{
                 if (a.accessKey === id)
                 {

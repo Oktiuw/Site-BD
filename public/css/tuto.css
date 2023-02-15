@@ -186,14 +186,15 @@ div.contain{
     flex-grow: 1;
 }
 li{
-    list-style: none;
+
     margin: 20px;
 }
 img.tuto{
-    width: 900px;
-    height: 350px;
+    width: 1000px;
+    height: 400px;
 }
 div.img{
+
     display: flex;
     flex-grow: 1;
     justify-content: center;
