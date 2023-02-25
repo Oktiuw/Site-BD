@@ -25,6 +25,9 @@
         <h1 style="margin-left: 15px;">Sommaire</h1>
         <ul id="sommaire">
             <li style="list-style: none">
+                <a accesskey="video" href="#video">Vidéo</a>
+            </li>
+            <li style="list-style: none">
                 <a  accesskey="login" href="#login">Se connecter</a>
             </li>
             <li style="list-style: none">
@@ -43,6 +46,14 @@
     </div>
     <div class="tuto">
         <div class="desc animate__animated">
+            <h2 id="video">Vidéo explicative</h2>
+            <div class="img">
+            <video width="640" height="360" controls>
+                <source src="{{ asset('projets.mp4') }}" type="video/mp4">
+                Votre moteur de recherche ne supporte pas la vidéo.
+            </video>
+            </div>
+            <h1 style="text-align: center">Explications détaillées</h1>
             <h2 id="login">Se connecter</h2>
             <ol>
                 <li>Allez sur la page d'accueil du site, <a href="{{ path('app_home') }}" target="_blank">juste ici </a> </li>
@@ -120,7 +131,7 @@
         entries.forEach((entry) => {
             const id=entry.target.id;
             console.log(entry.intersectionRatio,id)
-            if (entry.intersectionRatio > 0.8) {
+            if (entry.intersectionRatio > 0) {
                 b.forEach((a)=>{
                 if (a.accessKey === id)
                 {

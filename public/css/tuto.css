@@ -186,8 +186,7 @@ div.contain{
     flex-grow: 1;
 }
 li{
-
-    margin: 20px;
+    margin: 20px 20px 20px 0;
 }
 img.tuto{
     width: 1000px;
@@ -206,11 +205,10 @@ div.nav{
     position: sticky;
     top: 10px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-    width: 400px;
+    min-width: 250px;
 }
 div.tuto{
-    width: 100%;
-    margin-left: 100px;
+    width: 80%;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 h2{
@@ -237,6 +235,9 @@ a.active
 }
 a:hover{
     color: grey;
+}
+ul#sommaire{
+    margin-left: 0;
 }
 @media (max-width: 768px){
     #id2rn{
