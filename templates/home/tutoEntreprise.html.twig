@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Tutoriel Entreprise</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('css/tutoEntreprise/bootstrap.min.css') }}"rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('css/tutoEntreprise/dashboard.css') }}" rel="stylesheet">
+</head>
+
+<body>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+
+                <ul class="nav flex-column h4">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/tutoentreprise">
+                            <span style="width: 30px; height: 30px;" data-feather="home"></span>
+                            Accueil <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-2 mt-5 mb-1 text-muted">
+                    <a class="h6 nav-link" href="#compte">Compte</a>
+                </h5>
+
+                <ul class="nav flex-column h5">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#creationCompte">
+                            <span style="width: 25px; height: 25px;" data-feather="user-plus"></span>
+                            Création de compte
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#connexion">
+                            <span style="width: 25px; height: 25px;"  data-feather="user"></span>
+                            Connexion
+                        </a>
+                    </li>
+                </ul>
+
+                <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-2 mt-5 mb-1 text-muted">
+                    <a class="h6 nav-link" href="#stages">Stages</a>
+                </h5>
+
+                <ul class="nav flex-column h5">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#visualisationStage">
+                            <span style="width: 25px; height: 25px;" data-feather="layers"></span>
+                            Visualisation des stages
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#creationStage">
+                            <span style="width: 25px; height: 25px;" data-feather="plus"></span>
+                            Création d'un stage
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#modificationStage">
+                            <span style="width: 25px; height: 25px;" data-feather="edit"></span>
+                            Modification d'un stage
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#suppressionStage">
+                            <span style="width: 25px; height: 25px;" data-feather="trash"></span>
+                            Suppression d'un stage
+                        </a>
+                    </li>
+                </ul>
+
+                <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-2 mt-5 mb-1 text-muted">
+                    <a class="h6 nav-link" href="#candidatures">Candidatures</a>
+                </h5>
+
+                <ul class="nav flex-column h5">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#candidaturesStage">
+                            <span style="width: 25px; height: 25px;" data-feather="inbox"></span>
+                            Candidatures par stage
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contactCandidat">
+                            <span style="width: 25px; height: 25px;" data-feather="mail"></span>
+                            Contacter un candidat
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mt-5 pb-2 mb-3">
+                <h1 class="h1">Tutoriel d'utilisation du site du Master IA de l'URCA pour les entreprises</h1>
+            </div>
+
+            <div class="border-bottom border-dark" id="compte"></div>
+
+            <h4 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                <span class="h4">Compte</span>
+            </h4>
+
+            <div class="fonctionnalite mt-4" id="creationCompte">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Création de compte</h1>
+                </div>
+                
+                <div class="row featurette">
+                    <div class="col-md-6 order-md-2">
+                        <ul>
+                            <li class="list-group-item explications"> 1. </li>
+                            <li class="list-group-item explications"> 2. </li>
+                            <li class="list-group-item explications"> 3. </li>
+                            <li class="list-group-item explications"> 4. </li>
+                            <li class="list-group-item explications"> 5. </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 order-md-1 ratio">
+                        <video controls class="ratio">
+                            <source src="https://www.youtube.com/watch?v=QLCpqdqeoII" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fonctionnalite mt-4" id="connexion">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Connexion</h1>
+                </div>
+
+                <div class="row featurette">
+                    <div class="col-md-6 order-md-2">
+                        <ul>
+                            <li class="list-group-item explications"> 1. </li>
+                            <li class="list-group-item explications"> 2. </li>
+                            <li class="list-group-item explications"> 3. </li>
+                            <li class="list-group-item explications"> 4. </li>
+                            <li class="list-group-item explications"> 5. </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 order-md-1 ratio">
+                        <video controls class="ratio">
+                            <source src="https://www.youtube.com/watch?v=QLCpqdqeoII" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-bottom border-dark mt-4" id="stages"></div>
+
+            <h4 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                <span class="h4">Stages</span>
+            </h4>
+            <p class="explications">
+                Dans cette section, vous allez découvrir la gestion de vos stages sur le site du master IA de l'URCA.
+                Cette partie nécessite que vous possédiez déjà un compte pour votre entreprise et que vous soyez connecté. Si ce n'est pas le cas, nous vous invitons à suivre <a href="#compte">les étapes précédentes</a>.
+            </p>
+
+            <div class="fonctionnalite mt-4" id="visualisationStage">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Visualisation des stages proposés par votre entreprise</h1>
+                </div>
+
+                <div class="row featurette">
+                    <div class="col-md-6 order-md-2 row">
+                        <ul class="">
+                            <li class="list-group-item explications"> 1. Accéder à votre espace personnel en vous <a href="#connexion">connectant</a>. Si vous n'en possédez pas, allez suivre les étapes relatives à la <a href="#creationCompte">création de compte</a>.</li>
+                            <li class="list-group-item explications"> 2. Dans la barre de navigation affichée en haut de la page, accédez à vos stages en cliquant simplement sur "Mes Stages"</li>
+                        </ul>
+                        <p class="explications ml-5">
+                            Vous pouvez maintenant voir l'ensemble des stages proposés par votre entreprise. Pour laisser apparaître la description d'un stage, cliquez dessus.
+                        </p>
+                    </div>
+                    <div class="col-md-6 order-md-1 ratio">
+                        <img class="featurette-image img-fluid mx-auto" src="{{ asset('img/tutoEntreprise/stageVisualisation.jpg') }}" alt="Image explicative visualiser stage">
+                    </div>
+                </div>
+            </div>
+
+            <div class="fonctionnalite mt-4" id="creationStage">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Création d'un stage</h1>
+                </div>
+
+                <div class="row featurette">
+                    <div class="col-md-6 order-md-2 row">
+                        <ul>
+                            <li class="list-group-item explications"> 1. Accédez à la page de vos stages (si besoin, suivez <a href="#visualisationStage">cette</a> étape)</li>
+                            <li class="list-group-item explications"> 2. Cliquez sur le bouton « ajouter un stage » présent en haut de la page</li>
+                            <li class="list-group-item explications"> 3. Un formulaire se présente à vous.
+                                Rentrez-y les informations correspondantes à l’offre de stage que vous voulez ajouter : l'intitulé du stage, sa description, le niveau (M1 pour la première année de master, M2 pour la seconde), l'adresse.
+                                Il est important de bien renseigner le niveau d'étude, seuls les élèves de ce niveau auront accès à l'offre de stage.</li>
+                            <li class="list-group-item explications"> 4. Cliquez sur le bouton « créer » en bas du formulaire pour valider l'ajout du stage.</li>
+                        </ul>
+                        <p class="explications ml-5">
+                            Vous êtes automatiquement redirigés vers la page de la liste de vos stages où vous pouvez voir apparaître celui venant d’être créé.
+                        </p>
+                    </div>
+                    <div class="col-md-6 order-md-1 ratio">
+                        <video controls class="ratio">
+                            <source src="{{ asset('video/tutoEntreprise_stageCreation.mp4') }}" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fonctionnalite mt-4" id="modificationStage">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Modification d'un stage</h1>
+                </div>
+
+                <div class="row featurette">
+                    <div class="col-md-6 order-md-2 row">
+                        <ul>
+                            <li class="list-group-item explications"> 1. Accédez à la page de vos stages (si besoin, suivez <a href="#visualisationStage">cette</a> étape) </li>
+                            <li class="list-group-item explications"> 2. Pour chacun de vos stages, un bouton « modifier » vous permettant d'accéder à un formulaire de modificaion est présent. </li>
+                            <li class="list-group-item explications"> 3. Modifiez les sections voulues. </li>
+                            <li class="list-group-item explications"> 4. Cliquez sur le bouton « modifier » en bas du formulaire pour valider les modifications effectuées pour le stage.</li>
+                        </ul>
+                        <p class="explications ml-5">
+                            Vous êtes automatiquement redirigés vers la page de la liste de vos stages où vous pouvez voir apparaître les modifications du stages en question.
+                        </p>
+                    </div>
+                    <div class="col-md-6 order-md-1 ratio">
+                        <video controls class="ratio">
+                            <source src="{{ asset('video/tutoEntreprise_stageModification.mp4') }}" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fonctionnalite mt-4" id="suppressionStage">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Suppression d'un stage</h1>
+                </div>
+
+                <div class="row featurette">
+                    <div class="col-md-6 order-md-2 row">
+                        <ul>
+                            <li class="list-group-item explications"> 1. Accédez à la page de vos stages (si besoin, suivez <a href="#visualisationStage">cette</a> étape)  </li>
+                            <li class="list-group-item explications"> 2. Pour chacun de vos stages, un bouton « supprimer » est présent. Cliquez sur celui correspondant à l'offre de stage que vous voulez supprimer.</li>
+                            <li class="list-group-item explications"> 3. Une fenêtre vous demandant de valider la suppression apparaît. Vous pouvez tout à fait annuler la suppression, validez sinon.</li>
+                        </ul>
+                        <p class="explications ml-5">
+                            Vous êtes automatiquement redirigés vers la page de la liste de vos stages où vous pouvez voir que le stage n'est plus présent de la liste.
+                        </p>
+                    </div>
+                    <div class="col-md-6 order-md-1 ratio">
+                        <img class="featurette-image img-fluid mx-auto" src="{{ asset('img/tutoEntreprise/stageSuppression.jpg') }}" alt="Image explicative supprimer stage">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="border-bottom border-dark mt-4" id="candidatures"></div>
+
+            <h4 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                <span class="h4">Candidatures</span>
+            </h4>
+            <p class="explications">
+            </p>
+
+            <div class="fonctionnalite mt-4" id="candidaturesStage">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Visualisation des candidatures par stage</h1>
+                </div>
+
+                <div class="row featurette">
+                    <div class="col-md-6 order-md-2">
+                        <ul>
+                            <li class="list-group-item explications"> 1. </li>
+                            <li class="list-group-item explications"> 2. </li>
+                            <li class="list-group-item explications"> 3. </li>
+                            <li class="list-group-item explications"> 4. </li>
+                            <li class="list-group-item explications"> 5. </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 order-md-1 ratio">
+                        <video controls class="ratio">
+                            <source src="https://www.youtube.com/watch?v=QLCpqdqeoII" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fonctionnalite mt-4" id="contactCandidat">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Contacter un candidat</h1>
+                </div>
+
+                <div class="row featurette">
+                    <div class="col-md-6 order-md-2">
+                        <ul>
+                            <li class="list-group-item explications"> 1. </li>
+                            <li class="list-group-item explications"> 2. </li>
+                            <li class="list-group-item explications"> 3. </li>
+                            <li class="list-group-item explications"> 4. </li>
+                            <li class="list-group-item explications"> 5. </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 order-md-1 ratio">
+                        <video controls class="ratio">
+                            <source src="https://www.youtube.com/watch?v=QLCpqdqeoII" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="../../../../assets/js/vendor/popper.min.js"></script>
+<script src="../../../../dist/js/bootstrap.min.js"></script>
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
+
+</body>
+</html>
+
