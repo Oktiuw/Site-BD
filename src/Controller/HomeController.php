@@ -14,8 +14,15 @@ class HomeController extends AbstractController
         $user=$this->getUser();
         return $this->render('home/home.html.twig', ['user'=>$user]);
     }
-    #[Route('/tuto',name: 'app_tuto')]
+    #[Route('/tuto', name: 'app_tuto')]
     public function tuto(): Response
     {
         return $this->render('home/tuto.html.twig');
-}}
+    }
+
+    #[Route('/tutoentreprise', name: 'app_tuto_entreprise')]
+    public function tutoEntreprise(): Response
+    {
+        return $this->render('home/tutoEntreprise.html.twig');
+    }
+}
