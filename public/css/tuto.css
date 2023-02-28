@@ -29,9 +29,6 @@
     font-weight:400;
     letter-spacing:10px;
 }
-div{
-    background-color: white;
-}
 body{
     font-family:Helvetica, serif;
 }
@@ -69,18 +66,12 @@ body{
 .feature3-section{
     font-family:"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight:200;
-    padding-top:50px;
-    padding-right:0px;
-    padding-bottom:50px;
-    padding-left:0px;
+    padding: 50px 0px;
     color:rgb(68, 68, 68);
     background-color:#f3f3f3;
 }
 .feature3{
-    padding-top:10px;
-    padding-right:10px;
-    padding-bottom:10px;
-    padding-left:10px;
+    padding: 10px;
     margin-top:10px;
     margin-right:10px;
     margin-bottom:10px;
@@ -190,10 +181,11 @@ div.contain{
 }
 li{
     margin: 20px 20px 20px 0;
+    font-size: large;
 }
 img.tuto{
-    width: 1000px;
-    height: 400px;
+    width: 1150px;
+    height: 550px;
 }
 div.img{
 
@@ -255,4 +247,8 @@ ul#sommaire{
     #id2rn{
         font-size:1rem;
     }
+}
+h2{
+    margin-bottom: 50px;
+    margin-top: 50px;
 }
