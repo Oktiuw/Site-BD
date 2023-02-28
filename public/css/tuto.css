@@ -29,6 +29,9 @@
     font-weight:400;
     letter-spacing:10px;
 }
+div{
+    background-color: white;
+}
 body{
     font-family:Helvetica, serif;
     background-color: #FFBF00;
@@ -222,6 +225,7 @@ div.tuto>*{
 div.desc{
     display: flex;
     flex-direction: column;
+    margin-bottom: 150px;
 }
 a
 {
