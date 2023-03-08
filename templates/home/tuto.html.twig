@@ -48,9 +48,9 @@
         <div class="desc animate__animated">
             <h2 id="video">Vidéo explicative</h2>
             <div class="img">
-            <video width="800" height="500" controls>
+            <video width="800" height="500" controls poster="{{ asset('img/Tuto-com.png') }}">
                 <source src="{{ asset('projets.mp4') }}" type="video/mp4">
-                Votre moteur de recherche ne supporte pas la vidéo.
+                Votre moteur de recherche ne supporte pas la vidéo
             </video>
             </div>
             </div>
@@ -60,7 +60,7 @@
         <div class="desc">
             <h2 id="login">Se connecter</h2>
             <ol>
-                <li>Allez sur la page d'accueil du site, <a href="{{ path('app_home') }}" target="_blank">juste ici </a> </li>
+                <li>Allez sur la page d'accueil du <a href="{{ path('app_home') }}" target="_blank">site </a></li>
                 <li>Cliquez sur le menu en haut à gauche puis sur "mon espace"</li>
                 <div class="img">
                     <img class="tuto" src="{{ asset('img/home.png') }}" alt="Page d'accueil login">
@@ -84,7 +84,7 @@
                     </div>
                 <li>Résultat</li>
                 <div class="img">
-                    <img class="tuto" src="{{ asset('img/result.png') }}" alt="Page d'accueil login">
+                    <img class="tuto" src="{{ asset('img/nav.png') }}" alt="Page d'accueil login">
                 </div>
             </ol>
 
@@ -95,10 +95,10 @@
             <h2 id="nav">Navigation vers la date du cours</h2>
             <ol>
                 <li>Les flèches <span class="material-symbols-outlined edt">first_page</span>   <span class="material-symbols-outlined edt">last_page</span> changent la semaine</li>
-                <li>Les flèches <span class="material-symbols-outlined edt">arrow_back</span>   <span class="material-symbols-outlined edt">arrow_forward</span> changent le jour </li>
-                <li><strong>Utilisez ces flêches pour vous rendre vers la date où votre cours se tient.</strong></li>
+                <li>Les flèches <span class="material-symbols-outlined edt">arrow_back</span>   <span class="material-symbols-outlined edt">arrow_forward</span> changent le jour</li>
+                <li><strong>Utilisez ces flêches pour vous rendre vers la date où votre cours se tient</strong></li>
                 <div class="img">
-                    <img class="tuto" src="{{ asset('img/nav.png') }}" alt="Page d'accueil login">
+                    <img class="tuto" src="{{ asset('img/result.png') }}" alt="Page d'accueil login">
                 </div>
             </ol>
         </div>
@@ -119,11 +119,18 @@
         <div class="desc">
             <h2 id="put">Mettre les valeurs souhaitées</h2>
             <ol>
-                <li><strong>Mettez les horaires désirées.</strong></li>
+                <li><strong>Mettez les horaires désirées</strong></li>
                 <div class="img">
                     <img class="tuto" src="{{ asset('img/horaires.png') }}" alt="Page d'accueil login">
                 </div>
                 <li>Une fois que vos valeurs sont rentrées, appuyez sur <strong>Modifier</strong></li>
+                <div class="img">
+                    <img class="tuto" src="{{ asset('img/chkpng.png') }}" alt="Page d'accueil login">
+                </div>
+                <li>Vérifiez la saisie</li>
+                <div class="img">
+                    <img class="tuto" src="{{ asset('img/chk2.png') }}" alt="Page d'accueil login">
+                </div>
             </ol>
         </div>
     </div>
