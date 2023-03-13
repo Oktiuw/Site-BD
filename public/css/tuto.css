@@ -180,15 +180,15 @@ div.contain{
     flex-grow: 1;
 }
 li{
-    margin: 20px 20px 20px 0;
     font-size: large;
+    margin: 20px 2px 20px 0;
 }
 img.tuto{
-    width: 1200px;
-    height: 550px;
+    width: 1150px;
+    height: 500px;
 }
 div.img{
-    margin: 15px;
+    margin: 30px;
     display: flex;
     flex-grow: 1;
     justify-content: center;
