@@ -98,9 +98,14 @@ video {
     height: auto;
 }
 
-.fonctionnalite{
+div.fonctionnalite, div.section{
     margin-top: 100px;
 }
+
+div.fonctionnalite{
+    background-color: rgba(189, 195, 199, 0.2);
+}
+
 
 .explications{
     font-size: large;
